@@ -1,0 +1,603 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		251D1F5822403DAD00AD7CE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F5722403DAD00AD7CE4 /* AppDelegate.swift */; };
+		251D1F5A22403DAD00AD7CE4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F5922403DAD00AD7CE4 /* GameScene.sks */; };
+		251D1F5C22403DAD00AD7CE4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F5B22403DAD00AD7CE4 /* Actions.sks */; };
+		251D1F5E22403DAD00AD7CE4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F5D22403DAD00AD7CE4 /* GameScene.swift */; };
+		251D1F6022403DAD00AD7CE4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */; };
+		251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F6122403DAD00AD7CE4 /* Main.storyboard */; };
+		251D1F6522403DAE00AD7CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F6422403DAE00AD7CE4 /* Assets.xcassets */; };
+		251D1F6822403DAE00AD7CE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F6622403DAE00AD7CE4 /* LaunchScreen.storyboard */; };
+		251D1F7322403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F7222403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift */; };
+		251D1F7E22403DAE00AD7CE4 /* Team_Kookaburra_ChessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F7D22403DAE00AD7CE4 /* Team_Kookaburra_ChessUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		251D1F6F22403DAE00AD7CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 251D1F4C22403DAD00AD7CE4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 251D1F5322403DAD00AD7CE4;
+			remoteInfo = "Team Kookaburra Chess";
+		};
+		251D1F7A22403DAE00AD7CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 251D1F4C22403DAD00AD7CE4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 251D1F5322403DAD00AD7CE4;
+			remoteInfo = "Team Kookaburra Chess";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		251D1F5422403DAD00AD7CE4 /* Team Kookaburra Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team Kookaburra Chess.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		251D1F5722403DAD00AD7CE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		251D1F5922403DAD00AD7CE4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		251D1F5B22403DAD00AD7CE4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		251D1F5D22403DAD00AD7CE4 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		251D1F6222403DAD00AD7CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		251D1F6422403DAE00AD7CE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		251D1F6722403DAE00AD7CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		251D1F6922403DAE00AD7CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		251D1F6E22403DAE00AD7CE4 /* Team Kookaburra ChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Team Kookaburra ChessTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		251D1F7222403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team_Kookaburra_ChessTests.swift; sourceTree = "<group>"; };
+		251D1F7422403DAE00AD7CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		251D1F7922403DAE00AD7CE4 /* Team Kookaburra ChessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Team Kookaburra ChessUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		251D1F7D22403DAE00AD7CE4 /* Team_Kookaburra_ChessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team_Kookaburra_ChessUITests.swift; sourceTree = "<group>"; };
+		251D1F7F22403DAE00AD7CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		251D1F5122403DAD00AD7CE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		251D1F6B22403DAE00AD7CE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		251D1F7622403DAE00AD7CE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		251D1F4B22403DAD00AD7CE4 = {
+			isa = PBXGroup;
+			children = (
+				251D1F5622403DAD00AD7CE4 /* Team Kookaburra Chess */,
+				251D1F7122403DAE00AD7CE4 /* Team Kookaburra ChessTests */,
+				251D1F7C22403DAE00AD7CE4 /* Team Kookaburra ChessUITests */,
+				251D1F5522403DAD00AD7CE4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		251D1F5522403DAD00AD7CE4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				251D1F5422403DAD00AD7CE4 /* Team Kookaburra Chess.app */,
+				251D1F6E22403DAE00AD7CE4 /* Team Kookaburra ChessTests.xctest */,
+				251D1F7922403DAE00AD7CE4 /* Team Kookaburra ChessUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		251D1F5622403DAD00AD7CE4 /* Team Kookaburra Chess */ = {
+			isa = PBXGroup;
+			children = (
+				251D1F5722403DAD00AD7CE4 /* AppDelegate.swift */,
+				251D1F5922403DAD00AD7CE4 /* GameScene.sks */,
+				251D1F5B22403DAD00AD7CE4 /* Actions.sks */,
+				251D1F5D22403DAD00AD7CE4 /* GameScene.swift */,
+				251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */,
+				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
+				251D1F6422403DAE00AD7CE4 /* Assets.xcassets */,
+				251D1F6622403DAE00AD7CE4 /* LaunchScreen.storyboard */,
+				251D1F6922403DAE00AD7CE4 /* Info.plist */,
+			);
+			path = "Team Kookaburra Chess";
+			sourceTree = "<group>";
+		};
+		251D1F7122403DAE00AD7CE4 /* Team Kookaburra ChessTests */ = {
+			isa = PBXGroup;
+			children = (
+				251D1F7222403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift */,
+				251D1F7422403DAE00AD7CE4 /* Info.plist */,
+			);
+			path = "Team Kookaburra ChessTests";
+			sourceTree = "<group>";
+		};
+		251D1F7C22403DAE00AD7CE4 /* Team Kookaburra ChessUITests */ = {
+			isa = PBXGroup;
+			children = (
+				251D1F7D22403DAE00AD7CE4 /* Team_Kookaburra_ChessUITests.swift */,
+				251D1F7F22403DAE00AD7CE4 /* Info.plist */,
+			);
+			path = "Team Kookaburra ChessUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		251D1F5322403DAD00AD7CE4 /* Team Kookaburra Chess */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 251D1F8222403DAE00AD7CE4 /* Build configuration list for PBXNativeTarget "Team Kookaburra Chess" */;
+			buildPhases = (
+				251D1F5022403DAD00AD7CE4 /* Sources */,
+				251D1F5122403DAD00AD7CE4 /* Frameworks */,
+				251D1F5222403DAD00AD7CE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Team Kookaburra Chess";
+			productName = "Team Kookaburra Chess";
+			productReference = 251D1F5422403DAD00AD7CE4 /* Team Kookaburra Chess.app */;
+			productType = "com.apple.product-type.application";
+		};
+		251D1F6D22403DAE00AD7CE4 /* Team Kookaburra ChessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 251D1F8522403DAE00AD7CE4 /* Build configuration list for PBXNativeTarget "Team Kookaburra ChessTests" */;
+			buildPhases = (
+				251D1F6A22403DAE00AD7CE4 /* Sources */,
+				251D1F6B22403DAE00AD7CE4 /* Frameworks */,
+				251D1F6C22403DAE00AD7CE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				251D1F7022403DAE00AD7CE4 /* PBXTargetDependency */,
+			);
+			name = "Team Kookaburra ChessTests";
+			productName = "Team Kookaburra ChessTests";
+			productReference = 251D1F6E22403DAE00AD7CE4 /* Team Kookaburra ChessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		251D1F7822403DAE00AD7CE4 /* Team Kookaburra ChessUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 251D1F8822403DAE00AD7CE4 /* Build configuration list for PBXNativeTarget "Team Kookaburra ChessUITests" */;
+			buildPhases = (
+				251D1F7522403DAE00AD7CE4 /* Sources */,
+				251D1F7622403DAE00AD7CE4 /* Frameworks */,
+				251D1F7722403DAE00AD7CE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				251D1F7B22403DAE00AD7CE4 /* PBXTargetDependency */,
+			);
+			name = "Team Kookaburra ChessUITests";
+			productName = "Team Kookaburra ChessUITests";
+			productReference = 251D1F7922403DAE00AD7CE4 /* Team Kookaburra ChessUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		251D1F4C22403DAD00AD7CE4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Christopher Blake Cassell Erquiaga";
+				TargetAttributes = {
+					251D1F5322403DAD00AD7CE4 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					251D1F6D22403DAE00AD7CE4 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 251D1F5322403DAD00AD7CE4;
+					};
+					251D1F7822403DAE00AD7CE4 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 251D1F5322403DAD00AD7CE4;
+					};
+				};
+			};
+			buildConfigurationList = 251D1F4F22403DAD00AD7CE4 /* Build configuration list for PBXProject "Team Kookaburra Chess" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 251D1F4B22403DAD00AD7CE4;
+			productRefGroup = 251D1F5522403DAD00AD7CE4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				251D1F5322403DAD00AD7CE4 /* Team Kookaburra Chess */,
+				251D1F6D22403DAE00AD7CE4 /* Team Kookaburra ChessTests */,
+				251D1F7822403DAE00AD7CE4 /* Team Kookaburra ChessUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		251D1F5222403DAD00AD7CE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */,
+				251D1F5A22403DAD00AD7CE4 /* GameScene.sks in Resources */,
+				251D1F6522403DAE00AD7CE4 /* Assets.xcassets in Resources */,
+				251D1F6822403DAE00AD7CE4 /* LaunchScreen.storyboard in Resources */,
+				251D1F5C22403DAD00AD7CE4 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		251D1F6C22403DAE00AD7CE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		251D1F7722403DAE00AD7CE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		251D1F5022403DAD00AD7CE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				251D1F5E22403DAD00AD7CE4 /* GameScene.swift in Sources */,
+				251D1F6022403DAD00AD7CE4 /* GameViewController.swift in Sources */,
+				251D1F5822403DAD00AD7CE4 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		251D1F6A22403DAE00AD7CE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				251D1F7322403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		251D1F7522403DAE00AD7CE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				251D1F7E22403DAE00AD7CE4 /* Team_Kookaburra_ChessUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		251D1F7022403DAE00AD7CE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 251D1F5322403DAD00AD7CE4 /* Team Kookaburra Chess */;
+			targetProxy = 251D1F6F22403DAE00AD7CE4 /* PBXContainerItemProxy */;
+		};
+		251D1F7B22403DAE00AD7CE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 251D1F5322403DAD00AD7CE4 /* Team Kookaburra Chess */;
+			targetProxy = 251D1F7A22403DAE00AD7CE4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		251D1F6122403DAD00AD7CE4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				251D1F6222403DAD00AD7CE4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		251D1F6622403DAE00AD7CE4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				251D1F6722403DAE00AD7CE4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		251D1F8022403DAE00AD7CE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		251D1F8122403DAE00AD7CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		251D1F8322403DAE00AD7CE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63HJ367J2T;
+				INFOPLIST_FILE = "Team Kookaburra Chess/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-Chess";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		251D1F8422403DAE00AD7CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63HJ367J2T;
+				INFOPLIST_FILE = "Team Kookaburra Chess/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-Chess";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		251D1F8622403DAE00AD7CE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63HJ367J2T;
+				INFOPLIST_FILE = "Team Kookaburra ChessTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-ChessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Team Kookaburra Chess.app/Team Kookaburra Chess";
+			};
+			name = Debug;
+		};
+		251D1F8722403DAE00AD7CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63HJ367J2T;
+				INFOPLIST_FILE = "Team Kookaburra ChessTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-ChessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Team Kookaburra Chess.app/Team Kookaburra Chess";
+			};
+			name = Release;
+		};
+		251D1F8922403DAE00AD7CE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63HJ367J2T;
+				INFOPLIST_FILE = "Team Kookaburra ChessUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-ChessUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Team Kookaburra Chess";
+			};
+			name = Debug;
+		};
+		251D1F8A22403DAE00AD7CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63HJ367J2T;
+				INFOPLIST_FILE = "Team Kookaburra ChessUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-ChessUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Team Kookaburra Chess";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		251D1F4F22403DAD00AD7CE4 /* Build configuration list for PBXProject "Team Kookaburra Chess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				251D1F8022403DAE00AD7CE4 /* Debug */,
+				251D1F8122403DAE00AD7CE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		251D1F8222403DAE00AD7CE4 /* Build configuration list for PBXNativeTarget "Team Kookaburra Chess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				251D1F8322403DAE00AD7CE4 /* Debug */,
+				251D1F8422403DAE00AD7CE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		251D1F8522403DAE00AD7CE4 /* Build configuration list for PBXNativeTarget "Team Kookaburra ChessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				251D1F8622403DAE00AD7CE4 /* Debug */,
+				251D1F8722403DAE00AD7CE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		251D1F8822403DAE00AD7CE4 /* Build configuration list for PBXNativeTarget "Team Kookaburra ChessUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				251D1F8922403DAE00AD7CE4 /* Debug */,
+				251D1F8A22403DAE00AD7CE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 251D1F4C22403DAD00AD7CE4 /* Project object */;
+}
