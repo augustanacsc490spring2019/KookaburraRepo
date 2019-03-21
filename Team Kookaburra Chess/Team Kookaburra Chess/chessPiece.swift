@@ -77,7 +77,7 @@ class ChessPiece {
         case .king:
             symbol = "testRook.png"
         case .queen:
-            symbol = "Team Kookaburra Chess/Images/testRook.png"
+            symbol = "testRook.png"
         case .dummy:
             symbol = "testRook.png"
         }
