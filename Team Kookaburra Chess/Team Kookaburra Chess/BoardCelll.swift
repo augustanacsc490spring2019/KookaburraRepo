@@ -94,10 +94,28 @@ class BoardCell: UIView {
         column = piece.col
         self.piece = piece
         //pieceLabel.attributedText = imageFromPath(path: "testRook.png")
+        //special thanks to StackOverflow user Tarun Seera
+        //Create Attachment
+        let imageAttachment =  NSTextAttachment()
+        imageAttachment.image = UIImage(named: piece.symbol)
+        //Set bound to reposition
+        let imageOffsetY:CGFloat = -5.0;
+        imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: 50, height: 50)
+        //Create string with attachment
+        let attachmentString = NSAttributedString(attachment: imageAttachment)
+        //Initialize mutable string
+        let completeText = NSMutableAttributedString(string: "")
+        //Add image to mutable string
+        completeText.append(attachmentString)
+        //Add your text to mutable string
+        let textAfterIcon = NSMutableAttributedString(string: "")
+        completeText.append(textAfterIcon)
+        pieceLabel.textAlignment = .center;
+        pieceLabel.attributedText = completeText;
         pieceLabel.text = piece.symbol
         pieceLabel.textColor = piece.color
-            //pieceLabel.icon = image
         backgroundColor = color
+        addSubview(pieceLabel)
     }
     
     func setAsPossibleLocation() {

@@ -24,6 +24,9 @@
 		251D1F9A224075CE00AD7CE4 /* chessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F99224075CE00AD7CE4 /* chessView.swift */; };
 		251D1F9C2240760B00AD7CE4 /* history.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F9B2240760B00AD7CE4 /* history.swift */; };
 		251D1F9E22407A7700AD7CE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */; };
+		252A35EA224414F600FE6A09 /* blankPiece.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35E9224414F600FE6A09 /* blankPiece.png */; };
+		252A35EC2244150200FE6A09 /* blackPawn.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35EB2244150200FE6A09 /* blackPawn.png */; };
+		252A35F022442A9200FE6A09 /* blackBishop.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35EF22442A9200FE6A09 /* blackBishop.png */; };
 		889C82642241651D00B77A21 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* LaunchScreen.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +72,9 @@
 		251D1F9B2240760B00AD7CE4 /* history.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = history.swift; sourceTree = "<group>"; };
 		251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		251D202C22431F3800AD7CE4 /* testRook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testRook.png; path = "Team Kookaburra Chess/Images/testRook.png"; sourceTree = SOURCE_ROOT; };
+		252A35E9224414F600FE6A09 /* blankPiece.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blankPiece.png; path = ../../../../../../Desktop/blankPiece.png; sourceTree = "<group>"; };
+		252A35EB2244150200FE6A09 /* blackPawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackPawn.png; path = ../../../../../../Desktop/blackPawn.png; sourceTree = "<group>"; };
+		252A35EF22442A9200FE6A09 /* blackBishop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackBishop.png; path = ../../../../../../Desktop/blackBishop.png; sourceTree = "<group>"; };
 		889C82632241651D00B77A21 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +169,9 @@
 		251D202B22431F2C00AD7CE4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				252A35EF22442A9200FE6A09 /* blackBishop.png */,
+				252A35EB2244150200FE6A09 /* blackPawn.png */,
+				252A35E9224414F600FE6A09 /* blankPiece.png */,
 				251D202C22431F3800AD7CE4 /* testRook.png */,
 			);
 			path = Images;
@@ -272,9 +281,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				252A35EC2244150200FE6A09 /* blackPawn.png in Resources */,
 				251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */,
+				252A35F022442A9200FE6A09 /* blackBishop.png in Resources */,
 				251D1F5A22403DAD00AD7CE4 /* GameScene.sks in Resources */,
 				251D1F6522403DAE00AD7CE4 /* Assets.xcassets in Resources */,
+				252A35EA224414F600FE6A09 /* blankPiece.png in Resources */,
 				251D1F6822403DAE00AD7CE4 /* LaunchScreen.storyboard in Resources */,
 				251D1F5C22403DAD00AD7CE4 /* Actions.sks in Resources */,
 			);
