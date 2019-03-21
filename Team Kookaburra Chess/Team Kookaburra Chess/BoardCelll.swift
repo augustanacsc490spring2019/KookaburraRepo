@@ -17,6 +17,10 @@ class BoardCell: UIView {
     var color: UIColor
     var delegate: BoardCellDelegate?
     
+    
+    var pieceLabel: SMIconLabel
+    
+    
     lazy var invisibleButton: UIButton = {
         let b = UIButton(type: .system)
         b.translatesAutoresizingMaskIntoConstraints = false
@@ -24,26 +28,39 @@ class BoardCell: UIView {
         return b
     }()
     
-    let pieceLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.textAlignment = .center
-        l.font = UIFont.systemFont(ofSize: 40)
-        l.minimumScaleFactor = 0.5
-        return l
-    }()
+//    let pieceLabel: UILabel = {
+//        let l = UILabel()
+//        l.translatesAutoresizingMaskIntoConstraints = false
+//        l.textAlignment = .center
+//        l.font = UIFont.systemFont(ofSize: 40)
+//        l.minimumScaleFactor = 0.5
+//        return l
+//    }()
+
     
     init(row: Int, column: Int, piece: ChessPiece, color: UIColor) {
         self.row = row
         self.column = column
         self.piece = piece
         self.color = color
+        self.pieceLabel = SMIconLabel()
         super.init(frame: .zero)
         self.backgroundColor = color
         setupViews()
+        //pieceLabel.attributedText = imageFromPath(path: "testRook.png")
+        //pieceLabel.text = piece.symbol
+        //pieceLabel.textColor = piece.color
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath          = paths.first
+        {
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent(piece.symbol)
+            let image    = UIImage(contentsOfFile: imageURL.path)
+            pieceLabel.text = ""
+            pieceLabel.icon = image
+        }
         
-        pieceLabel.text = piece.symbol
-        pieceLabel.textColor = piece.color
     }
     
     func setupViews() {
@@ -53,20 +70,45 @@ class BoardCell: UIView {
         invisibleButton.widthAnchor.constraint(equalTo: widthAnchor, constant: 0).isActive = true
         invisibleButton.heightAnchor.constraint(equalTo: heightAnchor, constant: 0).isActive = true
         
+//        addSubview(pieceLabel)
+//        pieceLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
+//        pieceLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+//        pieceLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: 0).isActive = true
+//        pieceLabel.heightAnchor.constraint(equalTo: heightAnchor, constant: 0).isActive = true
+//        UIView; v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+//        UIImageView iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+//        [iv setImage:image];
+//        [v addSubview:iv];
+        
         addSubview(pieceLabel)
-        pieceLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
-        pieceLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-        pieceLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: 0).isActive = true
-        pieceLabel.heightAnchor.constraint(equalTo: heightAnchor, constant: 0).isActive = true
+    }
+    
+    func imageFromPath(path: String) -> NSMutableAttributedString{
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(named: path)
+        let attachmentString = NSAttributedString(attachment: attachment)
+        let myString = NSMutableAttributedString(string: " ")
+        myString.append(attachmentString)
+        return myString
     }
     
     func configureCell(forPiece piece: ChessPiece) {
         row = piece.row
         column = piece.col
         self.piece = piece
-        
-        pieceLabel.text = piece.symbol
-        pieceLabel.textColor = piece.color
+        //pieceLabel.attributedText = imageFromPath(path: "testRook.png")
+        //pieceLabel.text = myString
+        //pieceLabel.textColor = piece.color
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath          = paths.first
+        {
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent(piece.symbol)
+            let image    = UIImage(contentsOfFile: imageURL.path)
+            pieceLabel.text = ""
+            pieceLabel.icon = image
+        }
         backgroundColor = color
     }
     

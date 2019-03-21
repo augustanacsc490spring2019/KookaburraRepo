@@ -67,19 +67,19 @@ class ChessPiece {
     private func setupSymbol() {
         switch type {
         case .pawn:
-            symbol = "♟"
+            symbol = "testRook.png"
         case .rook:
-            symbol = "♜"
+            symbol = "testRook.png"
         case .knight:
-            symbol = "♞"
+            symbol = "testRook.png"
         case .bishop:
-            symbol = "♝"
+            symbol = "testRook.png"
         case .king:
-            symbol = "♚"
+            symbol = "testRook.png"
         case .queen:
-            symbol = "♛"
+            symbol = "Team Kookaburra Chess/Images/testRook.png"
         case .dummy:
-            symbol = ""
+            symbol = "testRook.png"
         }
     }
     
