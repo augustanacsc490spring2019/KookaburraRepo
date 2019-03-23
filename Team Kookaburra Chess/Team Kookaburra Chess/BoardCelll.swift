@@ -16,7 +16,7 @@ class BoardCell: UIView {
     var piece: ChessPiece
     var color: UIColor
     var delegate: BoardCellDelegate?
-    
+    var pieceImageView:  UIImageView
     
     lazy var invisibleButton: UIButton = {
         let b = UIButton(type: .system)
@@ -33,22 +33,29 @@ class BoardCell: UIView {
         l.minimumScaleFactor = 0.5
         return l
     }()
-
+    
     
     init(row: Int, column: Int, piece: ChessPiece, color: UIColor) {
         self.row = row
         self.column = column
         self.piece = piece
         self.color = color
+        
+        self.pieceImageView =  UIImageView(image: piece.symbolImage)
+        let imageOffsetY:CGFloat = -5.0;
+        self.pieceImageView.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
+        
+        
         super.init(frame: .zero)
         self.backgroundColor = color
+        
         setupViews()
         //special thanks to StackOverflow user Tarun Seera
         //Create Attachment
         let imageAttachment =  NSTextAttachment()
         imageAttachment.image = UIImage(named: piece.symbol)
         //Set bound to reposition
-        let imageOffsetY:CGFloat = -5.0;
+        
         imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: 50, height: 50)
         //Create string with attachment
         let attachmentString = NSAttributedString(attachment: imageAttachment)
@@ -73,21 +80,22 @@ class BoardCell: UIView {
         invisibleButton.widthAnchor.constraint(equalTo: widthAnchor, constant: 0).isActive = true
         invisibleButton.heightAnchor.constraint(equalTo: heightAnchor, constant: 0).isActive = true
         
-        addSubview(pieceLabel)
-        pieceLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
-        pieceLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-        pieceLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: 0).isActive = true
-        pieceLabel.heightAnchor.constraint(equalTo: heightAnchor, constant: 0).isActive = true
+        addSubview(pieceImageView)
+        pieceImageView.translatesAutoresizingMaskIntoConstraints = false
+        pieceImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        pieceImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        pieceImageView.centerXAnchor.constraint(lessThanOrEqualTo: pieceImageView.superview!.centerXAnchor).isActive = true
+        pieceImageView.centerYAnchor.constraint(lessThanOrEqualTo: pieceImageView.superview!.centerYAnchor).isActive = true
+        
+        
+        //        addSubview(pieceLabel)
+        //        pieceLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
+        //        pieceLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+        //        pieceLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: 0).isActive = true
+        //        pieceLabel.heightAnchor.constraint(equalTo: heightAnchor, constant: 0).isActive = true
     }
     
-    func imageFromPath(path: String) -> NSMutableAttributedString{
-        let attachment = NSTextAttachment()
-        attachment.image = UIImage(named: path)
-        let attachmentString = NSAttributedString(attachment: attachment)
-        let myString = NSMutableAttributedString(string: " ")
-        myString.append(attachmentString)
-        return myString
-    }
+    
     
     func configureCell(forPiece piece: ChessPiece) {
         row = piece.row
@@ -115,7 +123,17 @@ class BoardCell: UIView {
         pieceLabel.text = piece.symbol
         pieceLabel.textColor = piece.color
         backgroundColor = color
-        addSubview(pieceLabel)
+        //  addSubview(pieceLabel)
+        
+        self.pieceImageView.image  = piece.symbolImage
+        
+        //         addSubview(pieceImageView)
+        //        pieceImageView.translatesAutoresizingMaskIntoConstraints = false
+        //        pieceImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        //        pieceImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        //        pieceImageView.centerXAnchor.constraint(lessThanOrEqualTo: pieceImageView.superview!.centerXAnchor).isActive = true
+        //        pieceImageView.centerYAnchor.constraint(lessThanOrEqualTo: pieceImageView.superview!.centerYAnchor).isActive = true
+        //
     }
     
     func setAsPossibleLocation() {

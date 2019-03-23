@@ -73,10 +73,10 @@
 		251D1F9B2240760B00AD7CE4 /* history.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = history.swift; sourceTree = "<group>"; };
 		251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		251D202C22431F3800AD7CE4 /* testRook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testRook.png; path = "Team Kookaburra Chess/Images/testRook.png"; sourceTree = SOURCE_ROOT; };
-		252A35E9224414F600FE6A09 /* blankPiece.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blankPiece.png; path = ../../../../../../Desktop/blankPiece.png; sourceTree = "<group>"; };
-		252A35EB2244150200FE6A09 /* blackPawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackPawn.png; path = ../../../../../../Desktop/blackPawn.png; sourceTree = "<group>"; };
-		252A35EF22442A9200FE6A09 /* blackBishop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackBishop.png; path = ../../../../../../Desktop/blackBishop.png; sourceTree = "<group>"; };
-		252A35F12244323500FE6A09 /* blackKnight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackKnight.png; path = ../../../../../../Desktop/blackKnight.png; sourceTree = "<group>"; };
+		252A35E9224414F600FE6A09 /* blankPiece.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blankPiece.png; sourceTree = "<group>"; };
+		252A35EB2244150200FE6A09 /* blackPawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPawn.png; sourceTree = "<group>"; };
+		252A35EF22442A9200FE6A09 /* blackBishop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBishop.png; sourceTree = "<group>"; };
+		252A35F12244323500FE6A09 /* blackKnight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackKnight.png; sourceTree = "<group>"; };
 		889C82632241651D00B77A21 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

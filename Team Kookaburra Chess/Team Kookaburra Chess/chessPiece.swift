@@ -34,6 +34,7 @@ class ChessPiece {
     
     var bIndex: BoardIndex
     var symbol: String
+    var symbolImage: UIImage
     var color: UIColor
     var type: PieceType
     var advancingByTwo = false // Only for pawn type
@@ -48,6 +49,7 @@ class ChessPiece {
         self.color = color
         self.type = type
         self.symbol = ""
+        self.symbolImage = UIImage(named:"blackPawn.png")!
         self.playerColor = player
         setupSymbol()
     }
@@ -81,6 +83,8 @@ class ChessPiece {
         case .dummy:
             symbol = "blankPiece.png"
         }
+        // NSLog(symbol)
+        self.symbolImage = UIImage(named:symbol)!
     }
     
     /** Checks to see if the direction the piece is moving is the way this piece type is allowed to move. Doesn't take into account the state of the board */
