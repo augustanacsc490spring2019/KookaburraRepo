@@ -28,6 +28,8 @@
 		252A35EC2244150200FE6A09 /* blackPawn.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35EB2244150200FE6A09 /* blackPawn.png */; };
 		252A35F022442A9200FE6A09 /* blackBishop.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35EF22442A9200FE6A09 /* blackBishop.png */; };
 		252A35F22244323600FE6A09 /* blackKnight.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35F12244323500FE6A09 /* blackKnight.png */; };
+		254C14772247D676004359CE /* blackQueen.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14762247D675004359CE /* blackQueen.png */; };
+		254C14792247D67C004359CE /* blackKing.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14782247D67C004359CE /* blackKing.png */; };
 		889C82642241651D00B77A21 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* LaunchScreen.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,8 @@
 		252A35EB2244150200FE6A09 /* blackPawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPawn.png; sourceTree = "<group>"; };
 		252A35EF22442A9200FE6A09 /* blackBishop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBishop.png; sourceTree = "<group>"; };
 		252A35F12244323500FE6A09 /* blackKnight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackKnight.png; sourceTree = "<group>"; };
+		254C14762247D675004359CE /* blackQueen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackQueen.png; sourceTree = "<group>"; };
+		254C14782247D67C004359CE /* blackKing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackKing.png; sourceTree = "<group>"; };
 		889C82632241651D00B77A21 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,7 +177,9 @@
 			children = (
 				252A35EF22442A9200FE6A09 /* blackBishop.png */,
 				252A35F12244323500FE6A09 /* blackKnight.png */,
+				254C14782247D67C004359CE /* blackKing.png */,
 				252A35EB2244150200FE6A09 /* blackPawn.png */,
+				254C14762247D675004359CE /* blackQueen.png */,
 				252A35E9224414F600FE6A09 /* blankPiece.png */,
 				251D202C22431F3800AD7CE4 /* testRook.png */,
 			);
@@ -286,8 +292,10 @@
 			files = (
 				252A35EC2244150200FE6A09 /* blackPawn.png in Resources */,
 				251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */,
+				254C14792247D67C004359CE /* blackKing.png in Resources */,
 				252A35F022442A9200FE6A09 /* blackBishop.png in Resources */,
 				251D1F5A22403DAD00AD7CE4 /* GameScene.sks in Resources */,
+				254C14772247D676004359CE /* blackQueen.png in Resources */,
 				251D1F6522403DAE00AD7CE4 /* Assets.xcassets in Resources */,
 				252A35F22244323600FE6A09 /* blackKnight.png in Resources */,
 				252A35EA224414F600FE6A09 /* blankPiece.png in Resources */,

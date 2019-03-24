@@ -77,9 +77,9 @@ class ChessPiece {
         case .bishop:
             symbol = "blackBishop.png"
         case .king:
-            symbol = "testRook.png"
+            symbol = "blackKing.png"
         case .queen:
-            symbol = "testRook.png"
+            symbol = "blackQueen.png"
         case .dummy:
             symbol = "blankPiece.png"
         }
