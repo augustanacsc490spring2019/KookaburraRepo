@@ -10,13 +10,25 @@
 import UIKit
 
 enum PieceType {
-    case pawn
+    case king
+    case dummy
+    //tier 5
+    
+    //tier 4
+    case queen
+    //tier 3
+    case ghostQueen
     case rook
     case knight
     case bishop
-    case queen
-    case king
-    case dummy
+    //tier 2
+    //tier 1
+    case pawn
+    case monk
+    case dwarf
+    case gargoyle
+    case goblin
+    case footSoldier
 }
 
 class ChessPiece {
@@ -82,6 +94,18 @@ class ChessPiece {
             symbol = "blackQueen.png"
         case .dummy:
             symbol = "blankPiece.png"
+        case .ghostQueen:
+            symbol = "blackGhostQueen.png"
+        case .dwarf:
+            symbol = "blackDwarf.png"
+        case .footSoldier:
+            symbol = "blackFootSoldier.png"
+        case .monk:
+            symbol = "blackMonk.png"
+        case .gargoyle:
+            symbol = "blackGargoyle.png"
+        case .goblin:
+            symbol = "blackGoblin.png"
         }
         // NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
@@ -103,6 +127,23 @@ class ChessPiece {
         case .king:
             return checkKing(dest: dest)
         case .dummy:
+            return false
+        case .ghostQueen:
+            //TODO
+            return false
+        case .monk:
+            //TODO
+            return false
+        case .dwarf:
+            //TODO
+            return false
+        case .gargoyle:
+            //TODO
+            return false
+        case .goblin:
+            return false
+        case .footSoldier:
+            //TODO
             return false
         }
     }
