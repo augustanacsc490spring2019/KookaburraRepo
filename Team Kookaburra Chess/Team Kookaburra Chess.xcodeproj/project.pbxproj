@@ -36,6 +36,11 @@
 		254C14812247E6B9004359CE /* blackGhostQueen.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14802247E6B9004359CE /* blackGhostQueen.png */; };
 		254C14832247E6BF004359CE /* blackGoblin.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14822247E6BF004359CE /* blackGoblin.png */; };
 		254C14852247E76A004359CE /* blackMonk.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14842247E76A004359CE /* blackMonk.png */; };
+		25BC7377224822600083D24E /* blackElephant.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC7376224822600083D24E /* blackElephant.png */; };
+		25BC73792248226A0083D24E /* blackManAtArms.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC73782248226A0083D24E /* blackManAtArms.png */; };
+		25BC737B2248226F0083D24E /* blackOgre.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC737A2248226F0083D24E /* blackOgre.png */; };
+		25BC737D224822750083D24E /* blackOrcWarrior.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC737C224822750083D24E /* blackOrcWarrior.png */; };
+		25BC737F224822840083D24E /* blackScout.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC737E224822840083D24E /* blackScout.png */; };
 		889C82642241651D00B77A21 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* LaunchScreen.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +98,11 @@
 		254C14802247E6B9004359CE /* blackGhostQueen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGhostQueen.png; sourceTree = "<group>"; };
 		254C14822247E6BF004359CE /* blackGoblin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGoblin.png; sourceTree = "<group>"; };
 		254C14842247E76A004359CE /* blackMonk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMonk.png; sourceTree = "<group>"; };
+		25BC7376224822600083D24E /* blackElephant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackElephant.png; sourceTree = "<group>"; };
+		25BC73782248226A0083D24E /* blackManAtArms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackManAtArms.png; sourceTree = "<group>"; };
+		25BC737A2248226F0083D24E /* blackOgre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackOgre.png; sourceTree = "<group>"; };
+		25BC737C224822750083D24E /* blackOrcWarrior.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackOrcWarrior.png; sourceTree = "<group>"; };
+		25BC737E224822840083D24E /* blackScout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackScout.png; sourceTree = "<group>"; };
 		889C82632241651D00B77A21 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,9 +202,14 @@
 				254C14802247E6B9004359CE /* blackGhostQueen.png */,
 				254C14822247E6BF004359CE /* blackGoblin.png */,
 				252A35F12244323500FE6A09 /* blackKnight.png */,
+				25BC7376224822600083D24E /* blackElephant.png */,
 				254C147C2247E6B0004359CE /* blackFootsoldier.png */,
+				25BC73782248226A0083D24E /* blackManAtArms.png */,
 				254C147E2247E6B5004359CE /* blackGargoyle.png */,
+				25BC737A2248226F0083D24E /* blackOgre.png */,
 				254C14782247D67C004359CE /* blackKing.png */,
+				25BC737E224822840083D24E /* blackScout.png */,
+				25BC737C224822750083D24E /* blackOrcWarrior.png */,
 				254C14842247E76A004359CE /* blackMonk.png */,
 				252A35EB2244150200FE6A09 /* blackPawn.png */,
 				254C14762247D675004359CE /* blackQueen.png */,
@@ -313,6 +328,8 @@
 				251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */,
 				254C147D2247E6B0004359CE /* blackFootsoldier.png in Resources */,
 				254C147B2247E6AA004359CE /* blackDwarf.png in Resources */,
+				25BC73792248226A0083D24E /* blackManAtArms.png in Resources */,
+				25BC737B2248226F0083D24E /* blackOgre.png in Resources */,
 				254C14792247D67C004359CE /* blackKing.png in Resources */,
 				252A35F022442A9200FE6A09 /* blackBishop.png in Resources */,
 				251D1F5A22403DAD00AD7CE4 /* GameScene.sks in Resources */,
@@ -320,8 +337,11 @@
 				251D1F6522403DAE00AD7CE4 /* Assets.xcassets in Resources */,
 				254C147F2247E6B5004359CE /* blackGargoyle.png in Resources */,
 				254C14832247E6BF004359CE /* blackGoblin.png in Resources */,
+				25BC737D224822750083D24E /* blackOrcWarrior.png in Resources */,
+				25BC7377224822600083D24E /* blackElephant.png in Resources */,
 				252A35F22244323600FE6A09 /* blackKnight.png in Resources */,
 				252A35EA224414F600FE6A09 /* blankPiece.png in Resources */,
+				25BC737F224822840083D24E /* blackScout.png in Resources */,
 				251D1F6822403DAE00AD7CE4 /* LaunchScreen.storyboard in Resources */,
 				254C14812247E6B9004359CE /* blackGhostQueen.png in Resources */,
 				251D1F5C22403DAD00AD7CE4 /* Actions.sks in Resources */,
