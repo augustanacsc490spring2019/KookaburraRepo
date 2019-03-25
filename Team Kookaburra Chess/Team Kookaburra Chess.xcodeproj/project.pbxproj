@@ -36,6 +36,11 @@
 		254C14812247E6B9004359CE /* blackGhostQueen.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14802247E6B9004359CE /* blackGhostQueen.png */; };
 		254C14832247E6BF004359CE /* blackGoblin.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14822247E6BF004359CE /* blackGoblin.png */; };
 		254C14852247E76A004359CE /* blackMonk.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14842247E76A004359CE /* blackMonk.png */; };
+		259FED9C22493C0F006BE3E8 /* blackBasilisk.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9B22493C0F006BE3E8 /* blackBasilisk.png */; };
+		259FED9E22493C16006BE3E8 /* blackFireDragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9D22493C16006BE3E8 /* blackFireDragon.png */; };
+		259FEDA022493C1E006BE3E8 /* blackIceDragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9F22493C1E006BE3E8 /* blackIceDragon.png */; };
+		259FEDA222493C24006BE3E8 /* blackMinotaur.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDA122493C24006BE3E8 /* blackMinotaur.png */; };
+		259FEDA422493C3C006BE3E8 /* blackMonopod.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDA322493C3C006BE3E8 /* blackMonopod.png */; };
 		25BC7377224822600083D24E /* blackElephant.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC7376224822600083D24E /* blackElephant.png */; };
 		25BC73792248226A0083D24E /* blackManAtArms.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC73782248226A0083D24E /* blackManAtArms.png */; };
 		25BC737B2248226F0083D24E /* blackOgre.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC737A2248226F0083D24E /* blackOgre.png */; };
@@ -103,6 +108,11 @@
 		254C14802247E6B9004359CE /* blackGhostQueen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGhostQueen.png; sourceTree = "<group>"; };
 		254C14822247E6BF004359CE /* blackGoblin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGoblin.png; sourceTree = "<group>"; };
 		254C14842247E76A004359CE /* blackMonk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMonk.png; sourceTree = "<group>"; };
+		259FED9B22493C0F006BE3E8 /* blackBasilisk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBasilisk.png; sourceTree = "<group>"; };
+		259FED9D22493C16006BE3E8 /* blackFireDragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackFireDragon.png; sourceTree = "<group>"; };
+		259FED9F22493C1E006BE3E8 /* blackIceDragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackIceDragon.png; sourceTree = "<group>"; };
+		259FEDA122493C24006BE3E8 /* blackMinotaur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMinotaur.png; sourceTree = "<group>"; };
+		259FEDA322493C3C006BE3E8 /* blackMonopod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMonopod.png; sourceTree = "<group>"; };
 		25BC7376224822600083D24E /* blackElephant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackElephant.png; sourceTree = "<group>"; };
 		25BC73782248226A0083D24E /* blackManAtArms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackManAtArms.png; sourceTree = "<group>"; };
 		25BC737A2248226F0083D24E /* blackOgre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackOgre.png; sourceTree = "<group>"; };
@@ -210,16 +220,21 @@
 				252A35EF22442A9200FE6A09 /* blackBishop.png */,
 				254C147A2247E6AA004359CE /* blackDwarf.png */,
 				254C14802247E6B9004359CE /* blackGhostQueen.png */,
+				259FED9B22493C0F006BE3E8 /* blackBasilisk.png */,
 				254C14822247E6BF004359CE /* blackGoblin.png */,
 				252A35F12244323500FE6A09 /* blackKnight.png */,
+				259FED9D22493C16006BE3E8 /* blackFireDragon.png */,
 				25BC7376224822600083D24E /* blackElephant.png */,
 				25DEFD40224896E40024A78A /* blackArcher.png */,
 				254C147C2247E6B0004359CE /* blackFootsoldier.png */,
 				25DEFD42224896E80024A78A /* blackDemon.png */,
+				259FED9F22493C1E006BE3E8 /* blackIceDragon.png */,
 				25DEFD44224896EF0024A78A /* blackGuard.png */,
 				25BC73782248226A0083D24E /* blackManAtArms.png */,
 				254C147E2247E6B5004359CE /* blackGargoyle.png */,
+				259FEDA322493C3C006BE3E8 /* blackMonopod.png */,
 				25BC737A2248226F0083D24E /* blackOgre.png */,
+				259FEDA122493C24006BE3E8 /* blackMinotaur.png */,
 				25DEFD46224896F80024A78A /* blackSwordsman.png */,
 				25DEFD482248970A0024A78A /* blackPikeman.png */,
 				254C14782247D67C004359CE /* blackKing.png */,
@@ -354,14 +369,19 @@
 				254C14772247D676004359CE /* blackQueen.png in Resources */,
 				251D1F6522403DAE00AD7CE4 /* Assets.xcassets in Resources */,
 				254C147F2247E6B5004359CE /* blackGargoyle.png in Resources */,
+				259FEDA022493C1E006BE3E8 /* blackIceDragon.png in Resources */,
 				254C14832247E6BF004359CE /* blackGoblin.png in Resources */,
 				25BC737D224822750083D24E /* blackOrcWarrior.png in Resources */,
 				25BC7377224822600083D24E /* blackElephant.png in Resources */,
+				259FED9E22493C16006BE3E8 /* blackFireDragon.png in Resources */,
+				259FED9C22493C0F006BE3E8 /* blackBasilisk.png in Resources */,
 				252A35F22244323600FE6A09 /* blackKnight.png in Resources */,
+				259FEDA222493C24006BE3E8 /* blackMinotaur.png in Resources */,
 				252A35EA224414F600FE6A09 /* blankPiece.png in Resources */,
 				25DEFD41224896E40024A78A /* blackArcher.png in Resources */,
 				25BC737F224822840083D24E /* blackScout.png in Resources */,
 				251D1F6822403DAE00AD7CE4 /* LaunchScreen.storyboard in Resources */,
+				259FEDA422493C3C006BE3E8 /* blackMonopod.png in Resources */,
 				254C14812247E6B9004359CE /* blackGhostQueen.png in Resources */,
 				25DEFD47224896F80024A78A /* blackSwordsman.png in Resources */,
 				251D1F5C22403DAD00AD7CE4 /* Actions.sks in Resources */,
