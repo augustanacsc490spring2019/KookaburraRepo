@@ -26,6 +26,9 @@ enum PieceType {
     case iceDragon
     case minotaur
     case monopod
+    case ship
+    case ballista
+    case batteringRam
     //tier 2
     case scout
     case ogre
@@ -151,6 +154,12 @@ class ChessPiece {
             symbol = "blackMinotaur.png"
         case .monopod:
             symbol = "blackMonopod.png"
+        case .ship:
+            symbol = "blackShip.png"
+        case .batteringRam:
+            symbol = "blackBatteringRam.png"
+        case .ballista:
+            symbol = "blackBallista.png"
         }
         // NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
@@ -233,6 +242,15 @@ class ChessPiece {
             //TODO
             return false
         case .monopod:
+            //TODO
+            return false
+        case .ship:
+            //TODO
+            return false
+        case .batteringRam:
+            //TODO
+            return false
+        case .ballista:
             //TODO
             return false
         }

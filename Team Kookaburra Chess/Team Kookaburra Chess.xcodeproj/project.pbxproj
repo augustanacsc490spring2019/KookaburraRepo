@@ -41,6 +41,9 @@
 		259FEDA022493C1E006BE3E8 /* blackIceDragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9F22493C1E006BE3E8 /* blackIceDragon.png */; };
 		259FEDA222493C24006BE3E8 /* blackMinotaur.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDA122493C24006BE3E8 /* blackMinotaur.png */; };
 		259FEDA422493C3C006BE3E8 /* blackMonopod.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDA322493C3C006BE3E8 /* blackMonopod.png */; };
+		259FEDA6224949DE006BE3E8 /* blackBallista.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDA5224949DE006BE3E8 /* blackBallista.png */; };
+		259FEDA8224949ED006BE3E8 /* blackShip.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDA7224949ED006BE3E8 /* blackShip.png */; };
+		259FEDAA224949F3006BE3E8 /* blackBatteringRam.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDA9224949F3006BE3E8 /* blackBatteringRam.png */; };
 		25BC7377224822600083D24E /* blackElephant.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC7376224822600083D24E /* blackElephant.png */; };
 		25BC73792248226A0083D24E /* blackManAtArms.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC73782248226A0083D24E /* blackManAtArms.png */; };
 		25BC737B2248226F0083D24E /* blackOgre.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC737A2248226F0083D24E /* blackOgre.png */; };
@@ -113,6 +116,9 @@
 		259FED9F22493C1E006BE3E8 /* blackIceDragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackIceDragon.png; sourceTree = "<group>"; };
 		259FEDA122493C24006BE3E8 /* blackMinotaur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMinotaur.png; sourceTree = "<group>"; };
 		259FEDA322493C3C006BE3E8 /* blackMonopod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMonopod.png; sourceTree = "<group>"; };
+		259FEDA5224949DE006BE3E8 /* blackBallista.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackBallista.png; path = Images/blackBallista.png; sourceTree = "<group>"; };
+		259FEDA7224949ED006BE3E8 /* blackShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackShip.png; sourceTree = "<group>"; };
+		259FEDA9224949F3006BE3E8 /* blackBatteringRam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBatteringRam.png; sourceTree = "<group>"; };
 		25BC7376224822600083D24E /* blackElephant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackElephant.png; sourceTree = "<group>"; };
 		25BC73782248226A0083D24E /* blackManAtArms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackManAtArms.png; sourceTree = "<group>"; };
 		25BC737A2248226F0083D24E /* blackOgre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackOgre.png; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 				251D1F972240757800AD7CE4 /* chessVC.swift */,
 				251D1F99224075CE00AD7CE4 /* chessView.swift */,
 				251D1F9B2240760B00AD7CE4 /* history.swift */,
+				259FEDA5224949DE006BE3E8 /* blackBallista.png */,
 				251D202B22431F2C00AD7CE4 /* Images */,
 				251D1F8D2240743D00AD7CE4 /* BoardCelll.swift */,
 				251D1F8F2240746C00AD7CE4 /* BoardIndex.swift */,
@@ -218,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				252A35EF22442A9200FE6A09 /* blackBishop.png */,
+				259FEDA9224949F3006BE3E8 /* blackBatteringRam.png */,
 				254C147A2247E6AA004359CE /* blackDwarf.png */,
 				254C14802247E6B9004359CE /* blackGhostQueen.png */,
 				259FED9B22493C0F006BE3E8 /* blackBasilisk.png */,
@@ -227,6 +235,7 @@
 				25BC7376224822600083D24E /* blackElephant.png */,
 				25DEFD40224896E40024A78A /* blackArcher.png */,
 				254C147C2247E6B0004359CE /* blackFootsoldier.png */,
+				259FEDA7224949ED006BE3E8 /* blackShip.png */,
 				25DEFD42224896E80024A78A /* blackDemon.png */,
 				259FED9F22493C1E006BE3E8 /* blackIceDragon.png */,
 				25DEFD44224896EF0024A78A /* blackGuard.png */,
@@ -376,6 +385,8 @@
 				259FED9E22493C16006BE3E8 /* blackFireDragon.png in Resources */,
 				259FED9C22493C0F006BE3E8 /* blackBasilisk.png in Resources */,
 				252A35F22244323600FE6A09 /* blackKnight.png in Resources */,
+				259FEDAA224949F3006BE3E8 /* blackBatteringRam.png in Resources */,
+				259FEDA8224949ED006BE3E8 /* blackShip.png in Resources */,
 				259FEDA222493C24006BE3E8 /* blackMinotaur.png in Resources */,
 				252A35EA224414F600FE6A09 /* blankPiece.png in Resources */,
 				25DEFD41224896E40024A78A /* blackArcher.png in Resources */,
@@ -385,6 +396,7 @@
 				254C14812247E6B9004359CE /* blackGhostQueen.png in Resources */,
 				25DEFD47224896F80024A78A /* blackSwordsman.png in Resources */,
 				251D1F5C22403DAD00AD7CE4 /* Actions.sks in Resources */,
+				259FEDA6224949DE006BE3E8 /* blackBallista.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
