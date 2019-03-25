@@ -27,7 +27,11 @@ enum PieceType {
     case orcWarrior
     case elephant
     case manAtArms
-    
+    case swordsman
+    case pikeman
+    case archer
+    case royalGuard
+    case demon
     //tier 1
     case pawn
     case monk
@@ -122,6 +126,18 @@ class ChessPiece {
             symbol = "blackElephant.png"
         case .manAtArms:
             symbol = "blackManAtArms.png"
+        case .swordsman:
+            symbol = "blackSwordsman.png"
+        case .archer:
+            symbol = "blackArcher.png"
+        case .swordsman:
+            symbol = "blackSwordsman.png"
+        case .pikeman:
+            symbol = "blackPikeman.png"
+        case .royalGuard:
+            symbol = "blackGuard.png"
+        case .demon:
+            symbol = "blackDemon.png"
         }
         // NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
@@ -174,6 +190,21 @@ class ChessPiece {
             //TODO
             return false
         case .manAtArms:
+            //TODO
+            return false
+        case .swordsman:
+            //TODO
+            return false
+        case .pikeman:
+            //TODO
+            return false
+        case .archer:
+            //TODO
+            return false
+        case .royalGuard:
+            //TODO
+            return false
+        case .demon:
             //TODO
             return false
         }
