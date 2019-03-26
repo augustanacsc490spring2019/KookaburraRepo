@@ -235,14 +235,11 @@ class ChessPiece {
             //TODO
             return false
         case .scout:
-            //TODO
-            return false
+            return checkScout(dest: dest)
         case .ogre:
-            //TODO
-            return false
+            return checkOgre(dest: dest)
         case .orcWarrior:
-            //TODO
-            return false
+            return checkOrc(dest: dest)
         case .elephant:
             //TODO
             return false
@@ -250,17 +247,13 @@ class ChessPiece {
             //TODO
             return false
         case .swordsman:
-            //TODO
-            return false
+            return checkSwordsman(dest: dest)
         case .pikeman:
-            //TODO
-            return false
+            return checkPike(dest: dest)
         case .archer:
-            //TODO
-            return false
+            return checkArcher(dest: dest)
         case .royalGuard:
-            //TODO
-            return false
+            return checkGuard(dest: dest)
         case .demon:
             //TODO
             return false
@@ -274,11 +267,9 @@ class ChessPiece {
             //TODO
             return false
         case .minotaur:
-            //TODO
-            return false
+            return checkMinotaur(dest: dest)
         case .monopod:
-            //TODO
-            return false
+            return checkMonopod(dest: dest)
         case .ship:
             //TODO
             return false
@@ -485,6 +476,89 @@ class ChessPiece {
         return false
     }
     
+    private func checkMinotaur(dest: BoardIndex) -> Bool {
+        let validMoves = [(self.row, self.col + 2), (self.row, self.col + 3), (self.row, self.col - 2 ), (self.row, self.col - 3), (self.row + 2, self.col), (self.row + 3, self.col), (self.row - 2, self.col), (self.row - 3, self.col), (self.row + 2, self.col + 2), (self.row + 2, self.col - 2), (self.row - 2, self.col + 2), (self.row - 2, self.col - 2), (self.row + 3, self.col + 3), (self.row + 3, self.col - 3), (self.row - 3, self.col + 3), (self.row - 3, self.col - 3)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func checkMonopod(dest: BoardIndex) -> Bool {
+        let validMoves = [(self.row, self.col + 2), (self.row + 1, self.col + 2), (self.row + 2, self.col + 2), (self.row + 2, self.col + 1), (self.row + 2, self.col), (self.row + 2, self.col - 1), (self.row + 2, self.col - 2), (self.row + 1, self.col - 2), (self.row, self.col - 2), (self.row - 1, self.col - 2), (self.row - 2, self.col - 2), (self.row - 2, self.col - 1), (self.row - 2, self.col), (self.row - 2, self.col + 1), (self.row - 2, self.col + 2), (self.row - 1, self.col + 2)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func checkOgre(dest: BoardIndex) -> Bool {
+        let validMoves = [(self.row + 1, self.col + 1), (self.row - 1, self.col + 1), (self.row - 1, self.col - 1), (self.row + 1, self.col - 1)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func checkOrc(dest: BoardIndex) -> Bool {
+        let validMoves = [(self.row + 1, self.col), (self.row - 1, self.col), (self.row, self.col - 1), (self.row, self.col + 1)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func checkSwordsman(dest: BoardIndex) -> Bool {
+        let validMoves = [(self.row + 1, self.col + 1), (self.row, self.col + 1), (self.row - 1, self.col + 1)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func checkPike(dest: BoardIndex) -> Bool {
+        let validMoves = [(self.row + 2, self.col), (self.row - 2, self.col), (self.row, self.col - 2), (self.row, self.col + 2)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func checkArcher(dest: BoardIndex) -> Bool {
+        let validMoves = [(self.row + 2, self.col + 2), (self.row - 2, self.col + 2), (self.row - 2, self.col - 2), (self.row + 2, self.col - 2)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func checkScout(dest: BoardIndex) -> Bool {
+        let validMoves = [(self.row + 1, self.col + 2), (self.row - 1, self.col + 2), (self.row, self.col - 1)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func checkGuard(dest: BoardIndex) -> Bool {
+        return checkKing(dest: dest)
+    }
     
     func printInfo() -> String {
         var pColor = "Clear"
