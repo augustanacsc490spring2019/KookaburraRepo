@@ -29,6 +29,9 @@ enum PieceType {
     case ship
     case ballista
     case batteringRam
+    case trebuchet
+    case leftElf
+    case rightElf
     //tier 2
     case scout
     case ogre
@@ -160,6 +163,12 @@ class ChessPiece {
             symbol = "blackBatteringRam.png"
         case .ballista:
             symbol = "blackBallista.png"
+        case .trebuchet:
+            symbol = "blackTrebuchet.png"
+        case .leftElf:
+            symbol = "blackLeftyElf.png"
+        case .rightElf:
+            symbol = "blackRightyElf.png"
         }
         // NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
@@ -251,6 +260,15 @@ class ChessPiece {
             //TODO
             return false
         case .ballista:
+            //TODO
+            return false
+        case .trebuchet:
+            //TODO
+            return false
+        case .leftElf:
+            //TODO
+            return false
+        case .rightElf:
             //TODO
             return false
         }
