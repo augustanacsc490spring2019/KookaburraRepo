@@ -47,6 +47,9 @@
 		259FEDAE2249BF65006BE3E8 /* blackRightyElf.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDAD2249BF65006BE3E8 /* blackRightyElf.png */; };
 		259FEDB02249BF6C006BE3E8 /* blackTrebuchet.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDAF2249BF6C006BE3E8 /* blackTrebuchet.png */; };
 		259FEDB42249BFD3006BE3E8 /* blackLeftyElf.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDB32249BFD3006BE3E8 /* blackLeftyElf.png */; };
+		259FEDB62249E7D3006BE3E8 /* blackMage.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDB52249E7D3006BE3E8 /* blackMage.png */; };
+		259FEDB82249E7DE006BE3E8 /* blackCamel.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDB72249E7DE006BE3E8 /* blackCamel.png */; };
+		259FEDBA2249E7E5006BE3E8 /* blackCentaur.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDB92249E7E5006BE3E8 /* blackCentaur.png */; };
 		25BC7377224822600083D24E /* blackElephant.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC7376224822600083D24E /* blackElephant.png */; };
 		25BC73792248226A0083D24E /* blackManAtArms.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC73782248226A0083D24E /* blackManAtArms.png */; };
 		25BC737B2248226F0083D24E /* blackOgre.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC737A2248226F0083D24E /* blackOgre.png */; };
@@ -125,6 +128,9 @@
 		259FEDAD2249BF65006BE3E8 /* blackRightyElf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackRightyElf.png; sourceTree = "<group>"; };
 		259FEDAF2249BF6C006BE3E8 /* blackTrebuchet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackTrebuchet.png; sourceTree = "<group>"; };
 		259FEDB32249BFD3006BE3E8 /* blackLeftyElf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackLeftyElf.png; sourceTree = "<group>"; };
+		259FEDB52249E7D3006BE3E8 /* blackMage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMage.png; sourceTree = "<group>"; };
+		259FEDB72249E7DE006BE3E8 /* blackCamel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackCamel.png; sourceTree = "<group>"; };
+		259FEDB92249E7E5006BE3E8 /* blackCentaur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackCentaur.png; sourceTree = "<group>"; };
 		25BC7376224822600083D24E /* blackElephant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackElephant.png; sourceTree = "<group>"; };
 		25BC73782248226A0083D24E /* blackManAtArms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackManAtArms.png; sourceTree = "<group>"; };
 		25BC737A2248226F0083D24E /* blackOgre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackOgre.png; sourceTree = "<group>"; };
@@ -232,7 +238,9 @@
 			children = (
 				252A35EF22442A9200FE6A09 /* blackBishop.png */,
 				259FEDA9224949F3006BE3E8 /* blackBatteringRam.png */,
+				259FEDB72249E7DE006BE3E8 /* blackCamel.png */,
 				254C147A2247E6AA004359CE /* blackDwarf.png */,
+				259FEDB92249E7E5006BE3E8 /* blackCentaur.png */,
 				254C14802247E6B9004359CE /* blackGhostQueen.png */,
 				259FED9B22493C0F006BE3E8 /* blackBasilisk.png */,
 				254C14822247E6BF004359CE /* blackGoblin.png */,
@@ -242,6 +250,7 @@
 				25DEFD40224896E40024A78A /* blackArcher.png */,
 				254C147C2247E6B0004359CE /* blackFootsoldier.png */,
 				259FEDAD2249BF65006BE3E8 /* blackRightyElf.png */,
+				259FEDB52249E7D3006BE3E8 /* blackMage.png */,
 				259FEDA7224949ED006BE3E8 /* blackShip.png */,
 				259FEDB32249BFD3006BE3E8 /* blackLeftyElf.png */,
 				25DEFD42224896E80024A78A /* blackDemon.png */,
@@ -372,8 +381,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				259FEDB02249BF6C006BE3E8 /* blackTrebuchet.png in Resources */,
+				259FEDB62249E7D3006BE3E8 /* blackMage.png in Resources */,
 				25DEFD492248970A0024A78A /* blackPikeman.png in Resources */,
 				25DEFD45224896EF0024A78A /* blackGuard.png in Resources */,
+				259FEDBA2249E7E5006BE3E8 /* blackCentaur.png in Resources */,
 				252A35EC2244150200FE6A09 /* blackPawn.png in Resources */,
 				259FEDB42249BFD3006BE3E8 /* blackLeftyElf.png in Resources */,
 				254C14852247E76A004359CE /* blackMonk.png in Resources */,
@@ -386,6 +397,7 @@
 				252A35F022442A9200FE6A09 /* blackBishop.png in Resources */,
 				25DEFD43224896E80024A78A /* blackDemon.png in Resources */,
 				251D1F5A22403DAD00AD7CE4 /* GameScene.sks in Resources */,
+				259FEDB82249E7DE006BE3E8 /* blackCamel.png in Resources */,
 				254C14772247D676004359CE /* blackQueen.png in Resources */,
 				251D1F6522403DAE00AD7CE4 /* Assets.xcassets in Resources */,
 				254C147F2247E6B5004359CE /* blackGargoyle.png in Resources */,
