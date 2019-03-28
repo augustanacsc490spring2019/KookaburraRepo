@@ -105,7 +105,7 @@
 		251D1F8D2240743D00AD7CE4 /* BoardCelll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCelll.swift; sourceTree = "<group>"; };
 		251D1F8F2240746C00AD7CE4 /* BoardIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardIndex.swift; sourceTree = "<group>"; };
 		251D1F91224074A800AD7CE4 /* chessBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chessBoard.swift; sourceTree = "<group>"; };
-		251D1F952240751500AD7CE4 /* chessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = chessPiece.swift; path = "/Users/Blake/Documents/GitHub/KookaburraRepo/Team Kookaburra Chess/Team Kookaburra Chess/chessPiece.swift"; sourceTree = "<absolute>"; };
+		251D1F952240751500AD7CE4 /* chessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chessPiece.swift; sourceTree = "<group>"; };
 		251D1F972240757800AD7CE4 /* chessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chessVC.swift; sourceTree = "<group>"; };
 		251D1F99224075CE00AD7CE4 /* chessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chessView.swift; sourceTree = "<group>"; };
 		251D1F9B2240760B00AD7CE4 /* history.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = history.swift; sourceTree = "<group>"; };

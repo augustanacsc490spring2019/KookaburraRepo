@@ -221,8 +221,7 @@ class ChessPiece {
             //TODO
             return false
         case .monk:
-            //TODO
-            return false
+            return checkMonk(dest: dest)
         case .dwarf:
             //TODO
             return false
@@ -230,7 +229,7 @@ class ChessPiece {
             //TODO
             return false
         case .goblin:
-            return false
+            return checkGoblin(dest: dest)
         case .footSoldier:
             //TODO
             return false
@@ -558,6 +557,53 @@ class ChessPiece {
     
     private func checkGuard(dest: BoardIndex) -> Bool {
         return checkKing(dest: dest)
+    }
+    
+    private func checkMonk(dest: BoardIndex) -> Bool {
+        //TODO: figure out the direction being faced
+        let validMoves = [(self.row + 1, self.col + 1), (self.row - 1, self.col + 1)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func checkGoblin(dest: BoardIndex) -> Bool {
+        // is it advancing by 2
+        // check if the move is in the same column
+        if self.col == dest.column {
+            // can only move 2 forward if first time moving pawn
+            if color != playerColor {
+                if row == 1 && dest.row == 3 {
+                    advancingByTwo = true
+                    return true
+                }
+            } else {
+                if row == 6 && dest.row == 4 {
+                    advancingByTwo = true
+                    return true
+                }
+            }
+        }
+        advancingByTwo = false
+        // the move direction depends on the color of the piece
+        var moveDirection: Int
+        if color == playerColor {
+            moveDirection = -1
+        } else {
+            moveDirection = 1
+        }
+        //let moveDirection = color == .black ? -1 : 1
+        // if the movement is only 1 row up/down
+        if dest.row == self.row + moveDirection {
+            // check for diagonal movement and forward movement
+            if (dest.column == self.col) {
+                return true
+            }
+        }
+        return false
     }
     
     func printInfo() -> String {
