@@ -196,7 +196,7 @@ class ChessPiece {
         case .manticore:
             symbol = "blackManticore.png"
         }
-        // NSLog(symbol)
+        NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
     }
     
