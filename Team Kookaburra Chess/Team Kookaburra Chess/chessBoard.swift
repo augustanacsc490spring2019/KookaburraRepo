@@ -41,7 +41,7 @@ class ChessBoard {
                     case 0:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .rook, player: playerColor)
                     case 1:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .knight, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .camel, player: playerColor)
                     case 2:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .bishop, player: playerColor)
                     case 3:
@@ -109,34 +109,34 @@ class ChessBoard {
             }
         }
         // make sure that by making this move, the player is not exposing his king
-        var realPossibleMoves = [BoardIndex]()
-        if piece.type == .king {
-            //print("Checking \(possibleMoves.count) moves for king")
-            for move in possibleMoves {
-                if !canOpponentAttack(playerKing: piece, ifMovedTo: move) {
-                    //print("Appending move for king")
-                    if piece.firstMove && isMoveTwoCellsOver(forKing: piece, move: move) {
-                        if isRookNext(toKing: piece, forMove: move) {
-                            realPossibleMoves.append(move)
-                        }
-                    } else {
-                        realPossibleMoves.append(move)
-                    }
-                }
-            }
-        } else {
-            for move in possibleMoves {
-                //print("BEFORE")
-                //printBoard()
-                if !doesMoveExposeKingToCheck(playerPiece: piece, toIndex: move) {
-                    realPossibleMoves.append(move)
-                }
-                //print("AFTER")
-                //printBoard()
-            }
-        }
+       // var realPossibleMoves = [BoardIndex]()
+//        if piece.type == .king {
+//            //print("Checking \(possibleMoves.count) moves for king")
+//            for move in possibleMoves {
+//                if !canOpponentAttack(playerKing: piece, ifMovedTo: move) {
+//                    //print("Appending move for king")
+//                    if piece.firstMove && isMoveTwoCellsOver(forKing: piece, move: move) {
+//                        if isRookNext(toKing: piece, forMove: move) {
+//                            realPossibleMoves.append(move)
+//                        }
+//                    } else {
+//                        realPossibleMoves.append(move)
+//                    }
+//                }
+//            }
+//        } else {
+//            for move in possibleMoves {
+//                //print("BEFORE")
+//                //printBoard()
+//                if !doesMoveExposeKingToCheck(playerPiece: piece, toIndex: move) {
+//                    realPossibleMoves.append(move)
+//                }
+//                //print("AFTER")
+//                //printBoard()
+//            }
+//        }
         //print("\(realPossibleMoves.count) real moves")
-        return realPossibleMoves
+        return possibleMoves
     }
     
     /// Makes the given move and checks for gameOver/tie and reports back through delegates
@@ -484,28 +484,33 @@ class ChessBoard {
         }
         print(String(repeating: "=", count: 40))
     }
-    
+        
     func isWinner(player color: UIColor, byMove move: BoardIndex) -> Bool {
-        // Player wins if opponent's king has no more moves and the
-        // opponent can't block the check with another one of his pieces
-        let attackingPiece = board[move.row][move.column]
-        let opponent: UIColor = color == UIColor.white ? .black : .white
-        // check if the current player's move put opponent in check
-        if isPlayerUnderCheck(playerColor: opponent) {
-            //print("Opponent under check")
-            // does opponent's king have any possible moves
-            guard let opponentKing = getKing(forColor: opponent) else {
-                print("Something seriously wrong in isWinner. DEBUG!!")
-                return false
-            }
-            let possibKingleMoves = getPossibleMoves(forPiece: opponentKing)
-            // can another piece block the check or take out the piece causing the check
-            if possibKingleMoves.count == 0 && !canPlayerEscapeCheck(player: opponent, fromAttackingPiece: attackingPiece) {
+        let blackKings = numKings(color: .black)
+        let whiteKings = numKings(color: .white)
+        if whiteKings <= 0 && blackKings > 0 {
+            if color == .black{
                 return true
             }
         }
-        
+        if blackKings <= 0 && whiteKings > 0{
+            if color == .white{
+                return true
+            }
+        }
         return false
+    }
+    
+    func numKings(color: UIColor) -> Int {
+        var numKings = 0
+        //iterate through pieces of each color
+        let allPieces = getAllPieces(forPlayer: color)
+        for piece in allPieces {
+            if piece.type == .king || piece.type == .superKing{
+                numKings = numKings + 1
+            }
+        }
+        return numKings
     }
     
     func canPlayerEscapeCheck(player: UIColor, fromAttackingPiece attacker: ChessPiece) -> Bool {
