@@ -109,32 +109,32 @@ class ChessBoard {
             }
         }
         // make sure that by making this move, the player is not exposing his king
-       // var realPossibleMoves = [BoardIndex]()
-//        if piece.type == .king {
-//            //print("Checking \(possibleMoves.count) moves for king")
-//            for move in possibleMoves {
-//                if !canOpponentAttack(playerKing: piece, ifMovedTo: move) {
-//                    //print("Appending move for king")
-//                    if piece.firstMove && isMoveTwoCellsOver(forKing: piece, move: move) {
-//                        if isRookNext(toKing: piece, forMove: move) {
-//                            realPossibleMoves.append(move)
-//                        }
-//                    } else {
-//                        realPossibleMoves.append(move)
-//                    }
-//                }
-//            }
-//        } else {
-//            for move in possibleMoves {
-//                //print("BEFORE")
-//                //printBoard()
-//                if !doesMoveExposeKingToCheck(playerPiece: piece, toIndex: move) {
-//                    realPossibleMoves.append(move)
-//                }
-//                //print("AFTER")
-//                //printBoard()
-//            }
-//        }
+        var realPossibleMoves = [BoardIndex]()
+        if piece.type == .king {
+            //print("Checking \(possibleMoves.count) moves for king")
+            for move in possibleMoves {
+                if !canOpponentAttack(playerKing: piece, ifMovedTo: move) {
+                    //print("Appending move for king")
+                    if piece.firstMove && isMoveTwoCellsOver(forKing: piece, move: move) {
+                        if isRookNext(toKing: piece, forMove: move) {
+                            realPossibleMoves.append(move)
+                        }
+                    } else {
+                        realPossibleMoves.append(move)
+                    }
+                }
+            }
+        } else {
+            for move in possibleMoves {
+                //print("BEFORE")
+                //printBoard()
+                if !doesMoveExposeKingToCheck(playerPiece: piece, toIndex: move) {
+                    realPossibleMoves.append(move)
+                }
+                //print("AFTER")
+                //printBoard()
+            }
+        }
         //print("\(realPossibleMoves.count) real moves")
         return possibleMoves
     }
@@ -224,8 +224,152 @@ class ChessBoard {
             }
         case .king :
             return isMoveValid(forKing: piece, toIndex: dest)
-        default:
-            break
+        case .dummy:
+            return false
+        case .unicorn:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .superKing:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .griffin:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .mage:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .centaur:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .dragonRider:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .bombard:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .manticore:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .ghostQueen:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .basilisk:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .fireDragon:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .iceDragon:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .minotaur:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .monopod:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .ship:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .ballista:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .batteringRam:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .trebuchet:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .leftElf:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .rightElf:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .camel:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .scout:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .ogre:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .orcWarrior:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .elephant:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .manAtArms:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .swordsman:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .pikeman:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .archer:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .royalGuard:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .demon:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .monk:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .dwarf:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .gargoyle:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .goblin:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
+        case .footSoldier:
+            if piece.isMovementAppropriate(toIndex: dest) == false {
+                return false
+            }
         }
         
         return true
@@ -484,7 +628,7 @@ class ChessBoard {
         }
         print(String(repeating: "=", count: 40))
     }
-        
+    
     func isWinner(player color: UIColor, byMove move: BoardIndex) -> Bool {
         let blackKings = numKings(color: .black)
         let whiteKings = numKings(color: .white)
