@@ -129,7 +129,7 @@ class ChessPiece {
         case .dwarf:
             symbol = "blackDwarf.png"
         case .footSoldier:
-            symbol = "blackFootSoldier.png"
+            symbol = "blackFootsoldier.png"
         case .monk:
             symbol = "blackMonk.png"
         case .gargoyle:
@@ -197,7 +197,7 @@ class ChessPiece {
         case .manticore:
             symbol = "blackManticore.png"
         }
-        //NSLog(symbol)
+        NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
     }
     
@@ -224,16 +224,15 @@ class ChessPiece {
         case .monk:
             return checkMonk(dest: dest)
         case .dwarf:
-            //TODO
-            return false
+            //technically the movement pattern is the same as the swordsman (the difference is in move validation in cehssBoard.swift) so there's no need to write redundant code here
+            return checkSwordsman(dest: dest)
         case .gargoyle:
-            //TODO
-            return false
+            //just like the dwarf and swordsman, the difference here is the move validation, no need to write another function
+            return checkKing(dest: dest)
         case .goblin:
             return checkGoblin(dest: dest)
         case .footSoldier:
-            //TODO
-            return false
+            return checkFootSoldier(dest: dest)
         case .scout:
             return checkScout(dest: dest)
         case .ogre:
@@ -563,7 +562,6 @@ class ChessPiece {
     }
     
     private func checkMonk(dest: BoardIndex) -> Bool {
-        //TODO: figure out the direction being faced
         if color == .black{
         let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col - 1)]
         for (validRow, validCol) in validMoves {
@@ -613,6 +611,25 @@ class ChessPiece {
             // check for diagonal movement and forward movement
             if (dest.column == self.col) {
                 return true
+            }
+        }
+        return false
+    }
+    
+    func checkFootSoldier(dest:BoardIndex) -> Bool{
+        if color == .black{
+            let validMoves = [(self.row + 1, self.col), (self.row + 2, self.col), (self.row, self.col - 1), (self.row, self.col + 1)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
+            }
+        } else {//color == .white
+            let validMoves = [(self.row - 1, self.col), (self.row - 2, self.col), (self.row, self.col - 1), (self.row, self.col + 1)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
             }
         }
         return false
