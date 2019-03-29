@@ -39,44 +39,44 @@ class ChessBoard {
                 case 0: // First row of chess board
                     switch col { // determine what piece to put in each column of first row
                     case 0:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .rook, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .mage, player: playerColor)
                     case 1:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .camel, player: playerColor)
                     case 2:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .bishop, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .camel, player: playerColor)
                     case 3:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .queen, player: playerColor)
-                    case 4:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .king, player: playerColor)
+                    case 4:
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .superKing, player: playerColor)
                     case 5:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .bishop, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .scout, player: playerColor)
                     case 6:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .knight, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .archer, player: playerColor)
                     default:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .rook, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .minotaur, player: playerColor)
                     }
                 case 1:
-                    board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .pawn, player: playerColor)
+                    board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .monk, player: playerColor)
                 case 6:
-                    board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .pawn, player: playerColor)
+                    board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .goblin, player: playerColor)
                 case 7:
                     switch col { // determine what piece to put in each column of first row
                     case 0:
-                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .rook, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .centaur, player: playerColor)
                     case 1:
-                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .knight, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .unicorn, player: playerColor)
                     case 2:
-                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .bishop, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .monopod, player: playerColor)
                     case 3:
-                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .queen, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .ogre, player: playerColor)
                     case 4:
                         board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .king, player: playerColor)
                     case 5:
-                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .bishop, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .orcWarrior, player: playerColor)
                     case 6:
-                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .knight, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .pikeman, player: playerColor)
                     default:
-                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .rook, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .swordsman, player: playerColor)
                     }
                 default:
                     board[row][col] = ChessPiece(row: row, column: col, color: .clear, type: .dummy, player: playerColor)
@@ -227,25 +227,38 @@ class ChessBoard {
         case .dummy:
             return false
         case .unicorn:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
+            if piece.isMovementAppropriate(toIndex: dest) {
+                if isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest){//queen move
+                    return true
+                } else if piece.checkKnight(dest: dest){//knight move
+                    return true
+                }
             }
+            return false
         case .superKing:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .griffin:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
             }
         case .mage:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
+            if piece.isMovementAppropriate(toIndex: dest) {
+                if isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest){//queen move
+                    return true
+                } else if piece.checkKnight(dest: dest){//knight move
+                    return true
+                }
             }
+            return false
         case .centaur:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
+            if piece.isMovementAppropriate(toIndex: dest) {
+                if isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest){//queen move
+                    return true
+                } else if piece.checkKnight(dest: dest){//knight move
+                    return true
+                }
             }
+            return false
         case .dragonRider:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
@@ -411,7 +424,7 @@ class ChessBoard {
     }
     
     func isMoveValid(forRookOrBishopOrQueen piece: ChessPiece, toIndex dest: BoardIndex) -> Bool {
-        
+        NSLog("Piece type: " + piece.symbol)
         if piece.isMovementAppropriate(toIndex: dest) == false {
             return false
         }
@@ -435,14 +448,17 @@ class ChessBoard {
         // make sure there are no pieces between itself and the destination cell
         var nextRow = piece.row + rowDelta
         var nextCol = piece.col + colDelta
-        while nextRow != dest.row || nextCol != dest.column {
+        while nextRow != dest.row || nextCol != dest.column{
+            NSLog("Place: \(nextRow), \(nextCol)")
             if !(board[nextRow][nextCol].type == .dummy) {
                 return false
             }
             nextRow += rowDelta
             nextCol += colDelta
+            if nextRow >= 8 || nextCol >= 8 || nextRow <= 0 || nextCol <= 0{
+                break
+            }
         }
-        
         return true
     }
     
@@ -451,10 +467,10 @@ class ChessBoard {
         if king.isMovementAppropriate(toIndex: dest) == false {
             return false
         }
-        
-        if isAnotherKing(atIndex: dest, forKing: king) {
-            return false
-        }
+//
+//        if isAnotherKing(atIndex: dest, forKing: king) {
+//            return false
+//        }
         
         return true
     }

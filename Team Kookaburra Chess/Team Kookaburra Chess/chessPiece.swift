@@ -355,7 +355,8 @@ class ChessPiece {
         return false
     }
     
-    private func checkKnight(dest: BoardIndex) -> Bool {
+    //This function is public, unlike the others, to check for legal knight-type movements for hybrid pieces like the unicorn, centaur, and mage
+    func checkKnight(dest: BoardIndex) -> Bool {
         let validMoves =  [(self.row - 1, self.col + 2), (self.row - 2, self.col + 1), (self.row - 2, self.col - 1), (self.row - 1, self.col - 2), (self.row + 1, self.col - 2), (self.row + 2, self.col - 1), (self.row + 2, self.col + 1), (self.row + 1, self.col + 2)]
         
         for (validRow, validCol) in validMoves {
@@ -401,15 +402,7 @@ class ChessPiece {
     }
     
     private func checkSuperKing(dest: BoardIndex) -> Bool {
-        // check diagonal move
-        if abs(dest.row - self.row) == abs(dest.column - self.col) {
-            return true
-        }
-        // check rook-like move
-        if self.row == dest.row || self.col == dest.column {
-            return true
-        }
-        return false
+        return checkQueen(dest: dest)
     }
     
     private func checkUnicorn(dest: BoardIndex) -> Bool {
@@ -450,18 +443,10 @@ class ChessPiece {
     
     private func checkMage(dest: BoardIndex) -> Bool {
         // check diagonal move
-        if abs(dest.row - self.row) == abs(dest.column - self.col) {
-            return true
-        }
+        let bishopMove = checkBishop(dest: dest)
         //check knight move
-        let validMoves =  [(self.row - 1, self.col + 2), (self.row - 2, self.col + 1), (self.row - 2, self.col - 1), (self.row - 1, self.col - 2), (self.row + 1, self.col - 2), (self.row + 2, self.col - 1), (self.row + 2, self.col + 1), (self.row + 1, self.col + 2)]
-        
-        for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
-                return true
-            }
-        }
-        return false
+        let knightMove = checkKnight(dest: dest)
+        return bishopMove || knightMove
     }
     
     private func checkCamel(dest: BoardIndex) -> Bool {
@@ -516,10 +501,19 @@ class ChessPiece {
     }
     
     private func checkSwordsman(dest: BoardIndex) -> Bool {
-        let validMoves = [(self.row + 1, self.col + 1), (self.row, self.col + 1), (self.row - 1, self.col + 1)]
+        if color == .black {
+        let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col), (self.row + 1, self.col - 1)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
                 return true
+            }
+        }
+        } else {//color == .white{
+            let validMoves = [(self.row - 1, self.col + 1), (self.row - 1, self.col), (self.row - 1, self.col - 1)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
             }
         }
         return false
@@ -546,10 +540,19 @@ class ChessPiece {
     }
     
     private func checkScout(dest: BoardIndex) -> Bool {
-        let validMoves = [(self.row + 1, self.col + 2), (self.row - 1, self.col + 2), (self.row, self.col - 1)]
+        if color == .black{
+        let validMoves = [(self.row + 2, self.col + 1), (self.row + 2, self.col - 1), (self.row - 1, self.col)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
                 return true
+            }
+        }
+        } else { //color == .white{
+            let validMoves = [(self.row - 2, self.col + 1), (self.row - 2, self.col - 1), (self.row + 1, self.col)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
             }
         }
         return false
@@ -561,10 +564,19 @@ class ChessPiece {
     
     private func checkMonk(dest: BoardIndex) -> Bool {
         //TODO: figure out the direction being faced
-        let validMoves = [(self.row + 1, self.col + 1), (self.row - 1, self.col + 1)]
+        if color == .black{
+        let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col - 1)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
                 return true
+            }
+        }
+        }else {//if color == .white{
+            let validMoves = [(self.row - 1, self.col + 1), (self.row - 1, self.col - 1)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
             }
         }
         return false
