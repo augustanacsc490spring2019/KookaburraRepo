@@ -67,6 +67,7 @@
 		25DEFD47224896F80024A78A /* blackSwordsman.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD46224896F80024A78A /* blackSwordsman.png */; };
 		25DEFD492248970A0024A78A /* blackPikeman.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD482248970A0024A78A /* blackPikeman.png */; };
 		645068A5224D46E7006709A9 /* testRook.png in Resources */ = {isa = PBXBuildFile; fileRef = 251D202C22431F3800AD7CE4 /* testRook.png */; };
+		88198249224E69D6008E8EFD /* cathedral.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88198248224E69D6008E8EFD /* cathedral.jpg */; };
 		889C82642241651D00B77A21 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* LaunchScreen.swift */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +155,7 @@
 		25DEFD44224896EF0024A78A /* blackGuard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGuard.png; sourceTree = "<group>"; };
 		25DEFD46224896F80024A78A /* blackSwordsman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackSwordsman.png; sourceTree = "<group>"; };
 		25DEFD482248970A0024A78A /* blackPikeman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPikeman.png; sourceTree = "<group>"; };
+		88198248224E69D6008E8EFD /* cathedral.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cathedral.jpg; sourceTree = "<group>"; };
 		889C82632241651D00B77A21 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +225,7 @@
 				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
 				251D1F6422403DAE00AD7CE4 /* Assets.xcassets */,
 				251D1F6622403DAE00AD7CE4 /* LaunchScreen.storyboard */,
+				88198248224E69D6008E8EFD /* cathedral.jpg */,
 				251D1F6922403DAE00AD7CE4 /* Info.plist */,
 			);
 			path = "Team Kookaburra Chess";
@@ -428,6 +431,7 @@
 				254C147F2247E6B5004359CE /* blackGargoyle.png in Resources */,
 				259FEDA022493C1E006BE3E8 /* blackIceDragon.png in Resources */,
 				254C14832247E6BF004359CE /* blackGoblin.png in Resources */,
+				88198249224E69D6008E8EFD /* cathedral.jpg in Resources */,
 				259FEDAE2249BF65006BE3E8 /* blackRightyElf.png in Resources */,
 				25BC737D224822750083D24E /* blackOrcWarrior.png in Resources */,
 				25BC7377224822600083D24E /* blackElephant.png in Resources */,
