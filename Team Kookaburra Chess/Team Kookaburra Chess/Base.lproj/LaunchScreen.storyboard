@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Launch Screen-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchScreen" id="01J-lp-oVM" customClass="LaunchScreen" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,12 +28,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybp-af-9tk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybp-af-9tk">
                                 <rect key="frame" x="123" y="242" width="128" height="42"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                 <state key="normal" title="My Friends ">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="myFriendButtonPressed:" destination="01J-lp-oVM" eventType="touchUpInside" id="vdm-5S-uHW"/>
+                                    <action selector="myFriendsButtonPressed:" destination="01J-lp-oVM" eventType="touchUpInside" id="QpI-dR-Ze0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kb-St-IvY">
                                 <rect key="frame" x="157" y="312" width="60" height="42"/>
@@ -41,6 +45,10 @@
                                 <state key="normal" title="Store">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="storButtonPressed:" destination="01J-lp-oVM" eventType="touchUpInside" id="E7Y-A7-LWh"/>
+                                    <action selector="storeButtonPressed:" destination="01J-lp-oVM" eventType="touchUpInside" id="zfq-Qs-TGN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yf7-vE-QeW">
                                 <rect key="frame" x="138" y="390" width="98" height="42"/>
@@ -48,6 +56,9 @@
                                 <state key="normal" title="My Stats">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="myStatsButtonPressed:" destination="01J-lp-oVM" eventType="touchUpInside" id="e7r-9w-JWp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ges-co-aTM">
                                 <rect key="frame" x="163" y="485" width="48" height="42"/>
@@ -55,6 +66,9 @@
                                 <state key="normal" title="Play">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="01J-lp-oVM" eventType="touchUpInside" id="nM1-N2-h43"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -69,18 +83,88 @@
                             <constraint firstItem="Yf7-vE-QeW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="138" id="KSe-XO-srp"/>
                             <constraint firstItem="8kb-St-IvY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="157" id="WdD-1C-ll5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8kb-St-IvY" secondAttribute="trailing" constant="158" id="XZO-ph-mQk"/>
-                            <constraint firstItem="ybp-af-9tk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="129" id="hQX-qb-2TT"/>
+                            <constraint firstItem="ybp-af-9tk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="123" id="hQX-qb-2TT"/>
                             <constraint firstItem="ges-co-aTM" firstAttribute="bottom" secondItem="Yf7-vE-QeW" secondAttribute="bottom" constant="95" id="jae-7a-qCU"/>
                             <constraint firstItem="1c4-5w-ZQz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="49" id="rRH-zs-z5v"/>
                             <constraint firstItem="8kb-St-IvY" firstAttribute="bottom" secondItem="ybp-af-9tk" secondAttribute="bottom" constant="70" id="se9-TS-Fxb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ybp-af-9tk" secondAttribute="trailing" constant="118" id="vVq-lm-Gyp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ybp-af-9tk" secondAttribute="trailing" constant="124" id="vVq-lm-Gyp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outlet property="gameTitle" destination="1c4-5w-ZQz" id="BOi-oH-68f"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="myFriendsButtonPressed" destination="ybp-af-9tk" id="l0K-9M-bng"/>
+                        <segue destination="GHr-C2-b9E" kind="showDetail" identifier="myFriendsButtonSegue" id="46I-6V-1Lz"/>
+                        <segue destination="bQ5-1G-jWp" kind="showDetail" identifier="storeButtonSegue" id="8lN-bB-UoE"/>
+                        <segue destination="rDG-Qu-Hc9" kind="showDetail" identifier="myStatsButtonSegue" id="yTk-RR-zIw"/>
+                        <segue destination="E8C-Ir-hYy" kind="showDetail" identifier="playBtLaunchScreenSegue" id="CkY-ry-nrT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+        <!--myFriendsViewController-->
+        <scene sceneID="Kly-yT-4aR">
+            <objects>
+                <viewController title="myFriendsViewController" id="GHr-C2-b9E" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="raQ-2A-Zgg" customClass="MyFriendsViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="bgR-hF-b0d"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Trn-v0-EvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="855" y="55"/>
+        </scene>
+        <!--PlayViewController-->
+        <scene sceneID="73j-BR-mfL">
+            <objects>
+                <viewController title="PlayViewController" id="E8C-Ir-hYy" customClass="PlayBtMainScreenViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eQ6-oX-s4g" customClass="PlayBtLaunchScreenViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Q5x-uM-mPe"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gjB-MM-flg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-64" y="1123"/>
+        </scene>
+        <!--MyStatsViewController-->
+        <scene sceneID="75E-Sw-Pf0">
+            <objects>
+                <viewController title="MyStatsViewController" id="rDG-Qu-Hc9" customClass="MyStatsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XEh-rF-QDK" customClass="MyStatsViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="N2F-fh-5N2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xFm-oQ-UfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="1051"/>
+        </scene>
+        <!--Store View Controller-->
+        <scene sceneID="m7i-IN-RoG">
+            <objects>
+                <viewController id="bQ5-1G-jWp" customClass="StoreViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="al7-44-eoj" customClass="StoreViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qr3-DW-XxQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kqm-TF-tr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1469" y="743"/>
         </scene>
     </scenes>
     <resources>
