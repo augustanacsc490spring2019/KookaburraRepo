@@ -219,8 +219,8 @@ class ChessPiece {
         case .dummy:
             return false
         case .ghostQueen:
-            //TODO
-            return false
+            //difference is move validation
+            return checkQueen(dest: dest)
         case .monk:
             return checkMonk(dest: dest)
         case .dwarf:
@@ -240,11 +240,11 @@ class ChessPiece {
         case .orcWarrior:
             return checkOrc(dest: dest)
         case .elephant:
-            //TODO
-            return false
+            //differnce is in move validation
+            return checkKing(dest: dest)
         case .manAtArms:
-            //TODO
-            return false
+            //difference is move validation
+            return checkKing(dest: dest)
         case .swordsman:
             return checkSwordsman(dest: dest)
         case .pikeman:
@@ -254,8 +254,8 @@ class ChessPiece {
         case .royalGuard:
             return checkGuard(dest: dest)
         case .demon:
-            //TODO
-            return false
+            //difference is move validation
+            return checkKing(dest: dest)
         case .basilisk:
             //TODO
             return false
@@ -303,11 +303,10 @@ class ChessPiece {
         case .dragonRider:
             return checkDragonRider(dest: dest)
         case .bombard:
-            //TODO
-            return false
+            //difference is move validation
+            return checkManticore(dest:dest)
         case .manticore:
-            //TODO
-            return false
+            return checkManticore(dest:dest)
         }
     }
     
@@ -643,6 +642,10 @@ class ChessPiece {
             }
         }
         return false
+    }
+    
+    func checkManticore(dest: BoardIndex) -> Bool {
+        return checkMonopod(dest: dest) || checkKing(dest: dest)
     }
     
     func printInfo() -> String {
