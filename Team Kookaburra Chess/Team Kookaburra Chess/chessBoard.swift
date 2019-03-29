@@ -43,7 +43,7 @@ class ChessBoard {
                     case 1:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .camel, player: playerColor)
                     case 2:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .camel, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .dragonRider, player: playerColor)
                     case 3:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .king, player: playerColor)
                     case 4:
@@ -260,9 +260,10 @@ class ChessBoard {
             }
             return false
         case .dragonRider:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
+            if piece.isMovementAppropriate(toIndex: dest){
+                return  isMoveValid(forDragonRider: piece, toIndex: dest)
             }
+            return  false
         case .bombard:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
@@ -412,7 +413,7 @@ class ChessBoard {
                     return true
                 }
             }
-        } else { // attempting to go diagonally
+        } else { // attempting to attack diagonally
             // We will check that the destination cell does not contain a friend piece before getting to this cell
             // So just make sure the cell is not empty
             if !(board[dest.row][dest.column].type == .dummy) {
@@ -424,7 +425,7 @@ class ChessBoard {
     }
     
     func isMoveValid(forRookOrBishopOrQueen piece: ChessPiece, toIndex dest: BoardIndex) -> Bool {
-        NSLog("Piece type: " + piece.symbol)
+        //NSLog("Piece type: " + piece.symbol)
         if piece.isMovementAppropriate(toIndex: dest) == false {
             return false
         }
@@ -457,6 +458,118 @@ class ChessBoard {
             nextCol += colDelta
             if nextRow >= 8 || nextCol >= 8 || nextRow <= 0 || nextCol <= 0{
                 break
+            }
+        }
+        return true
+    }
+    
+    //because of the unique movements of the dragonRider, it needs its own function
+    func isMoveValid(forDragonRider piece: ChessPiece, toIndex dest: BoardIndex) -> Bool {
+        NSLog("DragonRider position: \(piece.row), \(piece.col)")
+        NSLog("DragonRider destination: \(dest.row), \(dest.column)")
+        if (dest.row - piece.row) == 6{//6,-3 or 6, 3
+            if (dest.column - piece.col) == -3{//needs to go through 4,-2 and 2,-1
+                if !(board[piece.row + 4][piece.col - 2].type == .dummy){
+                    return false
+                }
+                if !(board[piece.row + 2][piece.col - 1].type == .dummy){
+                    return false
+                }
+            } else if (dest.column - piece.col) == 3{//needs to go through 4,2 and 2,1
+                if !(board[piece.row + 4][piece.col + 2].type == .dummy){
+                    return false
+                }
+                if !(board[piece.row + 2][piece.col + 1].type == .dummy){
+                    return false
+                }
+            }
+        } else if (dest.row - piece.row) == 4{
+            if (dest.column - piece.col) == -2{//needs to go through 2,-1
+                if !(board[piece.row + 2][piece.col - 1].type == .dummy){
+                    return false
+                }
+            } else if (dest.column - piece.col) == 2{//needs to go through 2,1
+                if !(board[piece.row + 2][piece.col + 1].type == .dummy){
+                    return false
+                }
+            }
+        } else if (dest.row - piece.row) == 3{
+            if (dest.column - piece.col) == -6{//needs to go through 2,-4 and 1,-2
+                if !(board[piece.row + 2][piece.col - 4].type == .dummy){
+                    return false
+                }
+                if !(board[piece.row + 1][piece.col - 2].type == .dummy){
+                    return false
+                }
+            } else if (dest.column - piece.col) == 6{//needs to go through 2,4 and 1,2
+                if !(board[piece.row + 2][piece.col + 4].type == .dummy){
+                    return false
+                }
+                if !(board[piece.row + 1][piece.col + 2].type == .dummy){
+                    return false
+                }
+            }
+        } else if (dest.row - piece.row) == 2{
+            if (dest.column - piece.col) == -4{//needs to go through 1,-2
+                if !(board[piece.row + 1][piece.col - 2].type == .dummy){
+                    return false
+                }
+            } else if (dest.column - piece.col) == 4{//needs to go through 1,2
+                if !(board[piece.row + 1][piece.col + 2].type == .dummy){
+                    return false
+                }
+            }
+        } else if (dest.row - piece.row) == -2{
+            if (dest.column - piece.col) == -4{//needs to go through -1,-2
+                if !(board[piece.row - 1][piece.col - 2].type == .dummy){
+                    return false
+                }
+            } else if (dest.column - piece.col) == 4{//needs to go through -1,2
+                if !(board[piece.row - 1][piece.col + 2].type == .dummy){
+                    return false
+                }
+            }
+        } else if (dest.row - piece.row) == -3{
+            if (dest.column - piece.col) == -6{//needs to go through -2,-4 and -1,-2
+                if !(board[piece.row - 2][piece.col - 4].type == .dummy){
+                    return false
+                }
+                if !(board[piece.row - 1][piece.col - 2].type == .dummy){
+                    return false
+                }
+            } else if dest.column == 6{//needs to go through-1,2 and -2,4
+                if !(board[piece.row - 2][piece.col + 4].type == .dummy){
+                    return false
+                }
+                if !(board[piece.row - 1][piece.col + 2].type == .dummy){
+                    return false
+                }
+            }
+        } else if (dest.row - piece.row) == -4{
+            if (dest.column - piece.col) == -2{//needs to go through -2,-1
+                if !(board[piece.row - 2][piece.col - 1].type == .dummy){
+                    return false
+                }
+            } else if (dest.column - piece.col) == 2{//needs to go through -2, 1
+                if !(board[piece.row - 2][piece.col + 1].type == .dummy){
+                    return false
+                }
+            }
+        } else if (dest.row - piece.row) == -6{
+            if (dest.column - piece.col) == -3{//needs to go through -4,-2, and -2,-1
+                if !(board[piece.row - 4][piece.col - 2].type == .dummy){
+                    return false
+                }
+                if !(board[piece.row - 2][piece.col - 1].type == .dummy){
+                    return false
+                }
+            } else if (dest.column - piece.col) == 3{//needs to go through -4,2 and -2,1
+                if !(board[piece.row - 4][piece.col + 2].type == .dummy){
+                    return false
+                }
+                if !(board[piece.row - 2][piece.col + 1].type == .dummy){
+                    return false
+                }
             }
         }
         return true

@@ -107,6 +107,7 @@ class ChessPiece {
         print("Value Col: \(bIndex.valueCol.rawValue)")
     }
     
+    
     private func setupSymbol() {
         switch type {
         case .pawn:
@@ -196,7 +197,7 @@ class ChessPiece {
         case .manticore:
             symbol = "blackManticore.png"
         }
-        NSLog(symbol)
+        //NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
     }
     
@@ -301,8 +302,7 @@ class ChessPiece {
             //TODO
             return false
         case .dragonRider:
-            //TODO
-            return false
+            return checkDragonRider(dest: dest)
         case .bombard:
             //TODO
             return false
@@ -612,6 +612,16 @@ class ChessPiece {
         if dest.row == self.row + moveDirection {
             // check for diagonal movement and forward movement
             if (dest.column == self.col) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func checkDragonRider(dest: BoardIndex) -> Bool {
+        let validMoves =  [(self.row + 6, self.col - 3), (self.row + 6, self.col + 3), (self.row + 4, self.col - 2),(self.row + 4, self.col + 2), (self.row + 3, self.col - 6), (self.row + 3, self.col + 6), (self.row + 2, self.col - 4), (self.row + 2, self.col - 1), (self.row + 2, self.col + 1), (self.row + 2, self.col + 4),(self.row + 1, self.col - 2), (self.row + 1, self.col + 2), (self.row - 6, self.col - 3), (self.row - 6, self.col + 3), (self.row - 4, self.col - 2),(self.row - 4, self.col + 2), (self.row - 3, self.col - 6), (self.row - 3, self.col + 6), (self.row - 2, self.col - 4), (self.row - 2, self.col - 1), (self.row - 2, self.col + 1), (self.row - 2, self.col + 4),(self.row - 1, self.col - 2), (self.row - 1, self.col + 2)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
                 return true
             }
         }
