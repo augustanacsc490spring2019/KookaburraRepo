@@ -260,11 +260,11 @@ class ChessPiece {
             //TODO
             return false
         case .fireDragon:
-            //TODO
-            return false
+            //difference is in validation
+            return checkQueen(dest: dest)
         case .iceDragon:
-            //TODO
-            return false
+            //difference is in validation
+            return checkQueen(dest: dest)
         case .minotaur:
             return checkMinotaur(dest: dest)
         case .monopod:
@@ -273,8 +273,7 @@ class ChessPiece {
             //TODO
             return false
         case .batteringRam:
-            //TODO
-            return false
+            return checkBatteringRam(dest: dest)
         case .ballista:
             //TODO
             return false
@@ -346,7 +345,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkRook(dest: BoardIndex) -> Bool {
+    func checkRook(dest: BoardIndex) -> Bool {
         if self.row == dest.row || self.col == dest.column {
             return true
         }
@@ -365,7 +364,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkBishop(dest: BoardIndex) -> Bool {
+    func checkBishop(dest: BoardIndex) -> Bool {
         if abs(dest.row - self.row) == abs(dest.column - self.col) {
             return true
         }
@@ -646,6 +645,23 @@ class ChessPiece {
     
     func checkManticore(dest: BoardIndex) -> Bool {
         return checkMonopod(dest: dest) || checkKing(dest: dest)
+    }
+    
+    func checkBatteringRam(dest: BoardIndex) -> Bool{
+        if color == .black{
+            if checkQueen(dest: dest){
+                if dest.row > row{
+                    return true
+                }
+            }
+        } else { //color == .white{
+            if checkQueen(dest: dest){
+                if test.row < row{
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     func printInfo() -> String {

@@ -277,13 +277,9 @@ class ChessBoard {
                 return false
             }
         case .fireDragon:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forFireDragon: piece, toIndex: dest)
         case .iceDragon:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forIceDragon: piece, toIndex: dest)
         case .minotaur:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
@@ -301,9 +297,7 @@ class ChessBoard {
                 return false
             }
         case .batteringRam:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .trebuchet:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
@@ -590,6 +584,45 @@ class ChessBoard {
             }
         }
         return true
+    }
+    
+    //ice dragon moves like a rook and attacks like a bishop
+    func isMoveValid(forIceDragon piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if !isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest){
+            return false
+        }
+        //bishop move, attack
+        if piece.checkBishop(dest: dest){
+            if !(board[dest.row][dest.column].type == .dummy){
+                return true
+            }
+        }
+        //rook move, move
+        if piece.checkRook(dest: dest){
+            if board[dest.row][dest.column].type == .dummy{
+                return true
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forFireDragon piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if !isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest){
+            return false
+        }
+        //bishop move, move
+        if piece.checkBishop(dest: dest){
+            if board[dest.row][dest.column].type == .dummy{
+                return true
+            }
+        }
+        //rook move, attack
+        if piece.checkRook(dest: dest){
+            if !(board[dest.row][dest.column].type == .dummy){
+                return true
+            }
+        }
+        return false
     }
     
     //because of the unique movements of the dragonRider, it needs its own function
