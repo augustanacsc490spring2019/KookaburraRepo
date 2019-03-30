@@ -1,14 +1,18 @@
 //
-//  MyStatsViewController.swift
+//  SearchForFriendsViewController.swift
 //  Team Kookaburra Chess
 //
-//  Created by Meghan Stovall on 3/29/19.
+//  Created by Meghan Stovall on 3/30/19.
 //  Copyright © 2019 Christopher Blake Cassell Erquiaga. All rights reserved.
 //
 
+import Foundation
+
 import UIKit
 
-class MyStatsViewController: UIViewController {
+class SearchForFriendsViewController: UIViewController {
+    
+    @IBOutlet weak var gameTitle: UILabel!
     
     override func viewDidLoad(){
         super.viewDidLoad()

@@ -1,14 +1,18 @@
 //
-//  myFriendsViewController.swift
+//  YourFriendsViewController.swift
 //  Team Kookaburra Chess
 //
-//  Created by Meghan Stovall on 3/29/19.
+//  Created by Meghan Stovall on 3/30/19.
 //  Copyright © 2019 Christopher Blake Cassell Erquiaga. All rights reserved.
 //
 
+import Foundation
+
 import UIKit
 
-class MyFriendsViewController: UIViewController {
+class YourFriendsViewController: UIViewController {
+    
+    @IBOutlet weak var yourFriendsLabel: UILabel!
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -17,5 +21,5 @@ class MyFriendsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+  
 }
