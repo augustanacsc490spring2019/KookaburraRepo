@@ -293,23 +293,15 @@ class ChessBoard {
                 return false
             }
         case .ballista:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .batteringRam:
             return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .trebuchet:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .leftElf:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forLeftElf: piece, toIndex: dest)
         case .rightElf:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forRightElf: piece, toIndex: dest)
         case .camel:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
@@ -448,6 +440,38 @@ class ChessBoard {
         } else { //all other moves, must be an attack
             if !(board[dest.row][dest.column].type == .dummy){
                 return true
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forLeftElf piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false {
+            return false
+        }
+        if piece.color == .black{
+            if dest.column > piece.col{
+                return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            }
+        } else { //if piece.color == .white{
+            if dest.column < piece.col{
+                return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forRightElf piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false {
+            return false
+        }
+        if piece.color == .black{
+            if dest.column < piece.col{
+                return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            }
+        } else { //if piece.color == .white{
+            if dest.column > piece.col{
+                return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
             }
         }
         return false

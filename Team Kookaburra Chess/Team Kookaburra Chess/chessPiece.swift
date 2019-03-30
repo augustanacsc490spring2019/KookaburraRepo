@@ -368,11 +368,9 @@ class ChessPiece {
         case .batteringRam:
             return checkBatteringRam(dest: dest)
         case .ballista:
-            //TODO
-            return false
+            return checkBallista(dest: dest)
         case .trebuchet:
-            //TODO
-            return false
+            return checkTrebuchet(dest: dest)
         case .leftElf:
             //TODO
             return false
@@ -752,6 +750,78 @@ class ChessPiece {
                 if dest.row < row{
                     return true
                 }
+            }
+        }
+        return false
+    }
+    
+    func checkBallista(dest: BoardIndex) -> Bool {
+        if color == .black{
+            //can move like a rook towards the enemy
+            if dest.row > row{
+                return checkRook(dest: dest)
+            //can move like a bishop away from the enemy
+            } else if dest.row < row{
+                return checkBishop(dest: dest)
+            }
+        } else {// if color == .white
+            if dest.row < row{
+                return checkRook(dest: dest)
+            } else if dest.row > row{
+                return checkBishop(dest: dest)
+            }
+        }
+        return false
+    }
+    
+    func checkTrebuchet(dest: BoardIndex) -> Bool{
+        if color == .black{
+            //can move like a bishop towards the enemy
+            if dest.row > row{
+                return checkBishop(dest: dest)
+                //can move like a rook away from the enemy
+            } else if dest.row < row{
+                return checkRook(dest: dest)
+            }
+        } else {// if color == .white
+            if dest.row < row{
+                return checkBishop(dest: dest)
+            } else if dest.row > row{
+                return checkRook(dest: dest)
+            }
+        }
+        return false
+    }
+    
+    func checkLeftyElf(dest: BoardIndex) -> Bool{
+        if color == .black{
+            if dest.column > col{//to the right
+                return checkBishop(dest: dest)
+            } else if dest.column < col{//to the left
+                return checkKnight(dest: dest)
+            }
+        } else {//if color == .white
+            if dest.column > col{//to the right
+                return checkKnight(dest: dest)
+            } else if dest.column < col{//to the left
+                return checkBishop(dest: dest)
+            }
+        }
+        return false
+    }
+    
+    func checkRightyElf(dest: BoardIndex) -> Bool{
+        if color == .black{
+            if dest.column > col{//to the right
+                return checkKnight(dest: dest)
+            } else if dest.column < col{//to the left
+                return checkBishop(dest: dest)
+            }
+        } else {//if color == .white
+            if dest.column > col{//to the right
+                return checkBishop(dest: dest)
+            } else if dest.column < col{//to the left
+                return checkKnight(dest: dest)
             }
         }
         return false
