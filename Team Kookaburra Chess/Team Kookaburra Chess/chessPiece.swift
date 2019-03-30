@@ -277,7 +277,7 @@ class ChessPiece {
             case .unicorn:
                 symbol = "whiteUnicorn.png"
             case .superKing:
-                symbol = "whiteSuperking.png"
+                symbol = "whiteSuperKing.png"
             case .griffin:
                 symbol = "whiteGriffin.png"
             case .dragonRider:
