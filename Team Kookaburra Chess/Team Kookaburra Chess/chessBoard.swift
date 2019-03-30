@@ -55,11 +55,11 @@ class ChessBoard {
                     default:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .minotaur, player: playerColor)
                     }
-                case 1:
-                    board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .footSoldier, player: playerColor)
-                case 6:
-                    board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .dwarf, player: playerColor)
-                case 7:
+                case 1://second row
+                    board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .elephant, player: playerColor)
+                case 6://first row from the top
+                    board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .manAtArms, player: playerColor)
+                case 7://top row
                     switch col { // determine what piece to put in each column of first row
                     case 0:
                         board[row][col] = ChessPiece(row: row, column: col, color: playerColor, type: .centaur, player: playerColor)
@@ -265,29 +265,19 @@ class ChessBoard {
             }
             return  false
         case .bombard:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forBombard: piece, toIndex: dest)
         case .manticore:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+           return isMoveValid(forManticore: piece, toIndex: dest)
         case .ghostQueen:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
             }
         case .basilisk:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forBasilisk: piece, toIndex: dest)
         case .fireDragon:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forFireDragon: piece, toIndex: dest)
         case .iceDragon:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forIceDragon: piece, toIndex: dest)
         case .minotaur:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
@@ -297,29 +287,17 @@ class ChessBoard {
                 return false
             }
         case .ship:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forShip: piece, toIndex: dest)
         case .ballista:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .batteringRam:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .trebuchet:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .leftElf:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forLeftElf: piece, toIndex: dest)
         case .rightElf:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forRightElf: piece, toIndex: dest)
         case .camel:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
@@ -337,13 +315,9 @@ class ChessBoard {
                 return false
             }
         case .elephant:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forElephant: piece, toIndex: dest)
         case .manAtArms:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forManAtArms: piece, toIndex: dest)
         case .swordsman:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
@@ -361,9 +335,7 @@ class ChessBoard {
                 return false
             }
         case .demon:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forDemon: piece, toIndex: dest)
         case .monk:
             if piece.isMovementAppropriate(toIndex: dest) == false {
                 return false
@@ -415,6 +387,131 @@ class ChessBoard {
             }
         }
         
+        return false
+    }
+
+    func isMoveValid(forElephant piece: ChessPiece, toIndex dest: BoardIndex)-> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false {
+            return false
+        }
+        //diagonal movement, must be an attack
+        if dest.row != piece.row && dest.column != piece.col{
+            if !(board[dest.row][dest.column].type == .dummy){
+               return true
+            }
+        } else { //orthagonal movement, can't be an attack
+            if board[dest.row][dest.column].type == .dummy{
+                return true
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forManAtArms piece: ChessPiece, toIndex dest: BoardIndex)-> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false {
+            return false
+        }
+        //diagonal movement, can't be an attack
+        if dest.row != piece.row && dest.column != piece.col{
+            if board[dest.row][dest.column].type == .dummy{
+                return true
+            }
+        } else { //orthagonal movement, must be an attack
+            if !(board[dest.row][dest.column].type == .dummy){
+                return true
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forDemon piece: ChessPiece, toIndex dest: BoardIndex)-> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false {
+            return false
+        }
+        //same row, can't be an attack
+        if dest.row == piece.row {
+            if board[dest.row][dest.column].type == .dummy{
+                return true
+            }
+        } else { //all other moves, must be an attack
+            if !(board[dest.row][dest.column].type == .dummy){
+                return true
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forLeftElf piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false {
+            return false
+        }
+        if piece.color == .black{
+            if dest.column > piece.col{
+                return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            }
+        } else { //if piece.color == .white{
+            if dest.column < piece.col{
+                return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forRightElf piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false {
+            return false
+        }
+        if piece.color == .black{
+            if dest.column < piece.col{
+                return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            }
+        } else { //if piece.color == .white{
+            if dest.column > piece.col{
+                return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forGhostQueen piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if !(isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)){
+            return false
+        }
+        //the piece can't attack
+        if board[dest.row][dest.column].type == .dummy {
+            return true
+        } else{
+            return false
+        }
+    }
+    
+    func isMoveValid(forManticore piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if !piece.isMovementAppropriate(toIndex: dest){
+            return false
+        }
+        //close range, can attack or move
+        if isMoveValid(forKing: piece, toIndex: dest){
+            return true
+        } else { //can't attack but can move
+            if board[dest.row][dest.column].type == .dummy{
+                return true
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forBombard piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if !piece.isMovementAppropriate(toIndex: dest){
+            return false
+        }
+        //close range, can move but not attack
+        if isMoveValid(forKing: piece, toIndex: dest){
+            if board[dest.row][dest.column].type == .dummy{
+                return true
+            }
+        } else { //can attack or move
+            return true
+        }
         return false
     }
     
@@ -509,10 +606,49 @@ class ChessBoard {
         return true
     }
     
+    //ice dragon moves like a rook and attacks like a bishop
+    func isMoveValid(forIceDragon piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if !isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest){
+            return false
+        }
+        //bishop move, attack
+        if piece.checkBishop(dest: dest){
+            if !(board[dest.row][dest.column].type == .dummy){
+                return true
+            }
+        }
+        //rook move, move
+        if piece.checkRook(dest: dest){
+            if board[dest.row][dest.column].type == .dummy{
+                return true
+            }
+        }
+        return false
+    }
+    
+    func isMoveValid(forFireDragon piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if !isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest){
+            return false
+        }
+        //bishop move, move
+        if piece.checkBishop(dest: dest){
+            if board[dest.row][dest.column].type == .dummy{
+                return true
+            }
+        }
+        //rook move, attack
+        if piece.checkRook(dest: dest){
+            if !(board[dest.row][dest.column].type == .dummy){
+                return true
+            }
+        }
+        return false
+    }
+    
     //because of the unique movements of the dragonRider, it needs its own function
     func isMoveValid(forDragonRider piece: ChessPiece, toIndex dest: BoardIndex) -> Bool {
-        NSLog("DragonRider position: \(piece.row), \(piece.col)")
-        NSLog("DragonRider destination: \(dest.row), \(dest.column)")
+        //NSLog("DragonRider position: \(piece.row), \(piece.col)")
+        //NSLog("DragonRider destination: \(dest.row), \(dest.column)")
         if (dest.row - piece.row) == 6{//6,-3 or 6, 3
             if (dest.column - piece.col) == -3{//needs to go through 4,-2 and 2,-1
                 if !(board[piece.row + 4][piece.col - 2].type == .dummy){
@@ -621,6 +757,73 @@ class ChessBoard {
         return true
     }
     
+    func isMoveValid(forShip piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false{
+            return false
+        }
+        if dest.row > piece.row{
+                var testRow = dest.row
+                while testRow! > piece.row{
+                    if board[testRow!][dest.column].type != .dummy{
+                        return false
+                    }
+                    testRow = testRow! - 1
+            }
+            return true
+        } else {//if dest.row < piece.row{
+            var testRow = dest.row
+            while testRow! < piece.row{
+                if board[testRow!][dest.column].type != .dummy{
+                    return false
+                }
+                testRow = testRow! + 1
+            }
+            return true
+        }
+    }
+    
+    func isMoveValid(forBasilisk piece: ChessPiece, toIndex dest: BoardIndex) -> Bool {
+        if piece.isMovementAppropriate(toIndex: dest) == false{
+            return false
+        }
+        if dest.row == piece.row{
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+        } else {
+            return isMoveValid(forKing: piece, toIndex: dest)
+        }
+    }
+    
+    func isMoveValid(forGriffin piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false{
+            return false
+        }
+        if dest.column == (piece.col + 1) || dest.column == (piece.col - 1){//vertical move
+            return isMoveValid(forShip: piece, toIndex: dest)
+        } else {//horizontal move
+            if dest.column > piece.col{
+                var testCol = dest.column
+                while testCol! > piece.col{
+                    if board[dest.row][testCol!].type != .dummy{
+                        return false
+                    }
+                    testCol = testCol! - 1
+                }
+                return true
+            } else {//if dest.row < piece.row{
+                var testCol = dest.column
+                while testCol! < piece.col{
+                    if board[dest.row][testCol!].type != .dummy{
+                        return false
+                    }
+                    testCol = testCol! + 1
+                }
+                return true
+            }
+        }
+    }
+    
+    
+    
     func isMoveValid(forKing king: ChessPiece, toIndex dest: BoardIndex) -> Bool {
         
         if king.isMovementAppropriate(toIndex: dest) == false {
@@ -635,13 +838,13 @@ class ChessBoard {
     }
     
     /// called from getPossibleMoves and when move made
-    private func isMoveTwoCellsOver(forKing king: ChessPiece, move: BoardIndex) -> Bool {
+    func isMoveTwoCellsOver(forKing king: ChessPiece, move: BoardIndex) -> Bool {
         let colDelta = abs(king.col - move.column)
         return colDelta == 2
     }
     
     /// called from getPossibleMoves only
-    private func isRookNext(toKing king: ChessPiece, forMove move: BoardIndex) -> Bool {
+    func isRookNext(toKing king: ChessPiece, forMove move: BoardIndex) -> Bool {
         if king.color == .white {
             //if move.row == 0 && move.column == 6
             return move.row == 0 && move.column == 6 && board[move.row][move.column + 1].type == .rook
