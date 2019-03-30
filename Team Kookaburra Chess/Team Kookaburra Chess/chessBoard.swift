@@ -273,9 +273,7 @@ class ChessBoard {
                 return false
             }
         case .basilisk:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forBasilisk: piece, toIndex: dest)
         case .fireDragon:
             return isMoveValid(forFireDragon: piece, toIndex: dest)
         case .iceDragon:
@@ -781,8 +779,22 @@ class ChessBoard {
                 testRow = testRow! + 1
             }
             return true
-        return true
+        }
     }
+    
+    func isMoveValid(forBasilisk piece: ChessPiece, toIndex dest: BoardIndex) -> Bool {
+        if piece.isMovementAppropriate(toIndex: dest) == false{
+            return false
+        }
+        if dest.row = piece.row{
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+        } else {
+            return isMoveValid(forKing: piece, toIndex: dest)
+        }
+        return false
+    }
+    
+    
     
     func isMoveValid(forKing king: ChessPiece, toIndex dest: BoardIndex) -> Bool {
         
@@ -798,13 +810,13 @@ class ChessBoard {
     }
     
     /// called from getPossibleMoves and when move made
-    private func isMoveTwoCellsOver(forKing king: ChessPiece, move: BoardIndex) -> Bool {
+    func isMoveTwoCellsOver(forKing king: ChessPiece, move: BoardIndex) -> Bool {
         let colDelta = abs(king.col - move.column)
         return colDelta == 2
     }
     
     /// called from getPossibleMoves only
-    private func isRookNext(toKing king: ChessPiece, forMove move: BoardIndex) -> Bool {
+    func isRookNext(toKing king: ChessPiece, forMove move: BoardIndex) -> Bool {
         if king.color == .white {
             //if move.row == 0 && move.column == 6
             return move.row == 0 && move.column == 6 && board[move.row][move.column + 1].type == .rook

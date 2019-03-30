@@ -350,8 +350,7 @@ class ChessPiece {
             //difference is move validation
             return checkKing(dest: dest)
         case .basilisk:
-            //TODO
-            return false
+            return checkBasilisk(dest: dest)
         case .fireDragon:
             //difference is in validation
             return checkQueen(dest: dest)
@@ -371,11 +370,9 @@ class ChessPiece {
         case .trebuchet:
             return checkTrebuchet(dest: dest)
         case .leftElf:
-            //TODO
-            return false
+            return checkLeftyElf(dest: dest)
         case .rightElf:
-            //TODO
-            return false
+            return checkRightyElf(dest: dest)
         case .mage:
             return checkMage(dest: dest)
         case .centaur:
@@ -752,6 +749,14 @@ class ChessPiece {
             }
         }
         return false
+    }
+    
+    func checkBasilisk(dest: BoardIndex) -> Bool{
+        if dest.row == row{
+            return checkRook(dest: dest)
+        } else{
+            return checkKing(dest: dest)
+        }
     }
     
     func checkBallista(dest: BoardIndex) -> Bool {
