@@ -109,7 +109,6 @@ class ChessPiece {
     
     
     private func setupSymbol() {
-        if color == .black{
         switch type {
         case .pawn:
             symbol = "blackPawn.png"
@@ -198,98 +197,6 @@ class ChessPiece {
         case .manticore:
             symbol = "blackManticore.png"
         }
-        } else if color == .white{
-            switch type {
-            case .pawn:
-                symbol = "whitePawn.png"
-            case .rook:
-                symbol = "whiteRook.png"
-            case .knight:
-                symbol = "whiteKnight.png"
-            case .bishop:
-                symbol = "whiteBishop.png"
-            case .king:
-                symbol = "whiteKing.png"
-            case .queen:
-                symbol = "whiteQueen.png"
-            case .dummy:
-                symbol = "blankPiece.png"
-            case .ghostQueen:
-                symbol = "whiteGhostQueen.png"
-            case .dwarf:
-                symbol = "whiteDwarf.png"
-            case .footSoldier:
-                symbol = "whiteFootsoldier.png"
-            case .monk:
-                symbol = "whiteMonk.png"
-            case .gargoyle:
-                symbol = "whiteGargoyle.png"
-            case .goblin:
-                symbol = "whiteGoblin.png"
-            case .scout:
-                symbol = "whiteScout.png"
-            case .ogre:
-                symbol = "whiteOgre.png"
-            case .orcWarrior:
-                symbol = "whiteOrcWarrior.png"
-            case .elephant:
-                symbol = "whiteElephant.png"
-            case .manAtArms:
-                symbol = "whiteManAtArms.png"
-            case .swordsman:
-                symbol = "whiteSwordsman.png"
-            case .archer:
-                symbol = "whiteArcher.png"
-            case .pikeman:
-                symbol = "whitePikeman.png"
-            case .royalGuard:
-                symbol = "whiteGuard.png"
-            case .demon:
-                symbol = "whiteDemon.png"
-            case .basilisk:
-                symbol = "whiteBasilisk.png"
-            case .fireDragon:
-                symbol = "whiteFireDragon.png"
-            case .iceDragon:
-                symbol = "whiteIceDragon.png"
-            case .minotaur:
-                symbol = "whiteMinotaur.png"
-            case .monopod:
-                symbol = "whiteMonopod.png"
-            case .ship:
-                symbol = "whiteShip.png"
-            case .batteringRam:
-                symbol = "whiteBatteringRam.png"
-            case .ballista:
-                symbol = "whiteBallista.png"
-            case .trebuchet:
-                symbol = "whiteTrebuchet.png"
-            case .leftElf:
-                symbol = "whiteLeftyElf.png"
-            case .rightElf:
-                symbol = "whiteRightyElf.png"
-            case .mage:
-                symbol = "whiteMage.png"
-            case .centaur:
-                symbol = "whiteCentaur.png"
-            case .camel:
-                symbol = "whiteCamel.png"
-            case .unicorn:
-                symbol = "whiteUnicorn.png"
-            case .superKing:
-                symbol = "whiteSuperking.png"
-            case .griffin:
-                symbol = "whiteGriffin.png"
-            case .dragonRider:
-                symbol = "whiteDragonRider.png"
-            case .bombard:
-                symbol = "whiteBombard.png"
-            case .manticore:
-                symbol = "whiteManticore.png"
-            }
-        } else {
-            symbol = "dummyPiece.png"
-        }
         NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
     }
@@ -312,8 +219,8 @@ class ChessPiece {
         case .dummy:
             return false
         case .ghostQueen:
-            //difference is move validation
-            return checkQueen(dest: dest)
+            //TODO
+            return false
         case .monk:
             return checkMonk(dest: dest)
         case .dwarf:
@@ -333,11 +240,11 @@ class ChessPiece {
         case .orcWarrior:
             return checkOrc(dest: dest)
         case .elephant:
-            //differnce is in move validation
-            return checkKing(dest: dest)
+            //TODO
+            return false
         case .manAtArms:
-            //difference is move validation
-            return checkKing(dest: dest)
+            //TODO
+            return false
         case .swordsman:
             return checkSwordsman(dest: dest)
         case .pikeman:
@@ -347,32 +254,39 @@ class ChessPiece {
         case .royalGuard:
             return checkGuard(dest: dest)
         case .demon:
-            //difference is move validation
-            return checkKing(dest: dest)
+            //TODO
+            return false
         case .basilisk:
-            return checkBasilisk(dest: dest)
+            //TODO
+            return false
         case .fireDragon:
-            //difference is in validation
-            return checkQueen(dest: dest)
+            //TODO
+            return false
         case .iceDragon:
-            //difference is in validation
-            return checkQueen(dest: dest)
+            //TODO
+            return false
         case .minotaur:
             return checkMinotaur(dest: dest)
         case .monopod:
             return checkMonopod(dest: dest)
         case .ship:
-            return checkShip(dest: dest)
+            //TODO
+            return false
         case .batteringRam:
-            return checkBatteringRam(dest: dest)
+            //TODO
+            return false
         case .ballista:
-            return checkBallista(dest: dest)
+            //TODO
+            return false
         case .trebuchet:
-            return checkTrebuchet(dest: dest)
+            //TODO
+            return false
         case .leftElf:
-            return checkLeftyElf(dest: dest)
+            //TODO
+            return false
         case .rightElf:
-            return checkRightyElf(dest: dest)
+            //TODO
+            return false
         case .mage:
             return checkMage(dest: dest)
         case .centaur:
@@ -384,14 +298,16 @@ class ChessPiece {
         case .superKing:
             return checkSuperKing(dest: dest)
         case .griffin:
-            return checkGriffin(dest: dest)
+            //TODO
+            return false
         case .dragonRider:
             return checkDragonRider(dest: dest)
         case .bombard:
-            //difference is move validation
-            return checkManticore(dest:dest)
+            //TODO
+            return false
         case .manticore:
-            return checkManticore(dest:dest)
+            //TODO
+            return false
         }
     }
     
@@ -431,7 +347,7 @@ class ChessPiece {
         return false
     }
     
-    func checkRook(dest: BoardIndex) -> Bool {
+    private func checkRook(dest: BoardIndex) -> Bool {
         if self.row == dest.row || self.col == dest.column {
             return true
         }
@@ -450,7 +366,7 @@ class ChessPiece {
         return false
     }
     
-    func checkBishop(dest: BoardIndex) -> Bool {
+    private func checkBishop(dest: BoardIndex) -> Bool {
         if abs(dest.row - self.row) == abs(dest.column - self.col) {
             return true
         }
@@ -723,129 +639,6 @@ class ChessPiece {
         let validMoves =  [(self.row + 6, self.col - 3), (self.row + 6, self.col + 3), (self.row + 4, self.col - 2),(self.row + 4, self.col + 2), (self.row + 3, self.col - 6), (self.row + 3, self.col + 6), (self.row + 2, self.col - 4), (self.row + 2, self.col - 1), (self.row + 2, self.col + 1), (self.row + 2, self.col + 4),(self.row + 1, self.col - 2), (self.row + 1, self.col + 2), (self.row - 6, self.col - 3), (self.row - 6, self.col + 3), (self.row - 4, self.col - 2),(self.row - 4, self.col + 2), (self.row - 3, self.col - 6), (self.row - 3, self.col + 6), (self.row - 2, self.col - 4), (self.row - 2, self.col - 1), (self.row - 2, self.col + 1), (self.row - 2, self.col + 4),(self.row - 1, self.col - 2), (self.row - 1, self.col + 2)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
-                return true
-            }
-        }
-        return false
-    }
-    
-    func checkManticore(dest: BoardIndex) -> Bool {
-        return checkMonopod(dest: dest) || checkKing(dest: dest)
-    }
-    
-    func checkBatteringRam(dest: BoardIndex) -> Bool{
-        if color == .black{
-            if checkQueen(dest: dest){
-                if dest.row > row{
-                    return true
-                }
-            }
-        } else { //color == .white{
-            if checkQueen(dest: dest){
-                if dest.row < row{
-                    return true
-                }
-            }
-        }
-        return false
-    }
-    
-    func checkBasilisk(dest: BoardIndex) -> Bool{
-        if dest.row == row{
-            return checkRook(dest: dest)
-        } else{
-            return checkKing(dest: dest)
-        }
-    }
-    
-    func checkBallista(dest: BoardIndex) -> Bool {
-        if color == .black{
-            //can move like a rook towards the enemy
-            if dest.row > row{
-                return checkRook(dest: dest)
-            //can move like a bishop away from the enemy
-            } else if dest.row < row{
-                return checkBishop(dest: dest)
-            }
-        } else {// if color == .white
-            if dest.row < row{
-                return checkRook(dest: dest)
-            } else if dest.row > row{
-                return checkBishop(dest: dest)
-            }
-        }
-        return false
-    }
-    
-    func checkTrebuchet(dest: BoardIndex) -> Bool{
-        if color == .black{
-            //can move like a bishop towards the enemy
-            if dest.row > row{
-                return checkBishop(dest: dest)
-                //can move like a rook away from the enemy
-            } else if dest.row < row{
-                return checkRook(dest: dest)
-            }
-        } else {// if color == .white
-            if dest.row < row{
-                return checkBishop(dest: dest)
-            } else if dest.row > row{
-                return checkRook(dest: dest)
-            }
-        }
-        return false
-    }
-    
-    func checkLeftyElf(dest: BoardIndex) -> Bool{
-        if color == .black{
-            if dest.column > col{//to the right
-                return checkBishop(dest: dest)
-            } else if dest.column < col{//to the left
-                return checkKnight(dest: dest)
-            }
-        } else {//if color == .white
-            if dest.column > col{//to the right
-                return checkKnight(dest: dest)
-            } else if dest.column < col{//to the left
-                return checkBishop(dest: dest)
-            }
-        }
-        return false
-    }
-    
-    func checkRightyElf(dest: BoardIndex) -> Bool{
-        if color == .black{
-            if dest.column > col{//to the right
-                return checkKnight(dest: dest)
-            } else if dest.column < col{//to the left
-                return checkBishop(dest: dest)
-            }
-        } else {//if color == .white
-            if dest.column > col{//to the right
-                return checkBishop(dest: dest)
-            } else if dest.column < col{//to the left
-                return checkKnight(dest: dest)
-            }
-        }
-        return false
-    }
-    
-    func checkShip(dest: BoardIndex) -> Bool{
-        if dest.column == (col + 1) || dest.column == (col - 1){
-            if dest.row != row{
-                return true
-            }
-        }
-        return false
-    }
-    
-    func checkGriffin(dest: BoardIndex) -> Bool{
-        if dest.column == (col + 1) || dest.column == (col - 1){
-            if dest.row != row{
-                return true
-            }
-        } else if dest.row == (row + 1) || dest.row == (row - 1){
-            if dest.column != col{
                 return true
             }
         }
