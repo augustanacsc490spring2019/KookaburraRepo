@@ -39,7 +39,7 @@ class ChessBoard {
                 case 0: // First row of chess board
                     switch col { // determine what piece to put in each column of first row
                     case 0:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .mage, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .griffin, player: playerColor)
                     case 1:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .camel, player: playerColor)
                     case 2:
@@ -58,11 +58,11 @@ class ChessBoard {
                 case 1:
                     switch col { // determine what piece to put in each column of second row
                     case 0:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .mage, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .basilisk, player: playerColor)
                     case 1:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .camel, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .leftElf, player: playerColor)
                     case 2:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .dragonRider, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .rightElf, player: playerColor)
                     case 3:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .king, player: playerColor)
                     case 4:
@@ -77,21 +77,21 @@ class ChessBoard {
                 case 6:
                     switch col { // determine what piece to put in each column of second row
                     case 0:
-                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .mage, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .trebuchet, player: playerColor)
                     case 1:
-                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .camel, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .batteringRam, player: playerColor)
                     case 2:
-                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .dragonRider, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .iceDragon, player: playerColor)
                     case 3:
-                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .king, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .fireDragon, player: playerColor)
                     case 4:
-                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .superKing, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .manticore, player: playerColor)
                     case 5:
-                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .scout, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .bombard, player: playerColor)
                     case 6:
-                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .archer, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .griffin, player: playerColor)
                     default:
-                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .minotaur, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: .white, type: .ship, player: playerColor)
                     }
                 case 7:
                     switch col { // determine what piece to put in each column of first row
@@ -505,10 +505,14 @@ class ChessBoard {
         if piece.color == .black{
             if dest.column > piece.col{
                 return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            } else {
+                return piece.checkKnight(dest: dest)
             }
         } else { //if piece.color == .white{
             if dest.column < piece.col{
                 return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            } else {
+                return piece.checkKnight(dest: dest)
             }
         }
         return false
@@ -521,10 +525,14 @@ class ChessBoard {
         if piece.color == .black{
             if dest.column < piece.col{
                 return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            } else {
+                return piece.checkKnight(dest: dest)
             }
         } else { //if piece.color == .white{
             if dest.column > piece.col{
                 return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+            } else {
+                return piece.checkKnight(dest: dest)
             }
         }
         return false
