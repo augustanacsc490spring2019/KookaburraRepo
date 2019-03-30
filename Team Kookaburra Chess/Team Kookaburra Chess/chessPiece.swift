@@ -109,6 +109,7 @@ class ChessPiece {
     
     
     private func setupSymbol() {
+        if color == .black{
         switch type {
         case .pawn:
             symbol = "blackPawn.png"
@@ -196,6 +197,98 @@ class ChessPiece {
             symbol = "blackBombard.png"
         case .manticore:
             symbol = "blackManticore.png"
+        }
+        } else if color == .white{
+            switch type {
+            case .pawn:
+                symbol = "whitePawn.png"
+            case .rook:
+                symbol = "whiteRook.png"
+            case .knight:
+                symbol = "whiteKnight.png"
+            case .bishop:
+                symbol = "whiteBishop.png"
+            case .king:
+                symbol = "whiteKing.png"
+            case .queen:
+                symbol = "whiteQueen.png"
+            case .dummy:
+                symbol = "blankPiece.png"
+            case .ghostQueen:
+                symbol = "whiteGhostQueen.png"
+            case .dwarf:
+                symbol = "whiteDwarf.png"
+            case .footSoldier:
+                symbol = "whiteFootsoldier.png"
+            case .monk:
+                symbol = "whiteMonk.png"
+            case .gargoyle:
+                symbol = "whiteGargoyle.png"
+            case .goblin:
+                symbol = "whiteGoblin.png"
+            case .scout:
+                symbol = "whiteScout.png"
+            case .ogre:
+                symbol = "whiteOgre.png"
+            case .orcWarrior:
+                symbol = "whiteOrcWarrior.png"
+            case .elephant:
+                symbol = "whiteElephant.png"
+            case .manAtArms:
+                symbol = "whiteManAtArms.png"
+            case .swordsman:
+                symbol = "whiteSwordsman.png"
+            case .archer:
+                symbol = "whiteArcher.png"
+            case .pikeman:
+                symbol = "whitePikeman.png"
+            case .royalGuard:
+                symbol = "whiteGuard.png"
+            case .demon:
+                symbol = "whiteDemon.png"
+            case .basilisk:
+                symbol = "whiteBasilisk.png"
+            case .fireDragon:
+                symbol = "whiteFireDragon.png"
+            case .iceDragon:
+                symbol = "whiteIceDragon.png"
+            case .minotaur:
+                symbol = "whiteMinotaur.png"
+            case .monopod:
+                symbol = "whiteMonopod.png"
+            case .ship:
+                symbol = "whiteShip.png"
+            case .batteringRam:
+                symbol = "whiteBatteringRam.png"
+            case .ballista:
+                symbol = "whiteBallista.png"
+            case .trebuchet:
+                symbol = "whiteTrebuchet.png"
+            case .leftElf:
+                symbol = "whiteLeftyElf.png"
+            case .rightElf:
+                symbol = "whiteRightyElf.png"
+            case .mage:
+                symbol = "whiteMage.png"
+            case .centaur:
+                symbol = "whiteCentaur.png"
+            case .camel:
+                symbol = "whiteCamel.png"
+            case .unicorn:
+                symbol = "whiteUnicorn.png"
+            case .superKing:
+                symbol = "whiteSuperking.png"
+            case .griffin:
+                symbol = "whiteGriffin.png"
+            case .dragonRider:
+                symbol = "whiteDragonRider.png"
+            case .bombard:
+                symbol = "whiteBombard.png"
+            case .manticore:
+                symbol = "whiteManticore.png"
+            }
+        } else {
+            symbol = "dummyPiece.png"
         }
         NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
@@ -656,7 +749,7 @@ class ChessPiece {
             }
         } else { //color == .white{
             if checkQueen(dest: dest){
-                if test.row < row{
+                if dest.row < row{
                     return true
                 }
             }
