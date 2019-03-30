@@ -10,6 +10,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--GameViewController-->
+        <scene sceneID="aMJ-bd-WMH">
+            <objects>
+                <viewController storyboardIdentifier="GameViewController" title="GameViewController" id="59Q-8H-ows" customClass="GameViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hje-V4-Nst">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="6QD-Sm-H7F"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pvc-df-vRk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-809" y="217"/>
+        </scene>
         <!--OpeningScreen-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -77,7 +92,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="quickTestButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qIL-xP-Bda"/>
+                                    <action selector="quickTestButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="NEL-IR-Bij"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -111,6 +126,7 @@
                         <segue destination="bEH-HR-jHz" kind="showDetail" identifier="StoreSegue" id="3ue-pw-cWS"/>
                         <segue destination="zEu-Gh-aaY" kind="showDetail" identifier="MyStatsSegue" id="ikF-3A-UMu"/>
                         <segue destination="wYb-JX-wYm" kind="showDetail" identifier="PlayBtOpeningScreenSegue" id="DEn-oN-FRL"/>
+                        <segue destination="59Q-8H-ows" kind="showDetail" identifier="QuickTestSegue" id="5Ru-Ct-ZdM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

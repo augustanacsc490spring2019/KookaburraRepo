@@ -37,5 +37,7 @@ class OpeningScreen: UIViewController {
     }
     
     @IBAction func quickTestButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "QuickTestSegue", sender: self)
+        
     }
 }
