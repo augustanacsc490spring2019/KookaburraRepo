@@ -289,9 +289,7 @@ class ChessBoard {
                 return false
             }
         case .ship:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forShip: piece, toIndex: dest)
         case .ballista:
             return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .batteringRam:
@@ -758,6 +756,31 @@ class ChessBoard {
                 }
             }
         }
+        return true
+    }
+    
+    func isMoveValid(forShip piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false{
+            return false
+        }
+        if dest.row > piece.row{
+                var testRow = dest.row
+                while testRow! > piece.row{
+                    if board[testRow!][dest.column].type != .dummy{
+                        return false
+                    }
+                    testRow = testRow! - 1
+            }
+            return true
+        } else {//if dest.row < piece.row{
+            var testRow = dest.row
+            while testRow! < piece.row{
+                if board[testRow!][dest.column].type != .dummy{
+                    return false
+                }
+                testRow = testRow! + 1
+            }
+            return true
         return true
     }
     

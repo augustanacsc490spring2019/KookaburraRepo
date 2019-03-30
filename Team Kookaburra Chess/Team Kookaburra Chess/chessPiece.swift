@@ -363,8 +363,7 @@ class ChessPiece {
         case .monopod:
             return checkMonopod(dest: dest)
         case .ship:
-            //TODO
-            return false
+            return checkShip(dest: dest)
         case .batteringRam:
             return checkBatteringRam(dest: dest)
         case .ballista:
@@ -822,6 +821,15 @@ class ChessPiece {
                 return checkBishop(dest: dest)
             } else if dest.column < col{//to the left
                 return checkKnight(dest: dest)
+            }
+        }
+        return false
+    }
+    
+    func checkShip(dest: BoardIndex) -> Bool{
+        if dest.column == (col + 1) || dest.column == (col - 1){
+            if dest.row != row{
+                return true
             }
         }
         return false
