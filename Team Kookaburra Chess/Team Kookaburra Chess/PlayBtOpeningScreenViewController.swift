@@ -1,5 +1,5 @@
 //
-//  myFriendsViewController.swift
+//  PlayBtLaunchScreenViewController.swift
 //  Team Kookaburra Chess
 //
 //  Created by Meghan Stovall on 3/29/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyFriendsViewController: UIViewController {
+class PlayBtOpeningScreenViewController: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad()

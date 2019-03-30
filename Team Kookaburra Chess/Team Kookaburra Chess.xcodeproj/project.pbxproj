@@ -13,7 +13,6 @@
 		251D1F6022403DAD00AD7CE4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */; };
 		251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F6122403DAD00AD7CE4 /* Main.storyboard */; };
 		251D1F6522403DAE00AD7CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F6422403DAE00AD7CE4 /* Assets.xcassets */; };
-		251D1F6822403DAE00AD7CE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F6622403DAE00AD7CE4 /* LaunchScreen.storyboard */; };
 		251D1F7322403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F7222403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift */; };
 		251D1F7E22403DAE00AD7CE4 /* Team_Kookaburra_ChessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F7D22403DAE00AD7CE4 /* Team_Kookaburra_ChessUITests.swift */; };
 		251D1F8E2240743D00AD7CE4 /* BoardCelll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F8D2240743D00AD7CE4 /* BoardCelll.swift */; };
@@ -71,8 +70,9 @@
 		8819824B224E7948008E8EFD /* MyFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824A224E7948008E8EFD /* MyFriendsViewController.swift */; };
 		8819824D224E7BBA008E8EFD /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824C224E7BBA008E8EFD /* StoreViewController.swift */; };
 		8819824F224E7CAF008E8EFD /* MyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */; };
-		88198251224E7D12008E8EFD /* PlayBtLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88198250224E7D12008E8EFD /* PlayBtLaunchScreenViewController.swift */; };
-		889C82642241651D00B77A21 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* LaunchScreen.swift */; };
+		88198251224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */; };
+		889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* OpeningScreen.swift */; };
+		88E34F362250054E007ED2F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88E34F352250054E007ED2F5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,7 +100,6 @@
 		251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		251D1F6222403DAD00AD7CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		251D1F6422403DAE00AD7CE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		251D1F6722403DAE00AD7CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		251D1F6922403DAE00AD7CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		251D1F6E22403DAE00AD7CE4 /* Team Kookaburra ChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Team Kookaburra ChessTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		251D1F7222403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team_Kookaburra_ChessTests.swift; sourceTree = "<group>"; };
@@ -163,8 +162,9 @@
 		8819824A224E7948008E8EFD /* MyFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewController.swift; sourceTree = "<group>"; };
 		8819824C224E7BBA008E8EFD /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatsViewController.swift; sourceTree = "<group>"; };
-		88198250224E7D12008E8EFD /* PlayBtLaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBtLaunchScreenViewController.swift; sourceTree = "<group>"; };
-		889C82632241651D00B77A21 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBtOpeningScreenViewController.swift; sourceTree = "<group>"; };
+		889C82632241651D00B77A21 /* OpeningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningScreen.swift; sourceTree = "<group>"; };
+		88E34F352250054E007ED2F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,7 +195,6 @@
 		251D1F4B22403DAD00AD7CE4 = {
 			isa = PBXGroup;
 			children = (
-				88198250224E7D12008E8EFD /* PlayBtLaunchScreenViewController.swift */,
 				251D1F5622403DAD00AD7CE4 /* Team Kookaburra Chess */,
 				251D1F7122403DAE00AD7CE4 /* Team Kookaburra ChessTests */,
 				251D1F7C22403DAE00AD7CE4 /* Team Kookaburra ChessUITests */,
@@ -227,17 +226,17 @@
 				251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */,
 				251D1F91224074A800AD7CE4 /* chessBoard.swift */,
 				251D1F5922403DAD00AD7CE4 /* GameScene.sks */,
-				889C82632241651D00B77A21 /* LaunchScreen.swift */,
+				889C82632241651D00B77A21 /* OpeningScreen.swift */,
 				8819824A224E7948008E8EFD /* MyFriendsViewController.swift */,
 				8819824C224E7BBA008E8EFD /* StoreViewController.swift */,
 				8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */,
+				88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */,
 				251D1F5B22403DAD00AD7CE4 /* Actions.sks */,
 				251D1F5D22403DAD00AD7CE4 /* GameScene.swift */,
 				251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */,
 				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
+				88E34F352250054E007ED2F5 /* LaunchScreen.storyboard */,
 				251D1F6422403DAE00AD7CE4 /* Assets.xcassets */,
-				251D1F6622403DAE00AD7CE4 /* LaunchScreen.storyboard */,
-				88198248224E69D6008E8EFD /* cathedral.jpg */,
 				251D1F6922403DAE00AD7CE4 /* Info.plist */,
 			);
 			path = "Team Kookaburra Chess";
@@ -264,6 +263,7 @@
 		251D202B22431F2C00AD7CE4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				88198248224E69D6008E8EFD /* cathedral.jpg */,
 				252A35EF22442A9200FE6A09 /* blackBishop.png */,
 				259FEDA9224949F3006BE3E8 /* blackBatteringRam.png */,
 				25415E30224A981000B7E13E /* blackBombard.png */,
@@ -450,6 +450,7 @@
 				259FED9E22493C16006BE3E8 /* blackFireDragon.png in Resources */,
 				259FED9C22493C0F006BE3E8 /* blackBasilisk.png in Resources */,
 				252A35F22244323600FE6A09 /* blackKnight.png in Resources */,
+				88E34F362250054E007ED2F5 /* LaunchScreen.storyboard in Resources */,
 				259FEDAA224949F3006BE3E8 /* blackBatteringRam.png in Resources */,
 				259FEDA8224949ED006BE3E8 /* blackShip.png in Resources */,
 				259FEDA222493C24006BE3E8 /* blackMinotaur.png in Resources */,
@@ -458,7 +459,6 @@
 				25DEFD41224896E40024A78A /* blackArcher.png in Resources */,
 				25BC737F224822840083D24E /* blackScout.png in Resources */,
 				25415E37224A982A00B7E13E /* blackUnicorn.png in Resources */,
-				251D1F6822403DAE00AD7CE4 /* LaunchScreen.storyboard in Resources */,
 				259FEDA422493C3C006BE3E8 /* blackMonopod.png in Resources */,
 				25415E3B224A989400B7E13E /* blackManticore.png in Resources */,
 				254C14812247E6B9004359CE /* blackGhostQueen.png in Resources */,
@@ -493,8 +493,8 @@
 				251D1F9C2240760B00AD7CE4 /* history.swift in Sources */,
 				251D1F5E22403DAD00AD7CE4 /* GameScene.swift in Sources */,
 				8819824F224E7CAF008E8EFD /* MyStatsViewController.swift in Sources */,
-				88198251224E7D12008E8EFD /* PlayBtLaunchScreenViewController.swift in Sources */,
-				889C82642241651D00B77A21 /* LaunchScreen.swift in Sources */,
+				88198251224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift in Sources */,
+				889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */,
 				251D1F902240746C00AD7CE4 /* BoardIndex.swift in Sources */,
 				251D1F6022403DAD00AD7CE4 /* GameViewController.swift in Sources */,
 				251D1F962240751500AD7CE4 /* chessPiece.swift in Sources */,
@@ -546,14 +546,6 @@
 				251D1F6222403DAD00AD7CE4 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		251D1F6622403DAE00AD7CE4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				251D1F6722403DAE00AD7CE4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,24 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Game View Controller-->
+        <!--OpeningScreen-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OpeningScreen" title="OpeningScreen" id="BV1-FR-VrT" customClass="OpeningScreen" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cathedral.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5yB-Xf-8pG">
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="6T2-Ap-xkx"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Alchemist Chess" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUJ-jJ-ocm">
+                                <rect key="frame" x="85" y="100" width="245" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DR-cL-FoF">
+                                <rect key="frame" x="128" y="246" width="159" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="My Friends ">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="myFriendButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="VPP-nR-2LK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBA-Qs-yjW">
+                                <rect key="frame" x="171" y="348" width="73" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Store">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="storeButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="D6H-Wp-uNk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vba-gz-8aH">
+                                <rect key="frame" x="147" y="451" width="121" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="My Stats">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="myStatsButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="dBa-4o-C6L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APm-Lx-Pis">
+                                <rect key="frame" x="178" y="553" width="59" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="RcO-Rd-Axu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVv-WH-LuU">
+                                <rect key="frame" x="139" y="638" width="136" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="QuickTest">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="quickTestButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qIL-xP-Bda"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5yB-Xf-8pG" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="20" id="5Nm-qx-foq"/>
+                            <constraint firstItem="APm-Lx-Pis" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="178" id="8v1-Mw-RTC"/>
+                            <constraint firstItem="RBA-Qs-yjW" firstAttribute="bottom" secondItem="0DR-cL-FoF" secondAttribute="bottom" constant="102" id="EjK-im-fpJ"/>
+                            <constraint firstItem="5yB-Xf-8pG" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="GRP-D2-YaZ"/>
+                            <constraint firstItem="wVv-WH-LuU" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="139" id="Hcg-DT-gmz"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="vba-gz-8aH" secondAttribute="trailing" constant="146" id="Jqf-LL-FbR"/>
+                            <constraint firstItem="vba-gz-8aH" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="147" id="LJD-YA-N7l"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="0DR-cL-FoF" secondAttribute="trailing" constant="127" id="MRq-Fz-DxY"/>
+                            <constraint firstItem="0DR-cL-FoF" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="128" id="PuX-Ep-BAS"/>
+                            <constraint firstItem="0DR-cL-FoF" firstAttribute="bottom" secondItem="dUJ-jJ-ocm" secondAttribute="bottom" constant="156" id="aen-ZV-7d3"/>
+                            <constraint firstItem="wVv-WH-LuU" firstAttribute="bottom" secondItem="APm-Lx-Pis" secondAttribute="bottom" constant="85" id="dC4-6a-AoG"/>
+                            <constraint firstItem="vba-gz-8aH" firstAttribute="bottom" secondItem="RBA-Qs-yjW" secondAttribute="bottom" constant="103" id="gki-2r-0fH"/>
+                            <constraint firstItem="5yB-Xf-8pG" firstAttribute="bottom" secondItem="4qk-I5-YsI" secondAttribute="bottom" id="o7C-wT-oHQ"/>
+                            <constraint firstItem="APm-Lx-Pis" firstAttribute="bottom" secondItem="vba-gz-8aH" secondAttribute="bottom" constant="102" id="q7m-vY-Gls"/>
+                            <constraint firstItem="RBA-Qs-yjW" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="171" id="qEu-o9-Z2A"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="wVv-WH-LuU" secondAttribute="trailing" constant="139" id="vba-80-ER3"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="5yB-Xf-8pG" secondAttribute="trailing" constant="20" id="wZS-QP-IX9"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="RBA-Qs-yjW" secondAttribute="trailing" constant="170" id="x9r-tk-OkR"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="APm-Lx-Pis" secondAttribute="trailing" constant="177" id="zWA-TO-nPP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
+                    <connections>
+                        <outlet property="gameTitle" destination="dUJ-jJ-ocm" id="Gos-d9-PuR"/>
+                        <segue destination="fhK-sB-HUu" kind="showDetail" identifier="MyFriendsBtSegue" id="x71-Kx-mDm"/>
+                        <segue destination="bEH-HR-jHz" kind="showDetail" identifier="StoreSegue" id="3ue-pw-cWS"/>
+                        <segue destination="zEu-Gh-aaY" kind="showDetail" identifier="MyStatsSegue" id="ikF-3A-UMu"/>
+                        <segue destination="wYb-JX-wYm" kind="showDetail" identifier="PlayBtOpeningScreenSegue" id="DEn-oN-FRL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="116" y="3"/>
+        </scene>
+        <!--MyFriends-->
+        <scene sceneID="teK-Us-aea">
+            <objects>
+                <viewController storyboardIdentifier="MyFriendsViewController" title="MyFriends" id="fhK-sB-HUu" customClass="MyFriendsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pFw-cT-bmT" customClass="MyFriendsViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="vt9-L1-8V4"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lgj-Fc-fks" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="953" y="-221"/>
+        </scene>
+        <!--PlayBtOpeningScreenViewController-->
+        <scene sceneID="8FD-jp-cdg">
+            <objects>
+                <viewController storyboardIdentifier="PlayBtOpeningScreenViewController" title="PlayBtOpeningScreenViewController" id="wYb-JX-wYm" customClass="PlayBtOpeningScreenViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aa0-5n-XR6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="YOc-wc-gpa"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VWr-Lb-DCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="142" y="737"/>
+        </scene>
+        <!--MyStatsViewController-->
+        <scene sceneID="NdR-Mz-m2B">
+            <objects>
+                <viewController storyboardIdentifier="MyStatsViewController" title="MyStatsViewController" id="zEu-Gh-aaY" customClass="MyStatsViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2qa-rr-KdW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="SDW-0x-m1T"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gfe-Qs-Vga" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1068" y="475"/>
+        </scene>
+        <!--StoreViewController-->
+        <scene sceneID="V3P-Hy-vlw">
+            <objects>
+                <viewController storyboardIdentifier="StoreViewController" title="StoreViewController" id="bEH-HR-jHz" customClass="StoreViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cIQ-To-WIG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="PEg-sj-M5S"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rhP-Zz-E3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1696" y="-26"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cathedral.jpg" width="320" height="480"/>
+    </resources>
 </document>
