@@ -109,6 +109,7 @@ class ChessPiece {
     
     
     private func setupSymbol() {
+        if color == .black{
         switch type {
         case .pawn:
             symbol = "blackPawn.png"
@@ -196,6 +197,98 @@ class ChessPiece {
             symbol = "blackBombard.png"
         case .manticore:
             symbol = "blackManticore.png"
+            }
+        } else if color == .white{
+            switch type {
+            case .pawn:
+                symbol = "whitePawn.png"
+            case .rook:
+                symbol = "whiteRook.png"
+            case .knight:
+                symbol = "whiteKnight.png"
+            case .bishop:
+                symbol = "whiteBishop.png"
+            case .king:
+                symbol = "whiteKing.png"
+            case .queen:
+                symbol = "whiteQueen.png"
+            case .dummy:
+                symbol = "blankPiece.png"
+            case .ghostQueen:
+                symbol = "whiteGhostQueen.png"
+            case .dwarf:
+                symbol = "whiteDwarf.png"
+            case .footSoldier:
+                symbol = "whiteFootsoldier.png"
+            case .monk:
+                symbol = "whiteMonk.png"
+            case .gargoyle:
+                symbol = "whiteGargoyle.png"
+            case .goblin:
+                symbol = "whiteGoblin.png"
+            case .scout:
+                symbol = "whiteScout.png"
+            case .ogre:
+                symbol = "whiteOgre.png"
+            case .orcWarrior:
+                symbol = "whiteOrcWarrior.png"
+            case .elephant:
+                symbol = "whiteElephant.png"
+            case .manAtArms:
+                symbol = "whiteManAtArms.png"
+            case .swordsman:
+                symbol = "whiteSwordsman.png"
+            case .archer:
+                symbol = "whiteArcher.png"
+            case .pikeman:
+                symbol = "whitePikeman.png"
+            case .royalGuard:
+                symbol = "whiteGuard.png"
+            case .demon:
+                symbol = "whiteDemon.png"
+            case .basilisk:
+                symbol = "whiteBasilisk.png"
+            case .fireDragon:
+                symbol = "whiteFireDragon.png"
+            case .iceDragon:
+                symbol = "whiteIceDragon.png"
+            case .minotaur:
+                symbol = "whiteMinotaur.png"
+            case .monopod:
+                symbol = "whiteMonopod.png"
+            case .ship:
+                symbol = "whiteShip.png"
+            case .batteringRam:
+                symbol = "whiteBatteringRam.png"
+            case .ballista:
+                symbol = "whiteBallista.png"
+            case .trebuchet:
+                symbol = "whiteTrebuchet.png"
+            case .leftElf:
+                symbol = "whiteLeftyElf.png"
+            case .rightElf:
+                symbol = "whiteRightyElf.png"
+            case .mage:
+                symbol = "whiteMage.png"
+            case .centaur:
+                symbol = "whiteCentaur.png"
+            case .camel:
+                symbol = "whiteCamel.png"
+            case .unicorn:
+                symbol = "whiteUnicorn.png"
+            case .superKing:
+                symbol = "whiteSuperking.png"
+            case .griffin:
+                symbol = "whiteGriffin.png"
+            case .dragonRider:
+                symbol = "whiteDragonRider.png"
+            case .bombard:
+                symbol = "whiteBombard.png"
+            case .manticore:
+                symbol = "whiteManticore.png"
+            }
+        } else {
+            symbol = "blankPiece.png"
         }
         NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
@@ -219,8 +312,8 @@ class ChessPiece {
         case .dummy:
             return false
         case .ghostQueen:
-            //TODO
-            return false
+            //difference is move validation
+            return checkQueen(dest: dest)
         case .monk:
             return checkMonk(dest: dest)
         case .dwarf:
@@ -240,11 +333,11 @@ class ChessPiece {
         case .orcWarrior:
             return checkOrc(dest: dest)
         case .elephant:
-            //TODO
-            return false
+            //differnce is in move validation
+            return checkKing(dest: dest)
         case .manAtArms:
-            //TODO
-            return false
+            //difference is move validation
+            return checkKing(dest: dest)
         case .swordsman:
             return checkSwordsman(dest: dest)
         case .pikeman:
@@ -254,39 +347,32 @@ class ChessPiece {
         case .royalGuard:
             return checkGuard(dest: dest)
         case .demon:
-            //TODO
-            return false
+            //difference is move validation
+            return checkKing(dest: dest)
         case .basilisk:
-            //TODO
-            return false
+            return checkBasilisk(dest: dest)
         case .fireDragon:
-            //TODO
-            return false
+            //difference is in validation
+            return checkQueen(dest: dest)
         case .iceDragon:
-            //TODO
-            return false
+            //difference is in validation
+            return checkQueen(dest: dest)
         case .minotaur:
             return checkMinotaur(dest: dest)
         case .monopod:
             return checkMonopod(dest: dest)
         case .ship:
-            //TODO
-            return false
+            return checkShip(dest: dest)
         case .batteringRam:
-            //TODO
-            return false
+            return checkBatteringRam(dest: dest)
         case .ballista:
-            //TODO
-            return false
+            return checkBallista(dest: dest)
         case .trebuchet:
-            //TODO
-            return false
+            return checkTrebuchet(dest: dest)
         case .leftElf:
-            //TODO
-            return false
+            return checkLeftyElf(dest: dest)
         case .rightElf:
-            //TODO
-            return false
+            return checkRightyElf(dest: dest)
         case .mage:
             return checkMage(dest: dest)
         case .centaur:
@@ -298,20 +384,18 @@ class ChessPiece {
         case .superKing:
             return checkSuperKing(dest: dest)
         case .griffin:
-            //TODO
-            return false
+            return checkGriffin(dest: dest)
         case .dragonRider:
             return checkDragonRider(dest: dest)
         case .bombard:
-            //TODO
-            return false
+            //difference is move validation
+            return checkManticore(dest:dest)
         case .manticore:
-            //TODO
-            return false
+            return checkManticore(dest:dest)
         }
     }
     
-    private func checkPawn(dest: BoardIndex) -> Bool {
+    func checkPawn(dest: BoardIndex) -> Bool {
         // is it advancing by 2
         // check if the move is in the same column
         if self.col == dest.column {
@@ -347,7 +431,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkRook(dest: BoardIndex) -> Bool {
+    func checkRook(dest: BoardIndex) -> Bool {
         if self.row == dest.row || self.col == dest.column {
             return true
         }
@@ -366,14 +450,14 @@ class ChessPiece {
         return false
     }
     
-    private func checkBishop(dest: BoardIndex) -> Bool {
+    func checkBishop(dest: BoardIndex) -> Bool {
         if abs(dest.row - self.row) == abs(dest.column - self.col) {
             return true
         }
         return false
     }
     
-    private func checkQueen(dest: BoardIndex) -> Bool {
+    func checkQueen(dest: BoardIndex) -> Bool {
         // check diagonal move
         if abs(dest.row - self.row) == abs(dest.column - self.col) {
             return true
@@ -385,7 +469,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkKing(dest: BoardIndex) -> Bool {
+    func checkKing(dest: BoardIndex) -> Bool {
         // king only moves one space at a time
         let rowDelta = abs(self.row - dest.row)
         let colDelta = abs(self.col - dest.column)
@@ -400,11 +484,11 @@ class ChessPiece {
         return false
     }
     
-    private func checkSuperKing(dest: BoardIndex) -> Bool {
+    func checkSuperKing(dest: BoardIndex) -> Bool {
         return checkQueen(dest: dest)
     }
     
-    private func checkUnicorn(dest: BoardIndex) -> Bool {
+    func checkUnicorn(dest: BoardIndex) -> Bool {
         // check diagonal move
         if abs(dest.row - self.row) == abs(dest.column - self.col) {
             return true
@@ -424,7 +508,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkCentaur(dest: BoardIndex) -> Bool {
+    func checkCentaur(dest: BoardIndex) -> Bool {
         // check rook-like move
         if self.row == dest.row || self.col == dest.column {
             return true
@@ -440,7 +524,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkMage(dest: BoardIndex) -> Bool {
+    func checkMage(dest: BoardIndex) -> Bool {
         // check diagonal move
         let bishopMove = checkBishop(dest: dest)
         //check knight move
@@ -448,7 +532,7 @@ class ChessPiece {
         return bishopMove || knightMove
     }
     
-    private func checkCamel(dest: BoardIndex) -> Bool {
+    func checkCamel(dest: BoardIndex) -> Bool {
         let validMoves =  [(self.row - 1, self.col + 3), (self.row - 3, self.col + 1), (self.row - 3, self.col - 1), (self.row - 1, self.col - 3), (self.row + 1, self.col - 3), (self.row + 3, self.col - 1), (self.row + 3, self.col + 1), (self.row + 1, self.col + 3)]
         
         for (validRow, validCol) in validMoves {
@@ -459,7 +543,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkMinotaur(dest: BoardIndex) -> Bool {
+    func checkMinotaur(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row, self.col + 2), (self.row, self.col + 3), (self.row, self.col - 2 ), (self.row, self.col - 3), (self.row + 2, self.col), (self.row + 3, self.col), (self.row - 2, self.col), (self.row - 3, self.col), (self.row + 2, self.col + 2), (self.row + 2, self.col - 2), (self.row - 2, self.col + 2), (self.row - 2, self.col - 2), (self.row + 3, self.col + 3), (self.row + 3, self.col - 3), (self.row - 3, self.col + 3), (self.row - 3, self.col - 3)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
@@ -469,7 +553,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkMonopod(dest: BoardIndex) -> Bool {
+    func checkMonopod(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row, self.col + 2), (self.row + 1, self.col + 2), (self.row + 2, self.col + 2), (self.row + 2, self.col + 1), (self.row + 2, self.col), (self.row + 2, self.col - 1), (self.row + 2, self.col - 2), (self.row + 1, self.col - 2), (self.row, self.col - 2), (self.row - 1, self.col - 2), (self.row - 2, self.col - 2), (self.row - 2, self.col - 1), (self.row - 2, self.col), (self.row - 2, self.col + 1), (self.row - 2, self.col + 2), (self.row - 1, self.col + 2)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
@@ -479,7 +563,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkOgre(dest: BoardIndex) -> Bool {
+    func checkOgre(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row + 1, self.col + 1), (self.row - 1, self.col + 1), (self.row - 1, self.col - 1), (self.row + 1, self.col - 1)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
@@ -489,7 +573,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkOrc(dest: BoardIndex) -> Bool {
+    func checkOrc(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row + 1, self.col), (self.row - 1, self.col), (self.row, self.col - 1), (self.row, self.col + 1)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
@@ -499,7 +583,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkSwordsman(dest: BoardIndex) -> Bool {
+    func checkSwordsman(dest: BoardIndex) -> Bool {
         if color == .black {
         let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col), (self.row + 1, self.col - 1)]
         for (validRow, validCol) in validMoves {
@@ -518,7 +602,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkPike(dest: BoardIndex) -> Bool {
+    func checkPike(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row + 2, self.col), (self.row - 2, self.col), (self.row, self.col - 2), (self.row, self.col + 2)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
@@ -528,7 +612,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkArcher(dest: BoardIndex) -> Bool {
+    func checkArcher(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row + 2, self.col + 2), (self.row - 2, self.col + 2), (self.row - 2, self.col - 2), (self.row + 2, self.col - 2)]
         for (validRow, validCol) in validMoves {
             if dest.row == validRow && dest.column == validCol {
@@ -538,7 +622,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkScout(dest: BoardIndex) -> Bool {
+    func checkScout(dest: BoardIndex) -> Bool {
         if color == .black{
         let validMoves = [(self.row + 2, self.col + 1), (self.row + 2, self.col - 1), (self.row - 1, self.col)]
         for (validRow, validCol) in validMoves {
@@ -557,11 +641,11 @@ class ChessPiece {
         return false
     }
     
-    private func checkGuard(dest: BoardIndex) -> Bool {
+    func checkGuard(dest: BoardIndex) -> Bool {
         return checkKing(dest: dest)
     }
     
-    private func checkMonk(dest: BoardIndex) -> Bool {
+    func checkMonk(dest: BoardIndex) -> Bool {
         if color == .black{
         let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col - 1)]
         for (validRow, validCol) in validMoves {
@@ -580,7 +664,7 @@ class ChessPiece {
         return false
     }
     
-    private func checkGoblin(dest: BoardIndex) -> Bool {
+    func checkGoblin(dest: BoardIndex) -> Bool {
         // is it advancing by 2
         // check if the move is in the same column
         if self.col == dest.column {
@@ -644,6 +728,129 @@ class ChessPiece {
         }
         return false
     }
+        
+        func checkManticore(dest: BoardIndex) -> Bool {
+            return checkMonopod(dest: dest) || checkKing(dest: dest)
+        }
+        
+        func checkBatteringRam(dest: BoardIndex) -> Bool{
+            if color == .black{
+                if checkQueen(dest: dest){
+                    if dest.row > row{
+                        return true
+                    }
+                }
+            } else { //color == .white{
+                if checkQueen(dest: dest){
+                    if dest.row < row{
+                        return true
+                    }
+                }
+            }
+            return false
+        }
+        
+        func checkBasilisk(dest: BoardIndex) -> Bool{
+            if dest.row == row{
+                return checkRook(dest: dest)
+            } else{
+                return checkKing(dest: dest)
+            }
+        }
+        
+        func checkBallista(dest: BoardIndex) -> Bool {
+            if color == .black{
+                //can move like a rook towards the enemy
+                if dest.row > row{
+                    return checkRook(dest: dest)
+                    //can move like a bishop away from the enemy
+                } else if dest.row < row{
+                    return checkBishop(dest: dest)
+                }
+            } else {// if color == .white
+                if dest.row < row{
+                    return checkRook(dest: dest)
+                } else if dest.row > row{
+                    return checkBishop(dest: dest)
+                }
+            }
+            return false
+        }
+        
+        func checkTrebuchet(dest: BoardIndex) -> Bool{
+            if color == .black{
+                //can move like a bishop towards the enemy
+                if dest.row > row{
+                    return checkBishop(dest: dest)
+                    //can move like a rook away from the enemy
+                } else if dest.row < row{
+                    return checkRook(dest: dest)
+                }
+            } else {// if color == .white
+                if dest.row < row{
+                    return checkBishop(dest: dest)
+                } else if dest.row > row{
+                    return checkRook(dest: dest)
+                }
+            }
+            return false
+        }
+        
+        func checkLeftyElf(dest: BoardIndex) -> Bool{
+            if color == .black{
+                if dest.column > col{//to the right
+                    return checkBishop(dest: dest)
+                } else if dest.column < col{//to the left
+                    return checkKnight(dest: dest)
+                }
+            } else {//if color == .white
+                if dest.column > col{//to the right
+                    return checkKnight(dest: dest)
+                } else if dest.column < col{//to the left
+                    return checkBishop(dest: dest)
+                }
+            }
+            return false
+        }
+        
+        func checkRightyElf(dest: BoardIndex) -> Bool{
+            if color == .black{
+                if dest.column > col{//to the right
+                    return checkKnight(dest: dest)
+                } else if dest.column < col{//to the left
+                    return checkBishop(dest: dest)
+                }
+            } else {//if color == .white
+                if dest.column > col{//to the right
+                    return checkBishop(dest: dest)
+                } else if dest.column < col{//to the left
+                    return checkKnight(dest: dest)
+                }
+            }
+            return false
+        }
+        
+        func checkShip(dest: BoardIndex) -> Bool{
+            if dest.column == (col + 1) || dest.column == (col - 1){
+                if dest.row != row{
+                    return true
+                }
+            }
+            return false
+        }
+        
+        func checkGriffin(dest: BoardIndex) -> Bool{
+            if dest.column == (col + 1) || dest.column == (col - 1){
+                if dest.row != row{
+                    return true
+                }
+            } else if dest.row == (row + 1) || dest.row == (row - 1){
+                if dest.column != col{
+                    return true
+                }
+            }
+            return false
+        }
     
     func printInfo() -> String {
         var pColor = "Clear"
