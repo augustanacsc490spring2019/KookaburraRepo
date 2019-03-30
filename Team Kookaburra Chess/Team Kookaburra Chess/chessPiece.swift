@@ -384,8 +384,7 @@ class ChessPiece {
         case .superKing:
             return checkSuperKing(dest: dest)
         case .griffin:
-            //TODO
-            return false
+            return checkGriffin(dest: dest)
         case .dragonRider:
             return checkDragonRider(dest: dest)
         case .bombard:
@@ -834,6 +833,19 @@ class ChessPiece {
     func checkShip(dest: BoardIndex) -> Bool{
         if dest.column == (col + 1) || dest.column == (col - 1){
             if dest.row != row{
+                return true
+            }
+        }
+        return false
+    }
+    
+    func checkGriffin(dest: BoardIndex) -> Bool{
+        if dest.column == (col + 1) || dest.column == (col - 1){
+            if dest.row != row{
+                return true
+            }
+        } else if dest.row == (row + 1) || dest.row == (row - 1){
+            if dest.column != col{
                 return true
             }
         }

@@ -786,12 +786,40 @@ class ChessBoard {
         if piece.isMovementAppropriate(toIndex: dest) == false{
             return false
         }
-        if dest.row = piece.row{
+        if dest.row == piece.row{
             return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         } else {
             return isMoveValid(forKing: piece, toIndex: dest)
         }
-        return false
+    }
+    
+    func isMoveValid(forGriffin piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false{
+            return false
+        }
+        if dest.column == (piece.col + 1) || dest.column == (piece.col - 1){//vertical move
+            return isMoveValid(forShip: piece, toIndex: dest)
+        } else {//horizontal move
+            if dest.column > piece.col{
+                var testCol = dest.column
+                while testCol! > piece.col{
+                    if board[dest.row][testCol!].type != .dummy{
+                        return false
+                    }
+                    testCol = testCol! - 1
+                }
+                return true
+            } else {//if dest.row < piece.row{
+                var testCol = dest.column
+                while testCol! < piece.col{
+                    if board[dest.row][testCol!].type != .dummy{
+                        return false
+                    }
+                    testCol = testCol! + 1
+                }
+                return true
+            }
+        }
     }
     
     
