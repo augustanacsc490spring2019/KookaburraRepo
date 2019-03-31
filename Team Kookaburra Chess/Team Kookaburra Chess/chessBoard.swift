@@ -272,9 +272,7 @@ class ChessBoard {
         case .superKing:
             return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         case .griffin:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            return isMoveValid(forGriffin: piece, toIndex: dest)
         case .mage:
             if piece.isMovementAppropriate(toIndex: dest) {
                 if isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest){//queen move
@@ -555,14 +553,14 @@ class ChessBoard {
             return false
         }
         //close range, can attack or move
-        if isMoveValid(forKing: piece, toIndex: dest){
+        if piece.checkKing(dest: dest){
             return true
         } else { //can't attack but can move
-            if board[dest.row][dest.column].type == .dummy{
-                return true
+            if !(board[dest.row][dest.column].type == .dummy){
+                return false
             }
         }
-        return false
+        return true
     }
     
     func isMoveValid(forBombard piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
@@ -570,7 +568,7 @@ class ChessBoard {
             return false
         }
         //close range, can move but not attack
-        if isMoveValid(forKing: piece, toIndex: dest){
+        if piece.checkKing(dest: dest){
             if board[dest.row][dest.column].type == .dummy{
                 return true
             }
