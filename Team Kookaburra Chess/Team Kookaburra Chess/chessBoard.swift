@@ -74,6 +74,45 @@ class ChessBoard {
                     default:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .minotaur, player: playerColor)
                     }
+                case 2: //determine which piece to put in each column of the third row
+                    switch col{
+                        case 0:
+                            board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .pawn, player: playerColor)
+                        case 1:
+                            break
+                        case 2:
+                            break
+                        case 3:
+                            break
+                        case 4:
+                            break
+                        case 5:
+                            break
+                        case 6:
+                            break
+                        default:
+                            break
+                    }
+                case 5://determine which piece to put in each column of the third row
+                    switch col{
+                        case 0:
+                            break
+                        case 1:
+                            break
+                        case 2:
+                            break
+                        case 3:
+                            break
+                        case 4:
+                            break
+                        case 5:
+                            break
+                        case 6:
+                            break
+                        default:
+                            break
+                    }
+                    
                 case 6:
                     switch col { // determine what piece to put in each column of second row
                     case 0:
@@ -622,21 +661,21 @@ class ChessBoard {
             return false
         }
         if dest.row > piece.row{
-            var testRow = dest.row
-            while testRow! > piece.row{
-                if board[testRow!][dest.column].type != .dummy{
+            var testRow = dest.row - 1
+            while testRow > piece.row{
+                if board[testRow][dest.column].type != .dummy{
                     return false
                 }
-                testRow = testRow! - 1
+                testRow = testRow - 1
             }
             return true
         } else {//if dest.row < piece.row{
-            var testRow = dest.row
-            while testRow! < piece.row{
-                if board[testRow!][dest.column].type != .dummy{
+            var testRow = dest.row + 1
+            while testRow < piece.row{
+                if board[testRow][dest.column].type != .dummy{
                     return false
                 }
-                testRow = testRow! + 1
+                testRow = testRow + 1
             }
             return true
         }
@@ -661,21 +700,21 @@ class ChessBoard {
             return isMoveValid(forShip: piece, toIndex: dest)
         } else {//horizontal move
             if dest.column > piece.col{
-                var testCol = dest.column
-                while testCol! > piece.col{
-                    if board[dest.row][testCol!].type != .dummy{
+                var testCol = dest.column - 1
+                while testCol > piece.col{
+                    if board[dest.row][testCol].type != .dummy{
                         return false
                     }
-                    testCol = testCol! - 1
+                    testCol = (testCol - 1)
                 }
                 return true
             } else {//if dest.row < piece.row{
-                var testCol = dest.column
-                while testCol! < piece.col{
-                    if board[dest.row][testCol!].type != .dummy{
+                var testCol = dest.column + 1
+                while testCol < piece.col{
+                    if board[dest.row][testCol].type != .dummy{
                         return false
                     }
-                    testCol = testCol! + 1
+                    testCol = testCol + 1
                 }
                 return true
             }
