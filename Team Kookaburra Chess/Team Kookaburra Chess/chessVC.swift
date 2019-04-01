@@ -144,11 +144,11 @@ extension ChessVC: BoardCellDelegate {
                     
                     pieceBeingMoved = nil
                     playerTurn = playerTurn == .white ? .black : .white
-                    if chessBoard.isPlayerUnderCheck(playerColor: playerTurn) {
-                        checkLabel.text = "You are in check"
-                    } else {
-                        checkLabel.text = ""
-                    }
+//                    if chessBoard.isPlayerUnderCheck(playerColor: playerTurn) {
+//                        checkLabel.text = "You are in check"
+//                    } else {
+//                        checkLabel.text = ""
+//                    }
                     updateLabel()
                     //print("The old cell now holds: \(cell.piece.symbol)")
                     return

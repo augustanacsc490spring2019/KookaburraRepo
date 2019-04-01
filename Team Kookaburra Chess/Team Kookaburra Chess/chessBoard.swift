@@ -1024,7 +1024,7 @@ class ChessBoard {
                         // undo fake move
                         board[dest.row][dest.column] = pieceBeingAttacked
                         board[piece.row][piece.col] = piece
-                        print("Move will expose king to check")
+                        //print("Move will expose king to check")
                         return true
                     }
                 }
