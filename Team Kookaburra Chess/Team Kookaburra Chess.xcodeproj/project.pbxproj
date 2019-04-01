@@ -40,6 +40,17 @@
 		254C14812247E6B9004359CE /* blackGhostQueen.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14802247E6B9004359CE /* blackGhostQueen.png */; };
 		254C14832247E6BF004359CE /* blackGoblin.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14822247E6BF004359CE /* blackGoblin.png */; };
 		254C14852247E76A004359CE /* blackMonk.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14842247E76A004359CE /* blackMonk.png */; };
+		258FEECD22527AF3007ED10C /* bronzeDemotionBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEECC22527AF2007ED10C /* bronzeDemotionBanner.png */; };
+		258FEECF22527AF8007ED10C /* championBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEECE22527AF8007ED10C /* championBanner.png */; };
+		258FEED922527B0A007ED10C /* silverPromotionBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED022527B09007ED10C /* silverPromotionBanner.png */; };
+		258FEEDA22527B0A007ED10C /* rankGold.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED122527B09007ED10C /* rankGold.png */; };
+		258FEEDB22527B0A007ED10C /* rankBronze.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED222527B09007ED10C /* rankBronze.png */; };
+		258FEEDC22527B0A007ED10C /* rankSilver.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED322527B09007ED10C /* rankSilver.png */; };
+		258FEEDD22527B0A007ED10C /* rankDiamond.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED422527B09007ED10C /* rankDiamond.png */; };
+		258FEEDE22527B0A007ED10C /* diamondPromotionBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED522527B09007ED10C /* diamondPromotionBanner.png */; };
+		258FEEDF22527B0A007ED10C /* silverDemotionBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED622527B09007ED10C /* silverDemotionBanner.png */; };
+		258FEEE022527B0A007ED10C /* goldPromotionBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED722527B0A007ED10C /* goldPromotionBanner.png */; };
+		258FEEE122527B0A007ED10C /* goldDemotionBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED822527B0A007ED10C /* goldDemotionBanner.png */; };
 		259FED9C22493C0F006BE3E8 /* blackBasilisk.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9B22493C0F006BE3E8 /* blackBasilisk.png */; };
 		259FED9E22493C16006BE3E8 /* blackFireDragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9D22493C16006BE3E8 /* blackFireDragon.png */; };
 		259FEDA022493C1E006BE3E8 /* blackIceDragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9F22493C1E006BE3E8 /* blackIceDragon.png */; };
@@ -181,6 +192,17 @@
 		254C14802247E6B9004359CE /* blackGhostQueen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGhostQueen.png; sourceTree = "<group>"; };
 		254C14822247E6BF004359CE /* blackGoblin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGoblin.png; sourceTree = "<group>"; };
 		254C14842247E76A004359CE /* blackMonk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMonk.png; sourceTree = "<group>"; };
+		258FEECC22527AF2007ED10C /* bronzeDemotionBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bronzeDemotionBanner.png; sourceTree = "<group>"; };
+		258FEECE22527AF8007ED10C /* championBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = championBanner.png; sourceTree = "<group>"; };
+		258FEED022527B09007ED10C /* silverPromotionBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silverPromotionBanner.png; sourceTree = "<group>"; };
+		258FEED122527B09007ED10C /* rankGold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rankGold.png; sourceTree = "<group>"; };
+		258FEED222527B09007ED10C /* rankBronze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rankBronze.png; sourceTree = "<group>"; };
+		258FEED322527B09007ED10C /* rankSilver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rankSilver.png; sourceTree = "<group>"; };
+		258FEED422527B09007ED10C /* rankDiamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rankDiamond.png; sourceTree = "<group>"; };
+		258FEED522527B09007ED10C /* diamondPromotionBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamondPromotionBanner.png; sourceTree = "<group>"; };
+		258FEED622527B09007ED10C /* silverDemotionBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silverDemotionBanner.png; sourceTree = "<group>"; };
+		258FEED722527B0A007ED10C /* goldPromotionBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldPromotionBanner.png; sourceTree = "<group>"; };
+		258FEED822527B0A007ED10C /* goldDemotionBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldDemotionBanner.png; sourceTree = "<group>"; };
 		259FED9B22493C0F006BE3E8 /* blackBasilisk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBasilisk.png; sourceTree = "<group>"; };
 		259FED9D22493C16006BE3E8 /* blackFireDragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackFireDragon.png; sourceTree = "<group>"; };
 		259FED9F22493C1E006BE3E8 /* blackIceDragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackIceDragon.png; sourceTree = "<group>"; };
@@ -352,6 +374,17 @@
 		251D202B22431F2C00AD7CE4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				258FEECC22527AF2007ED10C /* bronzeDemotionBanner.png */,
+				258FEECE22527AF8007ED10C /* championBanner.png */,
+				258FEED522527B09007ED10C /* diamondPromotionBanner.png */,
+				258FEED822527B0A007ED10C /* goldDemotionBanner.png */,
+				258FEED722527B0A007ED10C /* goldPromotionBanner.png */,
+				258FEED222527B09007ED10C /* rankBronze.png */,
+				258FEED422527B09007ED10C /* rankDiamond.png */,
+				258FEED122527B09007ED10C /* rankGold.png */,
+				258FEED322527B09007ED10C /* rankSilver.png */,
+				258FEED622527B09007ED10C /* silverDemotionBanner.png */,
+				258FEED022527B09007ED10C /* silverPromotionBanner.png */,
 				88198248224E69D6008E8EFD /* cathedral.jpg */,
 				252A35EF22442A9200FE6A09 /* blackBishop.png */,
 				259FEDA9224949F3006BE3E8 /* blackBatteringRam.png */,
@@ -572,12 +605,15 @@
 				25B5F5CE22501AC700DF89FE /* whiteGriffin.png in Resources */,
 				25DEFD492248970A0024A78A /* blackPikeman.png in Resources */,
 				25B31CF7224E8A61005BAAA8 /* blackFootsoldier.png in Resources */,
+				258FEEE122527B0A007ED10C /* goldDemotionBanner.png in Resources */,
+				258FEED922527B0A007ED10C /* silverPromotionBanner.png in Resources */,
 				25B5F5ED22501AC700DF89FE /* whiteDwarf.png in Resources */,
 				25B5F5EA22501AC700DF89FE /* whiteMinotaur.png in Resources */,
 				25B5F5D122501AC700DF89FE /* whiteDemon.png in Resources */,
 				25DEFD45224896EF0024A78A /* blackGuard.png in Resources */,
 				259FEDBA2249E7E5006BE3E8 /* blackCentaur.png in Resources */,
 				25B5F5EF22501AC700DF89FE /* whiteOrcWarrior.png in Resources */,
+				258FEEDF22527B0A007ED10C /* silverDemotionBanner.png in Resources */,
 				25B5F5D322501AC700DF89FE /* whiteKing.png in Resources */,
 				25415E31224A981000B7E13E /* blackBombard.png in Resources */,
 				25B5F5DD22501AC700DF89FE /* whiteGhostQueen.png in Resources */,
@@ -588,15 +624,19 @@
 				25B5F5F022501AC700DF89FE /* whiteShip.png in Resources */,
 				252A35EC2244150200FE6A09 /* blackPawn.png in Resources */,
 				25B5F5DE22501AC700DF89FE /* whiteBombard.png in Resources */,
+				258FEEE022527B0A007ED10C /* goldPromotionBanner.png in Resources */,
 				25B5F5E222501AC700DF89FE /* whiteRook.png in Resources */,
 				25B5F5D422501AC700DF89FE /* whiteManAtArms.png in Resources */,
 				259FEDB42249BFD3006BE3E8 /* blackLeftyElf.png in Resources */,
 				254C14852247E76A004359CE /* blackMonk.png in Resources */,
 				25B5F5F322501AC700DF89FE /* whiteOgre.png in Resources */,
 				251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */,
+				258FEEDB22527B0A007ED10C /* rankBronze.png in Resources */,
 				25B5F5D022501AC700DF89FE /* whitePawn.png in Resources */,
+				258FEEDA22527B0A007ED10C /* rankGold.png in Resources */,
 				645068A5224D46E7006709A9 /* testRook.png in Resources */,
 				254C147B2247E6AA004359CE /* blackDwarf.png in Resources */,
+				258FEEDD22527B0A007ED10C /* rankDiamond.png in Resources */,
 				25B5F5E822501AC700DF89FE /* whiteCentaur.png in Resources */,
 				25B5F5EC22501AC700DF89FE /* whiteCamel.png in Resources */,
 				25B5F5DF22501AC700DF89FE /* whiteLeftyElf.png in Resources */,
@@ -608,8 +648,10 @@
 				25B5F5CD22501AC700DF89FE /* whiteGargoyle.png in Resources */,
 				252A35F022442A9200FE6A09 /* blackBishop.png in Resources */,
 				25DEFD43224896E80024A78A /* blackDemon.png in Resources */,
+				258FEECF22527AF8007ED10C /* championBanner.png in Resources */,
 				25B5F5D622501AC700DF89FE /* whiteMonk.png in Resources */,
 				25B5F5E622501AC700DF89FE /* whiteGuard.png in Resources */,
+				258FEECD22527AF3007ED10C /* bronzeDemotionBanner.png in Resources */,
 				251D1F5A22403DAD00AD7CE4 /* GameScene.sks in Resources */,
 				25B5F5E022501AC700DF89FE /* whiteKnight.png in Resources */,
 				259FEDB82249E7DE006BE3E8 /* blackCamel.png in Resources */,
@@ -625,6 +667,7 @@
 				25B5F5D722501AC700DF89FE /* whiteBallista.png in Resources */,
 				25B5F5F422501AC700DF89FE /* whitePikeman.png in Resources */,
 				254C14832247E6BF004359CE /* blackGoblin.png in Resources */,
+				258FEEDE22527B0A007ED10C /* diamondPromotionBanner.png in Resources */,
 				88198249224E69D6008E8EFD /* cathedral.jpg in Resources */,
 				259FEDAE2249BF65006BE3E8 /* blackRightyElf.png in Resources */,
 				25BC737D224822750083D24E /* blackOrcWarrior.png in Resources */,
@@ -636,6 +679,7 @@
 				252A35F22244323600FE6A09 /* blackKnight.png in Resources */,
 				88E34F362250054E007ED2F5 /* LaunchScreen.storyboard in Resources */,
 				259FEDAA224949F3006BE3E8 /* blackBatteringRam.png in Resources */,
+				258FEEDC22527B0A007ED10C /* rankSilver.png in Resources */,
 				259FEDA8224949ED006BE3E8 /* blackShip.png in Resources */,
 				25B5F5E422501AC700DF89FE /* whiteSwordsman.png in Resources */,
 				25B5F5D222501AC700DF89FE /* whiteManticore.png in Resources */,
