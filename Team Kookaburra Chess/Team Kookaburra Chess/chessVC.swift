@@ -155,34 +155,42 @@ extension ChessVC: BoardCellDelegate {
                 }
             }
             // check if selected another own piece
-            if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) {
+            if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color == playerTurn {
                 // remove the old selected cell coloring and set new piece
                 boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
                 pieceBeingMoved = cell.piece
-                cell.backgroundColor = .red
+                cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
                 
                 // reset the possible moves
                 removeHighlights()
                 possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
-                highligtPossibleMoves()
+                highlightPossibleMoves()
+            } else if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color != playerTurn {
+                // remove the old selected cell coloring and set new piece
+                boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
+                pieceBeingMoved = cell.piece
+                cell.backgroundColor = UIColor.red
+                
+                // reset the possible moves
+                removeHighlights()
+                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
             }
         } else { // not already moving piece
             if cell.piece.color == playerTurn {
                 // selected another piece to play
-                cell.backgroundColor = .red
+                cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
                 pieceBeingMoved = cell.piece
                 removeHighlights()
                 possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
-                highligtPossibleMoves()
-//            } else if cell.piece.color != playerTurn && cell.piece.type != .dummy{
-//                //selected opponent Piece
-//                cell.backgroundColor = .red
-//                pieceBeingMoved = cell.piece
-//                removeHighlights()
-//                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
-//                highligtPossibleMoves()
+                highlightPossibleMoves()
+            } else if cell.piece.color != playerTurn && cell.piece.type != .dummy{
+                //selected opponent Piece
+                cell.backgroundColor = .red
+                //pieceBeingMoved = cell.piece
+                removeHighlights()
+                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
+                highlightEnemyMoves()
             }
-            
         }
         
         updateLabel()
@@ -190,10 +198,16 @@ extension ChessVC: BoardCellDelegate {
         //print(chessBoard.board[cell.row][cell.column])
     }
     
-    func highligtPossibleMoves() {
+    func highlightPossibleMoves() {
         for move in possibleMoves {
             //print(move.row)
             boardCells[move.row][move.column].setAsPossibleLocation()
+        }
+    }
+    
+    func highlightEnemyMoves(){
+        for move in possibleMoves{
+            boardCells[move.row][move.column].setAsEnemyLocation()
         }
     }
     
