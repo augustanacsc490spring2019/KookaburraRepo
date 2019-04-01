@@ -51,6 +51,10 @@
 		258FEEDF22527B0A007ED10C /* silverDemotionBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED622527B09007ED10C /* silverDemotionBanner.png */; };
 		258FEEE022527B0A007ED10C /* goldPromotionBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED722527B0A007ED10C /* goldPromotionBanner.png */; };
 		258FEEE122527B0A007ED10C /* goldDemotionBanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEED822527B0A007ED10C /* goldDemotionBanner.png */; };
+		258FEEE3225290E0007ED10C /* demotionSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEEE2225290E0007ED10C /* demotionSymbol.png */; };
+		258FEEE5225290E7007ED10C /* promotionSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEEE4225290E7007ED10C /* promotionSymbol.png */; };
+		258FEEE7225290F7007ED10C /* championTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEEE6225290F7007ED10C /* championTrophy.png */; };
+		258FEEE922529109007ED10C /* playerGold.png in Resources */ = {isa = PBXBuildFile; fileRef = 258FEEE822529108007ED10C /* playerGold.png */; };
 		259FED9C22493C0F006BE3E8 /* blackBasilisk.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9B22493C0F006BE3E8 /* blackBasilisk.png */; };
 		259FED9E22493C16006BE3E8 /* blackFireDragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9D22493C16006BE3E8 /* blackFireDragon.png */; };
 		259FEDA022493C1E006BE3E8 /* blackIceDragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FED9F22493C1E006BE3E8 /* blackIceDragon.png */; };
@@ -203,6 +207,10 @@
 		258FEED622527B09007ED10C /* silverDemotionBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silverDemotionBanner.png; sourceTree = "<group>"; };
 		258FEED722527B0A007ED10C /* goldPromotionBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldPromotionBanner.png; sourceTree = "<group>"; };
 		258FEED822527B0A007ED10C /* goldDemotionBanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldDemotionBanner.png; sourceTree = "<group>"; };
+		258FEEE2225290E0007ED10C /* demotionSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demotionSymbol.png; sourceTree = "<group>"; };
+		258FEEE4225290E7007ED10C /* promotionSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = promotionSymbol.png; sourceTree = "<group>"; };
+		258FEEE6225290F7007ED10C /* championTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = championTrophy.png; sourceTree = "<group>"; };
+		258FEEE822529108007ED10C /* playerGold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playerGold.png; sourceTree = "<group>"; };
 		259FED9B22493C0F006BE3E8 /* blackBasilisk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBasilisk.png; sourceTree = "<group>"; };
 		259FED9D22493C16006BE3E8 /* blackFireDragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackFireDragon.png; sourceTree = "<group>"; };
 		259FED9F22493C1E006BE3E8 /* blackIceDragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackIceDragon.png; sourceTree = "<group>"; };
@@ -374,6 +382,10 @@
 		251D202B22431F2C00AD7CE4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				258FEEE4225290E7007ED10C /* promotionSymbol.png */,
+				258FEEE2225290E0007ED10C /* demotionSymbol.png */,
+				258FEEE6225290F7007ED10C /* championTrophy.png */,
+				258FEEE822529108007ED10C /* playerGold.png */,
 				258FEECC22527AF2007ED10C /* bronzeDemotionBanner.png */,
 				258FEECE22527AF8007ED10C /* championBanner.png */,
 				258FEED522527B09007ED10C /* diamondPromotionBanner.png */,
@@ -602,6 +614,7 @@
 				25B5F5E322501AC700DF89FE /* whiteScout.png in Resources */,
 				259FEDB02249BF6C006BE3E8 /* blackTrebuchet.png in Resources */,
 				259FEDB62249E7D3006BE3E8 /* blackMage.png in Resources */,
+				258FEEE3225290E0007ED10C /* demotionSymbol.png in Resources */,
 				25B5F5CE22501AC700DF89FE /* whiteGriffin.png in Resources */,
 				25DEFD492248970A0024A78A /* blackPikeman.png in Resources */,
 				25B31CF7224E8A61005BAAA8 /* blackFootsoldier.png in Resources */,
@@ -617,6 +630,7 @@
 				25B5F5D322501AC700DF89FE /* whiteKing.png in Resources */,
 				25415E31224A981000B7E13E /* blackBombard.png in Resources */,
 				25B5F5DD22501AC700DF89FE /* whiteGhostQueen.png in Resources */,
+				258FEEE5225290E7007ED10C /* promotionSymbol.png in Resources */,
 				25B5F5E922501AC700DF89FE /* whiteTrebuchet.png in Resources */,
 				25B5F5F222501AC700DF89FE /* whiteGoblin.png in Resources */,
 				25B5F5DB22501AC700DF89FE /* whiteIceDragon.png in Resources */,
@@ -630,6 +644,7 @@
 				259FEDB42249BFD3006BE3E8 /* blackLeftyElf.png in Resources */,
 				254C14852247E76A004359CE /* blackMonk.png in Resources */,
 				25B5F5F322501AC700DF89FE /* whiteOgre.png in Resources */,
+				258FEEE7225290F7007ED10C /* championTrophy.png in Resources */,
 				251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */,
 				258FEEDB22527B0A007ED10C /* rankBronze.png in Resources */,
 				25B5F5D022501AC700DF89FE /* whitePawn.png in Resources */,
@@ -668,6 +683,7 @@
 				25B5F5F422501AC700DF89FE /* whitePikeman.png in Resources */,
 				254C14832247E6BF004359CE /* blackGoblin.png in Resources */,
 				258FEEDE22527B0A007ED10C /* diamondPromotionBanner.png in Resources */,
+				258FEEE922529109007ED10C /* playerGold.png in Resources */,
 				88198249224E69D6008E8EFD /* cathedral.jpg in Resources */,
 				259FEDAE2249BF65006BE3E8 /* blackRightyElf.png in Resources */,
 				25BC737D224822750083D24E /* blackOrcWarrior.png in Resources */,
