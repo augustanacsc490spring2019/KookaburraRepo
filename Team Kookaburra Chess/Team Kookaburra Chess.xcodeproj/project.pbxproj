@@ -34,6 +34,7 @@
 		25415E39224A983100B7E13E /* blackSuperking.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E38224A983100B7E13E /* blackSuperking.png */; };
 		25415E3B224A989400B7E13E /* blackManticore.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E3A224A989400B7E13E /* blackManticore.png */; };
 		254815072252DF5D007C1174 /* LevelUpProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254815062252DF5D007C1174 /* LevelUpProgress.swift */; };
+		254B649E2253DB450024BE00 /* piecePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254B649D2253DB450024BE00 /* piecePickerView.swift */; };
 		254C14772247D676004359CE /* blackQueen.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14762247D675004359CE /* blackQueen.png */; };
 		254C14792247D67C004359CE /* blackKing.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14782247D67C004359CE /* blackKing.png */; };
 		254C147B2247E6AA004359CE /* blackDwarf.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C147A2247E6AA004359CE /* blackDwarf.png */; };
@@ -191,6 +192,7 @@
 		25415E38224A983100B7E13E /* blackSuperking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackSuperking.png; sourceTree = "<group>"; };
 		25415E3A224A989400B7E13E /* blackManticore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackManticore.png; sourceTree = "<group>"; };
 		254815062252DF5D007C1174 /* LevelUpProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelUpProgress.swift; sourceTree = "<group>"; };
+		254B649D2253DB450024BE00 /* piecePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = piecePickerView.swift; sourceTree = "<group>"; };
 		254C14762247D675004359CE /* blackQueen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackQueen.png; sourceTree = "<group>"; };
 		254C14782247D67C004359CE /* blackKing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackKing.png; sourceTree = "<group>"; };
 		254C147A2247E6AA004359CE /* blackDwarf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackDwarf.png; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				251D1F952240751500AD7CE4 /* chessPiece.swift */,
 				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
 				251D1F972240757800AD7CE4 /* chessVC.swift */,
+				254B649D2253DB450024BE00 /* piecePickerView.swift */,
 				251D1F99224075CE00AD7CE4 /* chessView.swift */,
 				251D1F9B2240760B00AD7CE4 /* history.swift */,
 				251D202B22431F2C00AD7CE4 /* Images */,
@@ -771,6 +774,7 @@
 				8819824F224E7CAF008E8EFD /* MyStatsViewController.swift in Sources */,
 				88198251224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift in Sources */,
 				88E34F3B2250304E007ED2F5 /* PlacePiecesViewController.swift in Sources */,
+				254B649E2253DB450024BE00 /* piecePickerView.swift in Sources */,
 				889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */,
 				251D1F902240746C00AD7CE4 /* BoardIndex.swift in Sources */,
 				88E34F3922502A2D007ED2F5 /* SearchForFriendsViewController.swift in Sources */,
