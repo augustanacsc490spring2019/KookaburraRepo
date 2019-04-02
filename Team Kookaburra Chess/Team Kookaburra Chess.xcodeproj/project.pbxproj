@@ -123,6 +123,7 @@
 		25DEFD45224896EF0024A78A /* blackGuard.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD44224896EF0024A78A /* blackGuard.png */; };
 		25DEFD47224896F80024A78A /* blackSwordsman.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD46224896F80024A78A /* blackSwordsman.png */; };
 		25DEFD492248970A0024A78A /* blackPikeman.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD482248970A0024A78A /* blackPikeman.png */; };
+		643430AB2253C50900E0CB24 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643430AA2253C50900E0CB24 /* GameKit.framework */; };
 		645068A5224D46E7006709A9 /* testRook.png in Resources */ = {isa = PBXBuildFile; fileRef = 251D202C22431F3800AD7CE4 /* testRook.png */; };
 		88198249224E69D6008E8EFD /* cathedral.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88198248224E69D6008E8EFD /* cathedral.jpg */; };
 		8819824B224E7948008E8EFD /* MyFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824A224E7948008E8EFD /* MyFriendsViewController.swift */; };
@@ -279,6 +280,8 @@
 		25DEFD44224896EF0024A78A /* blackGuard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGuard.png; sourceTree = "<group>"; };
 		25DEFD46224896F80024A78A /* blackSwordsman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackSwordsman.png; sourceTree = "<group>"; };
 		25DEFD482248970A0024A78A /* blackPikeman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPikeman.png; sourceTree = "<group>"; };
+		643430AA2253C50900E0CB24 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Team Kookaburra Chess.entitlements"; sourceTree = "<group>"; };
 		88198248224E69D6008E8EFD /* cathedral.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cathedral.jpg; sourceTree = "<group>"; };
 		8819824A224E7948008E8EFD /* MyFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewController.swift; sourceTree = "<group>"; };
 		8819824C224E7BBA008E8EFD /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +301,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643430AB2253C50900E0CB24 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +329,7 @@
 				251D1F7122403DAE00AD7CE4 /* Team Kookaburra ChessTests */,
 				251D1F7C22403DAE00AD7CE4 /* Team Kookaburra ChessUITests */,
 				251D1F5522403DAD00AD7CE4 /* Products */,
+				643430A92253C50900E0CB24 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -341,6 +346,7 @@
 		251D1F5622403DAD00AD7CE4 /* Team Kookaburra Chess */ = {
 			isa = PBXGroup;
 			children = (
+				643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */,
 				251D1F952240751500AD7CE4 /* chessPiece.swift */,
 				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
 				251D1F972240757800AD7CE4 /* chessVC.swift */,
@@ -489,6 +495,14 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		643430A92253C50900E0CB24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				643430AA2253C50900E0CB24 /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		88E34F37225029EE007ED2F5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +590,14 @@
 					251D1F5322403DAD00AD7CE4 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.GameCenter.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					251D1F6D22403DAE00AD7CE4 = {
 						CreatedOnToolsVersion = 10.1;
@@ -931,14 +953,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Team Kookaburra Chess/Team Kookaburra Chess.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 63HJ367J2T;
+				DEVELOPMENT_TEAM = 2U65PB4KJG;
 				INFOPLIST_FILE = "Team Kookaburra Chess/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-Chess";
+				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-Chess42";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -949,14 +972,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Team Kookaburra Chess/Team Kookaburra Chess.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 63HJ367J2T;
+				DEVELOPMENT_TEAM = 2U65PB4KJG;
 				INFOPLIST_FILE = "Team Kookaburra Chess/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-Chess";
+				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-Chess42";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
