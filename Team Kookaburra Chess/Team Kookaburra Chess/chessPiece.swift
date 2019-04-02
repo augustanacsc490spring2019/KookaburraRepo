@@ -78,6 +78,7 @@ class ChessPiece {
     var symbolImage: UIImage
     var color: UIColor
     var type: PieceType
+    var summonCost: Int
     var advancingByTwo = false // Only for pawn type
     var firstMove = true // Only for king type
     //var pawnFirstMove = true // only for pawn type
@@ -92,6 +93,7 @@ class ChessPiece {
         self.symbol = ""
         self.symbolImage = UIImage(named:"blackPawn.png")!
         self.playerColor = player
+        self.summonCost = 0
         setupSymbol()
     }
     
@@ -113,179 +115,262 @@ class ChessPiece {
         switch type {
         case .pawn:
             symbol = "blackPawn.png"
+            summonCost = 10
         case .rook:
             symbol = "testRook.png"
+            summonCost = 50
         case .knight:
             symbol = "blackKnight.png"
+            summonCost = 30
         case .bishop:
             symbol = "blackBishop.png"
+            summonCost = 35
         case .king:
             symbol = "blackKing.png"
+            summonCost = 40
         case .queen:
             symbol = "blackQueen.png"
+            summonCost = 100
         case .dummy:
             symbol = "blankPiece.png"
         case .ghostQueen:
             symbol = "blackGhostQueen.png"
+            summonCost = 38
         case .dwarf:
             symbol = "blackDwarf.png"
+            summonCost = 10
         case .footSoldier:
             symbol = "blackFootsoldier.png"
+            summonCost = 12
         case .monk:
             symbol = "blackMonk.png"
+            summonCost = 10
         case .gargoyle:
             symbol = "blackGargoyle.png"
+            summonCost = 10
         case .goblin:
             symbol = "blackGoblin.png"
+            summonCost = 15
         case .scout:
             symbol = "blackScout.png"
+            summonCost = 25
         case .ogre:
             symbol = "blackOgre.png"
+            summonCost = 18
         case .orcWarrior:
             symbol = "blackOrcWarrior.png"
+            summonCost = 20
         case .elephant:
             symbol = "blackElephant.png"
+            summonCost = 20
         case .manAtArms:
             symbol = "blackManAtArms.png"
+            summonCost = 20
         case .swordsman:
             symbol = "blackSwordsman.png"
+            summonCost = 15
         case .archer:
             symbol = "blackArcher.png"
+            summonCost = 25
         case .pikeman:
             symbol = "blackPikeman.png"
+            summonCost = 25
         case .royalGuard:
             symbol = "blackGuard.png"
+            summonCost = 35
         case .demon:
             symbol = "blackDemon.png"
+            summonCost = 28
         case .basilisk:
             symbol = "blackBasilisk.png"
+            summonCost = 40
         case .fireDragon:
             symbol = "blackFireDragon.png"
+            summonCost = 60
         case .iceDragon:
             symbol = "blackIceDragon.png"
+            summonCost = 60
         case .minotaur:
             symbol = "blackMinotaur.png"
+            summonCost = 75
         case .monopod:
             symbol = "blackMonopod.png"
+            summonCost = 75
         case .ship:
             symbol = "blackShip.png"
+            summonCost = 70
         case .batteringRam:
             symbol = "blackBatteringRam.png"
         case .ballista:
             symbol = "blackBallista.png"
+            summonCost = 30
         case .trebuchet:
             symbol = "blackTrebuchet.png"
+            summonCost = 30
         case .leftElf:
             symbol = "blackLeftyElf.png"
+            summonCost = 30
         case .rightElf:
             symbol = "blackRightyElf.png"
+            summonCost = 30
         case .mage:
             symbol = "blackMage.png"
+            summonCost = 80
         case .centaur:
             symbol = "blackCentaur.png"
+            summonCost = 80
         case .camel:
             symbol = "blackCamel.png"
+            summonCost = 45
         case .unicorn:
             symbol = "blackUnicorn.png"
+            summonCost = 120
         case .superKing:
             symbol = "blackSuperking.png"
+            summonCost = 120
         case .griffin:
             symbol = "blackGriffin.png"
+            summonCost = 130
         case .dragonRider:
             symbol = "blackDragonRider.png"
+            summonCost = 160
         case .bombard:
             symbol = "blackBombard.png"
+            summonCost = 120
         case .manticore:
             symbol = "blackManticore.png"
+            summonCost = 100
             }
         } else if color == .white{
             switch type {
             case .pawn:
                 symbol = "whitePawn.png"
+                summonCost = 10
             case .rook:
                 symbol = "whiteRook.png"
+                summonCost = 50
             case .knight:
                 symbol = "whiteKnight.png"
+                summonCost = 30
             case .bishop:
                 symbol = "whiteBishop.png"
+                summonCost = 35
             case .king:
                 symbol = "whiteKing.png"
+                summonCost = 40
             case .queen:
                 symbol = "whiteQueen.png"
+                summonCost = 100
             case .dummy:
                 symbol = "blankPiece.png"
             case .ghostQueen:
                 symbol = "whiteGhostQueen.png"
+                summonCost = 38
             case .dwarf:
                 symbol = "whiteDwarf.png"
+                summonCost = 10
             case .footSoldier:
                 symbol = "whiteFootsoldier.png"
+                summonCost = 12
             case .monk:
                 symbol = "whiteMonk.png"
+                summonCost = 10
             case .gargoyle:
                 symbol = "whiteGargoyle.png"
+                summonCost = 10
             case .goblin:
                 symbol = "whiteGoblin.png"
+                summonCost = 15
             case .scout:
                 symbol = "whiteScout.png"
+                summonCost = 25
             case .ogre:
                 symbol = "whiteOgre.png"
+                summonCost = 18
             case .orcWarrior:
                 symbol = "whiteOrcWarrior.png"
+                summonCost = 20
             case .elephant:
                 symbol = "whiteElephant.png"
+                summonCost = 20
             case .manAtArms:
                 symbol = "whiteManAtArms.png"
+                summonCost = 20
             case .swordsman:
                 symbol = "whiteSwordsman.png"
+                summonCost = 15
             case .archer:
                 symbol = "whiteArcher.png"
+                summonCost = 25
             case .pikeman:
                 symbol = "whitePikeman.png"
+                summonCost = 25
             case .royalGuard:
                 symbol = "whiteGuard.png"
+                summonCost = 35
             case .demon:
                 symbol = "whiteDemon.png"
+                summonCost = 28
             case .basilisk:
                 symbol = "whiteBasilisk.png"
+                summonCost = 40
             case .fireDragon:
                 symbol = "whiteFireDragon.png"
+                summonCost = 60
             case .iceDragon:
                 symbol = "whiteIceDragon.png"
+                summonCost = 60
             case .minotaur:
                 symbol = "whiteMinotaur.png"
+                summonCost = 75
             case .monopod:
                 symbol = "whiteMonopod.png"
+                summonCost = 75
             case .ship:
                 symbol = "whiteShip.png"
+                summonCost = 70
             case .batteringRam:
                 symbol = "whiteBatteringRam.png"
+                summonCost = 30
             case .ballista:
                 symbol = "whiteBallista.png"
+                summonCost = 30
             case .trebuchet:
                 symbol = "whiteTrebuchet.png"
+                summonCost = 30
             case .leftElf:
                 symbol = "whiteLeftyElf.png"
+                summonCost = 30
             case .rightElf:
                 symbol = "whiteRightyElf.png"
+                summonCost = 30
             case .mage:
                 symbol = "whiteMage.png"
+                summonCost = 80
             case .centaur:
                 symbol = "whiteCentaur.png"
+                summonCost = 80
             case .camel:
                 symbol = "whiteCamel.png"
+                summonCost = 45
             case .unicorn:
                 symbol = "whiteUnicorn.png"
+                summonCost = 120
             case .superKing:
                 symbol = "whiteSuperKing.png"
+                summonCost = 120
             case .griffin:
                 symbol = "whiteGriffin.png"
+                summonCost = 130
             case .dragonRider:
                 symbol = "whiteDragonRider.png"
+                summonCost = 160
             case .bombard:
                 symbol = "whiteBombard.png"
+                summonCost = 120
             case .manticore:
                 symbol = "whiteManticore.png"
+                summonCost = 100
             }
         } else {
             symbol = "blankPiece.png"

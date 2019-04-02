@@ -28,6 +28,7 @@ class ChessBoard {
         self.playerColor = color
         let oneRow = Array(repeating: ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: color), count: 8)
         board = Array(repeating: oneRow, count: 8)
+        //TODO: pass arrays of ChessPieces from the piecePicker screen into startNewGame()
         startNewGame()
     }
     
@@ -62,57 +63,57 @@ class ChessBoard {
                     case 1:
                         board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .leftElf, player: playerColor)
                     case 2:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .rightElf, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .goblin, player: playerColor)
                     case 3:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .king, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .gargoyle, player: playerColor)
                     case 4:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .superKing, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .footSoldier, player: playerColor)
                     case 5:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .scout, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .monk, player: playerColor)
                     case 6:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .archer, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .dwarf, player: playerColor)
                     default:
-                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .minotaur, player: playerColor)
+                        board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .pawn, player: playerColor)
                     }
-                case 2: //determine which piece to put in each column of the third row
-                    switch col{
-                        case 0:
-                            board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .pawn, player: playerColor)
-                        case 1:
-                            break
-                        case 2:
-                            break
-                        case 3:
-                            break
-                        case 4:
-                            break
-                        case 5:
-                            break
-                        case 6:
-                            break
-                        default:
-                            break
-                    }
-                case 5://determine which piece to put in each column of the third row
-                    switch col{
-                        case 0:
-                            break
-                        case 1:
-                            break
-                        case 2:
-                            break
-                        case 3:
-                            break
-                        case 4:
-                            break
-                        case 5:
-                            break
-                        case 6:
-                            break
-                        default:
-                            break
-                    }
-                    
+//                case 2: //determine which piece to put in each column of the third row
+//                    switch col{
+//                        case 0:
+//                            board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .pawn, player: playerColor)
+//                        case 1:
+//                            board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .monk, player: playerColor)
+//                        case 2:
+//                            board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .gargoyle, player: playerColor)
+//                        case 3:
+//                            board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .dwarf, player: playerColor)
+//                        case 4:
+//                            board[row][col] = ChessPiece(row: row, column: col, color: opponent, type: .footSoldier, player: playerColor)
+//                        case 5:
+//                            break
+//                        case 6:
+//                            break
+//                        default:
+//                            break
+//                    }
+//                case 5://determine which piece to put in each column of the third row
+//                    switch col{
+//                        case 0:
+//                            break
+//                        case 1:
+//                            break
+//                        case 2:
+//                            break
+//                        case 3:
+//                            break
+//                        case 4:
+//                            break
+//                        case 5:
+//                            break
+//                        case 6:
+//                            break
+//                        default:
+//                            break
+//                    }
+//
                 case 6:
                     switch col { // determine what piece to put in each column of second row
                     case 0:
@@ -247,7 +248,28 @@ class ChessBoard {
             chessPiece.col = dest.column
         }
         
-        if chessPiece.type == .pawn {
+        //check all the tier 1 types to see if they can be promoted. For some reason it wouldn't let me use the || statement, so we have to write it out the long way like this
+        if chessPiece.type == .pawn{
+            if doesPawnNeedPromotion(pawn: (chessPiece)) {
+                delegate?.promote(pawn: (chessPiece))
+            }
+        } else if chessPiece.type == .monk {
+            if doesPawnNeedPromotion(pawn: (chessPiece)) {
+                delegate?.promote(pawn: (chessPiece))
+            }
+        } else if chessPiece.type == .dwarf {
+            if doesPawnNeedPromotion(pawn: (chessPiece)) {
+                delegate?.promote(pawn: (chessPiece))
+            }
+        } else if chessPiece.type == .footSoldier{
+            if doesPawnNeedPromotion(pawn: (chessPiece)) {
+                delegate?.promote(pawn: (chessPiece))
+            }
+        } else if  chessPiece.type == .goblin {
+            if doesPawnNeedPromotion(pawn: (chessPiece)) {
+                delegate?.promote(pawn: (chessPiece))
+            }
+        } else if chessPiece.type == .gargoyle{//players should get an achievement for this, it will probably never happen
             if doesPawnNeedPromotion(pawn: (chessPiece)) {
                 delegate?.promote(pawn: (chessPiece))
             }

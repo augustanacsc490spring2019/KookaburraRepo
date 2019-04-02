@@ -33,6 +33,7 @@
 		25415E37224A982A00B7E13E /* blackUnicorn.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E36224A982A00B7E13E /* blackUnicorn.png */; };
 		25415E39224A983100B7E13E /* blackSuperking.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E38224A983100B7E13E /* blackSuperking.png */; };
 		25415E3B224A989400B7E13E /* blackManticore.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E3A224A989400B7E13E /* blackManticore.png */; };
+		254815072252DF5D007C1174 /* LevelUpProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254815062252DF5D007C1174 /* LevelUpProgress.swift */; };
 		254C14772247D676004359CE /* blackQueen.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14762247D675004359CE /* blackQueen.png */; };
 		254C14792247D67C004359CE /* blackKing.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C14782247D67C004359CE /* blackKing.png */; };
 		254C147B2247E6AA004359CE /* blackDwarf.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C147A2247E6AA004359CE /* blackDwarf.png */; };
@@ -188,6 +189,7 @@
 		25415E36224A982A00B7E13E /* blackUnicorn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackUnicorn.png; sourceTree = "<group>"; };
 		25415E38224A983100B7E13E /* blackSuperking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackSuperking.png; sourceTree = "<group>"; };
 		25415E3A224A989400B7E13E /* blackManticore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackManticore.png; sourceTree = "<group>"; };
+		254815062252DF5D007C1174 /* LevelUpProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelUpProgress.swift; sourceTree = "<group>"; };
 		254C14762247D675004359CE /* blackQueen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackQueen.png; sourceTree = "<group>"; };
 		254C14782247D67C004359CE /* blackKing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackKing.png; sourceTree = "<group>"; };
 		254C147A2247E6AA004359CE /* blackDwarf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackDwarf.png; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				251D1F952240751500AD7CE4 /* chessPiece.swift */,
+				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
 				251D1F972240757800AD7CE4 /* chessVC.swift */,
 				251D1F99224075CE00AD7CE4 /* chessView.swift */,
 				251D1F9B2240760B00AD7CE4 /* history.swift */,
@@ -761,6 +764,7 @@
 				251D1F92224074A800AD7CE4 /* chessBoard.swift in Sources */,
 				251D1F9E22407A7700AD7CE4 /* AppDelegate.swift in Sources */,
 				251D1F982240757800AD7CE4 /* chessVC.swift in Sources */,
+				254815072252DF5D007C1174 /* LevelUpProgress.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
