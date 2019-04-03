@@ -135,7 +135,7 @@ class ChessPiece {
             symbol = "blankPiece.png"
         case .ghostQueen:
             symbol = "blackGhostQueen.png"
-            summonCost = 38
+            summonCost = 20
         case .dwarf:
             symbol = "blackDwarf.png"
             summonCost = 10
@@ -177,7 +177,7 @@ class ChessPiece {
             summonCost = 25
         case .royalGuard:
             symbol = "blackGuard.png"
-            summonCost = 35
+            summonCost = 25
         case .demon:
             symbol = "blackDemon.png"
             summonCost = 28
@@ -201,6 +201,7 @@ class ChessPiece {
             summonCost = 70
         case .batteringRam:
             symbol = "blackBatteringRam.png"
+            summonCost = 25
         case .ballista:
             symbol = "blackBallista.png"
             summonCost = 30
@@ -265,7 +266,7 @@ class ChessPiece {
                 symbol = "blankPiece.png"
             case .ghostQueen:
                 symbol = "whiteGhostQueen.png"
-                summonCost = 38
+                summonCost = 20
             case .dwarf:
                 symbol = "whiteDwarf.png"
                 summonCost = 10
@@ -307,7 +308,7 @@ class ChessPiece {
                 summonCost = 25
             case .royalGuard:
                 symbol = "whiteGuard.png"
-                summonCost = 35
+                summonCost = 25
             case .demon:
                 symbol = "whiteDemon.png"
                 summonCost = 28
@@ -331,7 +332,7 @@ class ChessPiece {
                 summonCost = 70
             case .batteringRam:
                 symbol = "whiteBatteringRam.png"
-                summonCost = 30
+                summonCost = 25
             case .ballista:
                 symbol = "whiteBallista.png"
                 summonCost = 30
@@ -561,11 +562,11 @@ class ChessPiece {
         if (rowDelta == 0 || rowDelta == 1) && (colDelta == 0 || colDelta == 1) {
             return true
         }
-        if firstMove {
-            if rowDelta == 0 && colDelta == 2 {
-                return true
-            }
-        }
+//        if firstMove {
+//            if rowDelta == 0 && colDelta == 2 {
+//                return true
+//            }
+//        }
         return false
     }
     

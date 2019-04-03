@@ -18,7 +18,7 @@ class ChessVC: UIViewController {
     var boardCells = [[BoardCell]]()
     var pieceBeingMoved: ChessPiece? = nil
     var possibleMoves = [BoardIndex]()
-    var playerTurn = UIColor.black
+    var playerTurn = UIColor.white
     
     let turnLabel: UILabel = {
         let l = UILabel()
