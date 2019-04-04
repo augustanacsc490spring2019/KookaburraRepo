@@ -199,6 +199,7 @@ extension ChessVC: BoardCellDelegate {
 //            }
         } else { // not already moving piece
             if cell.piece.color == playerTurn {
+                clearRedCells()
                 // selected another piece to play
                 cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
                 pieceBeingMoved = cell.piece
@@ -206,9 +207,10 @@ extension ChessVC: BoardCellDelegate {
                 possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
                 highlightPossibleMoves()
             } else if cell.piece.color != playerTurn && cell.piece.type != .dummy{
+                clearRedCells()
                 //selected opponent Piece
                 cell.backgroundColor = .red
-                //pieceBeingMoved = cell.piece
+                pieceBeingMoved = cell.piece
                 removeHighlights()
                 possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
                 highlightEnemyMoves()
@@ -237,6 +239,18 @@ extension ChessVC: BoardCellDelegate {
         for move in possibleMoves {
             //print(move.row)
             boardCells[move.row][move.column].removeHighlighting()
+        }
+    }
+    
+    func clearRedCells(){
+        var currentCell = boardCells[0][0]
+        for row in 0...7{
+            for col in 0...7{
+                currentCell = boardCells[row][col]
+                if currentCell.backgroundColor == .red {
+                    currentCell.removeHighlighting()
+                }
+            }
         }
     }
     

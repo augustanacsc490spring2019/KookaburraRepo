@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cathedral.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5yB-Xf-8pG">
-                                <rect key="frame" x="20" y="44" width="374" height="480"/>
+                                <rect key="frame" x="20" y="44" width="374" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="6T2-Ap-xkx"/>
                                 </constraints>
@@ -61,14 +61,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Alchemist Chess" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUJ-jJ-ocm">
-                                <rect key="frame" x="85" y="177" width="245" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DR-cL-FoF">
-                                <rect key="frame" x="128" y="246" width="159" height="51"/>
+                                <rect key="frame" x="128" y="285" width="159" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="My Friends ">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -136,6 +130,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym1-xg-YyG" userLabel="Rank me up some!">
+                                <rect key="frame" x="184" y="139" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="rankPointsTest:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WRh-s5-icn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -148,7 +150,6 @@
                             <constraint firstItem="vba-gz-8aH" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="147" id="LJD-YA-N7l"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="0DR-cL-FoF" secondAttribute="trailing" constant="127" id="MRq-Fz-DxY"/>
                             <constraint firstItem="0DR-cL-FoF" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="128" id="PuX-Ep-BAS"/>
-                            <constraint firstItem="0DR-cL-FoF" firstAttribute="bottom" secondItem="dUJ-jJ-ocm" secondAttribute="bottom" constant="156" id="aen-ZV-7d3"/>
                             <constraint firstItem="wVv-WH-LuU" firstAttribute="bottom" secondItem="APm-Lx-Pis" secondAttribute="bottom" constant="85" id="dC4-6a-AoG"/>
                             <constraint firstItem="vba-gz-8aH" firstAttribute="bottom" secondItem="RBA-Qs-yjW" secondAttribute="bottom" constant="103" id="gki-2r-0fH"/>
                             <constraint firstItem="5yB-Xf-8pG" firstAttribute="bottom" secondItem="4qk-I5-YsI" secondAttribute="bottom" id="o7C-wT-oHQ"/>
@@ -163,7 +164,6 @@
                     </view>
                     <connections>
                         <outlet property="demotionImage" destination="1VV-nz-4qt" id="ss9-FK-hJ8"/>
-                        <outlet property="gameTitle" destination="dUJ-jJ-ocm" id="Gos-d9-PuR"/>
                         <outlet property="label15" destination="3lA-zP-LwC" id="xaT-f5-Ubf"/>
                         <outlet property="labelMinus10" destination="E7c-gh-RkD" id="LG8-vM-35Q"/>
                         <outlet property="levelDownBar" destination="UAh-pg-cud" id="V5h-9I-8kt"/>
@@ -667,7 +667,7 @@
         <image name="cathedral.jpg" width="320" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Zon-fP-fpa"/>
+        <segue reference="DEn-oN-FRL"/>
         <segue reference="063-Rw-GLs"/>
         <segue reference="qvY-Pk-bhk"/>
     </inferredMetricsTieBreakers>

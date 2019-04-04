@@ -27,10 +27,33 @@ class OpeningScreen: UIViewController {
         UserDefaults.standard.set(0, forKey: "playerGold")
         UserDefaults.standard.set(0, forKey: "playerRank")
         UserDefaults.standard.set(0, forKey: "rankingPoints")
+        UserDefaults.standard.synchronize()
         labelMinus10.text = "-10"
         label15.text = "15"
         demotionImage.image = UIImage(named: "demotionSymbol.png")
+        let points = UserDefaults.standard.integer(forKey: "rankingPoints")
         let rank = UserDefaults.standard.integer(forKey: "playerRank")
+        //levels the player up if they get enough points
+        if points > 15{
+            if rank == 3{
+                //gold + 1000
+            } else {
+                var rank = UserDefaults.standard.integer(forKey: "playerRank")
+                rank = rank + 1
+                UserDefaults.standard.set(rank, forKey: "playerRank")
+            }
+            UserDefaults.standard.set(0, forKey: "rankingPoints")
+        } else if points < -10{//level player down if they don't have enough points
+            if rank > 0{
+                var rank = UserDefaults.standard.integer(forKey: "playerRank")
+                rank = rank - 1
+                UserDefaults.standard.set(rank, forKey: "playerRank")
+            }
+        } else if rank == 1{
+            if points < 0 {//bronze players can't have negaative points
+                UserDefaults.standard.set(0, forKey: "rankingPoints")
+            }
+        }
         if rank == 3{//diamond
             promotionImage.image = UIImage(named: "championTrophy.png")
             rankImage.image = UIImage(named: "rankDiamond.png")
@@ -44,7 +67,6 @@ class OpeningScreen: UIViewController {
                 rankImage.image = UIImage(named: "rankGold.png")
             }
         }
-        let points = UserDefaults.standard.integer(forKey: "rankingPoints")
         rankPointsLabel.text = ("Ranking points: \(points)")
         let transform = CGAffineTransform(rotationAngle: 3.14159); // Flip view horizontally?
         levelDownBar.transform = transform;
@@ -89,5 +111,12 @@ class OpeningScreen: UIViewController {
         
     }
     
+    @IBAction func rankPointsTest(_ sender: Any) {
+        NSLog("Points please")
+         var points = UserDefaults.standard.integer(forKey: "rankingPoints")
+        points = points + 2
+        UserDefaults.standard.set(points, forKey: "rankingPoints")
+        UserDefaults.standard.synchronize()
+    }
     
 }
