@@ -490,9 +490,21 @@ class ChessPiece {
                 if row == 1 && dest.row == 3 {
                     advancingByTwo = true
                     return true
+                } else if row == 0 && dest.row == 2{
+                    advancingByTwo = true
+                    return true
+                } else if row == 2 && dest.row == 4{
+                    advancingByTwo = true
+                    return true
                 }
             } else {
                 if row == 6 && dest.row == 4 {
+                    advancingByTwo = true
+                    return true
+                } else if row == 7 && dest.row == 5{
+                    advancingByTwo = true
+                    return true
+                } else if row == 5 && dest.row == 3{
                     advancingByTwo = true
                     return true
                 }

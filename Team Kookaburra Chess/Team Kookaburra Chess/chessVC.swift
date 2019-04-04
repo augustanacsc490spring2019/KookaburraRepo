@@ -154,27 +154,49 @@ extension ChessVC: BoardCellDelegate {
                     return
                 }
             }
-            // check if selected another own piece
-            if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color == playerTurn {
-                // remove the old selected cell coloring and set new piece
-                boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
-                pieceBeingMoved = cell.piece
-                cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
-                
-                // reset the possible moves
-                removeHighlights()
-                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
-                highlightPossibleMoves()
-            } else if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color != playerTurn {
-                // remove the old selected cell coloring and set new piece
-                boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
-                pieceBeingMoved = cell.piece
-                cell.backgroundColor = UIColor.red
-                
-                // reset the possible moves
-                removeHighlights()
-                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
+            if !movingPiece.isMovementAppropriate(toIndex: dest) || chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest){ //selcting a space that the piece can't move to
+                if cell.piece.color == playerTurn{
+                    boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
+                    pieceBeingMoved = cell.piece
+                    cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
+                    
+                    // reset the possible moves
+                    removeHighlights()
+                    possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
+                    highlightPossibleMoves()
+                } else if cell.piece.color != playerTurn{
+                    // remove the old selected cell coloring and set new piece
+                    boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
+                    
+                    pieceBeingMoved = cell.piece
+                    cell.backgroundColor = UIColor.red
+                    
+                    // reset the possible moves
+                    removeHighlights()
+                    possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
+                    highlightEnemyMoves()
+                }
             }
+//            if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color == playerTurn {
+//                // remove the old selected cell coloring and set new piece
+//                boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
+//                pieceBeingMoved = cell.piece
+//                cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
+//
+//                // reset the possible moves
+//                removeHighlights()
+//                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
+//                highlightPossibleMoves()
+//            } else if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color != playerTurn {
+//                // remove the old selected cell coloring and set new piece
+//                boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
+//                pieceBeingMoved = cell.piece
+//                cell.backgroundColor = UIColor.red
+//
+//                // reset the possible moves
+//                removeHighlights()
+//                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
+//            }
         } else { // not already moving piece
             if cell.piece.color == playerTurn {
                 // selected another piece to play
