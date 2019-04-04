@@ -7,18 +7,66 @@
 //
 
 import UIKit
+import Foundation
 
 class OpeningScreen: UIViewController {
     
+    
     @IBOutlet weak var gameTitle: UILabel!
+    @IBOutlet weak var labelMinus10: UILabel!
+    @IBOutlet weak var label15: UILabel!
+    @IBOutlet weak var rankImage: UIImageView!
+    @IBOutlet weak var demotionImage: UIImageView!
+    @IBOutlet weak var promotionImage: UIImageView!
+    @IBOutlet weak var levelUpBar: UIProgressView!
+    @IBOutlet weak var levelDownBar: UIProgressView!
+    
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        UserDefaults.standard.set(0, forKey: "playerGold")
+        UserDefaults.standard.set(0, forKey: "playerRank")
+        UserDefaults.standard.set(0, forKey: "rankingPoints")
+        labelMinus10.text = "-10"
+        label15.text = "15"
+        demotionImage.image = UIImage(named: "demotionSymbol.png")
+        let rank = UserDefaults.standard.integer(forKey: "playerRank")
+        if rank == 3{//diamond
+            promotionImage.image = UIImage(named: "championTrophy.png")
+            rankImage.image = UIImage(named: "rankDiamond.png")
+        } else { //bronze, silver, or gold
+            promotionImage.image = UIImage(named: "promotionSymbol.png")
+            if rank == 0{
+                 rankImage.image = UIImage(named: "rankBronze.png")
+            } else if rank == 1{
+                 rankImage.image = UIImage(named: "rankSilver.png")
+            } else {
+                rankImage.image = UIImage(named: "rankGold.png")
+            }
+        }
+        let points = UserDefaults.standard.integer(forKey: "rankingPoints")
+        rankPointsLabel.text = ("Ranking points: \(points)")
+        let transform = CGAffineTransform(rotationAngle: 3.14159); // Flip view horizontally?
+        levelDownBar.transform = transform;
+        //levelDownBar.progress = 0.75 //for test
+        if points < 0 {
+            levelDownBar.progress = Float(points)/(-10.0)
+            levelUpBar.progress = 0.01
+        } else if points > 0 {
+            levelUpBar.progress = Float(points)/15.0
+            levelDownBar.progress = 0.01
+        } else {
+            levelDownBar.progress = 0.01
+            levelUpBar.progress = 0.01
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    
+    @IBOutlet weak var rankPointsLabel: UILabel!
     
     @IBAction func myFriendButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "MyFriendsBtSegue", sender: self)
@@ -40,4 +88,6 @@ class OpeningScreen: UIViewController {
         self.performSegue(withIdentifier: "QuickTestSegue", sender: self)
         
     }
+    
+    
 }

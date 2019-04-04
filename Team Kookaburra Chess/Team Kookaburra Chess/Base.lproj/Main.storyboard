@@ -40,11 +40,29 @@
                                 </constraints>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lhs-az-VDT" userLabel="Level Up Progress">
-                                <rect key="frame" x="30" y="54" width="150" height="2"/>
+                                <rect key="frame" x="213" y="90" width="105" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UAh-pg-cud" userLabel="Level down progress">
+                                <rect key="frame" x="117" y="90" width="97" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7c-gh-RkD" userLabel="-10 label">
+                                <rect key="frame" x="85" y="107" width="33" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeN-bJ-nn9" userLabel="Ranking points label">
+                                <rect key="frame" x="128" y="90" width="171" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Alchemist Chess" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUJ-jJ-ocm">
-                                <rect key="frame" x="85" y="100" width="245" height="41"/>
+                                <rect key="frame" x="85" y="177" width="245" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -99,6 +117,25 @@
                                     <action selector="quickTestButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="NEL-IR-Bij"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LO8-SD-FNp" userLabel="promotion image">
+                                <rect key="frame" x="319" y="62" width="33" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1VV-nz-4qt" userLabel="demotion image">
+                                <rect key="frame" x="85" y="62" width="33" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfe-DH-WDR" userLabel="rank image">
+                                <rect key="frame" x="188" y="44" width="49" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lA-zP-LwC" userLabel="15 label">
+                                <rect key="frame" x="319" y="107" width="33" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -125,7 +162,15 @@
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                     <connections>
+                        <outlet property="demotionImage" destination="1VV-nz-4qt" id="ss9-FK-hJ8"/>
                         <outlet property="gameTitle" destination="dUJ-jJ-ocm" id="Gos-d9-PuR"/>
+                        <outlet property="label15" destination="3lA-zP-LwC" id="xaT-f5-Ubf"/>
+                        <outlet property="labelMinus10" destination="E7c-gh-RkD" id="LG8-vM-35Q"/>
+                        <outlet property="levelDownBar" destination="UAh-pg-cud" id="V5h-9I-8kt"/>
+                        <outlet property="levelUpBar" destination="Lhs-az-VDT" id="O4C-jR-o0p"/>
+                        <outlet property="promotionImage" destination="LO8-SD-FNp" id="ndk-Dp-ybG"/>
+                        <outlet property="rankImage" destination="hfe-DH-WDR" id="Jf9-Me-yKb"/>
+                        <outlet property="rankPointsLabel" destination="HeN-bJ-nn9" id="e4g-Sx-EKx"/>
                         <segue destination="fhK-sB-HUu" kind="showDetail" identifier="MyFriendsBtSegue" id="x71-Kx-mDm"/>
                         <segue destination="bEH-HR-jHz" kind="showDetail" identifier="StoreSegue" id="3ue-pw-cWS"/>
                         <segue destination="zEu-Gh-aaY" kind="showDetail" identifier="MyStatsSegue" id="ikF-3A-UMu"/>
@@ -135,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="101" y="-149"/>
+            <point key="canvasLocation" x="100.00000000000001" y="-149.33035714285714"/>
         </scene>
         <!--MyFriendsViewController-->
         <scene sceneID="teK-Us-aea">
@@ -161,6 +206,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmo-mz-nyw" userLabel="Back">
+                                <rect key="frame" x="106" y="476" width="164" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -179,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgj-Fc-fks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="930" y="-441"/>
+            <point key="canvasLocation" x="928.98550724637687" y="-441.29464285714283"/>
         </scene>
         <!--chForFriendsViewController-->
         <scene sceneID="t03-ze-yIg">
