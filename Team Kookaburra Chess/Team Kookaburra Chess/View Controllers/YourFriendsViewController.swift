@@ -14,6 +14,10 @@ class YourFriendsViewController: UIViewController {
     
     @IBOutlet weak var yourFriendsLabel: UILabel!
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "YourFriendsBackBtSegue", sender: self)
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
     }

@@ -20,6 +20,10 @@ class NewGameViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func typeNewGameBackBtPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "TypeOfNewGameBackBtSegue", sender: self)
+    }
+    
     @IBAction func randomOpponentButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "ChoseAFriendSegue", sender: self)
     }
