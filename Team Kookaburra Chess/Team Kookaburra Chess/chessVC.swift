@@ -242,6 +242,7 @@ extension ChessVC: BoardCellDelegate {
         }
     }
     
+    //This shouldn't be necessary, but for some reason the game was keeping red cells up even when you clicked on other pieces.
     func clearRedCells(){
         var currentCell = boardCells[0][0]
         for row in 0...7{
