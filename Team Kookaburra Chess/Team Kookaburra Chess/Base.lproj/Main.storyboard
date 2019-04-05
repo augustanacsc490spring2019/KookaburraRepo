@@ -387,6 +387,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OzQ-u3-TEz"/>
                     </view>
+                    <connections>
+                        <outlet property="piceInfo" destination="usz-f9-BNt" id="U9e-ne-582"/>
+                        <outlet property="pieceName" destination="wO2-KU-V4q" id="azL-4s-ulW"/>
+                        <outlet property="piecePicker" destination="0ep-3c-SWM" id="FnI-kb-FBs"/>
+                        <outlet property="piecePicture" destination="O6j-pA-S0W" id="tPY-vr-0If"/>
+                        <outlet property="placeButton" destination="lnZ-aw-H9O" id="baU-8l-1j0"/>
+                        <outlet property="pointsRemaining" destination="31A-Gg-hwr" id="aFL-bi-Heu"/>
+                        <outlet property="quantLAbel" destination="kv8-bM-UMf" id="ZDm-9w-Xky"/>
+                        <outlet property="readyButton" destination="pzp-NK-6vY" id="MCA-qA-ilp"/>
+                        <outlet property="resetButton" destination="dXo-Tb-L47" id="ftc-mo-oCI"/>
+                        <outlet property="tipLabel" destination="lBF-bP-iXx" id="a6d-LS-J6v"/>
+                        <outlet property="yourColor" destination="Iys-yO-tj8" id="puq-K8-Tb0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ZC-Vp-5Mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
