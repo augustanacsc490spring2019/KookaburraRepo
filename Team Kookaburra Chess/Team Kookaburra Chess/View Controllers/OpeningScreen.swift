@@ -107,8 +107,8 @@ class OpeningScreen: UIViewController {
     }
     
     @IBAction func quickTestButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "QuickTestSegue", sender: self)
-        
+        //self.performSegue(withIdentifier: "QuickTestSegue", sender: self)
+        performSegue(withIdentifier: "PlacePiecesSegue", sender: nil)
     }
     
     @IBAction func rankPointsTest(_ sender: Any) {

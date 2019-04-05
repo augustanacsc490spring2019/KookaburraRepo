@@ -18,8 +18,8 @@ class PlacePiecesViewController: UIViewController {
     var pieceBeingMoved: ChessPiece? = nil
     var possibleMoves = [BoardIndex]()
     var playerTurn = UIColor.white
+    var pickerData: [String] = [String]()
     
-    @IBOutlet weak var gameTitle: UILabel!
     @IBOutlet weak var quantLabel: UILabel!
     @IBOutlet weak var pointsRemaining: UILabel!
     @IBOutlet weak var yourColor: UILabel!
@@ -36,6 +36,9 @@ class PlacePiecesViewController: UIViewController {
         super.viewDidLoad()
         setLabels()
         drawBoard()
+//        self.piecePicker.delegate = self as UIPickerViewDelegate
+//        self.piecePicker.dataSource = self as! UIPickerViewDataSource
+        pickerData = ["Empty (0)", "King (40)", "Pawn (10)", "Griffin (130)"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,8 +46,14 @@ class PlacePiecesViewController: UIViewController {
     }
     
     func setLabels(){
-        quantLabel.text = "450"
-        pointsRemaining.text = "\(playerPoints)"
+        quantLabel.text = "/450"
+        pointsRemaining.text = "Points spent: \(playerPoints)"
+        if playerColor == .white{
+            yourColor.text = "You are white this match"
+        } else {
+            yourColor.text = "You are black this match"
+        }
+        tipLabel.text = "Select a space and start placing pieces!"
         
     }
     
@@ -53,9 +62,9 @@ class PlacePiecesViewController: UIViewController {
             var boardCells = Array(repeating: oneRow, count: 8)
             let cellDimension = (view.frame.size.width - 0) / 8
             var xOffset: CGFloat = 0
-            var yOffset: CGFloat = 100
-            for row in 0...3 {
-                yOffset = (CGFloat(row) * cellDimension) + 80
+            var yOffset: CGFloat = 300
+            for row in 0...2 {
+                yOffset = (CGFloat(row) * cellDimension) + 200
                 xOffset = 50
                 for col in 0...7 {
                     xOffset = (CGFloat(col) * cellDimension) + 0
@@ -74,8 +83,25 @@ class PlacePiecesViewController: UIViewController {
                     }
                     // set the color
                     cell.removeHighlighting()
+                    //empty the cell
+                    cell.piece.type = .dummy
                 }
             }
         }
+    
+    // Number of columns of data
+    func numberOfComponents(in pickerView: UIPickerView) ->Int {
+        return 1
+    }
+    
+    // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return pickerData.count
+    }
+    
+    // The data to return fopr the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return pickerData[row]
+    }
     
 }
