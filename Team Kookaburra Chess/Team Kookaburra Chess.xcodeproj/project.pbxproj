@@ -128,6 +128,7 @@
 		25FFCD5E2256D3F400C81196 /* alchemistIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD5C2256D3F400C81196 /* alchemistIcon.png */; };
 		25FFCD602256D3FD00C81196 /* loadingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD5F2256D3FD00C81196 /* loadingIcon.png */; };
 		25FFCD642256D6F900C81196 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD632256D6F900C81196 /* Launch Screen.storyboard */; };
+		25FFCD682256DF7000C81196 /* loadingText.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD672256DF6F00C81196 /* loadingText.png */; };
 		643430AB2253C50900E0CB24 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643430AA2253C50900E0CB24 /* GameKit.framework */; };
 		645068A5224D46E7006709A9 /* testRook.png in Resources */ = {isa = PBXBuildFile; fileRef = 251D202C22431F3800AD7CE4 /* testRook.png */; };
 		88198249224E69D6008E8EFD /* cathedral.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88198248224E69D6008E8EFD /* cathedral.jpg */; };
@@ -136,7 +137,6 @@
 		8819824F224E7CAF008E8EFD /* MyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */; };
 		88198251224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */; };
 		889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* OpeningScreen.swift */; };
-		88E34F362250054E007ED2F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88E34F352250054E007ED2F5 /* LaunchScreen.storyboard */; };
 		88E34F3922502A2D007ED2F5 /* SearchForFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3822502A2D007ED2F5 /* SearchForFriendsViewController.swift */; };
 		88E34F3B2250304E007ED2F5 /* PlacePiecesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3A2250304E007ED2F5 /* PlacePiecesViewController.swift */; };
 		88E34F3D225032E5007ED2F5 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3C225032E5007ED2F5 /* NewGameViewController.swift */; };
@@ -290,6 +290,7 @@
 		25FFCD5C2256D3F400C81196 /* alchemistIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alchemistIcon.png; sourceTree = "<group>"; };
 		25FFCD5F2256D3FD00C81196 /* loadingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingIcon.png; sourceTree = "<group>"; };
 		25FFCD632256D6F900C81196 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		25FFCD672256DF6F00C81196 /* loadingText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingText.png; sourceTree = "<group>"; };
 		643430AA2253C50900E0CB24 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Team Kookaburra Chess.entitlements"; sourceTree = "<group>"; };
 		88198248224E69D6008E8EFD /* cathedral.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cathedral.jpg; sourceTree = "<group>"; };
@@ -298,7 +299,6 @@
 		8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatsViewController.swift; sourceTree = "<group>"; };
 		88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBtOpeningScreenViewController.swift; sourceTree = "<group>"; };
 		889C82632241651D00B77A21 /* OpeningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningScreen.swift; sourceTree = "<group>"; };
-		88E34F352250054E007ED2F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88E34F3822502A2D007ED2F5 /* SearchForFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForFriendsViewController.swift; sourceTree = "<group>"; };
 		88E34F3A2250304E007ED2F5 /* PlacePiecesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePiecesViewController.swift; sourceTree = "<group>"; };
 		88E34F3C225032E5007ED2F5 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
@@ -373,7 +373,6 @@
 				251D1F5B22403DAD00AD7CE4 /* Actions.sks */,
 				251D1F5D22403DAD00AD7CE4 /* GameScene.swift */,
 				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
-				88E34F352250054E007ED2F5 /* LaunchScreen.storyboard */,
 				25FFCD632256D6F900C81196 /* Launch Screen.storyboard */,
 				251D1F6422403DAE00AD7CE4 /* Assets.xcassets */,
 				251D1F6922403DAE00AD7CE4 /* Info.plist */,
@@ -405,6 +404,7 @@
 				25FFCD5C2256D3F400C81196 /* alchemistIcon.png */,
 				25FFCD5B2256D3F300C81196 /* alchemistIconHD.png */,
 				25FFCD5F2256D3FD00C81196 /* loadingIcon.png */,
+				25FFCD672256DF6F00C81196 /* loadingText.png */,
 				258FEEE4225290E7007ED10C /* promotionSymbol.png */,
 				258FEEE2225290E0007ED10C /* demotionSymbol.png */,
 				258FEEE6225290F7007ED10C /* championTrophy.png */,
@@ -698,6 +698,7 @@
 				25B5F5EC22501AC700DF89FE /* whiteCamel.png in Resources */,
 				25B5F5DF22501AC700DF89FE /* whiteLeftyElf.png in Resources */,
 				25BC73792248226A0083D24E /* blackManAtArms.png in Resources */,
+				25FFCD682256DF7000C81196 /* loadingText.png in Resources */,
 				25BC737B2248226F0083D24E /* blackOgre.png in Resources */,
 				25B5F5CC22501AC700DF89FE /* whiteMonopod.png in Resources */,
 				25415E39224A983100B7E13E /* blackSuperking.png in Resources */,
@@ -737,7 +738,6 @@
 				259FED9E22493C16006BE3E8 /* blackFireDragon.png in Resources */,
 				259FED9C22493C0F006BE3E8 /* blackBasilisk.png in Resources */,
 				252A35F22244323600FE6A09 /* blackKnight.png in Resources */,
-				88E34F362250054E007ED2F5 /* LaunchScreen.storyboard in Resources */,
 				259FEDAA224949F3006BE3E8 /* blackBatteringRam.png in Resources */,
 				258FEEDC22527B0A007ED10C /* rankSilver.png in Resources */,
 				259FEDA8224949ED006BE3E8 /* blackShip.png in Resources */,
