@@ -81,6 +81,7 @@ class OpeningScreen: UIViewController {
             levelDownBar.progress = 0.01
             levelUpBar.progress = 0.01
         }
+        GameCenterHelper.helper.viewController = self
     }
     
     override func didReceiveMemoryWarning() {
