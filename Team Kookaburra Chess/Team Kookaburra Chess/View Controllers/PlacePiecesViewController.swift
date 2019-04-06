@@ -64,7 +64,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         drawBoard()
         piecePicker.delegate = self
         piecePicker.dataSource = self
-        pickerData = ["Empty (0)", "King (40)", "Pawn (10)", "Griffin (130)"]
+        pickerData = ["Empty", "King", "Pawn", "Griffin"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -184,6 +184,52 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //start the game with the current piece placement
     }
     
+    //updates the screen when the uipicker changes
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        NSLog("Picker Changed")
+        //get the string from the picker
+        let pickerString = pickerData[row]
+        //compare that string to the piece types
+        let piece = getPiece(string: pickerString)
+        //assign the .png file to the UIImageview
+        piece.setupSymbol()
+        piecePicture.image = piece.symbolImage
+        //assign info text to the info label
+        piceInfo.text = getInfo(piece: piece)
+        //assign cost to the top label
+        pieceName.text = "Cost: \(piece.summonCost) points"
+    }
+    
+    func getPiece(string: String) -> ChessPiece {
+        NSLog("getting piece")
+        var piece = ChessPiece(row: -1, column: -1, color: playerColor, type: .dummy, player: playerColor)
+        if string == "King"{
+            piece.type = .king
+        } else if string == "Queen"{
+            piece.type = .queen
+        } else if string == "Pawn"{
+            piece.type = .pawn
+        } else if string == "Griffin"{
+            piece.type = .griffin
+        }
+        return piece
+    }
+    
+    func getInfo(piece: ChessPiece) -> String {
+        NSLog("getting info")
+        var string = ""
+        if piece.type == .king{
+            string = "Can move and attack one space in every direction. The game ends when a player runs out of kings. You need to place at least one of them or a superking to begin the game."
+        } else if piece.type == .pawn{
+            string = "Can move two spaces on its first turn. After that, it can move one space forward. Attacks one space diagonally forward. The basic piece in standard chess. If it reaches the far end of the game board, it can be turned into a more powerful piece"
+        } else if piece.type == .queen{
+            string = "Can move infinitely vertically, horizontally, and diagonally. The most powerful piece in standard chess."
+        } else if piece.type == .griffin{
+            string = "Moves one space diagonally, then infinitely vertically and horizontally away from that space. Very powerfuly in the end game with lots of open space."
+        }
+        return string
+    }
+
 }
 
 extension PlacePiecesViewController: BoardCellDelegate {
@@ -195,6 +241,7 @@ extension PlacePiecesViewController: BoardCellDelegate {
         // Check if making a move (if had selected piece before)
         //clear the other highlighted pieces
         highlightedCell.removeHighlighting()
+        piecePicture.backgroundColor = cell.backgroundColor //change the square to be the same color as the current space. Small touch
         cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
         highlightedCell = cell
         

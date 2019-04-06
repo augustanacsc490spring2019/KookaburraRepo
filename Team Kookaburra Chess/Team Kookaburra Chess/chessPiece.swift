@@ -110,7 +110,7 @@ class ChessPiece {
     }
     
     
-    private func setupSymbol() {
+    func setupSymbol() {
         if color == .black{
         switch type {
         case .pawn:
