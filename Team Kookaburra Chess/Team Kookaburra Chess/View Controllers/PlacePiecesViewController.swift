@@ -51,12 +51,14 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var pointsRemaining: UILabel!
     @IBOutlet weak var yourColor: UILabel!
     @IBOutlet weak var tipLabel: UILabel!
-    @IBOutlet weak var pieceName: UILabel!
+    @IBOutlet weak var pieceCost: UILabel!
     @IBOutlet weak var piecePicture: UIImageView!
-    @IBOutlet weak var piceInfo: UILabel!
+    @IBOutlet weak var pieceInfo: UILabel!
     @IBOutlet weak var piecePicker: UIPickerView!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var readyButton: UIButton!
+    var pickerString: String = ""
+    var chosenPieces = [[ChessPiece]]()
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -142,12 +144,41 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     
     @IBAction func placeButtonPressed(_ sender: Any) {
-        //get value from the picker
         //check that for chess piece type
-        //check if there are enough points to place the piece
+        var chosenPiece = getPiece(string: pickerString)
         //check if the piece is illegally placed
-        //if there's an issue, change the tip label
-        //if not, place the piece
+        var cost = chosenPiece.summonCost
+        if chosenPiece.type == .king{
+            NSLog("All hail!")
+            //if numKings() > 0{
+            //cost = cost + 20
+            //}
+        }
+        if (playerPoints + cost) > 450 {
+            NSLog("Too many points spent")
+            //change the tip label
+            //show a notification, "you don't have enough points"
+        } else{
+            NSLog("check if the piece is illegally placed")
+            //check if the piece is illegally placed
+            if ((chosenPiece.type == .dragonRider) || (highlightedCell.row == 2)){
+                if chosenPiece.type == .dragonRider && highlightedCell.row < 2{
+                    NSLog("Dragonriders can only be in the back row")
+                    //change the tip label
+                    //show a notification, "piece can't be placed because of rule"
+                } //else if highlightedCell.row == 2 && !secondRowFull(){
+                //change the tip label
+                //show a notification, "piece can't be placed because of rule"
+                //}
+            } else {//place the piece
+                highlightedCell.piece.type = chosenPiece.type
+                //add summon points
+                playerPoints = playerPoints + highlightedCell.piece.summonCost
+                pointsRemaining.text = "Points spent: \(playerPoints)"
+                chosenPieces[highlightedCell.row][highlightedCell.column] = chosenPiece
+                NSLog("chosen pieces: \(chosenPieces)")
+            }
+        }
         
     }
     
@@ -173,7 +204,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //if not, ask them if they're sure they want to ready up
             let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Ready!", style: .default, handler: { action in
-                self.chessBoard.startNewGame()
+                self.chessBoard.startNewGame()//start a new game, not this function
             })
             let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
@@ -188,16 +219,24 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         NSLog("Picker Changed")
         //get the string from the picker
-        let pickerString = pickerData[row]
+        pickerString = pickerData[row]
         //compare that string to the piece types
         let piece = getPiece(string: pickerString)
         //assign the .png file to the UIImageview
         piece.setupSymbol()
         piecePicture.image = piece.symbolImage
         //assign info text to the info label
-        piceInfo.text = getInfo(piece: piece)
+        pieceInfo.text = getInfo(piece: piece)
+        pieceInfo.contentMode = .scaleToFill
+        pieceInfo.numberOfLines = 0
         //assign cost to the top label
-        pieceName.text = "Cost: \(piece.summonCost) points"
+        pieceCost.text = "Cost: \(piece.summonCost) points"
+        if piece.type == .king{
+            //if numKings() > 0{
+            //cost = cost + 20
+            //}
+        }
+        pieceCost.text = "Cost: \(piece.summonCost) points"
     }
     
     func getPiece(string: String) -> ChessPiece {
