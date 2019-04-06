@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cathedral.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5yB-Xf-8pG">
-                                <rect key="frame" x="20" y="44" width="374" height="16"/>
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="6T2-Ap-xkx"/>
                                 </constraints>
@@ -324,7 +324,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBF-bP-iXx" userLabel="Tip Label">
-                                <rect key="frame" x="70" y="148" width="235" height="21"/>
+                                <rect key="frame" x="47" y="148" width="325" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Label">
@@ -362,7 +362,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31A-Gg-hwr" userLabel="Points remaining">
-                                <rect key="frame" x="106" y="88" width="84" height="21"/>
+                                <rect key="frame" x="47" y="90" width="155" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Label">
@@ -380,20 +380,29 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnZ-aw-H9O" userLabel="Place Button">
                                 <rect key="frame" x="81" y="776" width="81" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Place Piece"/>
+                                <connections>
+                                    <action selector="placeButtonPressed:" destination="eT3-ZL-FIO" eventType="touchUpInside" id="5fd-UL-B2o"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXo-Tb-L47" userLabel="Reset Button">
-                                <rect key="frame" x="259" y="776" width="46" height="30"/>
+                                <rect key="frame" x="238" y="776" width="89" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Reset Pieces"/>
+                                <connections>
+                                    <action selector="resetButtonPressed:" destination="eT3-ZL-FIO" eventType="touchUpInside" id="jXI-nl-i3s"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzp-NK-6vY" userLabel="Ready Button">
-                                <rect key="frame" x="184" y="832" width="46" height="30"/>
+                                <rect key="frame" x="181" y="832" width="53" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="READY!"/>
+                                <connections>
+                                    <action selector="readyButtonPressed:" destination="eT3-ZL-FIO" eventType="touchUpInside" id="gEl-mp-afd"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kv8-bM-UMf" userLabel="Quant">
-                                <rect key="frame" x="198" y="88" width="36" height="21"/>
+                                <rect key="frame" x="238" y="90" width="36" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="/450">
@@ -412,11 +421,11 @@
                     <connections>
                         <outlet property="piceInfo" destination="usz-f9-BNt" id="U9e-ne-582"/>
                         <outlet property="pieceName" destination="wO2-KU-V4q" id="azL-4s-ulW"/>
-                        <outlet property="piecePicker" destination="0ep-3c-SWM" id="FnI-kb-FBs"/>
+                        <outlet property="piecePicker" destination="0ep-3c-SWM" id="ARG-h3-b7m"/>
                         <outlet property="piecePicture" destination="O6j-pA-S0W" id="tPY-vr-0If"/>
-                        <outlet property="placeButton" destination="lnZ-aw-H9O" id="baU-8l-1j0"/>
+                        <outlet property="placeButton" destination="lnZ-aw-H9O" id="BJy-tI-ZgW"/>
                         <outlet property="pointsRemaining" destination="31A-Gg-hwr" id="aFL-bi-Heu"/>
-                        <outlet property="quantLabel" destination="kv8-bM-UMf" id="3cQ-RG-aNn"/>
+                        <outlet property="quantLabel" destination="kv8-bM-UMf" id="GtT-8B-C4A"/>
                         <outlet property="readyButton" destination="pzp-NK-6vY" id="MCA-qA-ilp"/>
                         <outlet property="resetButton" destination="dXo-Tb-L47" id="ftc-mo-oCI"/>
                         <outlet property="tipLabel" destination="lBF-bP-iXx" id="a6d-LS-J6v"/>
