@@ -45,15 +45,17 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var playerTurn = UIColor.white
     var pickerData: [String] = [String]()
     var highlightedCell: BoardCell = BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: .white), color: .white)
+    var pickerString: String = ""
+    var chosenPieces = [[ChessPiece]]()
     
     @IBOutlet weak var placeButton: UIButton!
     @IBOutlet weak var quantLabel: UILabel!
     @IBOutlet weak var pointsRemaining: UILabel!
     @IBOutlet weak var yourColor: UILabel!
     @IBOutlet weak var tipLabel: UILabel!
-    @IBOutlet weak var pieceName: UILabel!
+    @IBOutlet weak var pieceCost: UILabel!
     @IBOutlet weak var piecePicture: UIImageView!
-    @IBOutlet weak var piceInfo: UILabel!
+    @IBOutlet weak var pieceInfo: UILabel!
     @IBOutlet weak var piecePicker: UIPickerView!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var readyButton: UIButton!
@@ -80,6 +82,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             yourColor.text = "You are black this match"
         }
         tipLabel.text = "Select a space and start placing pieces!"
+        pieceInfo.lineBreakMode = .byWordWrapping
+        pieceInfo.numberOfLines = 0
         
     }
     
@@ -134,18 +138,51 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func clearPieces(){
         for row in 0...2{
             for col in 0...7{
-                let currentCell = boardCells[row][col]
-                currentCell.piece.type = .dummy
+                let currentPiece = chessBoard.board[row][col]
+                currentPiece.type = .dummy
+                currentPiece.setupSymbol()
             }
         }
     }
     
     
     @IBAction func placeButtonPressed(_ sender: Any) {
-        //get value from the picker
         //check that for chess piece type
+        var chosenPiece = getPiece(string: pickerString)
         //check if there are enough points to place the piece
-        //check if the piece is illegally placed
+        var cost = chosenPiece.summonCost
+        if chosenPiece.type == .king{
+            NSLog("All hail!")
+            //if numKings() > 0{
+            //cost = cost + 20
+            //}
+        }
+        if (playerPoints + cost) > 450 {
+            NSLog("Too many points spent")
+            //change the tip label
+            //show a notification, "you don't have enough points"
+        } else{
+            NSLog("check if the piece is illegally placed")
+            //check if the piece is illegally placed
+            if ((chosenPiece.type == .dragonRider) || (highlightedCell.row == 2)){
+                if chosenPiece.type == .dragonRider && highlightedCell.row < 2{
+                    NSLog("Dragonriders can only be in the back row")
+                    //change the tip label
+                    //show a notification, "piece can't be placed because of rule"
+                } //else if highlightedCell.row == 2 && !secondRowFull(){
+                //change the tip label
+                //show a notification, "piece can't be placed because of rule"
+                //}
+            } else {//place the piece
+                highlightedCell.piece.type = chosenPiece.type
+                //add summon points
+                playerPoints = playerPoints + highlightedCell.piece.summonCost
+                pointsRemaining.text = "Points spent: \(playerPoints)"
+                chosenPieces[highlightedCell.row][highlightedCell.column] = chosenPiece
+                NSLog("chosen pieces: \(chosenPieces)")
+            }
+        }
+        
         //if there's an issue, change the tip label
         //if not, place the piece
         
@@ -173,7 +210,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //if not, ask them if they're sure they want to ready up
             let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Ready!", style: .default, handler: { action in
-                self.chessBoard.startNewGame()
+                self.chessBoard.startNewGame()//start a new game, not this function
             })
             let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
@@ -188,20 +225,25 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         NSLog("Picker Changed")
         //get the string from the picker
-        let pickerString = pickerData[row]
+        pickerString = pickerData[row]
         //compare that string to the piece types
         let piece = getPiece(string: pickerString)
         //assign the .png file to the UIImageview
         piece.setupSymbol()
         piecePicture.image = piece.symbolImage
         //assign info text to the info label
-        piceInfo.text = getInfo(piece: piece)
+        pieceInfo.text = getInfo(piece: piece)
         //assign cost to the top label
-        pieceName.text = "Cost: \(piece.summonCost) points"
+        if piece.type == .king{
+            //if numKings() > 0{
+            //cost = cost + 20
+            //}
+        }
+        pieceCost.text = "Cost: \(piece.summonCost) points"
     }
     
     func getPiece(string: String) -> ChessPiece {
-        NSLog("getting piece")
+        //NSLog("getting piece")
         var piece = ChessPiece(row: -1, column: -1, color: playerColor, type: .dummy, player: playerColor)
         if string == "King"{
             piece.type = .king
@@ -216,7 +258,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func getInfo(piece: ChessPiece) -> String {
-        NSLog("getting info")
+        //NSLog("getting info")
         var string = ""
         if piece.type == .king{
             string = "Can move and attack one space in every direction. The game ends when a player runs out of kings. You need to place at least one of them or a superking to begin the game."
@@ -235,7 +277,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
 extension PlacePiecesViewController: BoardCellDelegate {
     
     func didSelect(cell: BoardCell, atRow row: Int, andColumn col: Int) {
-        NSLog("I have been chosen!")
+        //NSLog("I have been chosen!")
         //print("Selected cell at: \(row), \(col)")
         //chessBoard.board[row][col].showPieceInfo()
         // Check if making a move (if had selected piece before)
