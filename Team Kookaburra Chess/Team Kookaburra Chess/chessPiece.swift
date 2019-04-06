@@ -376,7 +376,7 @@ class ChessPiece {
         } else {
             symbol = "blankPiece.png"
         }
-        //NSLog(symbol)
+        NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
     }
     
