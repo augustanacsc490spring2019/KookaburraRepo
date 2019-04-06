@@ -132,6 +132,7 @@
 		25FFCD6C2256E54000C81196 /* alchemistIconSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD6B2256E54000C81196 /* alchemistIconSettings.png */; };
 		25FFCD6E2256E5BF00C81196 /* alchemistIcon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD6D2256E5BF00C81196 /* alchemistIcon80.png */; };
 		643430AB2253C50900E0CB24 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643430AA2253C50900E0CB24 /* GameKit.framework */; };
+		6440829E22593E70006563AB /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6440829D22593E70006563AB /* GameCenterHelper.swift */; };
 		645068A5224D46E7006709A9 /* testRook.png in Resources */ = {isa = PBXBuildFile; fileRef = 251D202C22431F3800AD7CE4 /* testRook.png */; };
 		88198249224E69D6008E8EFD /* cathedral.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88198248224E69D6008E8EFD /* cathedral.jpg */; };
 		8819824B224E7948008E8EFD /* MyFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824A224E7948008E8EFD /* MyFriendsViewController.swift */; };
@@ -297,6 +298,7 @@
 		25FFCD6D2256E5BF00C81196 /* alchemistIcon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alchemistIcon80.png; sourceTree = "<group>"; };
 		643430AA2253C50900E0CB24 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Team Kookaburra Chess.entitlements"; sourceTree = "<group>"; };
+		6440829D22593E70006563AB /* GameCenterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
 		88198248224E69D6008E8EFD /* cathedral.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cathedral.jpg; sourceTree = "<group>"; };
 		8819824A224E7948008E8EFD /* MyFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewController.swift; sourceTree = "<group>"; };
 		8819824C224E7BBA008E8EFD /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 		251D1F5622403DAD00AD7CE4 /* Team Kookaburra Chess */ = {
 			isa = PBXGroup;
 			children = (
+				6440829D22593E70006563AB /* GameCenterHelper.swift */,
 				643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */,
 				251D1F952240751500AD7CE4 /* chessPiece.swift */,
 				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
@@ -806,6 +809,7 @@
 				251D1F962240751500AD7CE4 /* chessPiece.swift in Sources */,
 				8819824D224E7BBA008E8EFD /* StoreViewController.swift in Sources */,
 				88E34F3D225032E5007ED2F5 /* NewGameViewController.swift in Sources */,
+				6440829E22593E70006563AB /* GameCenterHelper.swift in Sources */,
 				88E34F41225036A6007ED2F5 /* RandomOpponentViewController.swift in Sources */,
 				251D1F9A224075CE00AD7CE4 /* chessView.swift in Sources */,
 				251D1F8E2240743D00AD7CE4 /* BoardCelll.swift in Sources */,
