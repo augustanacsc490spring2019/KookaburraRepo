@@ -44,6 +44,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var possibleMoves = [BoardIndex]()
     var playerTurn = UIColor.white
     var pickerData: [String] = [String]()
+    var highlightedCell: BoardCell = BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: .white), color: .white)
     
     @IBOutlet weak var placeButton: UIButton!
     @IBOutlet weak var quantLabel: UILabel!
@@ -97,6 +98,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     let piece = chessBoard.board[row][col]
                     let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
                     cell.delegate = self
+                    boardCells[row][col] = cell
+                   // NSLog("Board cells at row, col: \(boardCells[row][col])")
                     view.addSubview(cell)
                     cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
                     if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
@@ -131,7 +134,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func clearPieces(){
         for row in 0...2{
             for col in 0...7{
-                var currentCell = boardCells[row][col]
+                let currentCell = boardCells[row][col]
                 currentCell.piece.type = .dummy
             }
         }
@@ -190,16 +193,13 @@ extension PlacePiecesViewController: BoardCellDelegate {
         //print("Selected cell at: \(row), \(col)")
         //chessBoard.board[row][col].showPieceInfo()
         // Check if making a move (if had selected piece before)
+        //clear the other highlighted pieces
+        highlightedCell.removeHighlighting()
         cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
-            
+        highlightedCell = cell
+        
            
     }
-    
-    func removeHighlights() {
-        for move in possibleMoves {
-            //print(move.row)
-            boardCells[move.row][move.column].removeHighlighting()
-        }
-    }
+
 }
 
