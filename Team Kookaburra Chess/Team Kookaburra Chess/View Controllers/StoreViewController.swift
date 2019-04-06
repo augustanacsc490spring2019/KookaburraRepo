@@ -18,8 +18,4 @@ class StoreViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func backFromStoreMenuBtPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "BackFromStoreMenuSegue", sender: self)
-    }
-    
 }

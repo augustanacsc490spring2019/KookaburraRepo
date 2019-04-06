@@ -22,7 +22,4 @@ class SearchForFriendsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func backToSearchFriendsButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "BackToSearchForFriendsSegue", sender: self)
-    }
 }
