@@ -63,6 +63,7 @@ final class GameCenterHelper: NSObject {
             if GKLocalPlayer.local.isAuthenticated {
                 GKLocalPlayer.local.register(self)
             } else if let vc = gcAuthVC {
+                print("init viewcont: \(self.viewController)")
                 self.viewController?.present(vc, animated: true)
             }
             else {
@@ -80,12 +81,14 @@ final class GameCenterHelper: NSObject {
         
         request.minPlayers = 2
         request.maxPlayers = 2
-        request.inviteMessage = "Would you like to play Nine Knights?"
+        request.inviteMessage = "Would you like to play Alchemist Chess?"
         
         let vc = GKTurnBasedMatchmakerViewController(matchRequest: request)
         vc.turnBasedMatchmakerDelegate = self
         
         currentMatchmakerVC = vc
+        print("mm viewcont: \(self.viewController)")
+
         viewController?.present(vc, animated: true)
     }
     

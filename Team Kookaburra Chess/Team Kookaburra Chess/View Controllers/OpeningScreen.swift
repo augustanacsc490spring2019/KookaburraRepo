@@ -104,7 +104,8 @@ class OpeningScreen: UIViewController {
     }
     
     @IBAction func playButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "PlayBtOpeningScreenSegue", sender: self)
+        GameCenterHelper.helper.presentMatchmaker()
+        //self.performSegue(withIdentifier: "PlayBtOpeningScreenSegue", sender: self)
     }
     
     @IBAction func quickTestButtonPressed(_ sender: Any) {
