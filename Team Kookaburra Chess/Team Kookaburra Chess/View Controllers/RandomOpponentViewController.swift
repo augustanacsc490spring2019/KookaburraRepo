@@ -23,9 +23,4 @@ class RandomOpponentViewController: UIViewController {
     @IBAction func playButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "PlayRandomOppSegue", sender: self)
     }
-    
-    @IBAction func backFromRanOppBtPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "BackFromRanOppSegue", sender: self)
-    }
-    
 }
