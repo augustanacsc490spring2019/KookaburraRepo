@@ -11,6 +11,12 @@ import Foundation
 import UIKit
 
 class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, ChessBoardDelegate {
+    
+    
+    @IBAction func backFromPlacePiecesBtPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "BackFromPlacePiecesSegue", sender: self)
+    }
+    
     //ChessBoard Delegate functions
     func boardUpdated() {
             //print("Board updated")
