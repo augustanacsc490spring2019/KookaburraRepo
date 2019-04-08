@@ -1213,7 +1213,7 @@ class ChessBoard {
     }
     
     /// A helper function called from isGameTie(_:)
-    private func getAllPieces(forPlayer player: UIColor) -> [ChessPiece] {
+    func getAllPieces(forPlayer player: UIColor) -> [ChessPiece] {
         var playerPieces = [ChessPiece]()
         for row in 0...7 {
             for col in 0...7 {

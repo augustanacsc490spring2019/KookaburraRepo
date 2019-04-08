@@ -87,7 +87,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     func drawBoard(){
             let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
-            var boardCells = Array(repeating: oneRow, count: 8)
+            boardCells = Array(repeating: oneRow, count: 8)
             let cellDimension = (view.frame.size.width - 0) / 8
             var xOffset: CGFloat = 0
             var yOffset: CGFloat = 0
@@ -97,7 +97,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 for col in 0...7 {
                     xOffset = (CGFloat(col) * cellDimension) + 0
                     
-                    let piece = chessBoard.board[row][col]
+                    var piece = chessBoard.board[row][col]
                     let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
                     cell.delegate = self
                     boardCells[row][col] = cell
@@ -113,6 +113,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     cell.removeHighlighting()
                     //empty the cell
                     cell.piece.type = .dummy
+                    piece.type = .dummy
+                    chessBoard.board[row][col] = piece
                     boardCells[row][col] = cell
                 }
             }
@@ -136,7 +138,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func clearPieces(){
         for row in 0...2{
             for col in 0...7{
-                let currentCell = boardCells[row][col]
+                let currentCell = self.boardCells[row][col]
                 currentCell.piece.type = .dummy
             }
         }
@@ -146,13 +148,14 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func placeButtonPressed(_ sender: Any) {
         //check that for chess piece type
         var chosenPiece = getPiece(string: pickerString)
+        chosenPiece.setupSymbol()
         //check if the piece is illegally placed
         var cost = chosenPiece.summonCost
         if chosenPiece.type == .king{
             NSLog("All hail!")
-            //if numKings() > 0{
-            //cost = cost + 20
-            //}
+            if numKings(color: playerColor) > 0{
+                cost = cost + 20
+            }
         }
         if (playerPoints + cost) > 450 {
             NSLog("Too many points spent")
@@ -161,25 +164,43 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         } else{
             NSLog("check if the piece is illegally placed")
             //check if the piece is illegally placed
-            if ((chosenPiece.type == .dragonRider) || (highlightedCell.row == 2)){
-                if chosenPiece.type == .dragonRider && highlightedCell.row < 2{
-                    NSLog("Dragonriders can only be in the back row")
-                    //change the tip label
-                    //show a notification, "piece can't be placed because of rule"
-                } //else if highlightedCell.row == 2 && !secondRowFull(){
-                //change the tip label
-                //show a notification, "piece can't be placed because of rule"
-                //}
-            } else {//place the piece
+//            if ((chosenPiece.type == .dragonRider) || (highlightedCell.row == 2)){
+//                if chosenPiece.type == .dragonRider && highlightedCell.row < 2{
+//                    NSLog("Dragonriders can only be in the back row")
+//                    //change the tip label
+//                    //show a notification, "piece can't be placed because of rule"
+//                } //else if highlightedCell.row == 2 && !secondRowFull(){
+//                //change the tip label
+//                //show a notification, "piece can't be placed because of rule"
+//                //}
+//            } else {//place the piece
+                //if chosenPiece.row > -1{//there is actually a piece selected
                 highlightedCell.piece.type = chosenPiece.type
+                highlightedCell.piece.setupSymbol()
                 //add summon points
-                playerPoints = playerPoints + highlightedCell.piece.summonCost
+                print("points before: \(playerPoints)")
+                playerPoints = playerPoints + chosenPiece.summonCost
+                print("points after: \(playerPoints)")
                 pointsRemaining.text = "Points spent: \(playerPoints)"
-                chosenPieces[highlightedCell.row][highlightedCell.column] = chosenPiece
+                //chosenPieces[highlightedCell.row][highlightedCell.column] = chosenPiece
                 NSLog("chosen pieces: \(chosenPieces)")
-            }
+                //}
+            //}
         }
         
+    }
+    
+    
+    func numKings(color: UIColor) -> Int {
+        var numKings = 0
+        //iterate through pieces of each color
+        let allPieces = chessBoard.getAllPieces(forPlayer: color)
+        for piece in allPieces {
+            if piece.type == .king{
+                numKings = numKings + 1
+            }
+        }
+        return numKings
     }
     
     @IBAction func resetButtonPressed(_ sender: Any) {
@@ -232,11 +253,10 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //assign cost to the top label
         pieceCost.text = "Cost: \(piece.summonCost) points"
         if piece.type == .king{
-            //if numKings() > 0{
-            //cost = cost + 20
-            //}
+            if numKings(color: playerColor) > 0{
+                pieceCost.text = "Cost: \(piece.summonCost + 20) points"
+            }
         }
-        pieceCost.text = "Cost: \(piece.summonCost) points"
     }
     
     func getPiece(string: String) -> ChessPiece {
