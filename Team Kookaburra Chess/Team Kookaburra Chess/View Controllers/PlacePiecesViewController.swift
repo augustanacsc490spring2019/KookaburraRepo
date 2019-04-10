@@ -13,15 +13,15 @@ import UIKit
 class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, ChessBoardDelegate {
     //ChessBoard Delegate functions
     func boardUpdated() {
-            //print("Board updated")
-            for row in 0...2 {
-                for col in 0...7 {
-                    let cell = boardCells[row][col]
-                    let piece = chessBoard.board[row][col]
-                    cell.configureCell(forPiece: piece)
-                }
+        //print("Board updated")
+        for row in 0...2 {
+            for col in 0...7 {
+                let cell = boardCells[row][col]
+                let piece = chessBoard.board[row][col]
+                cell.configureCell(forPiece: piece)
             }
-            
+        }
+        
     }
     
     func gameOver(withWinner winner: UIColor) {
@@ -33,7 +33,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func promote(pawn: ChessPiece) {
-       //only here to fill protocol
+        //only here to fill protocol
     }
     
     var playerColor: UIColor = .white
@@ -62,6 +62,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        
         setLabels()
         drawBoard()
         piecePicker.delegate = self
@@ -86,39 +87,50 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func drawBoard(){
-            let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
-            boardCells = Array(repeating: oneRow, count: 8)
-            let cellDimension = (view.frame.size.width - 0) / 8
-            var xOffset: CGFloat = 0
-            var yOffset: CGFloat = 0
-            for row in 0...2 {
-                yOffset = (CGFloat(row) * cellDimension) + 200
-                xOffset = 50
-                for col in 0...7 {
-                    xOffset = (CGFloat(col) * cellDimension) + 0
-                    
-                    var piece = chessBoard.board[row][col]
-                    let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
-                    cell.delegate = self
-                    boardCells[row][col] = cell
-                   // NSLog("Board cells at row, col: \(boardCells[row][col])")
-                    view.addSubview(cell)
-                    cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
-                    if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
-                        cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
-                    } else {
-                        cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
-                    }
-                    // set the color
-                    cell.removeHighlighting()
-                    //empty the cell
-                    cell.piece.type = .dummy
-                    piece.type = .dummy
-                    chessBoard.board[row][col] = piece
-                    boardCells[row][col] = cell
+        let numRows:Int = 8
+        let numCols:Int = 8
+        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
+        self.boardCells = Array(repeating: oneRow, count: numRows)
+        let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
+        var xOffset: CGFloat = 0
+        var yOffset: CGFloat = 0
+        let start_row = 5
+        let end_row = 7
+        for row in start_row...end_row {
+            
+            yOffset = (CGFloat(row - start_row) * cellDimension) + 200
+            
+            for col in 0...7 {
+                
+                xOffset = (CGFloat(col) * cellDimension) + 0
+                
+                // create a piece
+                var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
+                
+                // create a cell at this location with this piece, and set color
+                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
+                
+                // NSLog("Board cells at row, col: \(boardCells[row][col])")
+                
+                cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
+                if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
+                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
+                } else {
+                    cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
                 }
+                
+                cell.removeHighlighting()
+                
+                // wire up the cell
+                cell.delegate = self
+                chessBoard.board[row][col] = piece
+                self.boardCells[row][col] = cell
+                
+                
+                view.addSubview(cell)
             }
         }
+    }
     
     // Number of columns of data
     func numberOfComponents(in pickerView: UIPickerView) ->Int {
@@ -127,12 +139,12 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return pickerData.count
+        return pickerData.count
     }
     
     // The data to return fopr the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return pickerData[row]
+        return pickerData[row]
     }
     
     func clearPieces(){
@@ -164,27 +176,32 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         } else{
             NSLog("check if the piece is illegally placed")
             //check if the piece is illegally placed
-//            if ((chosenPiece.type == .dragonRider) || (highlightedCell.row == 2)){
-//                if chosenPiece.type == .dragonRider && highlightedCell.row < 2{
-//                    NSLog("Dragonriders can only be in the back row")
-//                    //change the tip label
-//                    //show a notification, "piece can't be placed because of rule"
-//                } //else if highlightedCell.row == 2 && !secondRowFull(){
-//                //change the tip label
-//                //show a notification, "piece can't be placed because of rule"
-//                //}
-//            } else {//place the piece
-                //if chosenPiece.row > -1{//there is actually a piece selected
-                highlightedCell.piece.type = chosenPiece.type
-                highlightedCell.piece.setupSymbol()
-                //add summon points
-                print("points before: \(playerPoints)")
-                playerPoints = playerPoints + chosenPiece.summonCost
-                print("points after: \(playerPoints)")
-                pointsRemaining.text = "Points spent: \(playerPoints)"
-                //chosenPieces[highlightedCell.row][highlightedCell.column] = chosenPiece
-                NSLog("chosen pieces: \(chosenPieces)")
-                //}
+            //            if ((chosenPiece.type == .dragonRider) || (highlightedCell.row == 2)){
+            //                if chosenPiece.type == .dragonRider && highlightedCell.row < 2{
+            //                    NSLog("Dragonriders can only be in the back row")
+            //                    //change the tip label
+            //                    //show a notification, "piece can't be placed because of rule"
+            //                } //else if highlightedCell.row == 2 && !secondRowFull(){
+            //                //change the tip label
+            //                //show a notification, "piece can't be placed because of rule"
+            //                //}
+            //            } else {//place the piece
+            //if chosenPiece.row > -1{//there is actually a piece selected
+            // highlightedCell.piece.type = chosenPiece.type
+            // highlightedCell.piece.setupSymbol()
+            chosenPiece.row = highlightedCell.row;
+            chosenPiece.col = highlightedCell.column;
+            highlightedCell.configureCell(forPiece: chosenPiece)
+            var changedBoardCell = self.boardCells[highlightedCell.row][highlightedCell.column];
+            NSLog("boardcell changed: \(changedBoardCell.piece.type)");
+            //add summon points
+            print("points before: \(playerPoints)")
+            playerPoints = playerPoints + chosenPiece.summonCost
+            print("points after: \(playerPoints)")
+            pointsRemaining.text = "Points spent: \(playerPoints)"
+            //chosenPieces[highlightedCell.row][highlightedCell.column] = chosenPiece
+            NSLog("chosen pieces: \(chosenPieces)")
+            //}
             //}
         }
         
@@ -194,7 +211,18 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func numKings(color: UIColor) -> Int {
         var numKings = 0
         //iterate through pieces of each color
-        let allPieces = chessBoard.getAllPieces(forPlayer: color)
+        // let allPieces = boardCells.getAllPieces(forPlayer: color)
+        // replace by iterating through all self.boardCells, and asking the cell what piece it has
+        var allPieces = [ChessPiece]()
+        for row in 0...7 {
+            for col in 0...7 {
+                let piece = boardCells[row][col].piece
+                if (piece.type != .dummy) {
+                    allPieces.append(piece)
+                }
+            }
+        }
+        
         for piece in allPieces {
             if piece.type == .king{
                 numKings = numKings + 1
@@ -288,13 +316,13 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
         return string
     }
-
+    
 }
 
 extension PlacePiecesViewController: BoardCellDelegate {
     
     func didSelect(cell: BoardCell, atRow row: Int, andColumn col: Int) {
-        NSLog("I have been chosen!")
+        NSLog("I have been chosen! \(row), \(col)")
         //print("Selected cell at: \(row), \(col)")
         //chessBoard.board[row][col].showPieceInfo()
         // Check if making a move (if had selected piece before)
@@ -304,8 +332,8 @@ extension PlacePiecesViewController: BoardCellDelegate {
         cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
         highlightedCell = cell
         
-           
+        
     }
-
+    
 }
 
