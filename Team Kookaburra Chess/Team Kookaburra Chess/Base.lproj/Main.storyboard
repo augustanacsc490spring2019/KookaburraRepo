@@ -437,11 +437,27 @@
                         <outlet property="resetButton" destination="dXo-Tb-L47" id="ftc-mo-oCI"/>
                         <outlet property="tipLabel" destination="lBF-bP-iXx" id="a6d-LS-J6v"/>
                         <outlet property="yourColor" destination="Iys-yO-tj8" id="puq-K8-Tb0"/>
+                        <segue destination="zVE-eY-227" kind="showDetail" identifier="LocalMatchSegue" id="Reh-zF-BU3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ZC-Vp-5Mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1591.304347826087" y="-232.36607142857142"/>
+        </scene>
+        <!--Local Match-->
+        <scene sceneID="CEU-SZ-Rlj">
+            <objects>
+                <viewController storyboardIdentifier="LocalMatch" id="zVE-eY-227" userLabel="Local Match" customClass="ChessVC" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7cP-tb-csL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="3CZ-JU-lMg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="enA-Yg-GJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-772" y="-816"/>
         </scene>
         <!--YourFriendsViewController-->
         <scene sceneID="wMH-Cd-AV6">

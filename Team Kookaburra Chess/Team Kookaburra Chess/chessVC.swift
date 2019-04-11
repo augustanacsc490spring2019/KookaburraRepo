@@ -19,6 +19,8 @@ class ChessVC: UIViewController {
     var pieceBeingMoved: ChessPiece? = nil
     var possibleMoves = [BoardIndex]()
     var playerTurn = UIColor.white
+    var whiteFormation = [[BoardCell]]()
+    var blackFormation = [[BoardCell]]()
     
     let turnLabel: UILabel = {
         let l = UILabel()
@@ -52,6 +54,8 @@ class ChessVC: UIViewController {
         chessBoard.delegate = self
         drawBoard()
         setupViews()
+        print("White Formation: \(whiteFormation)")
+        print("Black Formation: \(blackFormation)")
     }
     
     func drawBoard() {

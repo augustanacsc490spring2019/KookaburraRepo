@@ -74,6 +74,18 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.didReceiveMemoryWarning()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "QuickTestSegue") {
+            let vc = segue.destination as! ChessVC
+            vc.playerColor = playerColor
+            if playerColor == .white{
+                vc.whiteFormation = boardCells
+            } else {//playerColor == .black
+                vc.blackFormation = boardCells
+            }
+        }
+    }
+    
     func setLabels(){
         quantLabel.text = "/450"
         pointsRemaining.text = "Points spent: \(playerPoints)"
@@ -355,15 +367,16 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //if not, ask them if they're sure they want to ready up
             let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Ready!", style: .default, handler: { action in
-                self.chessBoard.startNewGame()//start a new game, not this function
+                self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)
             })
             let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
             ac.addAction(yes)
             ac.addAction(no)
             present(ac, animated: true, completion: nil)
+            return
         }
-        //start the game with the current piece placement
+        self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)//start the game with the current piece placement
     }
     
     //updates the screen when the uipicker changes
