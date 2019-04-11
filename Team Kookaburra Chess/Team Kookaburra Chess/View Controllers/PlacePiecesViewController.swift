@@ -45,6 +45,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var playerTurn = UIColor.white
     var pickerData: [String] = [String]()
     var highlightedCell: BoardCell = BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: .white), color: .white)
+    var p2BoardCells = [[BoardCell]]()
+    var localMatch = true
     
     @IBOutlet weak var placeButton: UIButton!
     @IBOutlet weak var quantLabel: UILabel!
@@ -80,8 +82,10 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             vc.playerColor = playerColor
             if playerColor == .white{
                 vc.whiteFormation = boardCells
-            //} else {//playerColor == .black
+                vc.blackFormation = p2BoardCells
+            } else {//playerColor == .black
                 vc.blackFormation = boardCells
+                vc.whiteFormation = p2BoardCells
             }
         }
     }
@@ -363,24 +367,40 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func readyButtonPressed(_ sender: Any) {
         //check if the player has at least one king
         if numKings(color: playerColor) > 0{
-        //check if the player has used up enough points (at least 440)
-        if playerPoints < 440{
-            //if not, ask them if they're sure they want to ready up
-            let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
-            let yes = UIAlertAction(title: "Ready!", style: .default, handler: { action in
-                self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)
-            })
-            let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            ac.addAction(yes)
-            ac.addAction(no)
-            present(ac, animated: true, completion: nil)
-            return
+        if localMatch == true{
+            if playerColor == .white{ //
+                p2BoardCells = boardCells
+                playerColor = .black
+                clearPieces()
+                setLabels()
+                piecePictureSetup()
+            } else {
+                localMatchReady()
+            }
+        } else {
+            //do multiplayer stuff
         }
-        self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)//start the game with the current piece placement
         } else {
             tipLabel.text = "Place a king, then you can play!"
         }
+    }
+    
+    func localMatchReady(){
+            //check if the player has used up enough points (at least 440)
+            if playerPoints < 440{
+                //if not, ask them if they're sure they want to ready up
+                let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
+                let yes = UIAlertAction(title: "Ready!", style: .default, handler: { action in
+                    self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)
+                })
+                let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                
+                ac.addAction(yes)
+                ac.addAction(no)
+                present(ac, animated: true, completion: nil)
+                return
+            }
+            self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)//start the game with the current piece placement
     }
     
     //updates the screen when the uipicker changes
@@ -402,6 +422,14 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if piece.type == .king{
             pieceCost.text = "Cost: 40 for the 1st, 60 after"
         }
+    }
+    
+    //quickly resets the selected piece picture. Mostly useful for local matches when
+    //the players switch colors
+    func piecePictureSetup(){
+        pickerString = pickerData[pickerData.firstIndex(of: pickerString)!]
+        let piece = getPiece(string: pickerString)
+        piece.setupSymbol()
     }
     
     func getPiece(string: String) -> ChessPiece {

@@ -112,12 +112,16 @@ class ChessVC: UIViewController {
         turnLabel.text = "\(color) player's turn"
     }
     
+    func newGame(){
+        self.drawBoard()
+    }
+    
     // MARK: - Actions
     
     @objc func restartPressed(sender: UIButton) {
         let ac = UIAlertController(title: "Restart", message: "Are you sure you want to restart the game?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default, handler: { action in
-            self.chessBoard.startNewGame()
+            self.newGame()
         })
         let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -298,7 +302,7 @@ extension ChessVC: ChessBoardDelegate {
     func showGameOver(message: String) {
         let ac = UIAlertController(title: "Game Over", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: { action in
-            self.chessBoard.startNewGame()
+            self.newGame()
         })
         let noAction = UIAlertAction(title: "No", style: .default, handler: { action in
             

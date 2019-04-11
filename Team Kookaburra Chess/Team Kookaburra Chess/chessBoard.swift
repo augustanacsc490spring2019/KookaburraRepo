@@ -1259,13 +1259,16 @@ class ChessBoard {
         print("Board: \(board)")
         for row in 0...2{
             for col in 0...7{
-                board[2 - row][7 - col] = black[row][col].piece
+                let currentRow = 2-row
+                let currentCol = 7-col
+                board[currentRow][currentCol] = ChessPiece(row: currentRow, column: currentCol, color: .black, type: black[row][col].piece.type, player: .black)
             }
         }
         //go through the white formation
         for row in 0...2{
             for col in 0...7{
-                board[5 + row][col] = white[row][col].piece
+                let currentRow = 5 + row
+                board[currentRow][col] = ChessPiece(row: currentRow, column: col, color: .white, type: white[row][col].piece.type, player: .white)
             }
         }
         
