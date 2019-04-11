@@ -95,8 +95,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
         var xOffset: CGFloat = 0
         var yOffset: CGFloat = 0
-        let start_row = 5
-        let end_row = 7
+        let start_row = 0
+        let end_row = 2
         for row in start_row...end_row {
             
             yOffset = (CGFloat(row - start_row) * cellDimension) + 200
@@ -173,9 +173,11 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         } else{
             NSLog("check if the piece is illegally placed")
             //check if the piece is illegally placed
-            if ((chosenPiece.type == .dragonRider) || (highlightedCell.row == 2)){
-                if chosenPiece.type == .dragonRider && highlightedCell.row < 2{
+            if ((chosenPiece.type == .dragonRider)){
+
+                if  highlightedCell.row != 2{
                                 NSLog("Dragonriders can only be in the back row")
+                    return
                                 //change the tip label
                                 //show a notification, "piece can't be placed because of rule"
                 } //else if highlightedCell.row == 2 && !secondRowFull(){
@@ -199,6 +201,14 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //}
         }
         
+    }
+    
+    //returns if the highlighted cell is in the front row
+    func isFrontRow() -> Bool{
+        if ((highlightedCell.row == 2) || (highlightedCell.row == 5)){
+            return true
+        }
+        return false
     }
     
     func calculateCost() -> Int{
