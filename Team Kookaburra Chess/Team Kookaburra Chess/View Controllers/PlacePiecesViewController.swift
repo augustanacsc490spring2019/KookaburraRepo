@@ -69,7 +69,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         drawBoard()
         piecePicker.delegate = self
         piecePicker.dataSource = self
-        pickerData = ["Empty", "King", "Dragon Rider", "Pawn", "Griffin"]
+        pickerData = ["Empty", "King", "Archer", "Ballista", "Basilisk", "Battering Ram", "Bishop", "Bombard", "Camel", "Centaur", "Demon", "Dragon Rider", "Dwarf", "Elephant", "Fire Dragon", "Footsoldier", "Gargoyle", "Ghost Queen", "Goblin", "Griffin", "Ice Dragon", "Knight", "Left Handed Elf Warrior", "Mage", "Man at Arms", "Manticore", "Minotaur", "Monk", "Monopod", "Ogre", "Orc Warrior", "Pawn", "Pikeman", "Queen", "Right Handed Elf Warrior", "Rook", "Royal Guard", "Scout", "Ship", "Superking", "Swordsman", "Trebuchet", "Unicorn"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -435,16 +435,95 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func getPiece(string: String) -> ChessPiece {
         NSLog("getting piece")
         var piece = ChessPiece(row: -1, column: -1, color: playerColor, type: .dummy, player: playerColor)
-        if string == "King"{
+        switch string{
+        case "Empty":
+            piece.type = .dummy
+        case "King":
             piece.type = .king
-        } else if string == "Queen"{
-            piece.type = .queen
-        } else if string == "Pawn"{
-            piece.type = .pawn
-        } else if string == "Griffin"{
-            piece.type = .griffin
-        } else if string == "Dragon Rider"{
+        case "Archer":
+            piece.type = .archer
+        case "Ballista":
+            piece.type = .ballista
+        case "Basilisk":
+            piece.type = .basilisk
+        case "Battering Ram":
+            piece.type = .batteringRam
+        case "Bishop":
+            piece.type = .bishop
+        case "Bombard":
+            piece.type = .bombard
+        case "Camel":
+            piece.type = .camel
+        case "Centaur":
+            piece.type = .centaur
+        case "Demon":
+            piece.type = .demon
+        case "Dragon Rider":
             piece.type = .dragonRider
+        case "Dwarf":
+            piece.type = .dwarf
+        case "Elephant":
+            piece.type = .elephant
+        case "Fire Dragon":
+            piece.type = .fireDragon
+        case "Footsoldier":
+            piece.type = .footSoldier
+        case "Gargoyle":
+            piece.type = .gargoyle
+        case "Ghost Queen":
+            piece.type = .ghostQueen
+        case "Goblin":
+            piece.type = .goblin
+        case "Griffin":
+            piece.type = .griffin
+        case "Ice Dragon":
+            piece.type = .iceDragon
+        case "Knight":
+            piece.type = .knight
+        case "Left Handed Elf Warrior":
+            piece.type = .leftElf
+        case "Mage":
+            piece.type = .mage
+        case "Man at Arms":
+            piece.type = .manAtArms
+        case "Manticore":
+            piece.type = .manticore
+        case "Minotaur":
+            piece.type = .minotaur
+        case "Monk":
+            piece.type = .monk
+        case "Monopod":
+            piece.type = .monopod
+        case "Ogre":
+            piece.type = .ogre
+        case "Orc Warrior":
+            piece.type = .orcWarrior
+        case "Pawn":
+            piece.type = .pawn
+        case "Pikeman":
+            piece.type = .pikeman
+        case "Queen":
+            piece.type = .queen
+        case "Right Handed Elf Warrior":
+            piece.type = .rightElf
+        case "Rook":
+            piece.type = .rook
+        case "Royal Guard":
+            piece.type = .royalGuard
+        case "Scout":
+            piece.type = .scout
+        case "Ship":
+            piece.type = .ship
+        case "Superking":
+            piece.type = .superKing
+        case "Swordsman":
+            piece.type = .swordsman
+        case "Trebuchet":
+            piece.type = .trebuchet
+        case "Unicorn":
+            piece.type = .unicorn
+        default:
+            piece.type = .dummy
         }
         return piece
     }
@@ -473,7 +552,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         case .dragonRider:
             string = "Moves like a knight, but can continue in that direction infinitely. This piece is so powerful that it can only be placed in the back row."
         case .bombard:
-            string = "Can attack eny space that is 2 spaces away in any direction but can only move 1 space at a time when not attacking."
+            string = "Can move to any space one or two spaces away, but can only attack two spaces away."
         case .manticore:
             string = "Can move one or two spaces in any direction, but can only attack one space away, like a king."
         case .ghostQueen:
