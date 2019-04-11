@@ -22,4 +22,7 @@ class MyFriendsViewController: UIViewController {
         self.performSegue(withIdentifier: "SearchForFriendsSegue", sender: self)
     }
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "BackToSearchForFriendsSegue", sender: self)
+    }
 }

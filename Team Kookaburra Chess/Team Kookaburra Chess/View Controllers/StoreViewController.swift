@@ -18,4 +18,7 @@ class StoreViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "BackFromSearchForFriendsSegue", sender: self)
+    }
 }

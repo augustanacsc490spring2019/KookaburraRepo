@@ -26,4 +26,7 @@ class MyStatsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "BackFromStoreSegue", sender: self)
+    }
 }
