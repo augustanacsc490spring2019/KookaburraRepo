@@ -61,8 +61,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DR-cL-FoF">
-                                <rect key="frame" x="128" y="285" width="159" height="51"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DR-cL-FoF">
+                                <rect key="frame" x="128" y="246" width="159" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="My Friends ">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,7 +71,7 @@
                                     <action selector="myFriendButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="VPP-nR-2LK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBA-Qs-yjW">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBA-Qs-yjW">
                                 <rect key="frame" x="171" y="348" width="73" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Store">
@@ -81,7 +81,7 @@
                                     <action selector="storeButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="D6H-Wp-uNk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vba-gz-8aH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vba-gz-8aH">
                                 <rect key="frame" x="147" y="451" width="121" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="My Stats">
@@ -91,7 +91,7 @@
                                     <action selector="myStatsButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="dBa-4o-C6L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APm-Lx-Pis">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APm-Lx-Pis">
                                 <rect key="frame" x="178" y="553" width="59" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Play">
@@ -101,7 +101,7 @@
                                     <action selector="playButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="RcO-Rd-Axu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVv-WH-LuU">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVv-WH-LuU">
                                 <rect key="frame" x="139" y="638" width="136" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="QuickTest">
@@ -157,6 +157,7 @@
                             <constraint firstItem="RBA-Qs-yjW" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="171" id="qEu-o9-Z2A"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="wVv-WH-LuU" secondAttribute="trailing" constant="139" id="vba-80-ER3"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="5yB-Xf-8pG" secondAttribute="trailing" constant="20" id="wZS-QP-IX9"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="wVv-WH-LuU" secondAttribute="bottom" constant="173" id="wrz-O4-vcd"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="RBA-Qs-yjW" secondAttribute="trailing" constant="170" id="x9r-tk-OkR"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="APm-Lx-Pis" secondAttribute="trailing" constant="177" id="zWA-TO-nPP"/>
                         </constraints>
@@ -719,6 +720,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="DEn-oN-FRL"/>
         <segue reference="063-Rw-GLs"/>
-        <segue reference="qvY-Pk-bhk"/>
+        <segue reference="DDD-cs-UHp"/>
     </inferredMetricsTieBreakers>
 </document>
