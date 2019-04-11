@@ -54,13 +54,14 @@ class ChessVC: UIViewController {
         chessBoard.delegate = self
         drawBoard()
         setupViews()
-        print("White Formation: \(whiteFormation)")
-        print("Black Formation: \(blackFormation)")
+        //print("White Formation: \(whiteFormation)")
+        //print("Black Formation: \(blackFormation)")
     }
     
     func drawBoard() {
         let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
         boardCells = Array(repeating: oneRow, count: 8)
+        chessBoard.takeFormations(black: blackFormation, white: whiteFormation)
         let cellDimension = (view.frame.size.width - 0) / 8
         var xOffset: CGFloat = 0
         var yOffset: CGFloat = 100
