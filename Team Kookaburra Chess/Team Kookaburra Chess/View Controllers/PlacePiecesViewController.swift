@@ -67,7 +67,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         drawBoard()
         piecePicker.delegate = self
         piecePicker.dataSource = self
-        pickerData = ["Empty", "King", "Pawn", "Griffin"]
+        pickerData = ["Empty", "King", "Dragon Rider", "Pawn", "Griffin"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -168,25 +168,21 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             }
         }
         if (playerPoints + cost) > 450 {
-            NSLog("Too many points spent")
-            //change the tip label
-            //show a notification, "you don't have enough points"
+            //NSLog("Too many points spent")
+            tipLabel.text = "Not enough points for that piece"
         } else{
             NSLog("check if the piece is illegally placed")
             //check if the piece is illegally placed
-            //            if ((chosenPiece.type == .dragonRider) || (highlightedCell.row == 2)){
-            //                if chosenPiece.type == .dragonRider && highlightedCell.row < 2{
-            //                    NSLog("Dragonriders can only be in the back row")
-            //                    //change the tip label
-            //                    //show a notification, "piece can't be placed because of rule"
-            //                } //else if highlightedCell.row == 2 && !secondRowFull(){
-            //                //change the tip label
-            //                //show a notification, "piece can't be placed because of rule"
-            //                //}
-            //            } else {//place the piece
-            //if chosenPiece.row > -1{//there is actually a piece selected
-            // highlightedCell.piece.type = chosenPiece.type
-            // highlightedCell.piece.setupSymbol()
+            if ((chosenPiece.type == .dragonRider) || (highlightedCell.row == 2)){
+                if chosenPiece.type == .dragonRider && highlightedCell.row < 2{
+                                NSLog("Dragonriders can only be in the back row")
+                                //change the tip label
+                                //show a notification, "piece can't be placed because of rule"
+                } //else if highlightedCell.row == 2 && !secondRowFull(){
+                            //change the tip label
+                            //show a notification, "piece can't be placed because of rule"
+                //}
+            }
             chosenPiece.row = highlightedCell.row
             chosenPiece.col = highlightedCell.column
             highlightedCell.configureCell(forPiece: chosenPiece)
@@ -322,6 +318,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             piece.type = .pawn
         } else if string == "Griffin"{
             piece.type = .griffin
+        } else if string == "Dragon Rider"{
+            piece.type = .dragonRider
         }
         return piece
     }
@@ -329,18 +327,99 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func getInfo(piece: ChessPiece) -> String {
         NSLog("getting info")
         var string = ""
-        if piece.type == .king{
+        
+        switch piece.type{
+        case .king:
             string = "Can move and attack one space in every direction. The game ends when a player runs out of kings. You need to place at least one of them or a superking to begin the game."
-        } else if piece.type == .pawn{
-            string = "Can move two spaces on its first turn. After that, it can move one space forward. Attacks one space diagonally forward. The basic piece in standard chess. If it reaches the far end of the game board, it can be turned into a more powerful piece"
-        } else if piece.type == .queen{
-            string = "Can move infinitely vertically, horizontally, and diagonally. The most powerful piece in standard chess."
-        } else if piece.type == .griffin{
+        case .dummy:
+            string = ""
+        case .unicorn:
+            string = "Can move as both a queen and a knight, making it very difficult for opponents to capture."
+        case .superKing:
+            string = "Counts as a king, but can move like a queen. You need to place at least one of them or a king to begin the game."
+        case .griffin:
             string = "Moves one space diagonally, then infinitely vertically and horizontally away from that space. Very powerfuly in the end game with lots of open space."
-        }
-        return string
+        case .queen:
+            string = "Can move infinitely vertically, horizontally, and diagonally. The most powerful piece in standard chess."
+        case .mage:
+            string = "Can move like both a bishop and a knight."
+        case .centaur:
+            string = "Can move like both a rook and a knight."
+        case .dragonRider:
+            string = "Moves like a knight, but can continue in that direction infinitely. This piece is so powerful that it can only be placed in the back row."
+        case .bombard:
+            string = "Can attack eny space that is 2 spaces away in any direction but can only move 1 space at a time when not attacking."
+        case .manticore:
+            string = "Can move one or two spaces in any direction, but can only attack one space away, like a king."
+        case .ghostQueen:
+            string = "Moves like a queen, but can't attack enemy pieces. Useful for protecting more valuable pieces."
+        case .rook:
+            string = "Can move infinitely in horizontal and vertical lines. Placed in the corners in regular chess."
+        case .knight:
+            string = "Jumps to spaces that are two spaces up and one space over, or two spaces over and one space up. Placed next to the corners in regular chess."
+        case .bishop:
+            string = "Can move infinitely in diagonal lines. Placed next to the king and queen in regular chess."
+        case .basilisk:
+            string = "Can move and attack one space away like a king, and can also move infinitely in a horizontal line."
+        case .fireDragon:
+            string = "Moves like a bishop, but attacks like a rook."
+        case .iceDragon:
+            string = "Moves like a rook, but attacks like a bishop."
+        case .minotaur:
+            string = "Jumps two or three spaces away vertically or diagonally."
+        case .monopod:
+            string = "Jumps to any space two spaces away."
+        case .ship:
+            string = "Can move one space diagonally, then infinitely vertically from that space."
+        case .ballista:
+            string = "Moves vertically towards the opposing side but diagonally towards yours."
+        case .batteringRam:
+            string = "Moves vertically and diagonally, but only towards the opposing side. Good at taking out high-value opposing pieces early in the game."
+        case .trebuchet:
+            string = "Moves diagonally towards the opposing side and vertically towards yours."
+        case .leftElf:
+            string = "Going left, it moves like a bishop. Going right, it moves like a knight."
+        case .rightElf:
+            string = "Going right, it moves like a bishop. Going left, it moves like a knight."
+        case .camel:
+            string = "Moves like a knight, but jumping 3 spaces and over at a time instead of 2."
+        case .scout:
+            string = "Jumps like a knight towards the opposing side and can move one space backwards. Can't jump backwards or laterally."
+        case .ogre:
+            string = "Moves one space diagonally."
+        case .orcWarrior:
+            string = "Moves one space vertically or horizontally."
+        case .elephant:
+            string = "Moves one space vertically or horizontally, but attacks one space diagonally."
+        case .manAtArms:
+            string = "Moves one space diagonally, but attacks one space vertically or horizontally."
+        case .swordsman:
+            string = "Can move one space directly forward or diagonally towads the opposing side."
+        case .pikeman:
+            string = "Jumps two spaces horizontally or vertically."
+        case .archer:
+            string = "Jumps two spaces diagonally."
+        case .royalGuard:
+            string = "Moves just like a king, but doesn't count as a king."
+        case .demon:
+            string = "Can move one space horizontally, but attacks the three spaces in front of and behind it."
+        case .pawn:
+            string = "Can move two spaces on its first turn. After that, it can move one space forward. Attacks one space diagonally forward. The basic piece in standard chess. If it reaches the far end of the game board, it can be turned into a more powerful piece"
+        case .monk:
+            string = "Like a pawn, but both moves and attacks diagonally."
+        case .dwarf:
+            string = "Like a pawn, but moves diagonally and attacks forward."
+        case .gargoyle:
+            string = "Can't move unless attacking, but can attack any adjacent space."
+        case .goblin:
+            string = "Like a pawn, but moves and attacks forwards."
+        case .footSoldier:
+            string = "Like a pawn, but moves two spaces at a time and attacks horizontally instead of diagonally."
+        default:
+            string = ""
     }
-    
+    return string
+}
 }
 
 extension PlacePiecesViewController: BoardCellDelegate {
@@ -360,4 +439,3 @@ extension PlacePiecesViewController: BoardCellDelegate {
     }
     
 }
-
