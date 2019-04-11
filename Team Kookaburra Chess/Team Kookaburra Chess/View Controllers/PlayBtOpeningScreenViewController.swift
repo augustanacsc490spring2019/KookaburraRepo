@@ -25,4 +25,9 @@ class PlayBtOpeningScreenViewController: UIViewController {
     @IBAction func newGameButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "NewGameSegue", sender: self)
     }
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "RandomOpponentSegue", sender: self)
+    }
+    
 }

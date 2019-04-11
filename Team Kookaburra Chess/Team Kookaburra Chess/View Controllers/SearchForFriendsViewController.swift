@@ -23,7 +23,7 @@ class SearchForFriendsViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "BackFromMyStatsSegue", sender: self)
+        self.performSegue(withIdentifier: "BackFromPlaySceneSegue", sender: self)
     }
     
 }

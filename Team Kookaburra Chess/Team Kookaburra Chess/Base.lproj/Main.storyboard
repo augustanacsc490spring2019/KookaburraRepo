@@ -627,13 +627,27 @@
                                     <action selector="newGameButtonPressed:" destination="wYb-JX-wYm" eventType="touchUpInside" id="u0o-qO-4t3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUH-gO-QMi">
+                                <rect key="frame" x="80" y="95" width="30" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="wYb-JX-wYm" eventType="touchUpInside" id="lbp-xn-NFg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="fgv-pD-VU0" firstAttribute="top" secondItem="zUH-gO-QMi" secondAttribute="bottom" constant="136" id="1eq-5A-Cvz"/>
+                            <constraint firstItem="zUH-gO-QMi" firstAttribute="leading" secondItem="YOc-wc-gpa" secondAttribute="leading" constant="80" id="2AJ-2N-cpX"/>
                             <constraint firstItem="fgv-pD-VU0" firstAttribute="top" secondItem="YOc-wc-gpa" secondAttribute="top" constant="235" id="464-HI-yMU"/>
                             <constraint firstItem="Pd5-dy-hU7" firstAttribute="bottom" secondItem="fgv-pD-VU0" secondAttribute="bottom" constant="170" id="55b-yt-vES"/>
                             <constraint firstItem="YOc-wc-gpa" firstAttribute="trailing" secondItem="fgv-pD-VU0" secondAttribute="trailing" constant="71" id="8QJ-jj-6b7"/>
+                            <constraint firstItem="YOc-wc-gpa" firstAttribute="trailing" secondItem="zUH-gO-QMi" secondAttribute="trailing" constant="304" id="ACr-Gj-0Iw"/>
                             <constraint firstItem="fgv-pD-VU0" firstAttribute="leading" secondItem="YOc-wc-gpa" secondAttribute="leading" constant="72" id="ASO-rK-t02"/>
+                            <constraint firstItem="zUH-gO-QMi" firstAttribute="top" secondItem="YOc-wc-gpa" secondAttribute="top" constant="51" id="W3l-0f-APh"/>
                             <constraint firstItem="Pd5-dy-hU7" firstAttribute="leading" secondItem="YOc-wc-gpa" secondAttribute="leading" constant="147" id="wMh-cb-6Sk"/>
                             <constraint firstItem="YOc-wc-gpa" firstAttribute="trailing" secondItem="Pd5-dy-hU7" secondAttribute="trailing" constant="147" id="zEj-JK-2I0"/>
                         </constraints>
@@ -642,6 +656,7 @@
                     <connections>
                         <segue destination="eT3-ZL-FIO" kind="showDetail" identifier="ContinueExistingGameSegue" id="qvY-Pk-bhk"/>
                         <segue destination="5hY-vZ-QbG" kind="showDetail" identifier="NewGameSegue" id="063-Rw-GLs"/>
+                        <segue destination="BV1-FR-VrT" kind="showDetail" identifier="BackFromPlaySceneSegue" id="fsH-oz-T1c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VWr-Lb-DCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -802,6 +817,6 @@
         <segue reference="063-Rw-GLs"/>
         <segue reference="qvY-Pk-bhk"/>
         <segue reference="jxb-bB-op7"/>
-        <segue reference="AP6-60-clE"/>
+        <segue reference="fsH-oz-T1c"/>
     </inferredMetricsTieBreakers>
 </document>
