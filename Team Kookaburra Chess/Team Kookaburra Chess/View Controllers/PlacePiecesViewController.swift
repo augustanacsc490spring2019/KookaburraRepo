@@ -75,12 +75,12 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "QuickTestSegue") {
+        if (segue.identifier == "LocalMatchSegue") {
             let vc = segue.destination as! ChessVC
             vc.playerColor = playerColor
             if playerColor == .white{
                 vc.whiteFormation = boardCells
-            } else {//playerColor == .black
+            //} else {//playerColor == .black
                 vc.blackFormation = boardCells
             }
         }
@@ -362,6 +362,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func readyButtonPressed(_ sender: Any) {
         //check if the player has at least one king
+        if numKings(color: playerColor) > 0{
         //check if the player has used up enough points (at least 440)
         if playerPoints < 440{
             //if not, ask them if they're sure they want to ready up
@@ -377,6 +378,9 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             return
         }
         self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)//start the game with the current piece placement
+        } else {
+            tipLabel.text = "Place a king, then you can play!"
+        }
     }
     
     //updates the screen when the uipicker changes
