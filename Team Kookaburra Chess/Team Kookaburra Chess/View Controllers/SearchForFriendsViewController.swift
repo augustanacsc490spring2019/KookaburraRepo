@@ -22,4 +22,8 @@ class SearchForFriendsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "BackFromMyStatsSegue", sender: self)
+    }
+    
 }
