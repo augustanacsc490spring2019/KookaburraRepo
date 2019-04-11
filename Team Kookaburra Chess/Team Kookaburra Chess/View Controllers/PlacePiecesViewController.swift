@@ -176,27 +176,41 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             if ((chosenPiece.type == .dragonRider)){
 
                 if  highlightedCell.row != 2{
-                                NSLog("Dragonriders can only be in the back row")
+                        //NSLog("Dragonriders can only be in the back row")
+                        tipLabel.text = "Dragonriders can only be in the back row."
                     return
-                                //change the tip label
-                                //show a notification, "piece can't be placed because of rule"
                 } //else if highlightedCell.row == 2 && !secondRowFull(){
                             //change the tip label
                             //show a notification, "piece can't be placed because of rule"
                 //}
             }
+            if highlightedCell.row == 0{
+                //print("front row")
+                if chosenPiece.type != .dummy{
+                    //print("not empty piece")
+                    if secondRowFull() == false{
+                        tipLabel.text = "Can't place in front row until 2nd row is full."
+                        return
+                    }
+                }
+            } else if highlightedCell.row == 1{
+                if chosenPiece.type == .dummy{
+                    self.clearFrontRow()
+                    self.tipLabel.text = "Fill the second row to be able place in the front row"
+                }
+            }
             chosenPiece.row = highlightedCell.row
             chosenPiece.col = highlightedCell.column
             highlightedCell.configureCell(forPiece: chosenPiece)
             var changedBoardCell = self.boardCells[highlightedCell.row][highlightedCell.column];
-            NSLog("boardcell changed: \(changedBoardCell.piece.type)");
+            //NSLog("boardcell changed: \(changedBoardCell.piece.type)");
             //add summon points
-            print("points before: \(playerPoints)")
+            //print("points before: \(playerPoints)")
             playerPoints = calculateCost()
-            print("points after: \(playerPoints)")
+            //print("points after: \(playerPoints)")
             pointsRemaining.text = "Points spent: \(playerPoints)"
             //chosenPieces[highlightedCell.row][highlightedCell.column] = chosenPiece
-            NSLog("chosen pieces: \(chosenPieces)")
+            //NSLog("chosen pieces: \(chosenPieces)")
             //}
             //}
         }
@@ -209,6 +223,62 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             return true
         }
         return false
+    }
+    
+    func secondRowFull() -> Bool{
+        for col in 0...7 {
+            let piece = boardCells[1][col].piece
+            if (piece.type == .dummy) {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func clearFrontRow(){
+        let numRows:Int = 8
+        let numCols:Int = 8
+        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
+        self.boardCells = Array(repeating: oneRow, count: numRows)
+        let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
+        var xOffset: CGFloat = 0
+        var yOffset: CGFloat = 0
+        let start_row = 0
+        let end_row = 0
+        for row in start_row...end_row {
+            
+            yOffset = (CGFloat(row - start_row) * cellDimension) + 200
+            
+            for col in 0...7 {
+                
+                xOffset = (CGFloat(col) * cellDimension) + 0
+                
+                // create a piece
+                var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
+                
+                // create a cell at this location with this piece, and set color
+                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
+                
+                // NSLog("Board cells at row, col: \(boardCells[row][col])")
+                
+                cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
+                if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
+                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
+                } else {
+                    cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
+                }
+                
+                cell.removeHighlighting()
+                
+                // wire up the cell
+                cell.delegate = self
+                chessBoard.board[row][col] = piece
+                self.boardCells[row][col] = cell
+                
+                
+                view.addSubview(cell)
+            }
+        }
     }
     
     func calculateCost() -> Int{
