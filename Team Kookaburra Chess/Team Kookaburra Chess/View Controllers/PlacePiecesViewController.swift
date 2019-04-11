@@ -83,7 +83,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             yourColor.text = "You are black this match"
         }
         tipLabel.text = "Select a space and start placing pieces!"
-        
+        let piece = getPiece(string: pickerString)
+        pieceInfo.text = getInfo(piece: piece)
     }
     
     func drawBoard(){
@@ -148,12 +149,9 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func clearPieces(){
-        for row in 0...2{
-            for col in 0...7{
-                let currentCell = self.boardCells[row][col]
-                currentCell.piece.type = .dummy
-            }
-        }
+        drawBoard()
+        playerPoints = calculateCost()
+        pointsRemaining.text = "Points spent: \(playerPoints)"
     }
     
     
@@ -189,8 +187,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //if chosenPiece.row > -1{//there is actually a piece selected
             // highlightedCell.piece.type = chosenPiece.type
             // highlightedCell.piece.setupSymbol()
-            chosenPiece.row = highlightedCell.row;
-            chosenPiece.col = highlightedCell.column;
+            chosenPiece.row = highlightedCell.row
+            chosenPiece.col = highlightedCell.column
             highlightedCell.configureCell(forPiece: chosenPiece)
             var changedBoardCell = self.boardCells[highlightedCell.row][highlightedCell.column];
             NSLog("boardcell changed: \(changedBoardCell.piece.type)");
