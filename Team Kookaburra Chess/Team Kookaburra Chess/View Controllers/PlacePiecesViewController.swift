@@ -196,7 +196,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             NSLog("boardcell changed: \(changedBoardCell.piece.type)");
             //add summon points
             print("points before: \(playerPoints)")
-            playerPoints = playerPoints + chosenPiece.summonCost
+            playerPoints = calculateCost()
             print("points after: \(playerPoints)")
             pointsRemaining.text = "Points spent: \(playerPoints)"
             //chosenPieces[highlightedCell.row][highlightedCell.column] = chosenPiece
@@ -205,6 +205,34 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //}
         }
         
+    }
+    
+    func calculateCost() -> Int{
+        var cost = 0
+        var allPieces = [ChessPiece]()
+        var kingCount = 0
+        for row in 0...7 {
+            for col in 0...7 {
+                let piece = boardCells[row][col].piece
+                if (piece.type != .dummy) {
+                    allPieces.append(piece)
+                }
+            }
+        }
+        
+        for piece in allPieces {
+            if piece.type == .king{
+                if kingCount > 0{
+                    cost = cost + 60
+                } else {
+                    cost = cost + 40
+                }
+                kingCount = kingCount + 1
+            } else {
+                cost = cost + piece.summonCost
+            }
+        }
+        return cost
     }
     
     
@@ -281,9 +309,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //assign cost to the top label
         pieceCost.text = "Cost: \(piece.summonCost) points"
         if piece.type == .king{
-            if numKings(color: playerColor) > 0{
-                pieceCost.text = "Cost: \(piece.summonCost + 20) points"
-            }
+            pieceCost.text = "Cost: 40 for the 1st, 60 after"
         }
     }
     
@@ -322,7 +348,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
 extension PlacePiecesViewController: BoardCellDelegate {
     
     func didSelect(cell: BoardCell, atRow row: Int, andColumn col: Int) {
-        NSLog("I have been chosen! \(row), \(col)")
+        //NSLog("I have been chosen! \(row), \(col)")
         //print("Selected cell at: \(row), \(col)")
         //chessBoard.board[row][col].showPieceInfo()
         // Check if making a move (if had selected piece before)
