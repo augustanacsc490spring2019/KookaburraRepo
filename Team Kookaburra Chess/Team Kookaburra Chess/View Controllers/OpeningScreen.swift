@@ -38,7 +38,7 @@ class OpeningScreen: UIViewController {
         let points = UserDefaults.standard.integer(forKey: "rankingPoints")
         let rank = UserDefaults.standard.integer(forKey: "playerRank")
         //levels the player up if they get enough points
-        if points > 15{
+        if points > 14{
             if rank == 3{
                 //gold + 1000
             } else {
@@ -119,10 +119,11 @@ class OpeningScreen: UIViewController {
     
     @IBAction func rankPointsTest(_ sender: Any) {
         NSLog("Points please")
-         var points = UserDefaults.standard.integer(forKey: "rankingPoints")
+        var points = UserDefaults.standard.integer(forKey: "rankingPoints")
         points = points + 2
         UserDefaults.standard.set(points, forKey: "rankingPoints")
         UserDefaults.standard.synchronize()
+        self.viewDidLoad()
     }
     
 }
