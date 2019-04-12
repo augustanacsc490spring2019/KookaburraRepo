@@ -11,7 +11,6 @@ import Foundation
 
 class OpeningScreen: UIViewController {
     
-    
     @IBOutlet weak var gameTitle: UILabel!
     @IBOutlet weak var labelMinus10: UILabel!
     @IBOutlet weak var label15: UILabel!
@@ -21,12 +20,17 @@ class OpeningScreen: UIViewController {
     @IBOutlet weak var levelUpBar: UIProgressView!
     @IBOutlet weak var levelDownBar: UIProgressView!
     
-    
     override func viewDidLoad(){
+//        UserDefaults.standard.set(0, forKey: "playerGold")
+//        UserDefaults.standard.set(0, forKey: "playerRank")
+//        UserDefaults.standard.set(0, forKey: "rankingPoints")
+        var gold = UserDefaults.standard.integer(forKey: "playerGold")
+        print("Userdefault for playergold: \(gold)")
+        gold = gold + 10
+        UserDefaults.standard.set(gold, forKey: "playerGold")
+        gold = UserDefaults.standard.integer(forKey: "playerGold")
+        print("Userdefault for playergold: \(gold)")
         super.viewDidLoad()
-        UserDefaults.standard.set(0, forKey: "playerGold")
-        UserDefaults.standard.set(0, forKey: "playerRank")
-        UserDefaults.standard.set(0, forKey: "rankingPoints")
         UserDefaults.standard.synchronize()
         labelMinus10.text = "-10"
         label15.text = "15"

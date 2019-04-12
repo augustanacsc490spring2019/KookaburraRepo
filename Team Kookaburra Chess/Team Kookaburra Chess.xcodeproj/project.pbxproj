@@ -123,6 +123,7 @@
 		25DEFD45224896EF0024A78A /* blackGuard.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD44224896EF0024A78A /* blackGuard.png */; };
 		25DEFD47224896F80024A78A /* blackSwordsman.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD46224896F80024A78A /* blackSwordsman.png */; };
 		25DEFD492248970A0024A78A /* blackPikeman.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD482248970A0024A78A /* blackPikeman.png */; };
+		25F3DDEA22614B7000DA075F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F3DDE922614B7000DA075F /* CloudKit.framework */; };
 		25FFCD5D2256D3F400C81196 /* alchemistIconHD.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD5B2256D3F300C81196 /* alchemistIconHD.png */; };
 		25FFCD5E2256D3F400C81196 /* alchemistIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD5C2256D3F400C81196 /* alchemistIcon.png */; };
 		25FFCD602256D3FD00C81196 /* loadingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD5F2256D3FD00C81196 /* loadingIcon.png */; };
@@ -288,6 +289,7 @@
 		25DEFD44224896EF0024A78A /* blackGuard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGuard.png; sourceTree = "<group>"; };
 		25DEFD46224896F80024A78A /* blackSwordsman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackSwordsman.png; sourceTree = "<group>"; };
 		25DEFD482248970A0024A78A /* blackPikeman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPikeman.png; sourceTree = "<group>"; };
+		25F3DDE922614B7000DA075F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		25FFCD5B2256D3F300C81196 /* alchemistIconHD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alchemistIconHD.png; sourceTree = "<group>"; };
 		25FFCD5C2256D3F400C81196 /* alchemistIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alchemistIcon.png; sourceTree = "<group>"; };
 		25FFCD5F2256D3FD00C81196 /* loadingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingIcon.png; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				643430AB2253C50900E0CB24 /* GameKit.framework in Frameworks */,
+				25F3DDEA22614B7000DA075F /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +525,7 @@
 		643430A92253C50900E0CB24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25F3DDE922614B7000DA075F /* CloudKit.framework */,
 				643430AA2253C50900E0CB24 /* GameKit.framework */,
 			);
 			name = Frameworks;
@@ -619,6 +623,9 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
