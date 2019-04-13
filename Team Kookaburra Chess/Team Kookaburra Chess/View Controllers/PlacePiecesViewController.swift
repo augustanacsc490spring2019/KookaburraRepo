@@ -115,7 +115,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         let end_row = 2
         for row in start_row...end_row {
             
-            yOffset = (CGFloat(row - start_row) * cellDimension) + 200
+            yOffset = (CGFloat(row - start_row) * cellDimension) + cellDimension*3//200
             
             for col in 0...7 {
                 
