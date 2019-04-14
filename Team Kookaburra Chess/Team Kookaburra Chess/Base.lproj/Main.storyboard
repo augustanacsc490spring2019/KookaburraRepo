@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cathedral.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5yB-Xf-8pG">
-                                <rect key="frame" x="20" y="44" width="374" height="480"/>
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="6T2-Ap-xkx"/>
                                 </constraints>
@@ -61,7 +61,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DR-cL-FoF">
-                                <rect key="frame" x="128" y="-92" width="158" height="51"/>
+                                <rect key="frame" x="128" y="246" width="158" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="My Friends ">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,7 +71,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBA-Qs-yjW">
-                                <rect key="frame" x="171" y="10" width="72" height="51"/>
+                                <rect key="frame" x="171" y="348" width="72" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Store">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -81,7 +81,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vba-gz-8aH">
-                                <rect key="frame" x="147" y="113" width="120" height="51"/>
+                                <rect key="frame" x="147" y="451" width="120" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="My Stats">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -91,7 +91,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APm-Lx-Pis">
-                                <rect key="frame" x="178" y="215" width="58" height="51"/>
+                                <rect key="frame" x="178" y="553" width="58" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Play">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,7 +101,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVv-WH-LuU">
-                                <rect key="frame" x="139" y="300" width="136" height="51"/>
+                                <rect key="frame" x="139" y="638" width="136" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="QuickTest">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -129,7 +129,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym1-xg-YyG" userLabel="Rank me up some!">
-                                <rect key="frame" x="184" y="-199" width="46" height="30"/>
+                                <rect key="frame" x="184" y="139" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="rankPointsTest:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WRh-s5-icn"/>
@@ -325,13 +325,27 @@
                                     <action selector="playButtonPressed:" destination="Vfk-sV-Lat" eventType="touchUpInside" id="qp6-iQ-7LW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAi-Vh-ouV">
+                                <rect key="frame" x="47" y="74" width="30" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="Vfk-sV-Lat" eventType="touchUpInside" id="Prj-wR-hHx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ivs-hH-Rnd" firstAttribute="trailing" secondItem="cAi-Vh-ouV" secondAttribute="trailing" constant="337" id="Akn-E1-JLj"/>
                             <constraint firstItem="DcI-GE-xKO" firstAttribute="top" secondItem="Ivs-hH-Rnd" secondAttribute="top" constant="95" id="COy-4Z-zOD"/>
+                            <constraint firstItem="cAi-Vh-ouV" firstAttribute="top" secondItem="Ivs-hH-Rnd" secondAttribute="top" constant="30" id="Eag-Yt-Pjb"/>
                             <constraint firstItem="Ivs-hH-Rnd" firstAttribute="trailing" secondItem="rsI-iZ-rKU" secondAttribute="trailing" constant="175" id="HN7-np-RHv"/>
+                            <constraint firstItem="Ivs-hH-Rnd" firstAttribute="bottom" secondItem="cAi-Vh-ouV" secondAttribute="bottom" constant="740" id="LXI-pj-AUn"/>
                             <constraint firstItem="DcI-GE-xKO" firstAttribute="leading" secondItem="Ivs-hH-Rnd" secondAttribute="leading" constant="153" id="Qlc-e3-1I2"/>
                             <constraint firstItem="Ivs-hH-Rnd" firstAttribute="bottom" secondItem="rsI-iZ-rKU" secondAttribute="bottom" constant="163" id="R2d-xH-24p"/>
+                            <constraint firstItem="cAi-Vh-ouV" firstAttribute="leading" secondItem="Ivs-hH-Rnd" secondAttribute="leading" constant="47" id="Rd8-Jd-mDf"/>
                             <constraint firstItem="Ivs-hH-Rnd" firstAttribute="trailing" secondItem="DcI-GE-xKO" secondAttribute="trailing" constant="153" id="mSv-h2-UqU"/>
                             <constraint firstItem="rsI-iZ-rKU" firstAttribute="leading" secondItem="Ivs-hH-Rnd" secondAttribute="leading" constant="175" id="qMs-AM-16b"/>
                         </constraints>
@@ -339,11 +353,12 @@
                     </view>
                     <connections>
                         <segue destination="eT3-ZL-FIO" kind="showDetail" identifier="PlayRandomOppSegue" id="9Dg-iH-Dha"/>
+                        <segue destination="5hY-vZ-QbG" kind="showDetail" identifier="BackToTypeGameSegue" id="6bl-pv-SHr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QtV-L6-Keu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2723" y="-232"/>
+            <point key="canvasLocation" x="-2649" y="-127"/>
         </scene>
         <!--PlacePiecesViewController-->
         <scene sceneID="ChV-R6-9Dt">
@@ -850,8 +865,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="DEn-oN-FRL"/>
-        <segue reference="063-Rw-GLs"/>
-        <segue reference="DDD-cs-UHp"/>
+        <segue reference="6bl-pv-SHr"/>
+        <segue reference="9Dg-iH-Dha"/>
         <segue reference="x71-Kx-mDm"/>
         <segue reference="fsH-oz-T1c"/>
     </inferredMetricsTieBreakers>
