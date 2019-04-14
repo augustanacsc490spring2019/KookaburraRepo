@@ -230,7 +230,7 @@
 		259FED9F22493C1E006BE3E8 /* blackIceDragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackIceDragon.png; sourceTree = "<group>"; };
 		259FEDA122493C24006BE3E8 /* blackMinotaur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMinotaur.png; sourceTree = "<group>"; };
 		259FEDA322493C3C006BE3E8 /* blackMonopod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMonopod.png; sourceTree = "<group>"; };
-		259FEDA5224949DE006BE3E8 /* blackBallista.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackBallista.png; path = Images/blackBallista.png; sourceTree = "<group>"; };
+		259FEDA5224949DE006BE3E8 /* blackBallista.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBallista.png; sourceTree = "<group>"; };
 		259FEDA7224949ED006BE3E8 /* blackShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackShip.png; sourceTree = "<group>"; };
 		259FEDA9224949F3006BE3E8 /* blackBatteringRam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBatteringRam.png; sourceTree = "<group>"; };
 		259FEDAD2249BF65006BE3E8 /* blackRightyElf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackRightyElf.png; sourceTree = "<group>"; };
@@ -379,16 +379,15 @@
 				251D1F972240757800AD7CE4 /* chessVC.swift */,
 				251D1F99224075CE00AD7CE4 /* chessView.swift */,
 				251D1F9B2240760B00AD7CE4 /* history.swift */,
+				251D1F5D22403DAD00AD7CE4 /* GameScene.swift */,
 				251D202B22431F2C00AD7CE4 /* Images */,
 				251D1F8D2240743D00AD7CE4 /* BoardCelll.swift */,
-				259FEDA5224949DE006BE3E8 /* blackBallista.png */,
 				251D1F8F2240746C00AD7CE4 /* BoardIndex.swift */,
 				251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */,
 				251D1F91224074A800AD7CE4 /* chessBoard.swift */,
 				251D1F5922403DAD00AD7CE4 /* GameScene.sks */,
 				88E34F37225029EE007ED2F5 /* View Controllers */,
 				251D1F5B22403DAD00AD7CE4 /* Actions.sks */,
-				251D1F5D22403DAD00AD7CE4 /* GameScene.swift */,
 				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
 				25FFCD632256D6F900C81196 /* Launch Screen.storyboard */,
 				251D1F6422403DAE00AD7CE4 /* Assets.xcassets */,
@@ -417,6 +416,7 @@
 		251D202B22431F2C00AD7CE4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				259FEDA5224949DE006BE3E8 /* blackBallista.png */,
 				25FFCD5C2256D3F400C81196 /* alchemistIcon.png */,
 				25FFCD5B2256D3F300C81196 /* alchemistIconHD.png */,
 				25FFCD6D2256E5BF00C81196 /* alchemistIcon80.png */,
