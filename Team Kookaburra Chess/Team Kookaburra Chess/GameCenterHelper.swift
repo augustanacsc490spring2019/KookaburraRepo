@@ -46,13 +46,13 @@ final class GameCenterHelper: NSObject {
     
     var currentMatch: GKTurnBasedMatch?
     
-//    var canTakeTurnForCurrentMatch: Bool {
-//        guard let match = currentMatch else {
-//            return true
-//        }
-//
-//        return match.isLocalPlayersTurn
-//    }
+    var canTakeTurnForCurrentMatch: Bool {
+        guard let match = currentMatch else {
+            return true
+        }
+
+        return match.isLocalPlayersTurn
+    }
     
     override init() {
         super.init()
@@ -92,42 +92,42 @@ final class GameCenterHelper: NSObject {
         viewController?.present(vc, animated: true)
     }
     
-//    func endTurn(_ model: GameModel, completion: @escaping CompletionBlock) {
-//        guard let match = currentMatch else {
-//            completion(GameCenterHelperError.matchNotFound)
-//            return
-//        }
-//
-//        do {
-//            match.message = model.messageToDisplay
-//
-//            match.endTurn(
-//                withNextParticipants: match.others,
-//                turnTimeout: GKExchangeTimeoutDefault,
-//                match: try JSONEncoder().encode(model),
-//                completionHandler: completion
-//            )
-//        } catch {
-//            completion(error)
-//        }
-//    }
+    func endTurn(_ model: GameModel, completion: @escaping CompletionBlock) {
+        guard let match = currentMatch else {
+            completion(GameCenterHelperError.matchNotFound)
+            return
+        }
+
+        do {
+            match.message = model.messageToDisplay
+
+            match.endTurn(
+                withNextParticipants: match.others,
+                turnTimeout: GKExchangeTimeoutDefault,
+                match: try JSONEncoder().encode(model),
+                completionHandler: completion
+            )
+        } catch {
+            completion(error)
+        }
+    }
     
-//    func win(completion: @escaping CompletionBlock) {
-//        guard let match = currentMatch else {
-//            completion(GameCenterHelperError.matchNotFound)
-//            return
-//        }
-//
-//        match.currentParticipant?.matchOutcome = .won
-//        match.others.forEach { other in
-//            other.matchOutcome = .lost
-//        }
-//
-//        match.endMatchInTurn(
-//            withMatch: match.matchData ?? Data(),
-//            completionHandler: completion
-//        )
-//    }
+    func win(completion: @escaping CompletionBlock) {
+        guard let match = currentMatch else {
+            completion(GameCenterHelperError.matchNotFound)
+            return
+        }
+
+        match.currentParticipant?.matchOutcome = .won
+        match.others.forEach { other in
+            other.matchOutcome = .lost
+        }
+
+        match.endMatchInTurn(
+            withMatch: match.matchData ?? Data(),
+            completionHandler: completion
+        )
+    }
 }
 
 extension GameCenterHelper: GKTurnBasedMatchmakerViewControllerDelegate {
@@ -141,20 +141,20 @@ extension GameCenterHelper: GKTurnBasedMatchmakerViewControllerDelegate {
 }
 
 extension GameCenterHelper: GKLocalPlayerListener {
-//    func player(_ player: GKPlayer, wantsToQuitMatch match: GKTurnBasedMatch) {
-//        let activeOthers = match.others.filter { other in
-//            return other.status == .active
-//        }
-//
-//        match.currentParticipant?.matchOutcome = .lost
-//        activeOthers.forEach { participant in
-//            participant.matchOutcome = .won
-//        }
-//
-//        match.endMatchInTurn(
-//            withMatch: match.matchData ?? Data()
-//        )
-//    }
+    func player(_ player: GKPlayer, wantsToQuitMatch match: GKTurnBasedMatch) {
+        let activeOthers = match.others.filter { other in
+            return other.status == .active
+        }
+        
+        match.currentParticipant?.matchOutcome = .lost
+        activeOthers.forEach { participant in
+            participant.matchOutcome = .won
+        }
+        
+        match.endMatchInTurn(
+            withMatch: match.matchData ?? Data()
+        )
+    }
     
     func player(_ player: GKPlayer, receivedTurnEventFor match: GKTurnBasedMatch, didBecomeActive: Bool) {
         if let vc = currentMatchmakerVC {

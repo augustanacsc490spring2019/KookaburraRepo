@@ -135,6 +135,8 @@
 		643430AB2253C50900E0CB24 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 643430AA2253C50900E0CB24 /* GameKit.framework */; };
 		6440829E22593E70006563AB /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6440829D22593E70006563AB /* GameCenterHelper.swift */; };
 		645068A5224D46E7006709A9 /* testRook.png in Resources */ = {isa = PBXBuildFile; fileRef = 251D202C22431F3800AD7CE4 /* testRook.png */; };
+		646A3EA52263E39C00378BEB /* GKTurnBasedMatch+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */; };
+		646A3EA72263E48700378BEB /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646A3EA62263E48700378BEB /* GameModel.swift */; };
 		88198249224E69D6008E8EFD /* cathedral.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88198248224E69D6008E8EFD /* cathedral.jpg */; };
 		8819824B224E7948008E8EFD /* MyFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824A224E7948008E8EFD /* MyFriendsViewController.swift */; };
 		8819824D224E7BBA008E8EFD /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824C224E7BBA008E8EFD /* StoreViewController.swift */; };
@@ -301,6 +303,8 @@
 		643430AA2253C50900E0CB24 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Team Kookaburra Chess.entitlements"; sourceTree = "<group>"; };
 		6440829D22593E70006563AB /* GameCenterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
+		646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GKTurnBasedMatch+Additions.swift"; sourceTree = "<group>"; };
+		646A3EA62263E48700378BEB /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		88198248224E69D6008E8EFD /* cathedral.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cathedral.jpg; sourceTree = "<group>"; };
 		8819824A224E7948008E8EFD /* MyFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewController.swift; sourceTree = "<group>"; };
 		8819824C224E7BBA008E8EFD /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -366,6 +370,8 @@
 			isa = PBXGroup;
 			children = (
 				6440829D22593E70006563AB /* GameCenterHelper.swift */,
+				646A3EA62263E48700378BEB /* GameModel.swift */,
+				646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */,
 				643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */,
 				251D1F952240751500AD7CE4 /* chessPiece.swift */,
 				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
@@ -809,6 +815,7 @@
 				8819824F224E7CAF008E8EFD /* MyStatsViewController.swift in Sources */,
 				88198251224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift in Sources */,
 				88E34F3B2250304E007ED2F5 /* PlacePiecesViewController.swift in Sources */,
+				646A3EA72263E48700378BEB /* GameModel.swift in Sources */,
 				889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */,
 				251D1F902240746C00AD7CE4 /* BoardIndex.swift in Sources */,
 				88E34F3922502A2D007ED2F5 /* SearchForFriendsViewController.swift in Sources */,
@@ -825,6 +832,7 @@
 				251D1F92224074A800AD7CE4 /* chessBoard.swift in Sources */,
 				251D1F9E22407A7700AD7CE4 /* AppDelegate.swift in Sources */,
 				251D1F982240757800AD7CE4 /* chessVC.swift in Sources */,
+				646A3EA52263E39C00378BEB /* GKTurnBasedMatch+Additions.swift in Sources */,
 				254815072252DF5D007C1174 /* LevelUpProgress.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
