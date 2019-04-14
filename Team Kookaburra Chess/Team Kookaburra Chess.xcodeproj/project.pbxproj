@@ -373,6 +373,7 @@
 				646A3EA62263E48700378BEB /* GameModel.swift */,
 				646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */,
 				643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */,
+				251D1F6922403DAE00AD7CE4 /* Info.plist */,
 				251D1F952240751500AD7CE4 /* chessPiece.swift */,
 				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
 				251D1F972240757800AD7CE4 /* chessVC.swift */,
@@ -391,7 +392,6 @@
 				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
 				25FFCD632256D6F900C81196 /* Launch Screen.storyboard */,
 				251D1F6422403DAE00AD7CE4 /* Assets.xcassets */,
-				251D1F6922403DAE00AD7CE4 /* Info.plist */,
 			);
 			path = "Team Kookaburra Chess";
 			sourceTree = "<group>";
