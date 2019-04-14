@@ -436,14 +436,18 @@ class ChessBoard {
         case .gargoyle:
            return isMoveValid(forGargoyle: piece, toIndex: dest)
         case .goblin:
-            if piece.isMovementAppropriate(toIndex: dest) == false {
-                return false
-            }
+            isMoveValid(forGoblin: piece, toIndex: dest)
         case .footSoldier:
             return isMoveValid(forFootSoldier: piece, toIndex: dest)
         }
-        
         return true
+    }
+    
+    func isMoveValid(forGoblin goblin: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if goblin.isMovementAppropriate(toIndex: dest) == false {
+            return false
+        }
+        return isMoveValid(forRookOrBishopOrQueen: goblin, toIndex: dest)
     }
     
     func isMoveValid(forPawn pawn: ChessPiece, toIndex dest: BoardIndex) -> Bool {
@@ -753,7 +757,7 @@ class ChessBoard {
             
         } else { //vertical move, can move here but not attack
             if board[dest.row][dest.column].type == .dummy{
-                return true
+                return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
             }
         }
         return false

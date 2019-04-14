@@ -98,7 +98,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         } else {
             yourColor.text = "You are black this match"
         }
-        tipLabel.text = "Select a space and start placing pieces!"
+        tipLabel.text = "Tap a square to select a space and start placing pieces!"
         let piece = getPiece(string: pickerString)
         pieceInfo.text = getInfo(piece: piece)
     }
