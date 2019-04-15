@@ -83,7 +83,7 @@ class ChessVC: UIViewController {
                 let piece = chessBoard.board[actualRow][actualCol]
                 let cell = BoardCell(row: actualRow, column: actualCol, piece: piece, color: .white)
                 cell.delegate = self
-                boardCells[actualRow][col] = cell
+                boardCells[actualRow][actualCol] = cell
                 
                 view.addSubview(cell)
                 cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
