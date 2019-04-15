@@ -66,15 +66,24 @@ class ChessVC: UIViewController {
         var xOffset: CGFloat = 0
         var yOffset: CGFloat = 100
         for row in 0...7 {
+            var actualRow = 0
+            var actualCol = 0
             yOffset = (CGFloat(row) * cellDimension) + 80
             xOffset = 50
             for col in 0...7 {
+                if playerColor == .white{
+                    actualRow = row
+                    actualCol = col
+                } else {
+                    actualRow = 7 - row
+                    actualCol = 7 - col
+                }
                 xOffset = (CGFloat(col) * cellDimension) + 0
                 
-                let piece = chessBoard.board[row][col]
-                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
+                let piece = chessBoard.board[actualRow][actualCol]
+                let cell = BoardCell(row: actualRow, column: actualCol, piece: piece, color: .white)
                 cell.delegate = self
-                boardCells[row][col] = cell
+                boardCells[actualRow][col] = cell
                 
                 view.addSubview(cell)
                 cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)

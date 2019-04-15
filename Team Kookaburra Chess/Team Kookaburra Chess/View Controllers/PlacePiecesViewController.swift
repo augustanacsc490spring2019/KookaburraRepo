@@ -344,6 +344,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         for piece in allPieces {
             if piece.type == .king{
                 numKings = numKings + 1
+            } else if piece.type == .superKing{
+                numKings = numKings + 1
             }
         }
         return numKings
