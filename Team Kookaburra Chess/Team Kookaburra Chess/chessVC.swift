@@ -325,15 +325,27 @@ extension ChessVC: ChessBoardDelegate {
     }
     
     func showPawnPromotionAlert(forPawn pawn: ChessPiece) {
-        let ac = UIAlertController(title: "Promote Pawn", message: "Please choose the piece you want to promote your pawn into", preferredStyle: .actionSheet)
+        let ac = UIAlertController(title: "Promote Piece", message: "Please choose the piece you want to promote your piece into", preferredStyle: .actionSheet)
+        let dragonRider = UIAlertAction(title: "Dragon Rider", style: .default, handler: { _ in
+            self.chessBoard.promote(pawn: pawn, intoPiece: ChessPiece(row: pawn.row, column: pawn.col, color: pawn.color, type: .dragonRider, player: self.playerColor))
+        })
+        let unicorn = UIAlertAction(title: "Unicorn", style: .default, handler: { _ in
+            self.chessBoard.promote(pawn: pawn, intoPiece: ChessPiece(row: pawn.row, column: pawn.col, color: pawn.color, type: .unicorn, player: self.playerColor))
+        })
         let queen = UIAlertAction(title: "Queen", style: .default, handler: { _ in
             self.chessBoard.promote(pawn: pawn, intoPiece: ChessPiece(row: pawn.row, column: pawn.col, color: pawn.color, type: .queen, player: self.playerColor))
         })
-        let rook = UIAlertAction(title: "Rook", style: .default, handler: { _ in
-            self.chessBoard.promote(pawn: pawn, intoPiece: ChessPiece(row: pawn.row, column: pawn.col, color: pawn.color, type: .rook, player: self.playerColor))
+        let griffin = UIAlertAction(title: "Griffin", style: .default, handler: { _ in
+            self.chessBoard.promote(pawn: pawn, intoPiece: ChessPiece(row: pawn.row, column: pawn.col, color: pawn.color, type: .griffin, player: self.playerColor))
+        })
+        let bombard = UIAlertAction(title: "Bombard", style: .default, handler: { _ in
+            self.chessBoard.promote(pawn: pawn, intoPiece: ChessPiece(row: pawn.row, column: pawn.col, color: pawn.color, type: .bombard, player: self.playerColor))
         })
         ac.addAction(queen)
-        ac.addAction(rook)
+        ac.addAction(dragonRider)
+        ac.addAction(unicorn)
+        ac.addAction(griffin)
+        ac.addAction(bombard)
         present(ac, animated: true, completion: nil)
     }
     
