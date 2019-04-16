@@ -1247,7 +1247,10 @@ class ChessBoard {
     
     /// Returns true if a pawn is at the end of the board
     private func doesPawnNeedPromotion(pawn: ChessPiece) -> Bool {
-        return pawn.type == .pawn && (pawn.row == 0 || pawn.row == 7)
+        if pawn.type == .pawn || pawn.type == .monk || pawn.type == .goblin || pawn.type == .gargoyle || pawn.type == .footSoldier || pawn.type == .dwarf{
+            return (pawn.row == 0 || pawn.row == 7)
+        }
+        return false
     }
     
     /// Promote the pawn to the passed in the piece type. Called from VC
