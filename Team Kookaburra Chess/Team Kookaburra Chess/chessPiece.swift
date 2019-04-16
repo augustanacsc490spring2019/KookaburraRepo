@@ -376,7 +376,7 @@ class ChessPiece {
         } else {
             symbol = "blankPiece.png"
         }
-        NSLog(symbol)
+        //NSLog(symbol)
         self.symbolImage = UIImage(named:symbol)!
     }
     
@@ -763,36 +763,19 @@ class ChessPiece {
     }
     
     func checkGoblin(dest: BoardIndex) -> Bool {
-        // is it advancing by 2
-        // check if the move is in the same column
-        if self.col == dest.column {
-            // can only move 2 forward if first time moving pawn
-            if color != playerColor {
-                if row == 1 && dest.row == 3 {
-                    advancingByTwo = true
-                    return true
-                }
-            } else {
-                if row == 6 && dest.row == 4 {
-                    advancingByTwo = true
+        if color == .black{
+            let validMoves = [(self.row + 1, self.col), (self.row + 2, self.col)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
                     return true
                 }
             }
-        }
-        advancingByTwo = false
-        // the move direction depends on the color of the piece
-        var moveDirection: Int
-        if color == playerColor {
-            moveDirection = -1
-        } else {
-            moveDirection = 1
-        }
-        //let moveDirection = color == .black ? -1 : 1
-        // if the movement is only 1 row up/down
-        if dest.row == self.row + moveDirection {
-            // check for diagonal movement and forward movement
-            if (dest.column == self.col) {
-                return true
+        } else { //color == .white
+            let validMoves = [(self.row - 1, self.col), (self.row - 2, self.col)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
             }
         }
         return false

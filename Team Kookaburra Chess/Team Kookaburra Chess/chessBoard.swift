@@ -436,7 +436,7 @@ class ChessBoard {
         case .gargoyle:
            return isMoveValid(forGargoyle: piece, toIndex: dest)
         case .goblin:
-            isMoveValid(forGoblin: piece, toIndex: dest)
+            return isMoveValid(forGoblin: piece, toIndex: dest)
         case .footSoldier:
             return isMoveValid(forFootSoldier: piece, toIndex: dest)
         }
