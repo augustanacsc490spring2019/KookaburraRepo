@@ -76,6 +76,21 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         for piece in ownedPieces{
             pickerData.append(piece)
         }
+        piecePicker.selectRow(0, inComponent: 0, animated: true)
+        piecePicker.selectRow(0, inComponent: 0, animated: true)
+        //get the string from the picker
+        pickerString = pickerData[0]
+        //compare that string to the piece types
+        let piece = getPiece(string: pickerString)
+        //assign the .png file to the UIImageview
+        piece.setupSymbol()
+        piecePicture.image = piece.symbolImage
+        //assign info text to the info label
+        pieceInfo.text = getInfo(piece: piece)
+        pieceInfo.contentMode = .scaleToFill
+        pieceInfo.numberOfLines = 0
+        //assign cost to the top label
+        pieceCost.text = "Cost: \(piece.summonCost) points"
     }
     
     override func didReceiveMemoryWarning() {

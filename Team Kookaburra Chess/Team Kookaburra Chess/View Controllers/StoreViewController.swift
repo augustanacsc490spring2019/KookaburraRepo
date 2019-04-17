@@ -32,6 +32,20 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         goldLabel.text = "\(gold)"
         picker.delegate = self
         picker.dataSource = self
+        picker.selectRow(0, inComponent: 0, animated: true)
+        //get the string from the picker
+        pickerString = pickerData[0]
+        //compare that string to the piece types
+        let piece = getPiece(string: pickerString)
+        //assign the .png file to the UIImageview
+        piece.setupSymbol()
+        piecePic.image = piece.symbolImage
+        //assign info text to the info label
+        pieceInfo.text = getInfo(piece: piece)
+        pieceInfo.contentMode = .scaleToFill
+        pieceInfo.numberOfLines = 0
+        //assign cost to the top label
+        statusLabel.text = getStatus()
         super.viewDidLoad()
     }
     
@@ -72,16 +86,33 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         pieceInfo.numberOfLines = 0
         //assign cost to the top label
         statusLabel.text = getStatus()
-
     }
     
     func getStatus() -> String{
+        let cost = getCost()
         if owned.contains(pickerString){
             buyOrSellButton.setTitle("Sell!", for: .normal)
-            return "You own this piece and can sell it for 250 gold"
+            return "You own this piece and can sell it for \(cost) gold"
         } else {
             buyOrSellButton.setTitle("Buy!", for: .normal)
-            return "This piece costs 250 gold"
+            return "This piece costs \(cost) gold"
+        }
+    }
+    
+    func getCost() -> Int{
+        let piece = getPiece(string: pickerString)
+        if piece.type == .pawn || piece.type == .dwarf || piece.type == .goblin || piece.type == .monk || piece.type == .footSoldier || piece.type == .gargoyle{
+            return 100
+        } else if piece.type == .ogre || piece.type == .orcWarrior || piece.type == .elephant || piece.type == .manAtArms || piece.type == .swordsman || piece.type == .pikeman || piece.type == .archer || piece.type == .royalGuard || piece.type == .scout || piece.type == .demon{
+            return 150
+        } else if piece.type == .rook || piece.type == .bishop || piece.type == .knight || piece.type == .basilisk || piece.type == .minotaur || piece.type == .fireDragon || piece.type == .iceDragon || piece.type == .monopod || piece.type == .batteringRam || piece.type == .ballista || piece.type == .trebuchet || piece.type == .ghostQueen || piece.type == .leftElf || piece.type == .rightElf || piece.type == .camel || piece.type == .ship{
+            return 250
+        } else if piece.type == .queen || piece.type == .centaur || piece.type == .mage || piece.type == .manticore{
+            return 400
+        } else if piece.type == .bombard || piece.type == .dragonRider || piece.type == .unicorn || piece.type == .superKing || piece.type == .griffin{
+            return 600
+        } else {
+            return 0
         }
     }
     
