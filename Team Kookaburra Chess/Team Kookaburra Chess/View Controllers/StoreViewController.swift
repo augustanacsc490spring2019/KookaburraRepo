@@ -37,7 +37,7 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "BackFromSearchForFriendsSegue", sender: self)
+        self.performSegue(withIdentifier: "BackFromStoreSegue", sender: self)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
