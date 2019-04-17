@@ -1,5 +1,5 @@
 //
-//  SearchForFriendsViewController.swift
+//  HowToViewController.swift
 //  Team Kookaburra Chess
 //
 //  Created by Meghan Stovall on 3/30/19.
