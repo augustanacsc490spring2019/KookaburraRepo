@@ -69,7 +69,13 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         drawBoard()
         piecePicker.delegate = self
         piecePicker.dataSource = self
-        pickerData = ["Empty", "King", "Archer", "Ballista", "Basilisk", "Battering Ram", "Bishop", "Bombard", "Camel", "Centaur", "Demon", "Dragon Rider", "Dwarf", "Elephant", "Fire Dragon", "Footsoldier", "Gargoyle", "Ghost Queen", "Goblin", "Griffin", "Ice Dragon", "Knight", "Left Handed Elf Warrior", "Mage", "Man at Arms", "Manticore", "Minotaur", "Monk", "Monopod", "Ogre", "Orc Warrior", "Pawn", "Pikeman", "Queen", "Right Handed Elf Warrior", "Rook", "Royal Guard", "Scout", "Ship", "Superking", "Swordsman", "Trebuchet", "Unicorn"]
+        pickerData = ["Empty", "King"]
+        var ownedPieces: [String]
+        ownedPieces = UserDefaults.standard.array(forKey: "ownedPieces") as! [String]
+        ownedPieces.sort()
+        for piece in ownedPieces{
+            pickerData.append(piece)
+        }
     }
     
     override func didReceiveMemoryWarning() {

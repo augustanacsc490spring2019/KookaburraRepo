@@ -8,7 +8,9 @@
 
 import UIKit
 
-class StoreViewController: UIViewController {
+class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    
     
     
     @IBOutlet weak var tipLabel: UILabel!
@@ -19,8 +21,14 @@ class StoreViewController: UIViewController {
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var buyOrSellButton: UIButton!
     @IBOutlet weak var getMoreGoldButton: UIButton!
+    var gold: Int = 0
+    var pickerData: [String] = [String]()
     
     override func viewDidLoad(){
+        gold = UserDefaults.standard.integer(forKey: "playerGold")
+        goldLabel.text = "\(gold)"
+        picker.delegate = self
+        picker.dataSource = self
         super.viewDidLoad()
     }
     
@@ -30,5 +38,26 @@ class StoreViewController: UIViewController {
     
     @IBAction func backButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "BackFromSearchForFriendsSegue", sender: self)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    // The data to return fopr the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func sellPiece(){
+        
+    }
+    
+    func buyPiece(){
+        
     }
 }
