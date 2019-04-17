@@ -28,7 +28,7 @@ class HowToViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "BackFromSearchForFriendsSegue", sender: self)
+        self.performSegue(withIdentifier: "BackFromHowToSegue", sender: self)
     }
     
 }
