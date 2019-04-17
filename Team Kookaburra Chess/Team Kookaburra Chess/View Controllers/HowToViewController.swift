@@ -10,12 +10,17 @@ import Foundation
 
 import UIKit
 
-class SearchForFriendsViewController: UIViewController {
+class HowToViewController: UIViewController {
     
-    @IBOutlet weak var gameTitle: UILabel!
+
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        loadScrollView()
+    }
+    
+    func loadScrollView(){
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -23,7 +28,7 @@ class SearchForFriendsViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "BackFromPlaySceneSegue", sender: self)
+        self.performSegue(withIdentifier: "BackFromSearchForFriendsSegue", sender: self)
     }
     
 }
