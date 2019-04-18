@@ -825,6 +825,9 @@
                                 <rect key="frame" x="20" y="585" width="374" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Buy!"/>
+                                <connections>
+                                    <action selector="buyOrSellButtonPressed:" destination="bEH-HR-jHz" eventType="touchUpInside" id="Sbm-MK-9v5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJz-8F-tSQ">
                                 <rect key="frame" x="20" y="659" width="374" height="58"/>

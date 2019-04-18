@@ -117,11 +117,28 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func sellPiece(){
-        
+        print("It's a bull market")
+        owned.remove(at: owned.firstIndex(of: pickerString)!)
+        gold = gold + getCost()
+        goldLabel.text = "\(gold)"
+        UserDefaults.standard.set(gold, forKey: "playerGold")
+        UserDefaults.standard.set(owned, forKey: "ownedPieces")
+        buyOrSellButton.setTitle("Buy!", for: .normal)
     }
     
     func buyPiece(){
-        
+        if gold >= getCost(){
+            owned.append(pickerString)
+            owned.sort()
+            gold = gold - getCost()
+            goldLabel.text = "\(gold)"
+            UserDefaults.standard.set(gold, forKey: "playerGold")
+            UserDefaults.standard.set(owned, forKey: "ownedPieces")
+            buyOrSellButton.setTitle("Sell!", for: .normal)
+        } else {
+            tipLabel.text = "You don't have enough gold to buy this piece"
+        }
+        print("It's a bear market")
     }
     
     func getPiece(string: String) -> ChessPiece {
@@ -316,5 +333,14 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             string = ""
         }
         return string
+    }
+    
+    
+    @IBAction func buyOrSellButtonPressed(_ sender: Any) {
+        if buyOrSellButton.titleLabel!.text == "Sell!"{
+            sellPiece()
+        } else if buyOrSellButton.titleLabel!.text == "Buy!"{
+            buyPiece()
+        }
     }
 }

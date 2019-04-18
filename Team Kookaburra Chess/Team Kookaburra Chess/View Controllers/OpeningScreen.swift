@@ -24,8 +24,11 @@ class OpeningScreen: UIViewController {
 //        UserDefaults.standard.set(0, forKey: "playerGold")
 //        UserDefaults.standard.set(0, forKey: "playerRank")
 //        UserDefaults.standard.set(0, forKey: "rankingPoints")
+        let owned = UserDefaults.standard.array(forKey: "ownedPieces")
+        if owned?.count ?? 0 <= 0{
         let pieceArray = ["Archer", "Ballista", "Basilisk", "Battering Ram", "Bishop", "Bombard", "Camel", "Centaur", "Demon", "Dragon Rider", "Dwarf", "Elephant", "Fire Dragon", "Footsoldier", "Gargoyle", "Ghost Queen", "Goblin", "Griffin", "Ice Dragon", "Knight", "Left Handed Elf Warrior", "Mage", "Man at Arms", "Manticore", "Minotaur", "Monk", "Monopod", "Ogre", "Orc Warrior", "Pawn", "Pikeman", "Queen", "Right Handed Elf Warrior", "Rook", "Royal Guard", "Scout", "Ship", "Superking", "Swordsman", "Trebuchet", "Unicorn"]
         UserDefaults.standard.set(pieceArray, forKey: "ownedPieces")
+        }
         super.viewDidLoad()
         UserDefaults.standard.synchronize()
         labelMinus10.text = "-10"
