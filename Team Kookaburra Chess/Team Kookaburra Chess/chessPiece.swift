@@ -225,7 +225,7 @@ class ChessPiece {
             summonCost = 45
         case .unicorn:
             symbol = "blackUnicorn.png"
-            summonCost = 120
+            summonCost = 150
         case .superKing:
             symbol = "blackSuperking.png"
             summonCost = 120
@@ -234,7 +234,7 @@ class ChessPiece {
             summonCost = 130
         case .dragonRider:
             symbol = "blackDragonRider.png"
-            summonCost = 160
+            summonCost = 150
         case .bombard:
             symbol = "blackBombard.png"
             summonCost = 120
@@ -356,7 +356,7 @@ class ChessPiece {
                 summonCost = 45
             case .unicorn:
                 symbol = "whiteUnicorn.png"
-                summonCost = 120
+                summonCost = 150
             case .superKing:
                 symbol = "whiteSuperKing.png"
                 summonCost = 120
@@ -365,7 +365,7 @@ class ChessPiece {
                 summonCost = 130
             case .dragonRider:
                 symbol = "whiteDragonRider.png"
-                summonCost = 160
+                summonCost = 150
             case .bombard:
                 symbol = "whiteBombard.png"
                 summonCost = 120
