@@ -27,7 +27,7 @@ class HowToViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func backButtonPressed(_ sender: Any) {
+    @IBAction func backButtonPressed(_ sender: UIButton!) {
         self.performSegue(withIdentifier: "BackFromHowToSegue", sender: self)
     }
     

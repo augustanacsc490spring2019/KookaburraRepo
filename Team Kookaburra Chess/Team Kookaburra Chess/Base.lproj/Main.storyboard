@@ -221,7 +221,7 @@
         <!--HowToViewcontroller-->
         <scene sceneID="teK-Us-aea">
             <objects>
-                <viewController storyboardIdentifier="HowToViewController" title="MyFriendsViewController" id="fhK-sB-HUu" userLabel="HowToViewcontroller" customClass="HowToViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HowToViewController" title="HowToViewController" id="fhK-sB-HUu" userLabel="HowToViewcontroller" customClass="HowToViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pFw-cT-bmT" customClass="MyFriendsViewController">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,9 +233,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="backButtonPressed:" destination="fhK-sB-HUu" eventType="touchUpInside" id="jg2-we-qtO"/>
-                                    <action selector="backButtonPressed:" destination="pFw-cT-bmT" eventType="touchUpInside" id="qQD-Ie-De6"/>
-                                    <segue destination="BV1-FR-VrT" kind="showDetail" identifier="BackFromHowToSegue" id="ahG-vM-3dW"/>
+                                    <segue destination="BV1-FR-VrT" kind="showDetail" identifier="BackFromHowToSegue" id="jpc-O9-TBa"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmS-yV-25S">
@@ -890,6 +888,6 @@
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
         <segue reference="DDD-cs-UHp"/>
-        <segue reference="HNR-C8-Mxw"/>
+        <segue reference="jpc-O9-TBa"/>
     </inferredMetricsTieBreakers>
 </document>
