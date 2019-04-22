@@ -21,6 +21,7 @@ class ChessVC: UIViewController {
     var playerTurn = UIColor.white
     var whiteFormation = [[BoardCell]]()
     var blackFormation = [[BoardCell]]()
+    var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
     
     let turnLabel: UILabel = {
         let l = UILabel()
@@ -147,10 +148,10 @@ extension ChessVC: BoardCellDelegate {
         //print("Selected cell at: \(row), \(col)")
         //chessBoard.board[row][col].showPieceInfo()
         // Check if making a move (if had selected piece before)
+        currentPiece = cell.piece
         if let movingPiece = pieceBeingMoved, movingPiece.color == playerTurn {
             let source = BoardIndex(row: movingPiece.row, column: movingPiece.col)
             let dest = BoardIndex(row: row, column: col)
-            
             // check if selected one of possible moves, if so move there
             for move in possibleMoves {
                 if move.row == row && move.column == col {
@@ -234,7 +235,7 @@ extension ChessVC: BoardCellDelegate {
                 highlightEnemyMoves()
             }
         }
-        
+        checkLabel.text = displayInfo(piece: currentPiece)
         updateLabel()
         //print("The old cell now holds: \(cell.piece.symbol)")
         //print(chessBoard.board[cell.row][cell.column])
@@ -322,6 +323,194 @@ extension ChessVC: ChessBoardDelegate {
         ac.addAction(okAction)
         ac.addAction(noAction)
         present(ac, animated: true, completion: nil)
+    }
+    
+    func displayInfo(piece: ChessPiece) -> String{
+        print("Displaying info on check label from piece: \(piece)")
+        if piece.color == playerTurn{
+            switch piece.type{
+            case .dummy:
+                return "An empty space"
+            case .unicorn:
+                return "Your Unicorn"
+            case .superKing:
+                return "Your Superking"
+            case .griffin:
+                return "Your Griffin"
+            case .king:
+                return "Your King"
+            case .queen:
+                return "Your Queen"
+            case .mage:
+                return "Your Mage"
+            case .centaur:
+                return "Your Centaur"
+            case .dragonRider:
+                return "Your Dragon Rider"
+            case .bombard:
+                return "Your Bombard"
+            case .manticore:
+                return "Your Manticore"
+            case .ghostQueen:
+                return "Your Ghost Queen"
+            case .rook:
+                return "Your Rook"
+            case .knight:
+                return "Your Knight"
+            case .bishop:
+                return "Your Bishop"
+            case .basilisk:
+                return "Your Basilisk"
+            case .fireDragon:
+                return "Your Fire Dragon"
+            case .iceDragon:
+                return "Your Ice Dragon"
+            case .minotaur:
+                return "Your Minotaur"
+            case .monopod:
+                return "Your Monopod"
+            case .ship:
+                return "Your Ship"
+            case .ballista:
+                return "Your Ballista"
+            case .batteringRam:
+                return "Your Battering Ram"
+            case .trebuchet:
+                return "Your Trebuchet"
+            case .leftElf:
+                return "Your Left Handed Elf"
+            case .rightElf:
+                return "Your Right Handed Elf"
+            case .camel:
+                return "Your Camel"
+            case .scout:
+                return "Your Scout"
+            case .ogre:
+                return "Your Ogre"
+            case .orcWarrior:
+                return "Your Orc Warrior"
+            case .elephant:
+                return "Your Elephant"
+            case .manAtArms:
+                return "Your Man at Arms"
+            case .swordsman:
+                return "Your Swordsman"
+            case .pikeman:
+                return "Your Pikeman"
+            case .archer:
+                return "Your Archer"
+            case .royalGuard:
+                return "Your Royal Guard"
+            case .demon:
+                return "Your Demon"
+            case .pawn:
+                return "Your Pawn"
+            case .monk:
+                return "Your Monk"
+            case .dwarf:
+                return "Your Dwarf"
+            case .gargoyle:
+                return "Your Gargoyle"
+            case .goblin:
+                return "Your Goblin"
+            case .footSoldier:
+                return "Your Footsoldier"
+            @unknown default:
+                return "Did you hack this game?"
+            }
+        } else {
+            switch piece.type{
+            case .dummy:
+                return "An empty space"
+            case .unicorn:
+                return "Enemy Unicorn"
+            case .superKing:
+                return "Enemy Superking"
+            case .griffin:
+                return "Enemy Griffin"
+            case .king:
+                return "Enemy King"
+            case .queen:
+                return "Enemy Queen"
+            case .mage:
+                return "Enemy Mage"
+            case .centaur:
+                return "Enemy Centaur"
+            case .dragonRider:
+                return "Enemy Dragon Rider"
+            case .bombard:
+                return "Enemy Bombard"
+            case .manticore:
+                return "Enemy Manticore"
+            case .ghostQueen:
+                return "Enemy Ghost Queen"
+            case .rook:
+                return "Enemy Rook"
+            case .knight:
+                return "Enemy Knight"
+            case .bishop:
+                return "Enemy Bishop"
+            case .basilisk:
+                return "Enemy Basilisk"
+            case .fireDragon:
+                return "Enemy Fire Dragon"
+            case .iceDragon:
+                return "Enemy Ice Dragon"
+            case .minotaur:
+                return "Enemy Minotaur"
+            case .monopod:
+                return "Enemy Monopod"
+            case .ship:
+                return "Enemy Ship"
+            case .ballista:
+                return "Enemy Ballista"
+            case .batteringRam:
+                return "Enemy Battering Ram"
+            case .trebuchet:
+                return "Enemy Trebuchet"
+            case .leftElf:
+                return "Enemy Left Handed Elf"
+            case .rightElf:
+                return "Enemy Right Handed Elf"
+            case .camel:
+                return "Enemy Camel"
+            case .scout:
+                return "Enemy Scout"
+            case .ogre:
+                return "Enemy Ogre"
+            case .orcWarrior:
+                return "Enemy Orc Warrior"
+            case .elephant:
+                return "Enemy Elephant"
+            case .manAtArms:
+                return "Enemy Man at Arms"
+            case .swordsman:
+                return "Enemy Swordsman"
+            case .pikeman:
+                return "Enemy Pikeman"
+            case .archer:
+                return "Enemy Archer"
+            case .royalGuard:
+                return "Enemy Royal Guard"
+            case .demon:
+                return "Enemy Demon"
+            case .pawn:
+                return "Enemy Pawn"
+            case .monk:
+                return "Enemy Monk"
+            case .dwarf:
+                return "Enemy Dwarf"
+            case .gargoyle:
+                return "Enemy Gargoyle"
+            case .goblin:
+                return "Enemy Goblin"
+            case .footSoldier:
+                return "Enemy Footsoldier"
+            @unknown default:
+                return "Did you hack this game?"
+            }
+        }
+        return ""
     }
     
     func showPawnPromotionAlert(forPawn pawn: ChessPiece) {
