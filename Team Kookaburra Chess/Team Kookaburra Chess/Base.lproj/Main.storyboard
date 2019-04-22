@@ -720,26 +720,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejx-Pq-e8I">
-                                <rect key="frame" x="59" y="94" width="30" height="48"/>
+                                <rect key="frame" x="20" y="44" width="30" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="&lt;">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="backButtonPressed:" destination="zEu-Gh-aaY" eventType="touchUpInside" id="OTu-RA-faS"/>
+                                    <segue destination="BV1-FR-VrT" kind="showDetail" identifier="BackFromStatsSegue" id="Do6-w4-ZnG"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="SDW-0x-m1T" firstAttribute="bottom" secondItem="ZuA-ui-0ug" secondAttribute="bottom" constant="390" id="019-10-oON"/>
-                            <constraint firstItem="ejx-Pq-e8I" firstAttribute="leading" secondItem="SDW-0x-m1T" secondAttribute="leading" constant="59" id="20H-eb-3Ud"/>
+                            <constraint firstItem="ejx-Pq-e8I" firstAttribute="top" secondItem="SDW-0x-m1T" secondAttribute="top" id="0gr-ec-HBK"/>
                             <constraint firstItem="brl-Fh-TaG" firstAttribute="leading" secondItem="SDW-0x-m1T" secondAttribute="leading" constant="132" id="5lc-zw-Jzh"/>
-                            <constraint firstItem="ejx-Pq-e8I" firstAttribute="top" secondItem="SDW-0x-m1T" secondAttribute="top" constant="50" id="NkB-hZ-nAg"/>
                             <constraint firstItem="KjF-5k-O6e" firstAttribute="centerX" secondItem="ZuA-ui-0ug" secondAttribute="centerX" id="NpD-tr-tDc"/>
                             <constraint firstItem="brl-Fh-TaG" firstAttribute="top" secondItem="SDW-0x-m1T" secondAttribute="top" constant="97" id="QMZ-3A-5aY"/>
                             <constraint firstItem="ZuA-ui-0ug" firstAttribute="top" secondItem="KjF-5k-O6e" secondAttribute="bottom" constant="39" id="XR0-Tz-AQr"/>
                             <constraint firstItem="qgA-u0-NVR" firstAttribute="centerX" secondItem="KjF-5k-O6e" secondAttribute="centerX" id="cTx-AA-6fN"/>
+                            <constraint firstItem="ejx-Pq-e8I" firstAttribute="leading" secondItem="2qa-rr-KdW" secondAttribute="leadingMargin" id="fjB-3j-Aj7"/>
                             <constraint firstItem="brl-Fh-TaG" firstAttribute="centerX" secondItem="qgA-u0-NVR" secondAttribute="centerX" id="tyq-5s-66X"/>
                             <constraint firstItem="brl-Fh-TaG" firstAttribute="centerX" secondItem="2qa-rr-KdW" secondAttribute="centerX" id="uah-4R-RAT"/>
                             <constraint firstItem="KjF-5k-O6e" firstAttribute="top" secondItem="qgA-u0-NVR" secondAttribute="bottom" constant="39" id="xrh-Bn-r1q"/>
@@ -751,7 +751,6 @@
                         <outlet property="rankingLabel" destination="ZuA-ui-0ug" id="adF-DF-tp3"/>
                         <outlet property="usernameLabel" destination="brl-Fh-TaG" id="oGC-8k-6lG"/>
                         <outlet property="winsLosesLabel" destination="qgA-u0-NVR" id="5oy-d8-eBW"/>
-                        <segue destination="BV1-FR-VrT" kind="showDetail" identifier="BackFromMyStatsSegue" id="AP6-60-clE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gfe-Qs-Vga" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -888,6 +887,6 @@
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
         <segue reference="DDD-cs-UHp"/>
-        <segue reference="HNR-C8-Mxw"/>
+        <segue reference="Do6-w4-ZnG"/>
     </inferredMetricsTieBreakers>
 </document>
