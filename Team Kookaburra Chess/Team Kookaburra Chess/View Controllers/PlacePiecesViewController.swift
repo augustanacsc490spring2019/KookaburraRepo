@@ -67,6 +67,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         setLabels()
         drawBoard()
+        addStarterKing()
         piecePicker.delegate = self
         piecePicker.dataSource = self
         pickerData = ["Empty", "King"]
@@ -124,6 +125,25 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         pieceInfo.text = getInfo(piece: piece)
     }
     
+    //players get confused, so we should have a king out there to start. Having it in the regular chess position makes the most sense
+    func addStarterKing(){
+        var king = ChessPiece(row: 0, column: 0, color: playerColor, type: .king, player: playerColor)
+        king.setupSymbol()
+        if playerColor == .white{
+            king.row = 2
+            king.col = 3
+            boardCells[2][3].piece = king
+            boardCells[2][3].configureCell(forPiece: king)
+        } else if playerColor == .black{
+            king.row = 2
+            king.col = 4
+            boardCells[2][4].piece = king
+            boardCells[2][4].configureCell(forPiece: king)
+        }
+        playerPoints = calculateCost()
+        pointsRemaining.text = "Points spent: \(playerPoints)"
+    }
+    
     func drawBoard(){
         let numRows:Int = 8
         let numCols:Int = 8
@@ -152,9 +172,9 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
                 cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
                 if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
-                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
-                } else {
                     cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
+                } else {
+                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
                 }
                 
                 cell.removeHighlighting()
@@ -199,7 +219,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //check if the piece is illegally placed
         var cost = chosenPiece.summonCost
         if chosenPiece.type == .king{
-            NSLog("All hail!")
+            //NSLog("All hail!")
             if numKings(color: playerColor) > 0{
                 cost = cost + 20
             }
@@ -207,6 +227,10 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if (playerPoints + cost) > 450 {
             //NSLog("Too many points spent")
             tipLabel.text = "Not enough points for that piece"
+            let ac = UIAlertController(title: "Points", message: "You don't have enough points for that piece", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            ac.addAction(ok)
+            present(ac, animated: true, completion: nil)
         } else{
             NSLog("check if the piece is illegally placed")
             //check if the piece is illegally placed
@@ -215,6 +239,10 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 if  highlightedCell.row != 2{
                         //NSLog("Dragonriders can only be in the back row")
                         tipLabel.text = "Dragonriders can only be in the back row."
+                    let ac = UIAlertController(title: "Rule", message: "Dragon Riders can only be placed in the back row", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                    ac.addAction(ok)
+                    present(ac, animated: true, completion: nil)
                     return
                 } //else if highlightedCell.row == 2 && !secondRowFull(){
                             //change the tip label
@@ -227,6 +255,10 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     //print("not empty piece")
                     if secondRowFull() == false{
                         tipLabel.text = "Can't place in front row until 2nd row is full."
+                        let ac = UIAlertController(title: "Rule", message: "You can't place pieces in the front row until you fill the middle row.", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                        ac.addAction(ok)
+                        present(ac, animated: true, completion: nil)
                         return
                     }
                 }
@@ -300,9 +332,9 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
                 cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
                 if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
-                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
-                } else {
                     cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
+                } else {
+                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
                 }
                 
                 cell.removeHighlighting()
@@ -397,6 +429,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 clearPieces()
                 setLabels()
                 piecePictureSetup()
+                addStarterKing()
             } else {
                 localMatchReady()
             }
@@ -405,6 +438,10 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
         } else {
             tipLabel.text = "Place a king, then you can play!"
+            let ac = UIAlertController(title: "Rule", message: "You need to place at least one king before you can play", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            ac.addAction(ok)
+            present(ac, animated: true, completion: nil)
         }
     }
     
