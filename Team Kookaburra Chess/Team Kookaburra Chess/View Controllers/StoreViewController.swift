@@ -343,4 +343,9 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             buyPiece()
         }
     }
+    
+    @IBAction func buyGoldButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "GoldPurchaseSegue", sender: self)
+    }
+    
 }

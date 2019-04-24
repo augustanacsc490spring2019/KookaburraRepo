@@ -815,17 +815,12 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3G-9i-igB">
-                                <rect key="frame" x="20" y="585" width="374" height="56"/>
+                                <rect key="frame" x="41" y="585" width="131" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Buy!"/>
                                 <connections>
                                     <action selector="buyOrSellButtonPressed:" destination="bEH-HR-jHz" eventType="touchUpInside" id="Sbm-MK-9v5"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJz-8F-tSQ">
-                                <rect key="frame" x="20" y="659" width="374" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Get More Gold!"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSY-X4-xcH">
                                 <rect key="frame" x="106" y="145" width="181" height="41"/>
@@ -845,6 +840,14 @@
                                 <rect key="frame" x="0.0" y="200" width="151" height="151"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJz-8F-tSQ">
+                                <rect key="frame" x="195" y="585" width="151" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Get More Gold!"/>
+                                <connections>
+                                    <segue destination="Mnq-E9-oGC" kind="showDetail" identifier="GoldPurchaseSegue" id="P4g-bH-tSO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -876,7 +879,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhP-Zz-E3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1695.6521739130435" y="-26.116071428571427"/>
+            <point key="canvasLocation" x="1866.6666666666667" y="-58.258928571428569"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="d4g-S8-bxL">
+            <objects>
+                <viewController storyboardIdentifier="BuyGoldID" id="Mnq-E9-oGC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="icC-y5-j5W">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrT-bF-nRa">
+                                <rect key="frame" x="20" y="106" width="299" height="56"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Alchemy Lab">
+                                        <attributes>
+                                            <font key="NSFont" size="48" name="Helvetica-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tyl-zf-KcJ">
+                                <rect key="frame" x="20" y="44" width="30" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bEH-HR-jHz" kind="showDetail" identifier="BackToStoreSegue" id="5dK-gQ-RRs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xrT-bF-nRa" firstAttribute="top" secondItem="Tyl-zf-KcJ" secondAttribute="bottom" constant="14" id="Db3-G9-pNU"/>
+                            <constraint firstItem="Tyl-zf-KcJ" firstAttribute="top" secondItem="b6u-ZC-eC3" secondAttribute="top" id="RcE-bK-PXu"/>
+                            <constraint firstItem="xrT-bF-nRa" firstAttribute="leading" secondItem="Tyl-zf-KcJ" secondAttribute="leading" id="THp-Ng-5Xz"/>
+                            <constraint firstItem="Tyl-zf-KcJ" firstAttribute="leading" secondItem="icC-y5-j5W" secondAttribute="leadingMargin" id="ddQ-JC-VQ3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="b6u-ZC-eC3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HXn-Fb-59c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2726.0869565217395" y="-303.34821428571428"/>
         </scene>
     </scenes>
     <resources>
@@ -884,9 +931,10 @@
         <image name="playerGold.png" width="250" height="250"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5dK-gQ-RRs"/>
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
         <segue reference="DDD-cs-UHp"/>
-        <segue reference="Do6-w4-ZnG"/>
+        <segue reference="HNR-C8-Mxw"/>
     </inferredMetricsTieBreakers>
 </document>
