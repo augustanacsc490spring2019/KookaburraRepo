@@ -43,13 +43,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lhs-az-VDT" userLabel="Level Up Progress">
-                                <rect key="frame" x="205" y="93.5" width="189" height="2"/>
+                                <rect key="frame" x="205" y="94" width="189" height="1.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="193" id="TML-8I-9y5"/>
                                 </constraints>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UAh-pg-cud" userLabel="Level down progress">
-                                <rect key="frame" x="12" y="94" width="193" height="2"/>
+                                <rect key="frame" x="12" y="94" width="193" height="1.5"/>
                                 <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="193" id="XfK-NI-1Y5"/>
@@ -143,13 +143,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym1-xg-YyG" userLabel="Rank me up some!">
-                                <rect key="frame" x="184" y="253" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="rankPointsTest:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WRh-s5-icn"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="HeN-bJ-nn9" userLabel="Ranking points label">
                                 <rect key="frame" x="96" y="103" width="219" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -180,19 +173,19 @@
                             <constraint firstItem="LO8-SD-FNp" firstAttribute="centerY" secondItem="hfe-DH-WDR" secondAttribute="centerY" id="CYk-SU-qqw"/>
                             <constraint firstItem="hfe-DH-WDR" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-380" id="DA4-Kk-gKE"/>
                             <constraint firstItem="APm-Lx-Pis" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="FoF-ZU-LHK"/>
-                            <constraint firstItem="Ym1-xg-YyG" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-180" id="Ghg-eY-Mfp"/>
                             <constraint firstItem="vba-gz-8aH" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="Nrv-AH-C97"/>
                             <constraint firstItem="RBA-Qs-yjW" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-60" id="P5I-22-Aav"/>
-                            <constraint firstItem="Ym1-xg-YyG" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="QZh-QG-efB"/>
                             <constraint firstItem="1VV-nz-4qt" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="12" id="U3c-zZ-PHE"/>
                             <constraint firstItem="wVv-WH-LuU" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="120" id="UA1-sz-wJB"/>
                             <constraint firstItem="APm-Lx-Pis" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="60" id="Vrz-fl-Lrq"/>
                             <constraint firstItem="0DR-cL-FoF" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-120" id="bN6-ze-2ur"/>
                             <constraint firstItem="Lhs-az-VDT" firstAttribute="leading" secondItem="UAh-pg-cud" secondAttribute="trailing" id="fxG-Cv-tkW"/>
+                            <constraint firstItem="UAh-pg-cud" firstAttribute="bottom" secondItem="Lhs-az-VDT" secondAttribute="bottom" id="kWv-yB-c2s"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="top" secondItem="hfe-DH-WDR" secondAttribute="top" constant="0.5" id="op0-NY-WXn"/>
                             <constraint firstItem="UAh-pg-cud" firstAttribute="top" secondItem="1VV-nz-4qt" secondAttribute="bottom" constant="2" id="r4b-mJ-GTS"/>
                             <constraint firstItem="UAh-pg-cud" firstAttribute="top" secondItem="Lhs-az-VDT" secondAttribute="bottom" constant="-1.5" id="tT6-OW-xeL"/>
                             <constraint firstItem="0DR-cL-FoF" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="tsF-0m-ewT"/>
+                            <constraint firstItem="Lhs-az-VDT" firstAttribute="height" secondItem="UAh-pg-cud" secondAttribute="height" id="uJQ-us-5al"/>
                             <constraint firstItem="LO8-SD-FNp" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="wO0-1I-0K5"/>
                             <constraint firstItem="LO8-SD-FNp" firstAttribute="top" secondItem="hfe-DH-WDR" secondAttribute="top" id="x3e-U0-1PQ"/>
                         </constraints>
@@ -1117,7 +1110,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <image name="playerGold.png" width="250" height="250"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5dK-gQ-RRs"/>
+        <segue reference="ynr-Ld-Yg9"/>
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
         <segue reference="DDD-cs-UHp"/>
