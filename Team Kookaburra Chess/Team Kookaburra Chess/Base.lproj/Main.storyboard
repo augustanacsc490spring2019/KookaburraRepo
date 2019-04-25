@@ -214,7 +214,7 @@
         <!--HowToViewcontroller-->
         <scene sceneID="teK-Us-aea">
             <objects>
-                <viewController storyboardIdentifier="HowToViewController" title="HowToViewController" id="fhK-sB-HUu" userLabel="HowToViewcontroller" customClass="HowToViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HowToViewController" title="HowToViewController" id="fhK-sB-HUu" userLabel="HowToViewcontroller" customClass="HowToViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pFw-cT-bmT" customClass="MyFriendsViewController">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,7 +235,7 @@
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content" base64-UTF8="YES">
-CgoKA
+Cgo
 </string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -248,7 +248,7 @@ CgoKA
                                     <fragment content="Getting Started">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="13" name="Calibri-Bold"/>
+                                            <font key="NSFont" size="16" name="Calibri-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -271,7 +271,7 @@ When you start a match, you’ll be given the option to place your pieces. You c
                                     <fragment content="The Store">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="13" name="Calibri-Bold"/>
+                                            <font key="NSFont" size="16" name="Calibri-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -293,7 +293,7 @@ In the store, you can not only buy the pieces you want, but you can sell the pie
                                     <fragment content="Gameplay">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="13" name="Calibri-Bold"/>
+                                            <font key="NSFont" size="16" name="Calibri-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -315,7 +315,7 @@ Tap any piece on the board to highlight it. If the piece is yours and it’s you
                                     <fragment content="Local Match">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="13" name="Calibri-Bold"/>
+                                            <font key="NSFont" size="16" name="Calibri-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -337,7 +337,7 @@ In a local match, you’ll be able to play with someone else by sharing your pho
                                     <fragment content="Online Match">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="13" name="Calibri-Bold"/>
+                                            <font key="NSFont" size="16" name="Calibri-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -359,15 +359,26 @@ When you choose to play online, you have the choice to play a random opponent, t
                                     <fragment content="Rankings and Matchmaking">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="13" name="Calibri-Bold"/>
+                                            <font key="NSFont" size="16" name="Calibri-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
-As you play online, you will get ranking points that go towards your rank. In order, the ranks are: Bronze, Silver, Gold, and Diamond. Winning matches gets you ranking points and losing them makes you lose ranking points. Beating players who are your level or higher get you more ranking points and losing to better players has less of a penalty. If you get 15 ranking points in every level but Diamond, you’ll rank up. Diamond players get 1000 gold when they get 15 ranking points. For every level but bronze, reaching -10 ranking points will rank you down. Bronze players can’t get below 0 points.
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="16" name="Calibri"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <mutableString key="content">As you play online, you will get ranking points that go towards your rank. In order, the ranks are: Bronze, Silver, Gold, and Diamond. Winning matches gets you ranking points and losing them makes you lose ranking points. Beating players who are your level or higher get you more ranking points and losing to better players has less of a penalty. If you get 15 ranking points in every level but Diamond, you’ll rank up. Diamond players get 1000 gold when they get 15 ranking points. For every level but bronze, reaching -10 ranking points will rank you down. Bronze players can’t get below 0 points.
 
 </mutableString>
                                         <attributes>
@@ -381,7 +392,7 @@ As you play online, you will get ranking points that go towards your rank. In or
                                     <fragment content="Placement Rules">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="13" name="Calibri-Bold"/>
+                                            <font key="NSFont" size="16" name="Calibri-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -403,7 +414,7 @@ There will be prompts on the screen, but there are 3 rules that you need to foll
                                     <fragment content="Credits">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="13" name="Calibri-Bold"/>
+                                            <font key="NSFont" size="16" name="Calibri-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -415,11 +426,21 @@ Concept- Blake Erquiaga
 Art- Blake Erquiaga
 Development- Blake Erquiaga, Anthony Santangelo, Meghan Stovall
 
-Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as well as to all of our testers.
 </string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="13" name="Calibri"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as well as to all of our testers.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="13" name="Calibri-Italic"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="468" defaultTabInterval="29.649999999999999" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -453,6 +474,9 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vt9-L1-8V4"/>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="mmS-yV-25S" id="Oac-Gw-E2I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgj-Fc-fks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

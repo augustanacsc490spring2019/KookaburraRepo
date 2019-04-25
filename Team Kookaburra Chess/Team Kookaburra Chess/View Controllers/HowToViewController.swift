@@ -13,10 +13,16 @@ import UIKit
 class HowToViewController: UIViewController {
     
 
+    @IBOutlet weak var textView: UITextView!
     
     override func viewDidLoad(){
         super.viewDidLoad()
         loadScrollView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.textView.setContentOffset(CGPoint.zero, animated: false)
     }
     
     func loadScrollView(){
