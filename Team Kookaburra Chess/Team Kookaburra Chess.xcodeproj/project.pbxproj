@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25059FC222666ABC00DA1CDB /* cathedral.png in Resources */ = {isa = PBXBuildFile; fileRef = 25059FC122666ABC00DA1CDB /* cathedral.png */; };
+		25147074226FC0B10042F548 /* BuyGoldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25147073226FC0B10042F548 /* BuyGoldViewController.swift */; };
 		251D1F5A22403DAD00AD7CE4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F5922403DAD00AD7CE4 /* GameScene.sks */; };
 		251D1F5C22403DAD00AD7CE4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F5B22403DAD00AD7CE4 /* Actions.sks */; };
 		251D1F5E22403DAD00AD7CE4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F5D22403DAD00AD7CE4 /* GameScene.swift */; };
@@ -123,7 +125,6 @@
 		25DEFD45224896EF0024A78A /* blackGuard.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD44224896EF0024A78A /* blackGuard.png */; };
 		25DEFD47224896F80024A78A /* blackSwordsman.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD46224896F80024A78A /* blackSwordsman.png */; };
 		25DEFD492248970A0024A78A /* blackPikeman.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD482248970A0024A78A /* blackPikeman.png */; };
-		25F3DDEA22614B7000DA075F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F3DDE922614B7000DA075F /* CloudKit.framework */; };
 		25FFCD5D2256D3F400C81196 /* alchemistIconHD.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD5B2256D3F300C81196 /* alchemistIconHD.png */; };
 		25FFCD5E2256D3F400C81196 /* alchemistIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD5C2256D3F400C81196 /* alchemistIcon.png */; };
 		25FFCD602256D3FD00C81196 /* loadingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25FFCD5F2256D3FD00C81196 /* loadingIcon.png */; };
@@ -143,7 +144,7 @@
 		8819824F224E7CAF008E8EFD /* MyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */; };
 		88198251224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */; };
 		889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* OpeningScreen.swift */; };
-		88E34F3922502A2D007ED2F5 /* SearchForFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3822502A2D007ED2F5 /* SearchForFriendsViewController.swift */; };
+		88E34F3922502A2D007ED2F5 /* HowToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3822502A2D007ED2F5 /* HowToViewController.swift */; };
 		88E34F3B2250304E007ED2F5 /* PlacePiecesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3A2250304E007ED2F5 /* PlacePiecesViewController.swift */; };
 		88E34F3D225032E5007ED2F5 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3C225032E5007ED2F5 /* NewGameViewController.swift */; };
 		88E34F3F2250341C007ED2F5 /* YourFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3E2250341C007ED2F5 /* YourFriendsViewController.swift */; };
@@ -168,6 +169,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		25059FC122666ABC00DA1CDB /* cathedral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cathedral.png; sourceTree = "<group>"; };
+		25147073226FC0B10042F548 /* BuyGoldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyGoldViewController.swift; sourceTree = "<group>"; };
 		251D1F5422403DAD00AD7CE4 /* Team Kookaburra Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team Kookaburra Chess.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		251D1F5922403DAD00AD7CE4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		251D1F5B22403DAD00AD7CE4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -291,7 +294,6 @@
 		25DEFD44224896EF0024A78A /* blackGuard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGuard.png; sourceTree = "<group>"; };
 		25DEFD46224896F80024A78A /* blackSwordsman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackSwordsman.png; sourceTree = "<group>"; };
 		25DEFD482248970A0024A78A /* blackPikeman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPikeman.png; sourceTree = "<group>"; };
-		25F3DDE922614B7000DA075F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		25FFCD5B2256D3F300C81196 /* alchemistIconHD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alchemistIconHD.png; sourceTree = "<group>"; };
 		25FFCD5C2256D3F400C81196 /* alchemistIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alchemistIcon.png; sourceTree = "<group>"; };
 		25FFCD5F2256D3FD00C81196 /* loadingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingIcon.png; sourceTree = "<group>"; };
@@ -311,7 +313,7 @@
 		8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatsViewController.swift; sourceTree = "<group>"; };
 		88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBtOpeningScreenViewController.swift; sourceTree = "<group>"; };
 		889C82632241651D00B77A21 /* OpeningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningScreen.swift; sourceTree = "<group>"; };
-		88E34F3822502A2D007ED2F5 /* SearchForFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForFriendsViewController.swift; sourceTree = "<group>"; };
+		88E34F3822502A2D007ED2F5 /* HowToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToViewController.swift; sourceTree = "<group>"; };
 		88E34F3A2250304E007ED2F5 /* PlacePiecesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePiecesViewController.swift; sourceTree = "<group>"; };
 		88E34F3C225032E5007ED2F5 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		88E34F3E2250341C007ED2F5 /* YourFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourFriendsViewController.swift; sourceTree = "<group>"; };
@@ -324,7 +326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				643430AB2253C50900E0CB24 /* GameKit.framework in Frameworks */,
-				25F3DDEA22614B7000DA075F /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				259FEDA5224949DE006BE3E8 /* blackBallista.png */,
+				25059FC122666ABC00DA1CDB /* cathedral.png */,
 				25FFCD5C2256D3F400C81196 /* alchemistIcon.png */,
 				25FFCD5B2256D3F300C81196 /* alchemistIconHD.png */,
 				25FFCD6D2256E5BF00C81196 /* alchemistIcon80.png */,
@@ -531,7 +533,6 @@
 		643430A92253C50900E0CB24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				25F3DDE922614B7000DA075F /* CloudKit.framework */,
 				643430AA2253C50900E0CB24 /* GameKit.framework */,
 			);
 			name = Frameworks;
@@ -546,11 +547,12 @@
 				8819824C224E7BBA008E8EFD /* StoreViewController.swift */,
 				8819824A224E7948008E8EFD /* MyFriendsViewController.swift */,
 				889C82632241651D00B77A21 /* OpeningScreen.swift */,
-				88E34F3822502A2D007ED2F5 /* SearchForFriendsViewController.swift */,
+				88E34F3822502A2D007ED2F5 /* HowToViewController.swift */,
 				88E34F3A2250304E007ED2F5 /* PlacePiecesViewController.swift */,
 				88E34F3C225032E5007ED2F5 /* NewGameViewController.swift */,
 				88E34F3E2250341C007ED2F5 /* YourFriendsViewController.swift */,
 				88E34F40225036A6007ED2F5 /* RandomOpponentViewController.swift */,
+				25147073226FC0B10042F548 /* BuyGoldViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -629,10 +631,10 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -763,6 +765,7 @@
 				259FED9E22493C16006BE3E8 /* blackFireDragon.png in Resources */,
 				259FED9C22493C0F006BE3E8 /* blackBasilisk.png in Resources */,
 				252A35F22244323600FE6A09 /* blackKnight.png in Resources */,
+				25059FC222666ABC00DA1CDB /* cathedral.png in Resources */,
 				259FEDAA224949F3006BE3E8 /* blackBatteringRam.png in Resources */,
 				258FEEDC22527B0A007ED10C /* rankSilver.png in Resources */,
 				259FEDA8224949ED006BE3E8 /* blackShip.png in Resources */,
@@ -818,7 +821,7 @@
 				646A3EA72263E48700378BEB /* GameModel.swift in Sources */,
 				889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */,
 				251D1F902240746C00AD7CE4 /* BoardIndex.swift in Sources */,
-				88E34F3922502A2D007ED2F5 /* SearchForFriendsViewController.swift in Sources */,
+				88E34F3922502A2D007ED2F5 /* HowToViewController.swift in Sources */,
 				251D1F6022403DAD00AD7CE4 /* GameViewController.swift in Sources */,
 				251D1F962240751500AD7CE4 /* chessPiece.swift in Sources */,
 				8819824D224E7BBA008E8EFD /* StoreViewController.swift in Sources */,
@@ -827,6 +830,7 @@
 				88E34F41225036A6007ED2F5 /* RandomOpponentViewController.swift in Sources */,
 				251D1F9A224075CE00AD7CE4 /* chessView.swift in Sources */,
 				251D1F8E2240743D00AD7CE4 /* BoardCelll.swift in Sources */,
+				25147074226FC0B10042F548 /* BuyGoldViewController.swift in Sources */,
 				88E34F3F2250341C007ED2F5 /* YourFriendsViewController.swift in Sources */,
 				8819824B224E7948008E8EFD /* MyFriendsViewController.swift in Sources */,
 				251D1F92224074A800AD7CE4 /* chessBoard.swift in Sources */,
@@ -1001,18 +1005,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ALLOW_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "Team Kookaburra Chess/Team Kookaburra Chess.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2U65PB4KJG;
+				DEVELOPMENT_TEAM = F67L2YUZ54;
 				INFOPLIST_FILE = "Team Kookaburra Chess/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-Chess42";
+				PRODUCT_BUNDLE_IDENTIFIER = AlchemistChess1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1021,18 +1024,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ALLOW_MODIFICATION = YES;
-				CODE_SIGN_ENTITLEMENTS = "Team Kookaburra Chess/Team Kookaburra Chess.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2U65PB4KJG;
+				DEVELOPMENT_TEAM = F67L2YUZ54;
 				INFOPLIST_FILE = "Team Kookaburra Chess/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "CBCE.Team-Kookaburra-Chess42";
+				PRODUCT_BUNDLE_IDENTIFIER = AlchemistChess1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
