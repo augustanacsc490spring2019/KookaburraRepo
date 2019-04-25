@@ -180,7 +180,7 @@ class ChessPiece {
             summonCost = 25
         case .demon:
             symbol = "blackDemon.png"
-            summonCost = 28
+            summonCost = 20
         case .basilisk:
             symbol = "blackBasilisk.png"
             summonCost = 40
@@ -237,10 +237,10 @@ class ChessPiece {
             summonCost = 150
         case .bombard:
             symbol = "blackBombard.png"
-            summonCost = 120
+            summonCost = 140
         case .manticore:
             symbol = "blackManticore.png"
-            summonCost = 100
+            summonCost = 90
             }
         } else if color == .white{
             switch type {
@@ -311,7 +311,7 @@ class ChessPiece {
                 summonCost = 25
             case .demon:
                 symbol = "whiteDemon.png"
-                summonCost = 28
+                summonCost = 20
             case .basilisk:
                 symbol = "whiteBasilisk.png"
                 summonCost = 40
@@ -368,10 +368,10 @@ class ChessPiece {
                 summonCost = 150
             case .bombard:
                 symbol = "whiteBombard.png"
-                summonCost = 120
+                summonCost = 140
             case .manticore:
                 symbol = "whiteManticore.png"
-                summonCost = 100
+                summonCost = 90
             }
         } else {
             symbol = "blankPiece.png"
