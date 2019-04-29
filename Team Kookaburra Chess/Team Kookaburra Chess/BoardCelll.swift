@@ -101,6 +101,9 @@ class BoardCell: UIView {
         row = piece.row
         column = piece.col
         self.piece = piece
+        if piece.type == .dummy{
+            piece.color = .clear
+        }
         //pieceLabel.attributedText = imageFromPath(path: "testRook.png")
         //special thanks to StackOverflow user Tarun Seera
         //Create Attachment

@@ -111,6 +111,9 @@ class ChessPiece {
     
     
     func setupSymbol() {
+        if type == .dummy{
+            color = .clear
+        }
         if color == .black{
         switch type {
         case .pawn:
