@@ -20,6 +20,20 @@ class OpeningScreen: UIViewController {
     @IBOutlet weak var promotionImage: UIImageView!
     @IBOutlet weak var levelUpBar: UIProgressView!
     @IBOutlet weak var levelDownBar: UIProgressView!
+    @IBOutlet weak var banner: UIImageView!
+    
+    enum rankStatus{
+        case normal
+        case promoSilver
+        case promoGold
+        case promoDiamond
+        case champion
+        case demoGold
+        case demoSilver
+        case demoBronze
+    }
+    
+    var rankStatus: rankStatus = .normal
     
     override func viewDidLoad(){
 //        UserDefaults.standard.set(0, forKey: "playerGold")
