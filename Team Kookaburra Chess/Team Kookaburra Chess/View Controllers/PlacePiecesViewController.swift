@@ -9,9 +9,11 @@
 import Foundation
 
 import UIKit
+import SpriteKit
 
 class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, ChessBoardDelegate {
     //ChessBoard Delegate functions
+    
     func boardUpdated() {
         //print("Board updated")
         for row in 0...2 {
@@ -23,6 +25,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
         
     }
+    
+    //@IBOutlet SKView: skView;
     
     func gameOver(withWinner winner: UIColor) {
         //only here to fill protocol
