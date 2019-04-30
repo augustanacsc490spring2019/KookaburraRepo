@@ -445,6 +445,22 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
+    func onlineMatchReady(){
+        if playerPoints < 440{
+            //if not, ask them if they're sure they want to ready up
+            let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
+            let yes = UIAlertAction(title: "Ready!", style: .default, handler: { action in
+                self.performSegue(withIdentifier: "OnlineMatchSegue", sender: self)
+            })
+            let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            ac.addAction(yes)
+            ac.addAction(no)
+            present(ac, animated: true, completion: nil)
+            return
+        }
+    }
+    
     func localMatchReady(){
             //check if the player has used up enough points (at least 440)
             if playerPoints < 440{
