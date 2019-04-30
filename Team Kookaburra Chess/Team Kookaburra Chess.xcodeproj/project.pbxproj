@@ -143,6 +143,9 @@
 		8819824D224E7BBA008E8EFD /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824C224E7BBA008E8EFD /* StoreViewController.swift */; };
 		8819824F224E7CAF008E8EFD /* MyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */; };
 		88198251224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */; };
+		88805C552278D5B900E0079F /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88805C542278D5B800E0079F /* SpriteKit.framework */; };
+		88805C572278D86900E0079F /* MyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88805C562278D86900E0079F /* MyScene.swift */; };
+		88805C592278DA2300E0079F /* SKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88805C582278DA2300E0079F /* SKScene.swift */; };
 		889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* OpeningScreen.swift */; };
 		88E34F3922502A2D007ED2F5 /* HowToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3822502A2D007ED2F5 /* HowToViewController.swift */; };
 		88E34F3B2250304E007ED2F5 /* PlacePiecesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3A2250304E007ED2F5 /* PlacePiecesViewController.swift */; };
@@ -312,6 +315,9 @@
 		8819824C224E7BBA008E8EFD /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatsViewController.swift; sourceTree = "<group>"; };
 		88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBtOpeningScreenViewController.swift; sourceTree = "<group>"; };
+		88805C542278D5B800E0079F /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		88805C562278D86900E0079F /* MyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScene.swift; sourceTree = "<group>"; };
+		88805C582278DA2300E0079F /* SKScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKScene.swift; sourceTree = "<group>"; };
 		889C82632241651D00B77A21 /* OpeningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningScreen.swift; sourceTree = "<group>"; };
 		88E34F3822502A2D007ED2F5 /* HowToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToViewController.swift; sourceTree = "<group>"; };
 		88E34F3A2250304E007ED2F5 /* PlacePiecesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePiecesViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88805C552278D5B900E0079F /* SpriteKit.framework in Frameworks */,
 				643430AB2253C50900E0CB24 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +399,8 @@
 				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
 				25FFCD632256D6F900C81196 /* Launch Screen.storyboard */,
 				251D1F6422403DAE00AD7CE4 /* Assets.xcassets */,
+				88805C562278D86900E0079F /* MyScene.swift */,
+				88805C582278DA2300E0079F /* SKScene.swift */,
 			);
 			path = "Team Kookaburra Chess";
 			sourceTree = "<group>";
@@ -533,6 +542,7 @@
 		643430A92253C50900E0CB24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88805C542278D5B800E0079F /* SpriteKit.framework */,
 				643430AA2253C50900E0CB24 /* GameKit.framework */,
 			);
 			name = Frameworks;
@@ -825,6 +835,7 @@
 				251D1F6022403DAD00AD7CE4 /* GameViewController.swift in Sources */,
 				251D1F962240751500AD7CE4 /* chessPiece.swift in Sources */,
 				8819824D224E7BBA008E8EFD /* StoreViewController.swift in Sources */,
+				88805C572278D86900E0079F /* MyScene.swift in Sources */,
 				88E34F3D225032E5007ED2F5 /* NewGameViewController.swift in Sources */,
 				6440829E22593E70006563AB /* GameCenterHelper.swift in Sources */,
 				88E34F41225036A6007ED2F5 /* RandomOpponentViewController.swift in Sources */,
@@ -833,6 +844,7 @@
 				25147074226FC0B10042F548 /* BuyGoldViewController.swift in Sources */,
 				88E34F3F2250341C007ED2F5 /* YourFriendsViewController.swift in Sources */,
 				8819824B224E7948008E8EFD /* MyFriendsViewController.swift in Sources */,
+				88805C592278DA2300E0079F /* SKScene.swift in Sources */,
 				251D1F92224074A800AD7CE4 /* chessBoard.swift in Sources */,
 				251D1F9E22407A7700AD7CE4 /* AppDelegate.swift in Sources */,
 				251D1F982240757800AD7CE4 /* chessVC.swift in Sources */,
