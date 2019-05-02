@@ -66,6 +66,7 @@ class ChessVC: UIViewController {
         chessBoard.delegate = self
         drawBoard()
         setupViews()
+        chessBoard.checkGameOver(color: playerTurn)
         //print("White Formation: \(whiteFormation)")
         //print("Black Formation: \(blackFormation)")
     }
@@ -199,13 +200,16 @@ extension ChessVC: BoardCellDelegate {
                     //drawBoard()
                     
                     pieceBeingMoved = nil
-                    playerTurn = playerTurn == .white ? .black : .white
-//                    if chessBoard.isPlayerUnderCheck(playerColor: playerTurn) {
-//                        checkLabel.text = "You are in check"
-//                    } else {
-//                        checkLabel.text = ""
-//                    }
-                    updateLabel()
+                    if playerTurn == .white{
+                        if chessBoard.canPlayerTakeTurn(color: .black){
+                            changeTurn()
+                        }
+                    } else {//if playerTurn == .black
+                        if chessBoard.canPlayerTakeTurn(color: .white){
+                            changeTurn()
+                        }
+                    }
+                    
                     //print("The old cell now holds: \(cell.piece.symbol)")
                     return
                 }
@@ -276,6 +280,16 @@ extension ChessVC: BoardCellDelegate {
         updateLabel()
         //print("The old cell now holds: \(cell.piece.symbol)")
         //print(chessBoard.board[cell.row][cell.column])
+    }
+    
+    func changeTurn(){
+        playerTurn = playerTurn == .white ? .black : .white
+        //                    if chessBoard.isPlayerUnderCheck(playerColor: playerTurn) {
+        //                        checkLabel.text = "You are in check"
+        //                    } else {
+        //                        checkLabel.text = ""
+        //                    }
+        updateLabel()
     }
     
     func highlightPossibleMoves() {

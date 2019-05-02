@@ -70,7 +70,7 @@ class BoardIndex: Equatable {
             case 7:
                 valueRow = .eight
             default:
-                print("SHOULD NOT BE HERE!!")
+                //print("SHOULD NOT BE HERE!!")
                 valueRow = .eight
             }
             
@@ -92,7 +92,7 @@ class BoardIndex: Equatable {
             case 7:
                 valueCol = .h
             default:
-                print("SHOULD NOT BE HERE!!!")
+                //print("SHOULD NOT BE HERE!!!")
                 valueCol = .a
             }
         } else if dir == .top {
@@ -114,7 +114,7 @@ class BoardIndex: Equatable {
             case 7:
                 valueRow = .one
             default:
-                print("SHOULD NOT BE HERE!!")
+                //print("SHOULD NOT BE HERE!!")
                 valueRow = .eight
             }
             
@@ -136,7 +136,7 @@ class BoardIndex: Equatable {
             case 7:
                 valueCol = .h
             default:
-                print("SHOULD NOT BE HERE!!!")
+                //print("SHOULD NOT BE HERE!!!")
                 valueCol = .a
             }
         }
