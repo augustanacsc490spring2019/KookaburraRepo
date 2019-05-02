@@ -167,9 +167,14 @@ class OpeningScreen: UIViewController {
                 model = GameModel()
             }
             
-            // 4
+            //convert UIView to SKView
+            let skView = self.view as! SKView
+            skView.presentScene(GameScene(model: model))
+            
+            //To do: add transition between views
+            
+            // original code from tutorial
             //self.view?.presentScene(GameScene(model: model), transition: self.transition)
-            //self.view?.draw(<#T##rect: CGRect##CGRect#>)
         }
     }
     
