@@ -138,6 +138,7 @@
 		645068A5224D46E7006709A9 /* testRook.png in Resources */ = {isa = PBXBuildFile; fileRef = 251D202C22431F3800AD7CE4 /* testRook.png */; };
 		646A3EA52263E39C00378BEB /* GKTurnBasedMatch+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */; };
 		646A3EA72263E48700378BEB /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646A3EA62263E48700378BEB /* GameModel.swift */; };
+		647897CA227A8835003A2C2E /* OnlineGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647897C9227A8835003A2C2E /* OnlineGameScene.swift */; };
 		88198249224E69D6008E8EFD /* cathedral.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88198248224E69D6008E8EFD /* cathedral.jpg */; };
 		8819824B224E7948008E8EFD /* MyFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824A224E7948008E8EFD /* MyFriendsViewController.swift */; };
 		8819824D224E7BBA008E8EFD /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824C224E7BBA008E8EFD /* StoreViewController.swift */; };
@@ -310,6 +311,7 @@
 		6440829D22593E70006563AB /* GameCenterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
 		646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GKTurnBasedMatch+Additions.swift"; sourceTree = "<group>"; };
 		646A3EA62263E48700378BEB /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		647897C9227A8835003A2C2E /* OnlineGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGameScene.swift; sourceTree = "<group>"; };
 		88198248224E69D6008E8EFD /* cathedral.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cathedral.jpg; sourceTree = "<group>"; };
 		8819824A224E7948008E8EFD /* MyFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewController.swift; sourceTree = "<group>"; };
 		8819824C224E7BBA008E8EFD /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 		251D1F5622403DAD00AD7CE4 /* Team Kookaburra Chess */ = {
 			isa = PBXGroup;
 			children = (
+				647897C9227A8835003A2C2E /* OnlineGameScene.swift */,
 				6440829D22593E70006563AB /* GameCenterHelper.swift */,
 				646A3EA62263E48700378BEB /* GameModel.swift */,
 				646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */,
@@ -840,6 +843,7 @@
 				6440829E22593E70006563AB /* GameCenterHelper.swift in Sources */,
 				88E34F41225036A6007ED2F5 /* RandomOpponentViewController.swift in Sources */,
 				251D1F9A224075CE00AD7CE4 /* chessView.swift in Sources */,
+				647897CA227A8835003A2C2E /* OnlineGameScene.swift in Sources */,
 				251D1F8E2240743D00AD7CE4 /* BoardCelll.swift in Sources */,
 				25147074226FC0B10042F548 /* BuyGoldViewController.swift in Sources */,
 				88E34F3F2250341C007ED2F5 /* YourFriendsViewController.swift in Sources */,
