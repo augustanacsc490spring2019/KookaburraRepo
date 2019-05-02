@@ -133,68 +133,11 @@ final class OnlineGameScene: SKScene {
             y: runningYOffset
         )
         addChild(groundNode)
-        
-//        messageNode = InformationNode(model.messageToDisplay, size: CGSize(width: viewWidth - (sceneMargin * 2), height: 40))
-//        messageNode.zPosition = NodeLayer.ui.rawValue
-//        messageNode.position = CGPoint(
-//            x: sceneMargin,
-//            y: runningYOffset - (sceneMargin * 1.25)
-//        )
-        
-//        addChild(messageNode)
-        
-//        let skySize = CGSize(width: viewWidth, height: viewHeight - groundNode.position.y)
-//        let skyNode = SKSpriteNode(color: .sky, size: skySize)
-//        skyNode.zPosition = NodeLayer.background.rawValue - 1
-//        runningYOffset -= skyNode.size.height / 2
-//        skyNode.position = CGPoint(
-//            x: viewWidth / 2,
-//            y: viewHeight - (skySize.height / 2)
-//        )
-//        addChild(skyNode)
-//
-//        let buttonSize = CGSize(width: 125, height: 50)
-//        let menuButton = ButtonNode("Menu", size: buttonSize) {
-//           self.returnToMenu()
-//        }
-//        menuButton.position = CGPoint(
-//            x: (viewWidth - buttonSize.width) / 2,
-//            y: viewHeight - safeAreaTopInset - (sceneMargin * 2)
-//        )
-//        menuButton.zPosition = NodeLayer.ui.rawValue
-//        addChild(menuButton)
-//
-//        loadTokens()
     }
-    
-    // MARK: - Touches
-    
-    
-    
-    // MARK: - Spawning
-    
-//    private func loadTokens() {
-//        for token in model.tokens {
-//            guard let boardPointNode = boardNode.node(at: token.coord, named: BoardNode.boardPointNodeName) else {
-//                return
-//            }
-//
-//            spawnToken(at: boardPointNode.position, for: token.player)
-//        }
-//    }
-    
-//    private func spawnToken(at point: CGPoint, for player: GameModel.Player) {
-//        let tokenNode = TokenNode(type: player)
-//
-//        tokenNode.zPosition = NodeLayer.token.rawValue
-//        tokenNode.position = point
-//
-//        boardNode.addChild(tokenNode)
-//    }
     
     // MARK: - Helpers
     
-    private func returnToMenu() {
+    func returnToMenu() {
 //        view?.presentScene(MenuScene(), transition: SKTransition.push(with: .down, duration: 0.3))
     }
     

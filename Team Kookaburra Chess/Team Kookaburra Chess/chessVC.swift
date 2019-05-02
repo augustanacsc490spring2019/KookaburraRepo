@@ -47,6 +47,16 @@ class ChessVC: UIViewController {
         return b
     }()
     
+    lazy var menuButton: UIButton = {
+        let b = UIButton(type: .system)
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.setTitle("Main Menu", for: [])
+        b.setTitleColor(.white, for: [])
+        b.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        b.addTarget(self, action: #selector(restartPressed(sender:)), for: .touchUpInside)
+        return b
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(white: 0.1, alpha: 1)
@@ -106,7 +116,10 @@ class ChessVC: UIViewController {
         restartButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
         restartButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         restartButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
-        
+        view.addSubview(menuButton)
+        menuButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
+        menuButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        menuButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         
         view.addSubview(turnLabel)
         turnLabel.bottomAnchor.constraint(equalTo: restartButton.topAnchor, constant: -10).isActive = true
