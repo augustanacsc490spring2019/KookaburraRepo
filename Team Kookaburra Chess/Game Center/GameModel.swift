@@ -30,14 +30,11 @@ import GameKit
 
 struct GameModel: Codable {
     var turn: Int
+    //probably don't want a turn counter but mayve a boolean to see if it's the first turn
+    //use the boolean to determine if placing pieces or loading board
     var state: State
     var lastMove: Move?
-    var tokens: [Token]
     var winner: Player?
-    var tokensPlaced: Int
-    var millTokens: [Token]
-    var removedToken: Token?
-    var currentMill: [Token]?
     
     var currentPlayer: Player {
         return isKnightTurn ? .knight : .troll
@@ -47,12 +44,13 @@ struct GameModel: Codable {
         return isKnightTurn ? .troll : .knight
     }
     
+    //I don't think we'll need this
     var messageToDisplay: String {
         let playerName = isKnightTurn ? "Knight" : "Troll"
         
-        if isCapturingPiece {
-            return "Take an opponent's piece!"
-        }
+//        if isCapturingPiece {
+//            return "Take an opponent's piece!"
+//        }
         
         let stateAction: String
         switch state {
@@ -70,17 +68,6 @@ struct GameModel: Codable {
         return "\(playerName)'s turn to \(stateAction)"
     }
     
-    var isCapturingPiece: Bool {
-        return currentMill != nil
-    }
-    
-    var emptyCoordinates: [GridCoordinate] {
-        let tokenCoords = tokens.map { $0.coord }
-        
-        return positions.filter { coord in
-            return !tokenCoords.contains(coord)
-        }
-    }
     
     private(set) var isKnightTurn: Bool
     private let positions: [GridCoordinate]
@@ -92,10 +79,7 @@ struct GameModel: Codable {
         self.isKnightTurn = isKnightTurn
         
         turn = 0
-        tokensPlaced = 0
         state = .placement
-        tokens = [Token]()
-        millTokens = [Token]()
         
         positions = [
             GridCoordinate(x: .min, y: .max, layer: .outer),
@@ -169,206 +153,118 @@ struct GameModel: Codable {
         return neighbors
     }
     
-    func removableTokens(for player: Player) -> [Token] {
-        let playerTokens = tokens.filter { token in
-            return token.player == player
-        }
-        
-        if playerTokens.count == 3, state == .movement {
-            return playerTokens
-        }
-        
-        return playerTokens.filter { token in
-            return !millTokens.contains(token)
-        }
-    }
+    //This functionality is in the chessBoard class I think
+//    func mill(containing token: Token) -> [Token]? {
+//        var coordsToCheck = [token.coord]
+//
+//        var xPositionsToCheck: [GridPosition] = [.min, .mid, .max]
+//        xPositionsToCheck.remove(at: token.coord.x.rawValue)
+//
+//        guard let firstXPosition = xPositionsToCheck.first, let lastXPosition = xPositionsToCheck.last else {
+//            return nil
+//        }
+//
+//        var yPositionsToCheck: [GridPosition] = [.min, .mid, .max]
+//        yPositionsToCheck.remove(at: token.coord.y.rawValue)
+//
+//        guard let firstYPosition = yPositionsToCheck.first, let lastYPosition = yPositionsToCheck.last else {
+//            return nil
+//        }
+//
+//        var layersToCheck: [GridLayer] = [.outer, .middle, .center]
+//        layersToCheck.remove(at: token.coord.layer.rawValue)
+//
+//        guard let firstLayer = layersToCheck.first, let lastLayer = layersToCheck.last else {
+//            return nil
+//        }
+//
+//        switch token.coord.x {
+//        case .mid:
+//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: firstLayer))
+//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: lastLayer))
+//
+//        case .min, .max:
+//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: firstYPosition, layer: token.coord.layer))
+//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: lastYPosition, layer: token.coord.layer))
+//        }
+//
+//        let validHorizontalMillTokens = tokens.filter {
+//            return $0.player == token.player && coordsToCheck.contains($0.coord)
+//        }
+//
+//        if validHorizontalMillTokens.count == 3 {
+//            return validHorizontalMillTokens
+//        }
+//
+//        coordsToCheck = [token.coord]
+//
+//        switch token.coord.y {
+//        case .mid:
+//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: firstLayer))
+//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: lastLayer))
+//
+//        case .min, .max:
+//            coordsToCheck.append(GridCoordinate(x: firstXPosition, y: token.coord.y, layer: token.coord.layer))
+//            coordsToCheck.append(GridCoordinate(x: lastXPosition, y: token.coord.y, layer: token.coord.layer))
+//        }
+//
+//        let validVerticalMillTokens = tokens.filter {
+//            return $0.player == token.player && coordsToCheck.contains($0.coord)
+//        }
+//
+//        if validVerticalMillTokens.count == 3 {
+//            return validVerticalMillTokens
+//        }
+//
+//        return nil
+//    }
+//
+//
+//
+//    mutating func move(from: GridCoordinate, to: GridCoordinate) {
+//        guard let index = tokens.firstIndex(where: { $0.coord == from }) else {
+//            return
+//        }
+//
+//        let previousToken = tokens[index]
+//        let movedToken = Token(player: previousToken.player, coord: to)
+//
+//        let millToRemove = mill(containing: previousToken) ?? []
+//
+//        if !millToRemove.isEmpty {
+//            millToRemove.forEach { tokenToRemove in
+//                guard let index = millTokens.index(of: tokenToRemove) else {
+//                    return
+//                }
+//
+//                self.millTokens.remove(at: index)
+//            }
+//        }
+//
+//        tokens[index] = movedToken
+//        lastMove = Move(start: from, end: to)
+//
+//        if !millToRemove.isEmpty {
+//            for removedToken in millToRemove where removedToken != previousToken && mill(containing: removedToken) != nil {
+//                millTokens.append(removedToken)
+//            }
+//        }
     
-    func mill(containing token: Token) -> [Token]? {
-        var coordsToCheck = [token.coord]
-        
-        var xPositionsToCheck: [GridPosition] = [.min, .mid, .max]
-        xPositionsToCheck.remove(at: token.coord.x.rawValue)
-        
-        guard let firstXPosition = xPositionsToCheck.first, let lastXPosition = xPositionsToCheck.last else {
-            return nil
-        }
-        
-        var yPositionsToCheck: [GridPosition] = [.min, .mid, .max]
-        yPositionsToCheck.remove(at: token.coord.y.rawValue)
-        
-        guard let firstYPosition = yPositionsToCheck.first, let lastYPosition = yPositionsToCheck.last else {
-            return nil
-        }
-        
-        var layersToCheck: [GridLayer] = [.outer, .middle, .center]
-        layersToCheck.remove(at: token.coord.layer.rawValue)
-        
-        guard let firstLayer = layersToCheck.first, let lastLayer = layersToCheck.last else {
-            return nil
-        }
-        
-        switch token.coord.x {
-        case .mid:
-            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: firstLayer))
-            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: lastLayer))
-            
-        case .min, .max:
-            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: firstYPosition, layer: token.coord.layer))
-            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: lastYPosition, layer: token.coord.layer))
-        }
-        
-        let validHorizontalMillTokens = tokens.filter {
-            return $0.player == token.player && coordsToCheck.contains($0.coord)
-        }
-        
-        if validHorizontalMillTokens.count == 3 {
-            return validHorizontalMillTokens
-        }
-        
-        coordsToCheck = [token.coord]
-        
-        switch token.coord.y {
-        case .mid:
-            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: firstLayer))
-            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: lastLayer))
-            
-        case .min, .max:
-            coordsToCheck.append(GridCoordinate(x: firstXPosition, y: token.coord.y, layer: token.coord.layer))
-            coordsToCheck.append(GridCoordinate(x: lastXPosition, y: token.coord.y, layer: token.coord.layer))
-        }
-        
-        let validVerticalMillTokens = tokens.filter {
-            return $0.player == token.player && coordsToCheck.contains($0.coord)
-        }
-        
-        if validVerticalMillTokens.count == 3 {
-            return validVerticalMillTokens
-        }
-        
-        return nil
-    }
     
-    mutating func placeToken(at coord: GridCoordinate) {
-        guard state == .placement else {
-            return
-        }
-        
-        let player = isKnightTurn ? Player.knight : Player.troll
-        
-        let newToken = Token(player: player, coord: coord)
-        tokens.append(newToken)
-        tokensPlaced += 1
-        
-        lastMove = Move(placed: coord)
-        
-        guard let newMill = mill(containing: newToken) else {
-            advance()
-            return
-        }
-        
-        millTokens.append(contentsOf: newMill)
-        currentMill = newMill
-    }
-    
-    mutating func removeToken(at coord: GridCoordinate) -> Bool {
-        guard isCapturingPiece else {
-            return false
-        }
-        
-        guard let index = tokens.firstIndex(where: { $0.coord == coord }) else {
-            return false
-        }
-        
-        let tokenToRemove = tokens[index]
-        
-        guard tokenCount(for: currentOpponent) == 3 || !millTokens.contains(tokenToRemove) else {
-            return false
-        }
-        
-        tokens.remove(at: index)
-        lastMove = Move(removed: coord)
-        advance()
-        
-        return true
-    }
-    
-    mutating func move(from: GridCoordinate, to: GridCoordinate) {
-        guard let index = tokens.firstIndex(where: { $0.coord == from }) else {
-            return
-        }
-        
-        let previousToken = tokens[index]
-        let movedToken = Token(player: previousToken.player, coord: to)
-        
-        let millToRemove = mill(containing: previousToken) ?? []
-        
-        if !millToRemove.isEmpty {
-            millToRemove.forEach { tokenToRemove in
-                guard let index = millTokens.index(of: tokenToRemove) else {
-                    return
-                }
-                
-                self.millTokens.remove(at: index)
-            }
-        }
-        
-        tokens[index] = movedToken
-        lastMove = Move(start: from, end: to)
-        
-        if !millToRemove.isEmpty {
-            for removedToken in millToRemove where removedToken != previousToken && mill(containing: removedToken) != nil {
-                millTokens.append(removedToken)
-            }
-        }
-        
-        guard let newMill = mill(containing: movedToken) else {
-            advance()
-            return
-        }
-        
-        millTokens.append(contentsOf: newMill)
-        currentMill = newMill
-    }
-    
-    mutating func advance() {
-        if tokensPlaced == maxTokenCount && state == .placement {
-            state = .movement
-        }
-        
-        turn += 1
-        currentMill = nil
-        
-        if state == .movement {
-            if tokenCount(for: currentOpponent) == 2 || !canMove(currentOpponent) {
-                winner = currentPlayer
-            } else {
-                isKnightTurn = !isKnightTurn
-            }
-        } else {
-            isKnightTurn = !isKnightTurn
-        }
-    }
-    
-    func tokenCount(for player: Player) -> Int {
-        return tokens.filter { token in
-            return token.player == player
-            }.count
-    }
-    
-    func canMove(_ player: Player) -> Bool {
-        let playerTokens = tokens.filter { token in
-            return token.player == player
-        }
-        
-        for token in playerTokens {
-            let emptyNeighbors = neighbors(at: token.coord).filter({ emptyCoordinates.contains($0) })
-            if !emptyNeighbors.isEmpty {
-                return true
-            }
-        }
-        
-        return false
-    }
+//    func canMove(_ player: Player) -> Bool {
+//        let playerTokens = tokens.filter { token in
+//            return token.player == player
+//        }
+//
+//        for token in playerTokens {
+//            let emptyNeighbors = neighbors(at: token.coord).filter({ emptyCoordinates.contains($0) })
+//            if !emptyNeighbors.isEmpty {
+//                return true
+//            }
+//        }
+//
+//        return false
+//    }
 }
 
 // MARK: - Types

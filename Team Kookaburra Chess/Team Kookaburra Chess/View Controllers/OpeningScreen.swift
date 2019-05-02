@@ -167,10 +167,34 @@ class OpeningScreen: UIViewController {
                 model = GameModel()
             }
             
-            // 4
-            //self.view?.presentScene(GameScene(model: model), transition: self.transition)
-            //self.view?.draw(<#T##rect: CGRect##CGRect#>)
+            //convert UIView to SKView
+            let skView = self.view as! SKView
+            skView.presentScene(GameScene(model: model))
+            //To do: add transition between views
+            //work on OnlineGameScene to use that class instead
         }
     }
+    
+    //original code from tutorial
+    //    private func loadAndDisplay(match: GKTurnBasedMatch) {
+    //        // 2
+    //        match.loadMatchData { data, error in
+    //            let model: GameModel
+    //
+    //            if let data = data {
+    //                do {
+    //                    // 3
+    //                    model = try JSONDecoder().decode(GameModel.self, from: data)
+    //                } catch {
+    //                    model = GameModel()
+    //                }
+    //            } else {
+    //                model = GameModel()
+    //            }
+    //
+    //            // 4
+    //            self.view?.presentScene(GameScene(model: model), transition: self.transition)
+    //        }
+    //    }
     
 }

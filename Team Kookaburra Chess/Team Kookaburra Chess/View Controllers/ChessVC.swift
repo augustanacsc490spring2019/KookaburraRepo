@@ -22,39 +22,40 @@ class ChessVC: UIViewController {
     var whiteFormation = [[BoardCell]]()
     var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
+    var isLocalMatch = true
     
     let turnLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.textColor = .white
-        return l
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        return label
     }()
     
     let checkLabel: UILabel = {
-        let l = UILabel()
-        l.translatesAutoresizingMaskIntoConstraints = false
-        l.textColor = .red
-        return l
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .red
+        return label
     }()
     
     lazy var restartButton: UIButton = {
-        let b = UIButton(type: .system)
-        b.translatesAutoresizingMaskIntoConstraints = false
-        b.setTitle("Restart Game", for: [])
-        b.setTitleColor(.white, for: [])
-        b.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        b.addTarget(self, action: #selector(restartPressed(sender:)), for: .touchUpInside)
-        return b
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Restart Game", for: [])
+        button.setTitleColor(.white, for: [])
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(restartPressed(sender:)), for: .touchUpInside)
+        return button
     }()
     
     lazy var menuButton: UIButton = {
-        let b = UIButton(type: .system)
-        b.translatesAutoresizingMaskIntoConstraints = false
-        b.setTitle("Main Menu", for: [])
-        b.setTitleColor(.white, for: [])
-        b.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        b.addTarget(self, action: #selector(restartPressed(sender:)), for: .touchUpInside)
-        return b
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("<", for: [])
+        button.setTitleColor(.white, for: [])
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(menuPressed(sender:)), for: .touchUpInside)
+        return button
     }()
     
     override func viewDidLoad() {
@@ -117,8 +118,8 @@ class ChessVC: UIViewController {
         restartButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         restartButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         view.addSubview(menuButton)
-        menuButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
-        menuButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        menuButton.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
+        menuButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -170).isActive = true
         menuButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         
         view.addSubview(turnLabel)
@@ -152,6 +153,29 @@ class ChessVC: UIViewController {
         ac.addAction(no)
         present(ac, animated: true, completion: nil)
     }
+    
+    @objc func menuPressed(sender: UIButton) {
+        if isLocalMatch{
+            let ac = UIAlertController(title: "Main Menu", message: "Are you sure you want to end the game?", preferredStyle: .alert)
+            let yes = UIAlertAction(title: "Yes", style: .default, handler: { action in
+                self.goToMain()
+            })
+            let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            ac.addAction(yes)
+            ac.addAction(no)
+            present(ac, animated: true, completion: nil)
+        } else {
+            goToMain()
+        }
+        
+    }
+    
+    func goToMain(){
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "OpeningScreen") as UIViewController
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     
 }
 
