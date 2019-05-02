@@ -17,7 +17,7 @@ class GameScene: SKScene {
     
     init(model: GameModel) {
         self.model = model
-        
+    
         super.init(size: .zero)
         
         scaleMode = .resizeFill

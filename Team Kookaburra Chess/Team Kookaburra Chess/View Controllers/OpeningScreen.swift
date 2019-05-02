@@ -169,7 +169,7 @@ class OpeningScreen: UIViewController {
             
             // 4
             let skView = self.view as! SKView
-            //skView.presentScene(GameScene(model: model), transition: self.transition)
+            skView.presentScene(GameScene(model: model))
         }
     }
 //  original code from tutorial
