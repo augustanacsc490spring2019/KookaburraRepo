@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import GameKit
 
 class OpeningScreen: UIViewController {
     
@@ -140,42 +139,4 @@ class OpeningScreen: UIViewController {
         self.viewDidLoad()
     }
     
-    @objc private func presentGame(_ notification: Notification) {
-        // 1
-        guard let match = notification.object as? GKTurnBasedMatch else {
-            return
-        }
-        
-        loadAndDisplay(match: match)
-    }
-
-    // MARK: - Helpers
-
-    private func loadAndDisplay(match: GKTurnBasedMatch) {
-        // 2
-        match.loadMatchData { data, error in
-            let model: GameModel
-
-            if let data = data {
-                do {
-                    // 3
-                    model = try JSONDecoder().decode(GameModel.self, from: data)
-                } catch {
-                    model = GameModel()
-                }
-            } else {
-                model = GameModel()
-            }
-
-            // 4
-<<<<<<< HEAD
-            let skView = self.view as! SKView
-            skView.presentScene(GameScene(model: model))
-=======
-            self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)
-            //self.view?.presentScene(GameScene(model: model), transition: self.transition)
-            //self.view?.draw(<#T##rect: CGRect##CGRect#>)
->>>>>>> parent of 3b51bf5... Worked on transition to game after matchmaking
-        }
-    }
 }
