@@ -14,6 +14,14 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    init(model: GameModel) {
+      //  self.model = model
+        
+        super.init(size: .zero)
+        
+        scaleMode = .resizeFill
+    }
+//
     override func didMove(to view: SKView) {
         
         // Get label node from scene and store it for use later
