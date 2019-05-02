@@ -169,11 +169,6 @@ final class OnlineGameScene: SKScene {
     
     // MARK: - Touches
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touches.forEach { touch in
-            handleTouch(touch)
-        }
-    }
     
     
     // MARK: - Spawning
