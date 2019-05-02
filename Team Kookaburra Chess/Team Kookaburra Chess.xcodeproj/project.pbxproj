@@ -21,7 +21,7 @@
 		251D1F902240746C00AD7CE4 /* BoardIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F8F2240746C00AD7CE4 /* BoardIndex.swift */; };
 		251D1F92224074A800AD7CE4 /* ChessBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F91224074A800AD7CE4 /* ChessBoard.swift */; };
 		251D1F962240751500AD7CE4 /* ChessPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F952240751500AD7CE4 /* ChessPiece.swift */; };
-		251D1F982240757800AD7CE4 /* chessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F972240757800AD7CE4 /* chessVC.swift */; };
+		251D1F982240757800AD7CE4 /* ChessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F972240757800AD7CE4 /* ChessVC.swift */; };
 		251D1F9A224075CE00AD7CE4 /* ChessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F99224075CE00AD7CE4 /* ChessView.swift */; };
 		251D1F9C2240760B00AD7CE4 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F9B2240760B00AD7CE4 /* History.swift */; };
 		251D1F9E22407A7700AD7CE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */; };
@@ -191,7 +191,7 @@
 		251D1F8F2240746C00AD7CE4 /* BoardIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardIndex.swift; sourceTree = "<group>"; };
 		251D1F91224074A800AD7CE4 /* ChessBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessBoard.swift; sourceTree = "<group>"; };
 		251D1F952240751500AD7CE4 /* ChessPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessPiece.swift; sourceTree = "<group>"; };
-		251D1F972240757800AD7CE4 /* chessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chessVC.swift; sourceTree = "<group>"; };
+		251D1F972240757800AD7CE4 /* ChessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessVC.swift; sourceTree = "<group>"; };
 		251D1F99224075CE00AD7CE4 /* ChessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessView.swift; sourceTree = "<group>"; };
 		251D1F9B2240760B00AD7CE4 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -572,7 +572,7 @@
 		88E34F37225029EE007ED2F5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				251D1F972240757800AD7CE4 /* chessVC.swift */,
+				251D1F972240757800AD7CE4 /* ChessVC.swift */,
 				251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */,
 				88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */,
 				8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */,
@@ -868,7 +868,7 @@
 				8819824B224E7948008E8EFD /* MyFriendsViewController.swift in Sources */,
 				251D1F92224074A800AD7CE4 /* ChessBoard.swift in Sources */,
 				251D1F9E22407A7700AD7CE4 /* AppDelegate.swift in Sources */,
-				251D1F982240757800AD7CE4 /* chessVC.swift in Sources */,
+				251D1F982240757800AD7CE4 /* ChessVC.swift in Sources */,
 				646A3EA52263E39C00378BEB /* GKTurnBasedMatch+Additions.swift in Sources */,
 				254815072252DF5D007C1174 /* LevelUpProgress.swift in Sources */,
 			);
