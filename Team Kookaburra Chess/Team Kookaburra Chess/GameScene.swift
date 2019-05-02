@@ -13,6 +13,19 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    private var model : GameModel //added to try to make initializer work
+    
+    init(model: GameModel) {
+        self.model = model
+        
+        super.init(size: .zero)
+        
+        scaleMode = .resizeFill
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMove(to view: SKView) {
         
