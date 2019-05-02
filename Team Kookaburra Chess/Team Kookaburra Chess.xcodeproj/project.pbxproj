@@ -354,8 +354,6 @@
 		251D1F4B22403DAD00AD7CE4 = {
 			isa = PBXGroup;
 			children = (
-				88357794227A8B71002AB7C1 /* Dfault Files */,
-				88357793227A8B12002AB7C1 /* Game Center */,
 				251D1F5622403DAD00AD7CE4 /* Team Kookaburra Chess */,
 				251D1F7122403DAE00AD7CE4 /* Team Kookaburra ChessTests */,
 				251D1F7C22403DAE00AD7CE4 /* Team Kookaburra ChessUITests */,
@@ -377,16 +375,10 @@
 		251D1F5622403DAD00AD7CE4 /* Team Kookaburra Chess */ = {
 			isa = PBXGroup;
 			children = (
-				646A3EA62263E48700378BEB /* GameModel.swift */,
-				251D1F952240751500AD7CE4 /* chessPiece.swift */,
-				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
-				251D1F99224075CE00AD7CE4 /* chessView.swift */,
-				251D1F9B2240760B00AD7CE4 /* history.swift */,
+				88357796227A8D28002AB7C1 /* Pieces, Board, and Moves */,
+				88357794227A8B71002AB7C1 /* Dfault Files */,
+				88357793227A8B12002AB7C1 /* Game Center */,
 				251D202B22431F2C00AD7CE4 /* Images */,
-				251D1F8D2240743D00AD7CE4 /* BoardCelll.swift */,
-				251D1F8F2240746C00AD7CE4 /* BoardIndex.swift */,
-				251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */,
-				251D1F91224074A800AD7CE4 /* chessBoard.swift */,
 				88E34F37225029EE007ED2F5 /* View Controllers */,
 				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
 				25FFCD632256D6F900C81196 /* Launch Screen.storyboard */,
@@ -544,9 +536,11 @@
 				6440829D22593E70006563AB /* GameCenterHelper.swift */,
 				646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */,
 				647897C9227A8835003A2C2E /* OnlineGameScene.swift */,
+				646A3EA62263E48700378BEB /* GameModel.swift */,
 				251D1F5D22403DAD00AD7CE4 /* GameScene.swift */,
 			);
-			path = "Game Center";
+			name = "Game Center";
+			path = "../Game Center";
 			sourceTree = "<group>";
 		};
 		88357794227A8B71002AB7C1 /* Dfault Files */ = {
@@ -556,8 +550,23 @@
 				251D1F5B22403DAD00AD7CE4 /* Actions.sks */,
 				251D1F5922403DAD00AD7CE4 /* GameScene.sks */,
 				643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */,
+				251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */,
 			);
 			path = "Dfault Files";
+			sourceTree = "<group>";
+		};
+		88357796227A8D28002AB7C1 /* Pieces, Board, and Moves */ = {
+			isa = PBXGroup;
+			children = (
+				251D1F952240751500AD7CE4 /* chessPiece.swift */,
+				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
+				251D1F99224075CE00AD7CE4 /* chessView.swift */,
+				251D1F9B2240760B00AD7CE4 /* history.swift */,
+				251D1F8D2240743D00AD7CE4 /* BoardCelll.swift */,
+				251D1F8F2240746C00AD7CE4 /* BoardIndex.swift */,
+				251D1F91224074A800AD7CE4 /* chessBoard.swift */,
+			);
+			path = "Pieces, Board, and Moves";
 			sourceTree = "<group>";
 		};
 		88E34F37225029EE007ED2F5 /* View Controllers */ = {
