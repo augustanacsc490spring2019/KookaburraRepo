@@ -28,7 +28,11 @@
 
 import GameKit
 
-final class GameCenterHelper: NSObject {
+final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
+    
+    var numberOfTotalWins = Int()
+    var numberOfTotalLoses = Int()
+    
     typealias CompletionBlock = (Error?) -> Void
     
     static let helper = GameCenterHelper()
@@ -122,12 +126,70 @@ final class GameCenterHelper: NSObject {
         match.others.forEach { other in
             other.matchOutcome = .lost
         }
+        
+        //keeps track of number of total wins and loses
+        if match.currentParticipant?.matchOutcome == .won {
+            numberOfTotalWins += 1
+        } else {
+            numberOfTotalLoses += 1
+        }
 
         match.endMatchInTurn(
             withMatch: match.matchData ?? Data(),
             completionHandler: completion
         )
     }
+    
+    
+    //this method conects the number of total wins to the leader board Wins
+    // we need to figure out where to call this method in order to save this data
+    // when we call it we will put saveTotalWins(numberOfTotalWins)
+    func saveTotalWins(number: Int){
+        
+        if GKLocalPlayer.local.isAuthenticated {
+            
+            let winReporter = GKScore(leaderboardIdentifier: "Wins")
+            
+            winReporter.value = Int64(number)
+            
+            let winArray : [GKScore] = [winReporter]
+            
+            GKScore.report(winArray, withCompletionHandler: nil)
+        }
+    }
+    
+    //this method conects the number of total loses to the leader board Loses
+    // we need to figure out where to call this method in order to save this data
+    // when we call it we will put saveTotalLoses(numberOfTotalLoses)
+    func saveTotalLoses(number: Int){
+        
+        if GKLocalPlayer.local.isAuthenticated {
+            
+            let losesReporter = GKScore(leaderboardIdentifier: "Loses")
+            
+            losesReporter.value = Int64(number)
+            
+            let losesArray : [GKScore] = [losesReporter]
+            
+            GKScore.report(losesArray, withCompletionHandler: nil)
+        }
+    }
+    
+    //This function I got from a tutorial and needs some fixes and editing in order for us to be able to use in our game
+//    func showLeaderBoard(){
+//        let viewController = self.view.window?.rootViewController
+//        let gvcv = GKGameCenterViewController()
+//
+//        gvcv.GameCenterDelegate = self
+//
+//        viewController?.presentViewController(gvcv, animated: true, completion: nil)
+//    }
+    
+    //thismethod was also taken from the tutorial and is explained in this link //https://www.youtube.com/watch?v=TziN1O2x7pM 
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension GameCenterHelper: GKTurnBasedMatchmakerViewControllerDelegate {
