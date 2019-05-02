@@ -145,8 +145,6 @@
 		8819824F224E7CAF008E8EFD /* MyStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */; };
 		88198251224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */; };
 		88805C552278D5B900E0079F /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88805C542278D5B800E0079F /* SpriteKit.framework */; };
-		88805C572278D86900E0079F /* MyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88805C562278D86900E0079F /* MyScene.swift */; };
-		88805C592278DA2300E0079F /* SKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88805C582278DA2300E0079F /* SKScene.swift */; };
 		889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C82632241651D00B77A21 /* OpeningScreen.swift */; };
 		88E34F3922502A2D007ED2F5 /* HowToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3822502A2D007ED2F5 /* HowToViewController.swift */; };
 		88E34F3B2250304E007ED2F5 /* PlacePiecesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3A2250304E007ED2F5 /* PlacePiecesViewController.swift */; };
@@ -318,8 +316,6 @@
 		8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatsViewController.swift; sourceTree = "<group>"; };
 		88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBtOpeningScreenViewController.swift; sourceTree = "<group>"; };
 		88805C542278D5B800E0079F /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		88805C562278D86900E0079F /* MyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScene.swift; sourceTree = "<group>"; };
-		88805C582278DA2300E0079F /* SKScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKScene.swift; sourceTree = "<group>"; };
 		889C82632241651D00B77A21 /* OpeningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningScreen.swift; sourceTree = "<group>"; };
 		88E34F3822502A2D007ED2F5 /* HowToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToViewController.swift; sourceTree = "<group>"; };
 		88E34F3A2250304E007ED2F5 /* PlacePiecesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePiecesViewController.swift; sourceTree = "<group>"; };
@@ -379,31 +375,16 @@
 		251D1F5622403DAD00AD7CE4 /* Team Kookaburra Chess */ = {
 			isa = PBXGroup;
 			children = (
-				647897C9227A8835003A2C2E /* OnlineGameScene.swift */,
-				6440829D22593E70006563AB /* GameCenterHelper.swift */,
-				646A3EA62263E48700378BEB /* GameModel.swift */,
-				646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */,
 				643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */,
 				251D1F6922403DAE00AD7CE4 /* Info.plist */,
-				251D1F952240751500AD7CE4 /* chessPiece.swift */,
-				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
-				251D1F972240757800AD7CE4 /* chessVC.swift */,
-				251D1F99224075CE00AD7CE4 /* chessView.swift */,
-				251D1F9B2240760B00AD7CE4 /* history.swift */,
-				251D1F5D22403DAD00AD7CE4 /* GameScene.swift */,
+				88357796227A8D28002AB7C1 /* Pieces, Board, and Moves */,
+				88357794227A8B71002AB7C1 /* Dfault Files */,
+				88357793227A8B12002AB7C1 /* Game Center */,
 				251D202B22431F2C00AD7CE4 /* Images */,
-				251D1F8D2240743D00AD7CE4 /* BoardCelll.swift */,
-				251D1F8F2240746C00AD7CE4 /* BoardIndex.swift */,
-				251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */,
-				251D1F91224074A800AD7CE4 /* chessBoard.swift */,
-				251D1F5922403DAD00AD7CE4 /* GameScene.sks */,
 				88E34F37225029EE007ED2F5 /* View Controllers */,
-				251D1F5B22403DAD00AD7CE4 /* Actions.sks */,
 				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
 				25FFCD632256D6F900C81196 /* Launch Screen.storyboard */,
 				251D1F6422403DAE00AD7CE4 /* Assets.xcassets */,
-				88805C562278D86900E0079F /* MyScene.swift */,
-				88805C582278DA2300E0079F /* SKScene.swift */,
 			);
 			path = "Team Kookaburra Chess";
 			sourceTree = "<group>";
@@ -551,9 +532,47 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		88357793227A8B12002AB7C1 /* Game Center */ = {
+			isa = PBXGroup;
+			children = (
+				6440829D22593E70006563AB /* GameCenterHelper.swift */,
+				646A3EA42263E39C00378BEB /* GKTurnBasedMatch+Additions.swift */,
+				647897C9227A8835003A2C2E /* OnlineGameScene.swift */,
+				646A3EA62263E48700378BEB /* GameModel.swift */,
+				251D1F5D22403DAD00AD7CE4 /* GameScene.swift */,
+			);
+			name = "Game Center";
+			path = "../Game Center";
+			sourceTree = "<group>";
+		};
+		88357794227A8B71002AB7C1 /* Dfault Files */ = {
+			isa = PBXGroup;
+			children = (
+				251D1F5B22403DAD00AD7CE4 /* Actions.sks */,
+				251D1F5922403DAD00AD7CE4 /* GameScene.sks */,
+				251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */,
+			);
+			path = "Dfault Files";
+			sourceTree = "<group>";
+		};
+		88357796227A8D28002AB7C1 /* Pieces, Board, and Moves */ = {
+			isa = PBXGroup;
+			children = (
+				251D1F952240751500AD7CE4 /* chessPiece.swift */,
+				254815062252DF5D007C1174 /* LevelUpProgress.swift */,
+				251D1F99224075CE00AD7CE4 /* chessView.swift */,
+				251D1F9B2240760B00AD7CE4 /* history.swift */,
+				251D1F8D2240743D00AD7CE4 /* BoardCelll.swift */,
+				251D1F8F2240746C00AD7CE4 /* BoardIndex.swift */,
+				251D1F91224074A800AD7CE4 /* chessBoard.swift */,
+			);
+			path = "Pieces, Board, and Moves";
+			sourceTree = "<group>";
+		};
 		88E34F37225029EE007ED2F5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				251D1F972240757800AD7CE4 /* chessVC.swift */,
 				251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */,
 				88198250224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift */,
 				8819824E224E7CAF008E8EFD /* MyStatsViewController.swift */,
@@ -838,7 +857,6 @@
 				251D1F6022403DAD00AD7CE4 /* GameViewController.swift in Sources */,
 				251D1F962240751500AD7CE4 /* chessPiece.swift in Sources */,
 				8819824D224E7BBA008E8EFD /* StoreViewController.swift in Sources */,
-				88805C572278D86900E0079F /* MyScene.swift in Sources */,
 				88E34F3D225032E5007ED2F5 /* NewGameViewController.swift in Sources */,
 				6440829E22593E70006563AB /* GameCenterHelper.swift in Sources */,
 				88E34F41225036A6007ED2F5 /* RandomOpponentViewController.swift in Sources */,
@@ -848,7 +866,6 @@
 				25147074226FC0B10042F548 /* BuyGoldViewController.swift in Sources */,
 				88E34F3F2250341C007ED2F5 /* YourFriendsViewController.swift in Sources */,
 				8819824B224E7948008E8EFD /* MyFriendsViewController.swift in Sources */,
-				88805C592278DA2300E0079F /* SKScene.swift in Sources */,
 				251D1F92224074A800AD7CE4 /* chessBoard.swift in Sources */,
 				251D1F9E22407A7700AD7CE4 /* AppDelegate.swift in Sources */,
 				251D1F982240757800AD7CE4 /* chessVC.swift in Sources */,
