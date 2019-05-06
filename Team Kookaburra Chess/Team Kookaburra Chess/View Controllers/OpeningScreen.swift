@@ -21,21 +21,11 @@ class OpeningScreen: UIViewController {
     @IBOutlet weak var levelUpBar: UIProgressView!
     @IBOutlet weak var levelDownBar: UIProgressView!
     @IBOutlet weak var banner: UIImageView!
-    
-    enum rankStatus{
-        case normal
-        case promoSilver
-        case promoGold
-        case promoDiamond
-        case champion
-        case demoGold
-        case demoSilver
-        case demoBronze
-    }
-    
-    var rankStatus: rankStatus = .normal
+    var goingUp = true //only for testing
+    var timer = Timer() //only for testing
     
     override func viewDidLoad(){
+        scheduledTimerWithTimeInterval()//only for testing
 //        UserDefaults.standard.set(0, forKey: "playerGold")
 //        UserDefaults.standard.set(0, forKey: "playerRank")
 //        UserDefaults.standard.set(0, forKey: "rankingPoints")
@@ -51,8 +41,12 @@ class OpeningScreen: UIViewController {
         demotionImage.image = UIImage(named: "demotionSymbol.png")
         let points = UserDefaults.standard.integer(forKey: "rankingPoints")
         let rank = UserDefaults.standard.integer(forKey: "playerRank")
+        if points < 0 && rank == 0 {//bronze players can't have negaative points
+            UserDefaults.standard.set(0, forKey: "rankingPoints")
+        }
         //levels the player up if they get enough points
         if points > 14{
+            promotionPopup()
             if rank == 3{
                 //gold + 1000
             } else {
@@ -62,6 +56,7 @@ class OpeningScreen: UIViewController {
             }
             UserDefaults.standard.set(0, forKey: "rankingPoints")
         } else if points < -10{//level player down if they don't have enough points
+            demotionPopup()
             if rank > 0{
                 var rank = UserDefaults.standard.integer(forKey: "playerRank")
                 rank = rank - 1
@@ -100,6 +95,62 @@ class OpeningScreen: UIViewController {
             levelUpBar.progress = 0.01
         }
         GameCenterHelper.helper.viewController = self
+    }
+    
+    func promotionPopup(){
+        let alertMessage = UIAlertController(title: "Promoted!", message: " ", preferredStyle: .alert)
+        let rank = UserDefaults.standard.integer(forKey: "playerRank")
+        var image = UIImage(named: "silverPromotionBanner.png")
+        if rank == 1{
+            image = UIImage(named: "goldPromotionBanner.png")
+        } else if rank == 2{
+            image = UIImage(named: "diamondPromotionBanner.png")
+        } else if rank == 3{
+            image = UIImage(named: "championBanner.png")
+            goingUp = false//only for testing
+        }
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        action.setValue(image?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
+        alertMessage .addAction(action)
+        self.present(alertMessage, animated: true, completion: nil)
+    }
+    
+    func demotionPopup(){
+        let alertMessage = UIAlertController(title: "Demoted", message: " ", preferredStyle: .alert)
+        let rank = UserDefaults.standard.integer(forKey: "playerRank")
+        var image = UIImage(named: "goldDemotionBanner.png")
+        if rank == 3{
+            image = UIImage(named: "goldDemotionBannerBanner.png")
+        } else if rank == 2{
+            image = UIImage(named: "silverDemotionBannerBanner.png")
+        } else if rank == 1{
+            image = UIImage(named: "bronzeDemotionBanner.png")
+        }
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        action.setValue(image?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
+        alertMessage .addAction(action)
+        self.present(alertMessage, animated: true, completion: nil)
+    }
+    
+    
+    //thanks, StackOverflow users Mohammad Nurdin and David Zorychta
+    //only called in testing
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: Selector("updateCounting"), userInfo: nil, repeats: true)
+    }
+    
+    //only called in testing
+    @objc func updateCounting(){
+        var points = UserDefaults.standard.integer(forKey: "rankingPoints")
+        if goingUp{
+          points = points + 1
+        } else {
+            points = points - 1
+        }
+        UserDefaults.standard.set(points, forKey: "rankingPoints")
+        UserDefaults.standard.synchronize()
+        self.viewDidLoad()
     }
     
     override func didReceiveMemoryWarning() {
