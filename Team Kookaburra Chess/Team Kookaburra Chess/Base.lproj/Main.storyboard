@@ -255,11 +255,11 @@ Cgo
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
+                                        <string key="content">
 Alchemist’s Chess is not the chess you’re used to playing. Memorizing starting moves won’t help you here. You’ll need to collect pieces and come up with your own strategies to be the best. Before you jump into a match, you should understand how the game works.
 When you start a match, you’ll be given the option to place your pieces. You can only place pieces you’ve bought in the store, so you’ll need to play to unlock them all and find your ideal strategy. Different pieces cost a different amount to place on the board, and you get up to 450 points to choose all of your pieces. Once you start, your objective is to capture your opponent’s king or kings before they can capture yours.
 
-</mutableString>
+</string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" metaFont="system"/>
@@ -300,10 +300,10 @@ In the store, you can not only buy the pieces you want, but you can sell the pie
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">
+                                        <string key="content">
 Tap any piece on the board to highlight it. If the piece is yours and it’s your turn, its possible moves will be highlighted in blue. If you own the piece but it’s not your turn, its moves will be highlighted in yellow. If the piece belongs to your opponent, its moves will be highlighted in red. Certain moves that exist in normal chess do not exist in Alchemist’s chess- notably castling and the en passant capture. If you manage to get certain types of pieces across the board to your enemy’s side, you can promote them to more powerful pieces. The promotable pieces are the Pawn, Goblin, Gargoyle, Footsoldier, Monk, and Dwarf. The game ends when you or your opponent run out of kings, or if one or both of the players can't make any more moves.
 
-</mutableString>
+</string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" metaFont="system"/>
@@ -368,9 +368,9 @@ When you choose to play online, you have the choice to play a random opponent, t
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">As you play online, you will get ranking points that go towards your rank. In order, the ranks are: Bronze, Silver, Gold, and Diamond. Winning matches gets you ranking points and losing them makes you lose ranking points. Beating players who are your level or higher get you more ranking points and losing to better players has less of a penalty. If you get 15 ranking points in every level but Diamond, you’ll rank up. Diamond players get 1000 gold when they get 15 ranking points. For every level but bronze, reaching -10 ranking points will rank you down. Bronze players can’t get below 0 points.
+                                        <string key="content">As you play online, you will get ranking points that go towards your rank. In order, the ranks are: Bronze, Silver, Gold, and Diamond. Winning matches gets you ranking points and losing them makes you lose ranking points. Beating players who are your level or higher get you more ranking points and losing to better players has less of a penalty. If you get 15 ranking points in every level but Diamond, you’ll rank up. Diamond players get 1000 gold when they get 15 ranking points. For every level but bronze, reaching -10 ranking points will rank you down. Bronze players can’t get below 0 points.
 
-</mutableString>
+</string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" metaFont="system"/>
