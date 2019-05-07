@@ -169,7 +169,8 @@ class OpeningScreen: UIViewController {
     }
     
     @IBAction func myStatsButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "MyStatsSegue", sender: self)
+        let gc = GameCenterHelper()
+        gc.showLeaderBoard()
     }
     
     @IBAction func playButtonPressed(_ sender: Any) {
