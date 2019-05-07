@@ -23,9 +23,13 @@ class OpeningScreen: UIViewController {
     @IBOutlet weak var banner: UIImageView!
     var goingUp = true //only for testing
     var timer = Timer() //only for testing
+   // var currentAlert = UIAlertController()
+    var bannerTimer = Timer() //for closing the banners that pop up
+    var imageView = UIImageView()
     
     override func viewDidLoad(){
-        scheduledTimerWithTimeInterval()//only for testing
+        imageView = UIImageView(frame: CGRect(x: 0, y: view.frame.size.width/2, width: view.frame.size.width, height: view.frame.size.width/2.25))
+       // scheduledTimerWithTimeInterval()//only for testing
 //        UserDefaults.standard.set(0, forKey: "playerGold")
 //        UserDefaults.standard.set(0, forKey: "playerRank")
 //        UserDefaults.standard.set(0, forKey: "rankingPoints")
@@ -56,12 +60,13 @@ class OpeningScreen: UIViewController {
             }
             UserDefaults.standard.set(0, forKey: "rankingPoints")
         } else if points < -10{//level player down if they don't have enough points
-            demotionPopup()
             if rank > 0{
                 var rank = UserDefaults.standard.integer(forKey: "playerRank")
                 rank = rank - 1
                 UserDefaults.standard.set(rank, forKey: "playerRank")
+                demotionPopup()
             }
+            UserDefaults.standard.set(0, forKey: "rankingPoints")
         } else if rank == 1{
             if points < 0 {//bronze players can't have negaative points
                 UserDefaults.standard.set(0, forKey: "rankingPoints")
@@ -98,7 +103,6 @@ class OpeningScreen: UIViewController {
     }
     
     func promotionPopup(){
-        let alertMessage = UIAlertController(title: "Promoted!", message: " ", preferredStyle: .alert)
         let rank = UserDefaults.standard.integer(forKey: "playerRank")
         var image = UIImage(named: "silverPromotionBanner.png")
         if rank == 1{
@@ -109,27 +113,25 @@ class OpeningScreen: UIViewController {
             image = UIImage(named: "championBanner.png")
             goingUp = false//only for testing
         }
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        action.setValue(image?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
-        alertMessage .addAction(action)
-        self.present(alertMessage, animated: true, completion: nil)
+        imageView.image = image
+        view.addSubview(imageView)
+        closeBannerTimer()
     }
     
     func demotionPopup(){
-        let alertMessage = UIAlertController(title: "Demoted", message: " ", preferredStyle: .alert)
         let rank = UserDefaults.standard.integer(forKey: "playerRank")
-        var image = UIImage(named: "goldDemotionBanner.png")
-        if rank == 3{
-            image = UIImage(named: "goldDemotionBannerBanner.png")
-        } else if rank == 2{
-            image = UIImage(named: "silverDemotionBannerBanner.png")
-        } else if rank == 1{
+        var image = UIImage(named: "bronzeDemotionBanner.png")
+        if rank == 0{
             image = UIImage(named: "bronzeDemotionBanner.png")
+        } else if rank == 1{
+            image = UIImage(named: "silverDemotionBanner.png")
+        } else if rank == 2{
+            image = UIImage(named: "goldDemotionBanner.png")
+            goingUp = false//only for testing
         }
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        action.setValue(image?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
-        alertMessage .addAction(action)
-        self.present(alertMessage, animated: true, completion: nil)
+        imageView.image = image
+        view.addSubview(imageView)
+        closeBannerTimer()
     }
     
     
@@ -137,7 +139,7 @@ class OpeningScreen: UIViewController {
     //only called in testing
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: Selector("updateCounting"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: Selector("updateCounting"), userInfo: nil, repeats: true)
     }
     
     //only called in testing
@@ -151,6 +153,18 @@ class OpeningScreen: UIViewController {
         UserDefaults.standard.set(points, forKey: "rankingPoints")
         UserDefaults.standard.synchronize()
         self.viewDidLoad()
+    }
+    
+    func closeBannerTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: Selector("hideBanner"), userInfo: nil, repeats: true)
+        print("closing time")
+    }
+    
+    @objc func hideBanner(){
+        print("you don't have to go home but you can't stay here")
+        //currentAlert.dismiss(animated: true, completion: nil)
+        imageView.image = nil
+        bannerTimer.invalidate()
     }
     
     override func didReceiveMemoryWarning() {

@@ -1227,6 +1227,7 @@ class ChessBoard {
     
     /// Called after the passed in player made a move
     private func isGameTie(withCurrentPlayer player: UIColor) -> Bool {
+        return false
         // TODO: Add a more exhuastive list of draw possibilities
         
         // if only kings remain game is tied
