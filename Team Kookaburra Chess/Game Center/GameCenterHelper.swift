@@ -176,14 +176,14 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     }
     
     //This function I got from a tutorial and needs some fixes and editing in order for us to be able to use in our game
-//    func showLeaderBoard(){
-//        let viewController = self.view.window?.rootViewController
-//        let gvcv = GKGameCenterViewController()
-//
-//        gvcv.GameCenterDelegate = self
-//
-//        viewController?.presentViewController(gvcv, animated: true, completion: nil)
-//    }
+    func showLeaderBoard(){
+    //    let viewController = self.view.window?.rootViewController
+        let gvcv = GKGameCenterViewController()
+
+        gvcv.gameCenterDelegate = self
+
+        viewController?.present(gvcv, animated: true, completion: nil)
+    }
     
     //thismethod was also taken from the tutorial and is explained in this link //https://www.youtube.com/watch?v=TziN1O2x7pM 
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
