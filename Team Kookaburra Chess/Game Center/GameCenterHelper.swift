@@ -67,7 +67,7 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
             if GKLocalPlayer.local.isAuthenticated {
                 GKLocalPlayer.local.register(self)
             } else if let vc = gcAuthVC {
-                print("init viewcont: \(self.viewController)")
+                print("init viewcont: \(String(describing: self.viewController))")
                 self.viewController?.present(vc, animated: true)
             }
             else {
@@ -91,7 +91,7 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
         vc.turnBasedMatchmakerDelegate = self
         
         currentMatchmakerVC = vc
-        print("mm viewcont: \(self.viewController)")
+        print("mm viewcont: \(String(describing: self.viewController))")
 
         viewController?.present(vc, animated: true)
     }
@@ -147,8 +147,9 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     func saveTotalWins(number: Int){
         
         if GKLocalPlayer.local.isAuthenticated {
+            let my_leaderboard_id = "Wins"
             
-            let winReporter = GKScore(leaderboardIdentifier: "Wins")
+            let winReporter = GKScore(leaderboardIdentifier: my_leaderboard_id)
             
             winReporter.value = Int64(number)
             
@@ -164,8 +165,9 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     func saveTotalLoses(number: Int){
         
         if GKLocalPlayer.local.isAuthenticated {
+            let my_leaderboard_id = "Loses"
             
-            let losesReporter = GKScore(leaderboardIdentifier: "Loses")
+            let losesReporter = GKScore(leaderboardIdentifier: my_leaderboard_id)
             
             losesReporter.value = Int64(number)
             
@@ -175,19 +177,19 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
         }
     }
     
-    //This function I got from a tutorial and needs some fixes and editing in order for us to be able to use in our game
-    func showLeaderBoard(){
-    //    let viewController = self.view.window?.rootViewController
-        let gvcv = GKGameCenterViewController()
-
-        gvcv.gameCenterDelegate = self
-
-        viewController?.present(gvcv, animated: true, completion: nil)
-    }
-    
-    //thismethod was also taken from the tutorial and is explained in this link //https://www.youtube.com/watch?v=TziN1O2x7pM 
+    //thismethod was also taken from the tutorial and is explained in this link //https://www.youtube.com/watch?v=TziN1O2x7pM
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    //This function I got from a tutorial and needs some fixes and editing in order for us to be able to use in our game
+    func showLeaderBoard(){
+    //    let viewControllerVar = self.view.window?.rootViewController
+        let gkGCViewController = GKGameCenterViewController()
+
+        gkGCViewController.gameCenterDelegate = self
+
+        viewController?.present(gkGCViewController, animated: true, completion: nil)
     }
     
 }
