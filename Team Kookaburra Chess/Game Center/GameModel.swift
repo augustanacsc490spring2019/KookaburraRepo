@@ -28,13 +28,13 @@
 
 import GameKit
 
-struct GameModel {
-    //NOTE: this used to inherit the Codable protocol. It broke when I changed var tokens: [Token] to
-    //var boardCells: [BoardCell]. It was fixed at least for compiling when I make a struct called BoardCell
-    //in this class instead, which is commented out.
+//struct GameModel {
+struct GameModel: Codable{
+    //NOTE: We need to make this class Codable for serialization in order to send it's data to Game Center.
+    //currently BoardCell isn't Codable which causes problems. 
     
     //var lastMove: Move?
-    var boardCells: [BoardCell]
+    //var boardCells: [BoardCell]
     var winner: Player?
     
     var currentPlayer: Player {
@@ -45,9 +45,9 @@ struct GameModel {
         return isWhiteTurn ? .white : .black
     }
     
-//    var messageToDisplay: String {
-//
-//    }
+    var messageToDisplay: String {
+        return "generic message for now, possibly about who's turn it is"
+    }
     
 //    var isCapturingPiece: Bool {
 //        return currentMill != nil
@@ -58,7 +58,7 @@ struct GameModel {
     
     init(isWhiteTurn: Bool = true) {
         self.isWhiteTurn = isWhiteTurn
-        boardCells = [BoardCell]()
+        //boardCells = [BoardCell]()
     }
     
     

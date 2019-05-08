@@ -614,7 +614,26 @@ extension ChessVC: ChessBoardDelegate {
         }
     }
     
-    func checkIsNewMatch() {
-        //if boardCells
+    func checkIsNewMatch() -> Bool{
+        var piecesPlacedTop: Bool = false
+        var piecesPlacedBottom: Bool = false
+        for row in 0...3{
+            for col in 0 ... 7 {
+                let cell = boardCells[row][col]
+                if cell.piece.type != .dummy {
+                    piecesPlacedTop = true
+                }
+            }
+        }
+        for row in 4...7{
+            for col in 0 ... 7 {
+                let cell = boardCells[row][col]
+                if cell.piece.type != .dummy {
+                    piecesPlacedBottom = true
+                }
+            }
+        }
+        let bothSetsPlaced: Bool = piecesPlacedTop && piecesPlacedBottom
+        return !bothSetsPlaced
     }
 }
