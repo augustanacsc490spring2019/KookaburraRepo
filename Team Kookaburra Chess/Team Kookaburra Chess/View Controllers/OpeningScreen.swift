@@ -235,8 +235,12 @@ class OpeningScreen: UIViewController {
             
             //convert UIView to SKView
             let gameVC = ChessVC(model: model)
-            let skView = gameVC.view as! SKView
-            skView.presentScene(GameScene(model: model))
+            self.present(gameVC, animated: true, completion: nil)
+            
+            //don't think I actually need to make GameScene like in Nine Knights
+//            let skView = gameVC.view as! SKView
+//            skView.presentScene(GameScene(model: model))
+            
             //To do: add transition between views
             //work on OnlineGameScene to use that class instead
             
