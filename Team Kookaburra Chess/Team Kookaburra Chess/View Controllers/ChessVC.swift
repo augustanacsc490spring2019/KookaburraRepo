@@ -24,6 +24,7 @@ class ChessVC: UIViewController {
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
     var isLocalMatch = true
     var model: GameModel
+    var pieceNamesArray: [[String]]
     
     let turnLabel: UILabel = {
         let label = UILabel()
@@ -72,13 +73,16 @@ class ChessVC: UIViewController {
 //        fatalError("init(coder:) has not been implemented")
 //    }
     
-    init(model: GameModel){
-        self.model = model
-         super.init(nibName: nil, bundle: nil)
-        
-    }
+    //my attempt at custom initializer
+//    init(model: GameModel){
+//        self.model = model
+//        self.pieceNamesArray = self.model.pieceNamesArray
+//         super.init(nibName: nil, bundle: nil)
+//
+//    }
     
     required init?(coder aDecoder: NSCoder) {
+        self.pieceNamesArray = [[String]]()
         self.model = GameModel()
         super.init(coder: aDecoder)
     }
@@ -90,7 +94,8 @@ class ChessVC: UIViewController {
     
     override func viewDidLoad() {
         if !isLocalMatch && checkIsNewMatch() {
-            //segue to piecePicker with OnlineMatch, I made a prepare segue function but how does that get called? I think that's being used to get from piece picker to chessVC for a local game.
+             self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+            //Makes online players place pieces before can make moves
         }
         super.viewDidLoad()
         view.backgroundColor = UIColor(white: 0.1, alpha: 1)
@@ -102,6 +107,13 @@ class ChessVC: UIViewController {
         chessBoard.checkGameOver(color: playerTurn)
         //print("White Formation: \(whiteFormation)")
         //print("Black Formation: \(blackFormation)")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "OnlinePlacePiecesSegue") {
+            let vc = segue.destination as! PlacePiecesViewController
+            vc.playerColor = playerColor
+        }
     }
     
     func drawBoard() {
@@ -620,13 +632,6 @@ extension ChessVC: ChessBoardDelegate {
         ac.addAction(griffin)
         ac.addAction(bombard)
         present(ac, animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "OnlinePlacePiecesSegue") {
-            let vc = segue.destination as! PlacePiecesViewController
-            vc.playerColor = playerColor
-        }
     }
     
     func checkIsNewMatch() -> Bool{

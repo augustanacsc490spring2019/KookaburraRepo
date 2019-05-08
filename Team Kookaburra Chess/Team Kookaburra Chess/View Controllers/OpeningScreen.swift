@@ -26,6 +26,7 @@ class OpeningScreen: UIViewController {
    // var currentAlert = UIAlertController()
     var bannerTimer = Timer() //for closing the banners that pop up
     var imageView = UIImageView()
+    //var onlineGameModel: GameModel()
     
     override func viewDidLoad(){
         imageView = UIImageView(frame: CGRect(x: 0, y: view.frame.size.width/2, width: view.frame.size.width, height: view.frame.size.width/2.25))
@@ -221,10 +222,10 @@ class OpeningScreen: UIViewController {
         // 2
         match.loadMatchData { data, error in
             let model: GameModel
-            
             if let data = data {
                 do {
                     // 3
+                    
                     model = try JSONDecoder().decode(GameModel.self, from: data)
                 } catch {
                     model = GameModel()
@@ -232,10 +233,19 @@ class OpeningScreen: UIViewController {
             } else {
                 model = GameModel()
             }
+            func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                if (segue.identifier == "OnlineChessVCSegue") {
+                    let vc = segue.destination as! ChessVC
+                    vc.model = model
+                    vc.isLocalMatch = false
+                }
+            }
             
             //convert UIView to SKView
-            let gameVC = ChessVC(model: model)
-            self.present(gameVC, animated: true, completion: nil)
+            //let gameVC = ChessVC(coder: <#NSCoder#>)
+            self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+            //self.present(gameVC, animated: true, completion: nil)
+            //self.dismiss(animated: true, completion: nil)//maybe use this to dismiss the openingScreen instead of stacking more viewcontrollers
             
             //don't think I actually need to make GameScene like in Nine Knights
 //            let skView = gameVC.view as! SKView
@@ -243,11 +253,11 @@ class OpeningScreen: UIViewController {
             
             //To do: add transition between views
             //work on OnlineGameScene to use that class instead
-            
-            //maybe try segue to gameVC instead of converting to skView
-            //need to fix GameScene for this to work anyway
+
         }
     }
+    
+  
     
     //original code from tutorial
     //    private func loadAndDisplay(match: GKTurnBasedMatch) {
