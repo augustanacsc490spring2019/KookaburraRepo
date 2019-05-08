@@ -23,7 +23,6 @@ class ChessVC: UIViewController {
     var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
     var isLocalMatch = true
-    var isNewMatch = false
     var model: GameModel
     
     let turnLabel: UILabel = {
@@ -90,8 +89,8 @@ class ChessVC: UIViewController {
 //    }
     
     override func viewDidLoad() {
-        if !isLocalMatch && isNewMatch {
-            //segue to piecePicker with OnlineMatch
+        if !isLocalMatch && checkIsNewMatch() {
+            //segue to piecePicker with OnlineMatch, I made a prepare segue function but how does that get called? I think that's being used to get from piece picker to chessVC for a local game.
         }
         super.viewDidLoad()
         view.backgroundColor = UIColor(white: 0.1, alpha: 1)
