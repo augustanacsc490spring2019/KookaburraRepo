@@ -23,6 +23,8 @@ class ChessVC: UIViewController {
     var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
     var isLocalMatch = true
+    var isNewMatch = false
+    //var model: GameModel
     
     let turnLabel: UILabel = {
         let label = UILabel()
@@ -58,7 +60,23 @@ class ChessVC: UIViewController {
         return button
     }()
     
+    //from Nine Knights GameScene, which is an SKScene
+//    init(model: GameModel) {
+//        self.model = model
+//
+//        super.init()//(size: .zero)
+//
+//       scaleMode = .resizeFill
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     override func viewDidLoad() {
+        if !isLocalMatch && isNewMatch {
+            //segue to piecePicker with OnlineMatch
+        }
         super.viewDidLoad()
         view.backgroundColor = UIColor(white: 0.1, alpha: 1)
         UIApplication.shared.statusBarStyle = .lightContent
@@ -589,4 +607,14 @@ extension ChessVC: ChessBoardDelegate {
         present(ac, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "OnlinePlacePiecesSegue") {
+            let vc = segue.destination as! PlacePiecesViewController
+            vc.playerColor = playerColor
+        }
+    }
+    
+    func checkIsNewMatch() {
+        //if boardCells
+    }
 }

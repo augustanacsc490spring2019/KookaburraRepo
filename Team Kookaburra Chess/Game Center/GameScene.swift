@@ -15,6 +15,16 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     private var model : GameModel //added to try to make initializer work
     
+    var playerColor: UIColor = .white
+    var chessBoard = ChessBoard(playerColor: .white)
+    var boardCells = [[BoardCell]]()
+    var pieceBeingMoved: ChessPiece? = nil
+    var possibleMoves = [BoardIndex]()
+    var playerTurn = UIColor.white
+    var whiteFormation = [[BoardCell]]()
+    var blackFormation = [[BoardCell]]()
+    var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
+    
     init(model: GameModel) {
         self.model = model
     

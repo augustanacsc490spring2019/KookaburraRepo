@@ -28,228 +28,61 @@
 
 import GameKit
 
-struct GameModel: Codable {
-    var turn: Int
-    //probably don't want a turn counter but mayve a boolean to see if it's the first turn
-    //use the boolean to determine if placing pieces or loading board
-    var state: State
-    var lastMove: Move?
+struct GameModel {
+    //NOTE: this used to inherit the Codable protocol. It broke when I changed var tokens: [Token] to
+    //var boardCells: [BoardCell]. It was fixed at least for compiling when I make a struct called BoardCell
+    //in this class instead, which is commented out.
+    
+    //var lastMove: Move?
+    var boardCells: [BoardCell]
     var winner: Player?
     
     var currentPlayer: Player {
-        return isKnightTurn ? .knight : .troll
+        return isWhiteTurn ? .white : .black
     }
     
     var currentOpponent: Player {
-        return isKnightTurn ? .troll : .knight
+        return isWhiteTurn ? .white : .black
     }
     
-    //I don't think we'll need this
-    var messageToDisplay: String {
-        let playerName = isKnightTurn ? "Knight" : "Troll"
-        
-//        if isCapturingPiece {
-//            return "Take an opponent's piece!"
-//        }
-        
-        let stateAction: String
-        switch state {
-        case .placement:
-            stateAction = "place"
-            
-        case .movement:
-            if let winner = winner {
-                return "\(winner == .knight ? "Knight" : "Troll")'s win!"
-            } else {
-                stateAction = "move"
-            }
-        }
-        
-        return "\(playerName)'s turn to \(stateAction)"
-    }
-    
-    
-    private(set) var isKnightTurn: Bool
-    private let positions: [GridCoordinate]
-    
-    private let maxTokenCount = 18
-    private let minPlayerTokenCount = 3
-    
-    init(isKnightTurn: Bool = true) {
-        self.isKnightTurn = isKnightTurn
-        
-        turn = 0
-        state = .placement
-        
-        positions = [
-            GridCoordinate(x: .min, y: .max, layer: .outer),
-            GridCoordinate(x: .mid, y: .max, layer: .outer),
-            GridCoordinate(x: .max, y: .max, layer: .outer),
-            GridCoordinate(x: .max, y: .mid, layer: .outer),
-            GridCoordinate(x: .max, y: .min, layer: .outer),
-            GridCoordinate(x: .mid, y: .min, layer: .outer),
-            GridCoordinate(x: .min, y: .min, layer: .outer),
-            GridCoordinate(x: .min, y: .mid, layer: .outer),
-            GridCoordinate(x: .min, y: .max, layer: .middle),
-            GridCoordinate(x: .mid, y: .max, layer: .middle),
-            GridCoordinate(x: .max, y: .max, layer: .middle),
-            GridCoordinate(x: .max, y: .mid, layer: .middle),
-            GridCoordinate(x: .max, y: .min, layer: .middle),
-            GridCoordinate(x: .mid, y: .min, layer: .middle),
-            GridCoordinate(x: .min, y: .min, layer: .middle),
-            GridCoordinate(x: .min, y: .mid, layer: .middle),
-            GridCoordinate(x: .min, y: .max, layer: .center),
-            GridCoordinate(x: .mid, y: .max, layer: .center),
-            GridCoordinate(x: .max, y: .max, layer: .center),
-            GridCoordinate(x: .max, y: .mid, layer: .center),
-            GridCoordinate(x: .max, y: .min, layer: .center),
-            GridCoordinate(x: .mid, y: .min, layer: .center),
-            GridCoordinate(x: .min, y: .min, layer: .center),
-            GridCoordinate(x: .min, y: .mid, layer: .center),
-        ]
-    }
-    
-    func neighbors(at coord: GridCoordinate) -> [GridCoordinate] {
-        var neighbors = [GridCoordinate]()
-        
-        switch coord.x {
-        case .mid:
-            neighbors.append(GridCoordinate(x: .min, y: coord.y, layer: coord.layer))
-            neighbors.append(GridCoordinate(x: .max, y: coord.y, layer: coord.layer))
-            
-        case .min, .max:
-            if coord.y == .mid {
-                switch coord.layer {
-                case .middle:
-                    neighbors.append(GridCoordinate(x: coord.x, y: coord.y, layer: .outer))
-                    neighbors.append(GridCoordinate(x: coord.x, y: coord.y, layer: .center))
-                case .center, .outer:
-                    neighbors.append(GridCoordinate(x: coord.x, y: coord.y, layer: .middle))
-                }
-            } else {
-                neighbors.append(GridCoordinate(x: .mid, y: coord.y, layer: coord.layer))
-            }
-        }
-        
-        switch coord.y {
-        case .mid:
-            neighbors.append(GridCoordinate(x: coord.x, y: .min, layer: coord.layer))
-            neighbors.append(GridCoordinate(x: coord.x, y: .max, layer: coord.layer))
-            
-        case .min, .max:
-            if coord.x == .mid {
-                switch coord.layer {
-                case .middle:
-                    neighbors.append(GridCoordinate(x: coord.x, y: coord.y, layer: .outer))
-                    neighbors.append(GridCoordinate(x: coord.x, y: coord.y, layer: .center))
-                case .center, .outer:
-                    neighbors.append(GridCoordinate(x: coord.x, y: coord.y, layer: .middle))
-                }
-            } else {
-                neighbors.append(GridCoordinate(x: coord.x, y: .mid, layer: coord.layer))
-            }
-        }
-        
-        return neighbors
-    }
-    
-    //This functionality is in the chessBoard class I think
-//    func mill(containing token: Token) -> [Token]? {
-//        var coordsToCheck = [token.coord]
+//    var messageToDisplay: String {
 //
-//        var xPositionsToCheck: [GridPosition] = [.min, .mid, .max]
-//        xPositionsToCheck.remove(at: token.coord.x.rawValue)
-//
-//        guard let firstXPosition = xPositionsToCheck.first, let lastXPosition = xPositionsToCheck.last else {
-//            return nil
-//        }
-//
-//        var yPositionsToCheck: [GridPosition] = [.min, .mid, .max]
-//        yPositionsToCheck.remove(at: token.coord.y.rawValue)
-//
-//        guard let firstYPosition = yPositionsToCheck.first, let lastYPosition = yPositionsToCheck.last else {
-//            return nil
-//        }
-//
-//        var layersToCheck: [GridLayer] = [.outer, .middle, .center]
-//        layersToCheck.remove(at: token.coord.layer.rawValue)
-//
-//        guard let firstLayer = layersToCheck.first, let lastLayer = layersToCheck.last else {
-//            return nil
-//        }
-//
-//        switch token.coord.x {
-//        case .mid:
-//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: firstLayer))
-//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: lastLayer))
-//
-//        case .min, .max:
-//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: firstYPosition, layer: token.coord.layer))
-//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: lastYPosition, layer: token.coord.layer))
-//        }
-//
-//        let validHorizontalMillTokens = tokens.filter {
-//            return $0.player == token.player && coordsToCheck.contains($0.coord)
-//        }
-//
-//        if validHorizontalMillTokens.count == 3 {
-//            return validHorizontalMillTokens
-//        }
-//
-//        coordsToCheck = [token.coord]
-//
-//        switch token.coord.y {
-//        case .mid:
-//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: firstLayer))
-//            coordsToCheck.append(GridCoordinate(x: token.coord.x, y: token.coord.y, layer: lastLayer))
-//
-//        case .min, .max:
-//            coordsToCheck.append(GridCoordinate(x: firstXPosition, y: token.coord.y, layer: token.coord.layer))
-//            coordsToCheck.append(GridCoordinate(x: lastXPosition, y: token.coord.y, layer: token.coord.layer))
-//        }
-//
-//        let validVerticalMillTokens = tokens.filter {
-//            return $0.player == token.player && coordsToCheck.contains($0.coord)
-//        }
-//
-//        if validVerticalMillTokens.count == 3 {
-//            return validVerticalMillTokens
-//        }
-//
-//        return nil
 //    }
-//
-//
-//
-//    mutating func move(from: GridCoordinate, to: GridCoordinate) {
-//        guard let index = tokens.firstIndex(where: { $0.coord == from }) else {
-//            return
-//        }
-//
-//        let previousToken = tokens[index]
-//        let movedToken = Token(player: previousToken.player, coord: to)
-//
-//        let millToRemove = mill(containing: previousToken) ?? []
-//
-//        if !millToRemove.isEmpty {
-//            millToRemove.forEach { tokenToRemove in
-//                guard let index = millTokens.index(of: tokenToRemove) else {
-//                    return
-//                }
-//
-//                self.millTokens.remove(at: index)
-//            }
-//        }
-//
-//        tokens[index] = movedToken
-//        lastMove = Move(start: from, end: to)
-//
-//        if !millToRemove.isEmpty {
-//            for removedToken in millToRemove where removedToken != previousToken && mill(containing: removedToken) != nil {
-//                millTokens.append(removedToken)
-//            }
-//        }
     
+//    var isCapturingPiece: Bool {
+//        return currentMill != nil
+//    }
+    
+    
+    private(set) var isWhiteTurn: Bool //pay attention to how this is used in Nine Knights
+    
+    init(isWhiteTurn: Bool = true) {
+        self.isWhiteTurn = isWhiteTurn
+        boardCells = [BoardCell]()
+    }
+    
+    
+   
+//    mutating func advance() {
+//        if tokensPlaced == maxTokenCount && state == .placement {
+//            state = .movement
+//        }
+//
+//        turn += 1
+//        currentMill = nil
+//
+//        if state == .movement {
+//            if tokenCount(for: currentOpponent) == 2 || !canMove(currentOpponent) {
+//                winner = currentPlayer
+//            } else {
+//                isKnightTurn = !isKnightTurn
+//            }
+//        } else {
+//            isKnightTurn = !isKnightTurn
+//        }
+//    }
+    
+
     
 //    func canMove(_ player: Player) -> Bool {
 //        let playerTokens = tokens.filter { token in
@@ -271,7 +104,7 @@ struct GameModel: Codable {
 
 extension GameModel {
     enum Player: String, Codable {
-        case knight, troll
+        case white, black
     }
     
     enum State: Int, Codable {
@@ -297,6 +130,10 @@ extension GameModel {
         let coord: GridCoordinate
     }
     
+//    struct BoardCell: Codable, Equatable {
+//
+//    }
+    
     struct Move: Codable, Equatable {
         var placed: GridCoordinate?
         var removed: GridCoordinate?
@@ -317,4 +154,5 @@ extension GameModel {
         }
     }
 }
+
 
