@@ -24,7 +24,7 @@ class ChessVC: UIViewController {
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
     var isLocalMatch = true
     var isNewMatch = false
-    //var model: GameModel
+    var model: GameModel
     
     let turnLabel: UILabel = {
         let label = UILabel()
@@ -71,6 +71,22 @@ class ChessVC: UIViewController {
 //
 //    required init?(coder aDecoder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
+//    }
+    
+    init(model: GameModel){
+        self.model = model
+         super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.model = GameModel()
+        super.init(coder: aDecoder)
+    }
+//orignally saw on internet, supposedely could pass in model as parameter
+//    required init?(coder aDecoder: NSCoder) {
+//        self.username = "Anonymous"
+//        super.init(coder: aDecoder)
 //    }
     
     override func viewDidLoad() {

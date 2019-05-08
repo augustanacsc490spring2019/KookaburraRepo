@@ -234,10 +234,14 @@ class OpeningScreen: UIViewController {
             }
             
             //convert UIView to SKView
-            let skView = self.view as! SKView
+            let gameVC = ChessVC(model: model)
+            let skView = gameVC.view as! SKView
             skView.presentScene(GameScene(model: model))
             //To do: add transition between views
             //work on OnlineGameScene to use that class instead
+            
+            //maybe try segue to gameVC instead of converting to skView
+            //need to fix GameScene for this to work anyway
         }
     }
     

@@ -35,6 +35,8 @@ struct GameModel: Codable{
     
     //var lastMove: Move?
     //var boardCells: [BoardCell]
+    var pieceNamesArray = [[String]]()
+    //var pieceNamesArray = [[String]](repeating: [String](repeating: 0, count: 8), count: 8) //8 by 8 array of Strings
     var winner: Player?
     
     var currentPlayer: Player {

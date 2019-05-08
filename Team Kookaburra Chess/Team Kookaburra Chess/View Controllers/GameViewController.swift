@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ChessVC()
+        //window?.rootViewController = ChessVC(coder: <#NSCoder#>)
     }
 
     override var shouldAutorotate: Bool {
