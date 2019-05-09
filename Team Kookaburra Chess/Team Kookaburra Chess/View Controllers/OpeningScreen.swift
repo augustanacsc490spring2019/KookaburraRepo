@@ -184,8 +184,7 @@ class OpeningScreen: UIViewController {
     }
     
     @IBAction func myStatsButtonPressed(_ sender: Any) {
-        let gc = GameCenterHelper()
-        gc.showLeaderBoard()
+        GameCenterHelper.helper.showLeaderBoard()
     }
     
     @IBAction func playButtonPressed(_ sender: Any) {
