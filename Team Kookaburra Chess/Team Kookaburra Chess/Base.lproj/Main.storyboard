@@ -119,7 +119,7 @@
                                 </state>
                                 <connections>
                                     <action selector="quickTestButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="NEL-IR-Bij"/>
-                                    <segue destination="zVE-eY-227" kind="show" identifier="OnlineChesVCSegue" id="pCT-Ra-Iqv"/>
+                                    <segue destination="zVE-eY-227" kind="show" identifier="OnlineChessVCSegue" id="pCT-Ra-Iqv"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1VV-nz-4qt" userLabel="demotion image">

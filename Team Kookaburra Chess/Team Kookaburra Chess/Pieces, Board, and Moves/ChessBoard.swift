@@ -1302,14 +1302,18 @@ class ChessBoard {
     }
     
     func takeFormations(black: [[BoardCell]], white: [[BoardCell]]){
-        print("Formations gotteneded")
+        print("take formations called")
+        print(black)
+        print(white)
         //go through the black formation
         startNewGame()
-        print("Board: \(board)")
+        //print("Board: \(board)")
         for row in 0...2{
             for col in 0...7{
                 let currentRow = 2-row
                 let currentCol = 7-col
+                print(currentRow)
+                print(currentCol)
                 board[currentRow][currentCol] = ChessPiece(row: currentRow, column: currentCol, color: .black, type: black[row][col].piece.type, player: .black)
             }
         }

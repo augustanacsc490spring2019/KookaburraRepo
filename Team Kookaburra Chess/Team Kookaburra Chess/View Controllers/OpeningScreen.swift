@@ -103,6 +103,7 @@ class OpeningScreen: UIViewController {
             levelUpBar.progress = 0.01
         }
         GameCenterHelper.helper.viewController = self
+        didMove()
     }
     
     func promotionPopup(){
@@ -209,8 +210,8 @@ class OpeningScreen: UIViewController {
         self.viewDidLoad()
     }
     
-    func didMove(to view: UIView) {
-        NSLog("didMove called")
+    func didMove() {
+        print("didMove called")
         feedbackGenerator.prepare()
         GameCenterHelper.helper.currentMatch = nil
         
@@ -228,7 +229,7 @@ class OpeningScreen: UIViewController {
             object: nil
         )
         
-        self.viewDidLoad()
+        //self.viewDidLoad()
     }
     
     //original from Nine Knights
@@ -259,7 +260,7 @@ class OpeningScreen: UIViewController {
     }
     
     @objc private func presentGame(_ notification: Notification) {
-        NSLog("presentGame called")
+        print("presentGame called")
         // 1
         guard let match = notification.object as? GKTurnBasedMatch else {
             return
@@ -278,7 +279,7 @@ class OpeningScreen: UIViewController {
             if let data = data {
                 do {
                     // 3
-                    
+                    print("tried jsondecoding")
                     model = try JSONDecoder().decode(GameModel.self, from: data)
                 } catch {
                     model = GameModel()
@@ -295,8 +296,8 @@ class OpeningScreen: UIViewController {
                     NSLog("segue was called")
                 }
             }
-            
-             self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+            print("online chess vc segue attempted")
+            self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
             
            //transition by building new viewController
 //            let gameVC = ChessVC(coder: <#NSCoder#>)
@@ -308,10 +309,15 @@ class OpeningScreen: UIViewController {
             // //convert UIView to SKView, don't think I actually need to make GameScene like in Nine Knights
 //            let skView = gameVC.view as! SKView
 //            skView.presentScene(GameScene(model: model))
-            
-            //To do: add transition between views
-            //work on OnlineGameScene to use that class instead
-
+        }
+        
+        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if (segue.identifier == "OnlineChessVCSegue") {
+                let vc = segue.destination as! ChessVC
+                vc.model = model
+                vc.isLocalMatch = false
+                NSLog("segue was called")
+            }
         }
     }
     
@@ -338,20 +344,20 @@ class OpeningScreen: UIViewController {
     //            self.view?.presentScene(GameScene(model: model), transition: self.transition)
     //        }
     //    }
-    func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
-        print("Match found")
-        if match.expectedPlayerCount == 0 {
-            viewController.dismiss(animated: true, completion: {self.goToGame(match: match)})
-        }
-    }
+//    func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
+//        print("Match found")
+//        if match.expectedPlayerCount == 0 {
+//            viewController.dismiss(animated: true, completion: {self.goToGame(match: match)})
+//        }
+//    }
     
-    func goToGame(match: GKMatch) {
-        let gameScreenVC = self.storyboard?.instantiateViewController(withIdentifier: "mainGame") as! ViewController
-        gameScreenVC.providesPresentationContextTransitionStyle = true
-        gameScreenVC.definesPresentationContext = true
-        gameScreenVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        gameScreenVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        gameScreenVC.match = match
-        self.present(gameScreenVC, animated: true, completion: nil)
-    }
+//    func goToGame(match: GKMatch) {
+//        let gameScreenVC = self.storyboard?.instantiateViewController(withIdentifier: "mainGame") as! ViewController
+//        gameScreenVC.providesPresentationContextTransitionStyle = true
+//        gameScreenVC.definesPresentationContext = true
+//        gameScreenVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+//        gameScreenVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+//        gameScreenVC.match = match
+//        self.present(gameScreenVC, animated: true, completion: nil)
+//    }
 }

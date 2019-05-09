@@ -22,7 +22,7 @@ class ChessVC: UIViewController {
     var whiteFormation = [[BoardCell]]()
     var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
-    var isLocalMatch = true
+    var isLocalMatch: Bool
     var model: GameModel
     var pieceNamesArray: [[String]]
     
@@ -93,9 +93,13 @@ class ChessVC: UIViewController {
 //    }
     
     override func viewDidLoad() {
+        print("ChessVC viewdidload called")
+        print (isLocalMatch)
+        print(checkIsNewMatch())
         if !isLocalMatch && checkIsNewMatch() {
             // self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
             //can't actually make segue because don't have StoryBoard components
+            print("attempted segue to online place pieces")
             let onlinePlacePieces = PlacePiecesViewController()
             self.present(onlinePlacePieces, animated: true, completion: nil)
             //Makes online players place pieces before can make moves
@@ -120,8 +124,11 @@ class ChessVC: UIViewController {
 //    }
     
     func drawBoard() {
+        print("drawBoard called")
         let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
         boardCells = Array(repeating: oneRow, count: 8)
+        print("black formation: \(blackFormation)")
+        print("black formation: \(whiteFormation)")
         chessBoard.takeFormations(black: blackFormation, white: whiteFormation)
         let cellDimension = (view.frame.size.width - 0) / 8
         var xOffset: CGFloat = 0
