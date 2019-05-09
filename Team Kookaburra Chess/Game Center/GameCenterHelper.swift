@@ -33,6 +33,7 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     var numberOfTotalWins = Int()
     var numberOfTotalLoses = Int()
     var winStreak = Int()
+    var loseStreaks = Int()
     var totalGamesPlayed = Int()
     
     typealias CompletionBlock = (Error?) -> Void
@@ -150,8 +151,6 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
         
         if match.currentParticipant?.matchOutcome == .won {
             winStreak += 1
-        } else {
-            winStreak = 0
         }
         
         //this created the array of all players win streaks and creates the leaderboard
@@ -167,6 +166,30 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
             GKScore.report(winStreakArray, withCompletionHandler: nil)
         }
         
+    }
+    
+    func loseStreaks(completion: @escaping CompletionBlock, number: Int){
+        guard let match = currentMatch else {
+            completion(GameCenterHelperError.matchNotFound)
+            return
+        }
+        
+        if match.currentParticipant?.matchOutcome != .won {
+            loseStreaks += 1
+        }
+        
+        //this created the array of all players win streaks and creates the leaderboard
+        if GKLocalPlayer.local.isAuthenticated {
+            let my_leaderboard_id = "Lose_Streak"
+            
+            let loseStreakReporter = GKScore(leaderboardIdentifier: my_leaderboard_id)
+            
+            loseStreakReporter.value = Int64(number)
+            
+            let loseStreakArray : [GKScore] = [loseStreakReporter]
+            
+            GKScore.report(loseStreakArray, withCompletionHandler: nil)
+        }
     }
     
     //this method conects the number of total wins to the leader board Wins
