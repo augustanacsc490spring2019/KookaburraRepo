@@ -77,6 +77,7 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     }
     
     func presentMatchmaker() {
+        NSLog("presentMatchmaker called")
         guard GKLocalPlayer.local.isAuthenticated else {
             return
         }
