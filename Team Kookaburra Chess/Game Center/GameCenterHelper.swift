@@ -32,6 +32,9 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     
     var numberOfTotalWins = Int()
     var numberOfTotalLoses = Int()
+    var winStreak = Int()
+    var loseStreaks = Int()
+    var totalGamesPlayed = Int()
     
     typealias CompletionBlock = (Error?) -> Void
     
@@ -77,7 +80,6 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     }
     
     func presentMatchmaker() {
-        NSLog("presentMatchmaker called")
         guard GKLocalPlayer.local.isAuthenticated else {
             return
         }
@@ -141,10 +143,56 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
         )
     }
     
+    func winStreaks(completion: @escaping CompletionBlock, number: Int){
+        guard let match = currentMatch else {
+            completion(GameCenterHelperError.matchNotFound)
+            return
+        }
+        
+        if match.currentParticipant?.matchOutcome == .won {
+            winStreak += 1
+        }
+        
+        //this created the array of all players win streaks and creates the leaderboard
+        if GKLocalPlayer.local.isAuthenticated {
+            let my_leaderboard_id = "Win_Streaks"
+            
+            let winStreakReporter = GKScore(leaderboardIdentifier: my_leaderboard_id)
+            
+            winStreakReporter.value = Int64(number)
+            
+            let winStreakArray : [GKScore] = [winStreakReporter]
+            
+            GKScore.report(winStreakArray, withCompletionHandler: nil)
+        }
+        
+    }
+    
+    func loseStreaks(completion: @escaping CompletionBlock, number: Int){
+        guard let match = currentMatch else {
+            completion(GameCenterHelperError.matchNotFound)
+            return
+        }
+        
+        if match.currentParticipant?.matchOutcome != .won {
+            loseStreaks += 1
+        }
+        
+        //this created the array of all players win streaks and creates the leaderboard
+        if GKLocalPlayer.local.isAuthenticated {
+            let my_leaderboard_id = "Lose_Streak"
+            
+            let loseStreakReporter = GKScore(leaderboardIdentifier: my_leaderboard_id)
+            
+            loseStreakReporter.value = Int64(number)
+            
+            let loseStreakArray : [GKScore] = [loseStreakReporter]
+            
+            GKScore.report(loseStreakArray, withCompletionHandler: nil)
+        }
+    }
     
     //this method conects the number of total wins to the leader board Wins
-    // we need to figure out where to call this method in order to save this data
-    // when we call it we will put saveTotalWins(numberOfTotalWins)
     func saveTotalWins(number: Int){
         
         if GKLocalPlayer.local.isAuthenticated {
@@ -160,21 +208,17 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
         }
     }
     
-    //this method conects the number of total loses to the leader board Loses
-    // we need to figure out where to call this method in order to save this data
-    // when we call it we will put saveTotalLoses(numberOfTotalLoses)
-    func saveTotalLoses(number: Int){
-        
+    func totalGamesPlayedLeaderBoard(number: Int){
         if GKLocalPlayer.local.isAuthenticated {
-            let my_leaderboard_id = "Loses"
+            let my_leaderboard_id = "Most_Games_Played"
             
-            let losesReporter = GKScore(leaderboardIdentifier: my_leaderboard_id)
+            let mostGamesPlayedReporter = GKScore(leaderboardIdentifier: my_leaderboard_id)
             
-            losesReporter.value = Int64(number)
+            mostGamesPlayedReporter.value = Int64(number)
             
-            let losesArray : [GKScore] = [losesReporter]
+            let mostGamesPlayedArray : [GKScore] = [mostGamesPlayedReporter]
             
-            GKScore.report(losesArray, withCompletionHandler: nil)
+            GKScore.report(mostGamesPlayedArray, withCompletionHandler: nil)
         }
     }
     
@@ -185,7 +229,6 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     
     //This function I got from a tutorial and needs some fixes and editing in order for us to be able to use in our game
     func showLeaderBoard(){
-    //    let viewControllerVar = self.view.window?.rootViewController
         let gkGCViewController = GKGameCenterViewController()
 
         gkGCViewController.gameCenterDelegate = self

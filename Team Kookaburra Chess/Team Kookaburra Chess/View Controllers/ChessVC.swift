@@ -22,7 +22,7 @@ class ChessVC: UIViewController {
     var whiteFormation = [[BoardCell]]()
     var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
-    var isLocalMatch: Bool
+    var isLocalMatch: Bool? = nil
     var model: GameModel
     var pieceNamesArray: [[String]]
     
@@ -84,6 +84,10 @@ class ChessVC: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         self.pieceNamesArray = [[String]]()
         self.model = GameModel()
+        if self.isLocalMatch == nil{
+            print("isLocalMatCh WAS NILLLLLLL")
+            isLocalMatch = true
+        }
         super.init(coder: aDecoder)
     }
 //orignally saw on internet, supposedely could pass in model as parameter
@@ -96,12 +100,17 @@ class ChessVC: UIViewController {
         print("ChessVC viewdidload called")
         print (isLocalMatch)
         print(checkIsNewMatch())
-        if !isLocalMatch && checkIsNewMatch() {
+        if isLocalMatch == nil{
+            print("isLocalMatCh WAS NILLLLLLL")
+            isLocalMatch = true
+        }
+        if !isLocalMatch! && checkIsNewMatch() {
             // self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
             //can't actually make segue because don't have StoryBoard components
             print("attempted segue to online place pieces")
             let onlinePlacePieces = PlacePiecesViewController()
             self.present(onlinePlacePieces, animated: true, completion: nil)
+             self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
             //Makes online players place pieces before can make moves
         }
         super.viewDidLoad()
@@ -116,12 +125,12 @@ class ChessVC: UIViewController {
         //print("Black Formation: \(blackFormation)")
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "OnlinePlacePiecesSegue") {
-//            let vc = segue.destination as! PlacePiecesViewController
-//            vc.playerColor = playerColor
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "OnlinePlacePiecesSegue") {
+            let vc = segue.destination as! PlacePiecesViewController
+            vc.playerColor = playerColor
+        }
+    }
     
     func drawBoard() {
         print("drawBoard called")
@@ -211,7 +220,7 @@ class ChessVC: UIViewController {
     }
     
     @objc func menuPressed(sender: UIButton) {
-        if isLocalMatch{
+        if isLocalMatch!{
             let ac = UIAlertController(title: "Main Menu", message: "Are you sure you want to end the game?", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Yes", style: .default, handler: { action in
                 self.goToMain()

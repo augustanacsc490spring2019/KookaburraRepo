@@ -9,13 +9,10 @@
 import UIKit
 import Foundation
 import GameKit
-import SpriteKit
 
 class OpeningScreen: UIViewController {
     
     @IBOutlet weak var gameTitle: UILabel!
-    @IBOutlet weak var labelMinus10: UILabel!
-    @IBOutlet weak var label15: UILabel!
     @IBOutlet weak var rankImage: UIImageView!
     @IBOutlet weak var demotionImage: UIImageView!
     @IBOutlet weak var promotionImage: UIImageView!
@@ -28,9 +25,11 @@ class OpeningScreen: UIViewController {
     var bannerTimer = Timer() //for closing the banners that pop up
     var imageView = UIImageView()
     //var onlineGameModel: GameModel()
-    private let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     override func viewDidLoad(){
+        levelUpBar.transform.scaledBy(x: 1, y: 9)
+        levelDownBar.transform.scaledBy(x: 1, y: 9)
+        UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         imageView = UIImageView(frame: CGRect(x: 0, y: view.frame.size.width/2, width: view.frame.size.width, height: view.frame.size.width/2.25))
        // scheduledTimerWithTimeInterval()//only for testing
 //        UserDefaults.standard.set(0, forKey: "playerGold")
@@ -43,8 +42,6 @@ class OpeningScreen: UIViewController {
         }
         super.viewDidLoad()
         UserDefaults.standard.synchronize()
-        labelMinus10.text = "-10"
-        label15.text = "15"
         demotionImage.image = UIImage(named: "demotionSymbol.png")
         let points = UserDefaults.standard.integer(forKey: "rankingPoints")
         let rank = UserDefaults.standard.integer(forKey: "playerRank")
@@ -88,7 +85,6 @@ class OpeningScreen: UIViewController {
                 rankImage.image = UIImage(named: "rankGold.png")
             }
         }
-        rankPointsLabel.text = ("Ranking points: \(points)")
         let transform = CGAffineTransform(rotationAngle: 3.14159); // Flip view horizontally?
         levelDownBar.transform = transform;
         //levelDownBar.progress = 0.75 //for test
@@ -176,8 +172,6 @@ class OpeningScreen: UIViewController {
     }
     
     
-    @IBOutlet weak var rankPointsLabel: UILabel!
-    
     @IBAction func myFriendButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "MyFriendsBtSegue", sender: self)
     }
@@ -187,8 +181,7 @@ class OpeningScreen: UIViewController {
     }
     
     @IBAction func myStatsButtonPressed(_ sender: Any) {
-        let gc = GameCenterHelper()
-        gc.showLeaderBoard()
+        GameCenterHelper.helper.showLeaderBoard()
     }
     
     @IBAction func playButtonPressed(_ sender: Any) {
@@ -212,7 +205,7 @@ class OpeningScreen: UIViewController {
     
     func didMove() {
         print("didMove called")
-        feedbackGenerator.prepare()
+        //feedbackGenerator.prepare()
         GameCenterHelper.helper.currentMatch = nil
         
         NotificationCenter.default.addObserver(
@@ -273,7 +266,6 @@ class OpeningScreen: UIViewController {
     
     private func loadAndDisplay(match: GKTurnBasedMatch) {
         // 2
-        NSLog("loadAndDisplay called")
         match.loadMatchData { data, error in
             let model: GameModel
             if let data = data {
@@ -287,13 +279,12 @@ class OpeningScreen: UIViewController {
             } else {
                 model = GameModel()
             }
-            //transtion by using storyboard segue
             func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                print("prepared for online segue")
                 if (segue.identifier == "OnlineChessVCSegue") {
                     let vc = segue.destination as! ChessVC
                     vc.model = model
                     vc.isLocalMatch = false
-                    NSLog("segue was called")
                 }
             }
             print("online chess vc segue attempted")
@@ -304,23 +295,20 @@ class OpeningScreen: UIViewController {
 //            gameVC!.model = model
 //            gameVC!.isLocalMatch = false
 //            self.present(gameVC!, animated: true, completion: nil)
+            
+            //convert UIView to SKView
+            //let gameVC = ChessVC(coder: <#NSCoder#>)
+            print("about to segue into online")
+            self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+            //self.present(gameVC, animated: true, completion: nil)
             //self.dismiss(animated: true, completion: nil)//maybe use this to dismiss the openingScreen instead of stacking more viewcontrollers
             
-            // //convert UIView to SKView, don't think I actually need to make GameScene like in Nine Knights
+            //don't think I actually need to make GameScene like in Nine Knights
 //            let skView = gameVC.view as! SKView
 //            skView.presentScene(GameScene(model: model))
         }
-        
-        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if (segue.identifier == "OnlineChessVCSegue") {
-                let vc = segue.destination as! ChessVC
-                vc.model = model
-                vc.isLocalMatch = false
-                NSLog("segue was called")
-            }
-        }
     }
-    
+        
   
     
     //original code from tutorial
@@ -359,5 +347,5 @@ class OpeningScreen: UIViewController {
 //        gameScreenVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
 //        gameScreenVC.match = match
 //        self.present(gameScreenVC, animated: true, completion: nil)
-//    }
+
 }

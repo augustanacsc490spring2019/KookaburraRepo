@@ -72,6 +72,7 @@
 		259FEDB62249E7D3006BE3E8 /* blackMage.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDB52249E7D3006BE3E8 /* blackMage.png */; };
 		259FEDB82249E7DE006BE3E8 /* blackCamel.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDB72249E7DE006BE3E8 /* blackCamel.png */; };
 		259FEDBA2249E7E5006BE3E8 /* blackCentaur.png in Resources */ = {isa = PBXBuildFile; fileRef = 259FEDB92249E7E5006BE3E8 /* blackCentaur.png */; };
+		25B249EF2284A1AB0021841B /* AlchemistTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 25B249EE2284A1AB0021841B /* AlchemistTitle.png */; };
 		25B31CF7224E8A61005BAAA8 /* blackFootsoldier.png in Resources */ = {isa = PBXBuildFile; fileRef = 254C147C2247E6B0004359CE /* blackFootsoldier.png */; };
 		25B5F5CB22501AC700DF89FE /* whiteBasilisk.png in Resources */ = {isa = PBXBuildFile; fileRef = 25B5F5A122501AC300DF89FE /* whiteBasilisk.png */; };
 		25B5F5CC22501AC700DF89FE /* whiteMonopod.png in Resources */ = {isa = PBXBuildFile; fileRef = 25B5F5A222501AC300DF89FE /* whiteMonopod.png */; };
@@ -244,6 +245,7 @@
 		259FEDB52249E7D3006BE3E8 /* blackMage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackMage.png; sourceTree = "<group>"; };
 		259FEDB72249E7DE006BE3E8 /* blackCamel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackCamel.png; sourceTree = "<group>"; };
 		259FEDB92249E7E5006BE3E8 /* blackCentaur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackCentaur.png; sourceTree = "<group>"; };
+		25B249EE2284A1AB0021841B /* AlchemistTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlchemistTitle.png; sourceTree = "<group>"; };
 		25B5F5A122501AC300DF89FE /* whiteBasilisk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteBasilisk.png; sourceTree = "<group>"; };
 		25B5F5A222501AC300DF89FE /* whiteMonopod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteMonopod.png; sourceTree = "<group>"; };
 		25B5F5A322501AC300DF89FE /* whiteGargoyle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteGargoyle.png; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 		251D202B22431F2C00AD7CE4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				25B249EE2284A1AB0021841B /* AlchemistTitle.png */,
 				259FEDA5224949DE006BE3E8 /* blackBallista.png */,
 				25059FC122666ABC00DA1CDB /* cathedral.png */,
 				25FFCD5C2256D3F400C81196 /* alchemistIcon.png */,
@@ -801,6 +804,7 @@
 				259FEDAA224949F3006BE3E8 /* blackBatteringRam.png in Resources */,
 				258FEEDC22527B0A007ED10C /* rankSilver.png in Resources */,
 				259FEDA8224949ED006BE3E8 /* blackShip.png in Resources */,
+				25B249EF2284A1AB0021841B /* AlchemistTitle.png in Resources */,
 				25B5F5E422501AC700DF89FE /* whiteSwordsman.png in Resources */,
 				25B5F5D222501AC700DF89FE /* whiteManticore.png in Resources */,
 				259FEDA222493C24006BE3E8 /* blackMinotaur.png in Resources */,
