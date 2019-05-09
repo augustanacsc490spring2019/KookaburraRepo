@@ -9,7 +9,6 @@
 import UIKit
 import Foundation
 import GameKit
-import SpriteKit
 
 class OpeningScreen: UIViewController {
     
@@ -28,7 +27,6 @@ class OpeningScreen: UIViewController {
     var bannerTimer = Timer() //for closing the banners that pop up
     var imageView = UIImageView()
     //var onlineGameModel: GameModel()
-    private let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     override func viewDidLoad(){
         imageView = UIImageView(frame: CGRect(x: 0, y: view.frame.size.width/2, width: view.frame.size.width, height: view.frame.size.width/2.25))
@@ -209,57 +207,7 @@ class OpeningScreen: UIViewController {
         self.viewDidLoad()
     }
     
-    func didMove(to view: UIView) {
-        NSLog("didMove called")
-        feedbackGenerator.prepare()
-        GameCenterHelper.helper.currentMatch = nil
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(authenticationChanged(_:)),
-            name: .authenticationChanged,
-            object: nil
-        )
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(presentGame(_:)),
-            name: .presentGame,
-            object: nil
-        )
-        
-        self.viewDidLoad()
-    }
-    
-    //original from Nine Knights
-//    override func didMove(to view: SKView) {
-//        super.didMove(to: view)
-//
-//        feedbackGenerator.prepare()
-//        GameCenterHelper.helper.currentMatch = nil
-//
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(authenticationChanged(_:)),
-//            name: .authenticationChanged,
-//            object: nil
-//        )
-//
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(presentGame(_:)),
-//            name: .presentGame,
-//            object: nil
-//        )
-//
-//        setUpScene(in: view)
-//    }
-    @objc private func authenticationChanged(_ notification: Notification) {
-        //onlineButton.isEnabled = notification.object as? Bool ?? false
-    }
-    
     @objc private func presentGame(_ notification: Notification) {
-        NSLog("presentGame called")
         // 1
         guard let match = notification.object as? GKTurnBasedMatch else {
             return
@@ -272,7 +220,6 @@ class OpeningScreen: UIViewController {
     
     private func loadAndDisplay(match: GKTurnBasedMatch) {
         // 2
-        NSLog("loadAndDisplay called")
         match.loadMatchData { data, error in
             let model: GameModel
             if let data = data {
@@ -286,26 +233,21 @@ class OpeningScreen: UIViewController {
             } else {
                 model = GameModel()
             }
-            //transtion by using storyboard segue
             func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                 if (segue.identifier == "OnlineChessVCSegue") {
                     let vc = segue.destination as! ChessVC
                     vc.model = model
                     vc.isLocalMatch = false
-                    NSLog("segue was called")
                 }
             }
             
-             self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
-            
-           //transition by building new viewController
-//            let gameVC = ChessVC(coder: <#NSCoder#>)
-//            gameVC!.model = model
-//            gameVC!.isLocalMatch = false
-//            self.present(gameVC!, animated: true, completion: nil)
+            //convert UIView to SKView
+            //let gameVC = ChessVC(coder: <#NSCoder#>)
+            self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+            //self.present(gameVC, animated: true, completion: nil)
             //self.dismiss(animated: true, completion: nil)//maybe use this to dismiss the openingScreen instead of stacking more viewcontrollers
             
-            // //convert UIView to SKView, don't think I actually need to make GameScene like in Nine Knights
+            //don't think I actually need to make GameScene like in Nine Knights
 //            let skView = gameVC.view as! SKView
 //            skView.presentScene(GameScene(model: model))
             
@@ -338,20 +280,5 @@ class OpeningScreen: UIViewController {
     //            self.view?.presentScene(GameScene(model: model), transition: self.transition)
     //        }
     //    }
-    func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
-        print("Match found")
-        if match.expectedPlayerCount == 0 {
-            viewController.dismiss(animated: true, completion: {self.goToGame(match: match)})
-        }
-    }
     
-    func goToGame(match: GKMatch) {
-        let gameScreenVC = self.storyboard?.instantiateViewController(withIdentifier: "mainGame") as! ViewController
-        gameScreenVC.providesPresentationContextTransitionStyle = true
-        gameScreenVC.definesPresentationContext = true
-        gameScreenVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        gameScreenVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        gameScreenVC.match = match
-        self.present(gameScreenVC, animated: true, completion: nil)
-    }
 }
