@@ -106,6 +106,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if (segue.identifier == "LocalMatchSegue") {
             let vc = segue.destination as! ChessVC
             vc.playerColor = playerColor
+            vc.isLocalMatch = true
             if playerColor == .white{
                 vc.whiteFormation = boardCells
                 vc.blackFormation = p2BoardCells

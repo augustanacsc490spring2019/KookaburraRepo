@@ -22,7 +22,7 @@ class ChessVC: UIViewController {
     var whiteFormation = [[BoardCell]]()
     var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
-    var isLocalMatch = true
+    var isLocalMatch: Bool
     var model: GameModel
     var pieceNamesArray: [[String]]
     
