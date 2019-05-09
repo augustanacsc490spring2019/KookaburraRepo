@@ -22,7 +22,7 @@ class ChessVC: UIViewController {
     var whiteFormation = [[BoardCell]]()
     var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
-    var isLocalMatch: Bool? = nil
+    var isLocalMatch: Bool?
     var model: GameModel
     var pieceNamesArray: [[String]]
     
@@ -85,7 +85,7 @@ class ChessVC: UIViewController {
         self.pieceNamesArray = [[String]]()
         self.model = GameModel()
         if self.isLocalMatch == nil{
-            print("isLocalMatCh WAS NILLLLLLL")
+            print("isLocalMatCh WAS NILLLLLLL at initializer")
             isLocalMatch = true
         }
         super.init(coder: aDecoder)
@@ -98,13 +98,14 @@ class ChessVC: UIViewController {
     
     override func viewDidLoad() {
         print("ChessVC viewdidload called")
-        print (isLocalMatch)
-        print(checkIsNewMatch())
+        print ("isLocalMatch: \(isLocalMatch)")
+        var isNewMatch: Bool = checkIsNewMatch()
+        print("isnewMatch: \(isNewMatch)")
         if isLocalMatch == nil{
-            print("isLocalMatCh WAS NILLLLLLL")
+            print("isLocalMatCh WAS NILLLLLLL at viewdidload")
             isLocalMatch = true
         }
-        if !isLocalMatch! && checkIsNewMatch() {
+        if !isLocalMatch! {//}&& checkIsNewMatch() {
             // self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
             //can't actually make segue because don't have StoryBoard components
             print("attempted segue to online place pieces")

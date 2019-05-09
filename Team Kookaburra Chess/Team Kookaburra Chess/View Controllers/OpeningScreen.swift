@@ -24,9 +24,10 @@ class OpeningScreen: UIViewController {
    // var currentAlert = UIAlertController()
     var bannerTimer = Timer() //for closing the banners that pop up
     var imageView = UIImageView()
-    //var onlineGameModel: GameModel()
+    var model: GameModel!
     
     override func viewDidLoad(){
+        model = GameModel()
         levelUpBar.transform.scaledBy(x: 1, y: 9)
         levelDownBar.transform.scaledBy(x: 1, y: 9)
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -267,26 +268,18 @@ class OpeningScreen: UIViewController {
     private func loadAndDisplay(match: GKTurnBasedMatch) {
         // 2
         match.loadMatchData { data, error in
-            let model: GameModel
             if let data = data {
                 do {
                     // 3
                     print("tried jsondecoding")
-                    model = try JSONDecoder().decode(GameModel.self, from: data)
+                    self.model = try JSONDecoder().decode(GameModel.self, from: data)
                 } catch {
-                    model = GameModel()
+                    self.model = GameModel()
                 }
             } else {
-                model = GameModel()
+                self.model = GameModel()
             }
-            func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                print("prepared for online segue")
-                if (segue.identifier == "OnlineChessVCSegue") {
-                    let vc = segue.destination as! ChessVC
-                    vc.model = model
-                    vc.isLocalMatch = false
-                }
-            }
+        
             print("online chess vc segue attempted")
             self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
             
@@ -309,7 +302,15 @@ class OpeningScreen: UIViewController {
         }
     }
         
-  
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepared for online segue")
+        if (segue.identifier == "OnlineChessVCSegue") {
+            print("prepare for segue called")
+            let vc = segue.destination as! ChessVC
+            vc.model = self.model
+            vc.isLocalMatch = false
+        }
+    }
     
     //original code from tutorial
     //    private func loadAndDisplay(match: GKTurnBasedMatch) {
