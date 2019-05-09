@@ -119,7 +119,6 @@
                                 </state>
                                 <connections>
                                     <action selector="quickTestButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="NEL-IR-Bij"/>
-                                    <segue destination="zVE-eY-227" kind="show" identifier="OnlineChesVCSegue" id="pCT-Ra-Iqv"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1VV-nz-4qt" userLabel="demotion image">
@@ -575,7 +574,6 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
                                 <state key="normal" title="READY!"/>
                                 <connections>
                                     <action selector="readyButtonPressed:" destination="eT3-ZL-FIO" eventType="touchUpInside" id="gEl-mp-afd"/>
-                                    <segue destination="zVE-eY-227" kind="show" identifier="OnlineMatchSegue" id="52w-0g-8Jh"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O6j-pA-S0W" userLabel="Piece Image">
@@ -1119,7 +1117,6 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <segue reference="ynr-Ld-Yg9"/>
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
-        <segue reference="pCT-Ra-Iqv"/>
         <segue reference="DDD-cs-UHp"/>
         <segue reference="jpc-O9-TBa"/>
     </inferredMetricsTieBreakers>
