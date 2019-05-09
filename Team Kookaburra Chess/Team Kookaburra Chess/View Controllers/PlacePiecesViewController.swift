@@ -686,7 +686,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         case .royalGuard:
             string = "Moves just like a king, but doesn't count as a king."
         case .demon:
-            string = "Can move one space horizontally, but attacks the three spaces in front of and behind it."
+            string = "Can move one space horizontally, but attacks diagonally and verticlly one space."
         case .pawn:
             string = "Can move two spaces on its first turn. After that, it can move one space forward. Attacks one space diagonally forward. The basic piece in standard chess. If it reaches the far end of the game board, it can be turned into a more powerful piece"
         case .monk:
