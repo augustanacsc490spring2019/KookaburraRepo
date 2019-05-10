@@ -88,12 +88,11 @@ class ChessVC: UIViewController {
         var isNewMatch: Bool = checkIsNewMatch()
         print("isnewMatch: \(isNewMatch)")
         if !isLocalMatch {//}&& checkIsNewMatch() {
-            // self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
-            //can't actually make segue because don't have StoryBoard components
             print("attempted segue to online place pieces")
             let onlinePlacePieces = PlacePiecesViewController()
+            onlinePlacePieces.addStarterKing()
             self.present(onlinePlacePieces, animated: true, completion: nil)
-             self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+             //self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
             //Makes online players place pieces before can make moves
         }
         super.viewDidLoad()
@@ -110,6 +109,7 @@ class ChessVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "OnlinePlacePiecesSegue") {
+            print("PREPARE onlineplacepeicessegue called")
             let vc = segue.destination as! PlacePiecesViewController
             vc.playerColor = playerColor
         }

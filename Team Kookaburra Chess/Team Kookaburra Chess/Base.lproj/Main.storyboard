@@ -153,7 +153,10 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrv-Kz-HF6">
                                 <rect key="frame" x="154" y="433" width="106" height="30"/>
-                                <state key="normal" title="OnlineChessVC"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="OnlineChessVC">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="zVE-eY-227" kind="show" identifier="OnlineChessVCSegue" id="F9Q-xX-x8B"/>
                                 </connections>
@@ -1124,5 +1127,4 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <segue reference="DDD-cs-UHp"/>
         <segue reference="jpc-O9-TBa"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

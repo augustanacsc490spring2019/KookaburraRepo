@@ -67,6 +67,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var chosenPieces = [[ChessPiece]]()
     
     override func viewDidLoad(){
+        print("place pieces viewDidLoad called")
         print("place pieces viewdidload")
         super.viewDidLoad()
         
@@ -138,6 +139,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if playerColor == .white{
             king.row = 2
             king.col = 3
+            print(boardCells)
             boardCells[2][3].piece = king
             boardCells[2][3].configureCell(forPiece: king)
         } else if playerColor == .black{
