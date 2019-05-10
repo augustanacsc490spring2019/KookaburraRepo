@@ -280,17 +280,25 @@ class OpeningScreen: UIViewController {
                     print("tried jsondecoding")
                     self.model = try JSONDecoder().decode(GameModel.self, from: data)
                 } catch {
+                    print("creating blank gamemodel since deconding failed")
                     self.model = GameModel()
                 }
             } else {
+                print("creating blank gamemodel since data is nil")
                 self.model = GameModel()
             }
-            if self.model.piecesAreSet{
+            GameCenterHelper.helper.currentMatch = match
+            print("piecesAreSet: \(self.model.piecesAreSet)")
+            //if self.model.piecesAreSet{
             print("online chess vc segue attempted")
-            self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
-            } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                //TODO: if else statement depending on game model- if pieces are set to determine which segue
                 self.performSegue(withIdentifier: "PlacePiecesSegue", sender: self)
             }
+            
+//            } else {
+//                self.performSegue(withIdentifier: "PlacePiecesSegue", sender: self)
+//            }
             
             
             //convert UIView to SKView
@@ -334,7 +342,7 @@ class OpeningScreen: UIViewController {
     //            } else {
     //                model = GameModel()
     //            }
-    //
+    //              GameCenterHelper.helper.currentMatch = match
     //            // 4
     //            self.view?.presentScene(GameScene(model: model), transition: self.transition)
     //        }

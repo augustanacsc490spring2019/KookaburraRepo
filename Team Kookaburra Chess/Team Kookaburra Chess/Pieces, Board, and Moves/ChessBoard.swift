@@ -1314,7 +1314,7 @@ class ChessBoard {
                 let currentCol = 7-col
                 print("takeFormations currentRow: \(row)")
                 print("takeFormations currentCol: \(col)")
-                print("board during takeFormations: \(board)")
+                //print("board during takeFormations: \(board)")
                 board[currentRow][currentCol] = ChessPiece(row: currentRow, column: currentCol, color: .black, type: black[row][col].piece.type, player: .black)
             }
         }

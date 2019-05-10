@@ -89,6 +89,7 @@ class ChessVC: UIViewController {
     
     override func viewDidLoad() {
         print("ChessVC viewdidload called")
+        //checkIfPlacePiecesNeeded()
 //        print ("isLocalMatch a viewDidLoad: \(isLocalMatch)")
 //        var isNewMatch: Bool = checkIsNewMatch()
 //        print("isnewMatch: \(isNewMatch)")

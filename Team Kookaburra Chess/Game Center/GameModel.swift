@@ -55,6 +55,8 @@ struct GameModel: Codable{
 //        return currentMill != nil
 //    }
     
+    //ignore all of this for now. I thought about going down a rabbit hole where placing pieces didn't get
+    //determined based off a blank chessboard but were saved here instead.
     var whiteHasSetPieces: Bool = false
     var blackHasSetPieces: Bool = false
     var piecesAreSet: Bool = false

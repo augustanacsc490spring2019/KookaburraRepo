@@ -190,7 +190,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
                 // wire up the cell
                 cell.delegate = self
-                print("place pieces- drawBoard at row: \(row), col: \(col), board: \(chessBoard.board)")
+                print("place pieces- drawBoard at row: \(row), col: \(col)")
                 chessBoard.board[row][col] = piece
                 self.boardCells[row][col] = cell
                 
