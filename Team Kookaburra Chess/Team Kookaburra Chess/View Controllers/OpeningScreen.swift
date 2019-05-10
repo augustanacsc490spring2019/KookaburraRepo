@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import GameKit
 
+
 class OpeningScreen: UIViewController {
     
     @IBOutlet weak var gameTitle: UILabel!
@@ -283,16 +284,11 @@ class OpeningScreen: UIViewController {
             print("online chess vc segue attempted")
             self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
             
-           //transition by building new viewController
-//            let gameVC = ChessVC(coder: <#NSCoder#>)
-//            gameVC!.model = model
-//            gameVC!.isLocalMatch = false
-//            self.present(gameVC!, animated: true, completion: nil)
             
             //convert UIView to SKView
             //let gameVC = ChessVC(coder: <#NSCoder#>)
-            print("about to segue into online")
-            self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+//            print("about to segue into online")
+//            self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
             //self.present(gameVC, animated: true, completion: nil)
             //self.dismiss(animated: true, completion: nil)//maybe use this to dismiss the openingScreen instead of stacking more viewcontrollers
             
@@ -303,9 +299,8 @@ class OpeningScreen: UIViewController {
     }
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepared for online segue")
         if (segue.identifier == "OnlineChessVCSegue") {
-            print("prepare for segue called")
+            print("prepare for onlineChesVCSegue called")
             let vc = segue.destination as! ChessVC
             vc.model = self.model
             vc.isLocalMatch = false

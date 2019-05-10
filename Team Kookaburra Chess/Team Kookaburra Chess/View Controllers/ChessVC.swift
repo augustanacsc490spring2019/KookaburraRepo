@@ -15,14 +15,15 @@ class ChessVC: UIViewController {
     
     var playerColor: UIColor = .white
     var chessBoard = ChessBoard(playerColor: .white)
-    var boardCells = [[BoardCell]]()
+    //var boardCells = [[BoardCell]]()
+    var boardCells = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
     var pieceBeingMoved: ChessPiece? = nil
     var possibleMoves = [BoardIndex]()
     var playerTurn = UIColor.white
     var whiteFormation = [[BoardCell]]()
     var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
-    var isLocalMatch: Bool?
+    var isLocalMatch: Bool
     var model: GameModel
     var pieceNamesArray: [[String]]
     
@@ -73,39 +74,20 @@ class ChessVC: UIViewController {
 //        fatalError("init(coder:) has not been implemented")
 //    }
     
-    //my attempt at custom initializer
-//    init(model: GameModel){
-//        self.model = model
-//        self.pieceNamesArray = self.model.pieceNamesArray
-//         super.init(nibName: nil, bundle: nil)
-//
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         self.pieceNamesArray = [[String]]()
         self.model = GameModel()
-        if self.isLocalMatch == nil{
-            print("isLocalMatCh WAS NILLLLLLL at initializer")
-            isLocalMatch = true
-        }
+        self.isLocalMatch = true
         super.init(coder: aDecoder)
     }
-//orignally saw on internet, supposedely could pass in model as parameter
-//    required init?(coder aDecoder: NSCoder) {
-//        self.username = "Anonymous"
-//        super.init(coder: aDecoder)
-//    }
     
     override func viewDidLoad() {
         print("ChessVC viewdidload called")
-        print ("isLocalMatch: \(isLocalMatch)")
+        print ("isLocalMatch a viewDidLoad: \(isLocalMatch)")
         var isNewMatch: Bool = checkIsNewMatch()
         print("isnewMatch: \(isNewMatch)")
-        if isLocalMatch == nil{
-            print("isLocalMatCh WAS NILLLLLLL at viewdidload")
-            isLocalMatch = true
-        }
-        if !isLocalMatch! {//}&& checkIsNewMatch() {
+        if !isLocalMatch {//}&& checkIsNewMatch() {
             // self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
             //can't actually make segue because don't have StoryBoard components
             print("attempted segue to online place pieces")
@@ -221,7 +203,7 @@ class ChessVC: UIViewController {
     }
     
     @objc func menuPressed(sender: UIButton) {
-        if isLocalMatch!{
+        if isLocalMatch{
             let ac = UIAlertController(title: "Main Menu", message: "Are you sure you want to end the game?", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Yes", style: .default, handler: { action in
                 self.goToMain()

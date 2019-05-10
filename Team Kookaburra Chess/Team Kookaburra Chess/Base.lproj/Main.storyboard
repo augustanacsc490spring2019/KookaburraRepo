@@ -119,7 +119,6 @@
                                 </state>
                                 <connections>
                                     <action selector="quickTestButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="NEL-IR-Bij"/>
-                                    <segue destination="zVE-eY-227" kind="show" identifier="OnlineChessVCSegue" id="pCT-Ra-Iqv"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1VV-nz-4qt" userLabel="demotion image">
@@ -152,11 +151,19 @@
                                     <constraint firstAttribute="height" constant="165" id="hBa-Zi-Xa6"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrv-Kz-HF6">
+                                <rect key="frame" x="154" y="433" width="106" height="30"/>
+                                <state key="normal" title="OnlineChessVC"/>
+                                <connections>
+                                    <segue destination="zVE-eY-227" kind="show" identifier="OnlineChessVCSegue" id="F9Q-xX-x8B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vba-gz-8aH" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="0xF-cF-U92"/>
                             <constraint firstItem="zXS-XN-ZVo" firstAttribute="top" secondItem="hfe-DH-WDR" secondAttribute="bottom" constant="3" id="1ir-5i-2Qe"/>
+                            <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="1yg-SX-Qu2"/>
                             <constraint firstItem="wVv-WH-LuU" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="3am-nU-2Mr"/>
                             <constraint firstItem="hfe-DH-WDR" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="4vl-4V-8jj"/>
                             <constraint firstItem="RBA-Qs-yjW" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="7Ir-Wd-mCn"/>
@@ -183,6 +190,7 @@
                             <constraint firstItem="0DR-cL-FoF" firstAttribute="top" secondItem="zXS-XN-ZVo" secondAttribute="bottom" constant="44" id="tZK-90-ybI"/>
                             <constraint firstItem="0DR-cL-FoF" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="tsF-0m-ewT"/>
                             <constraint firstItem="Lhs-az-VDT" firstAttribute="height" secondItem="UAh-pg-cud" secondAttribute="height" id="uJQ-us-5al"/>
+                            <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="vkJ-IL-V5B"/>
                             <constraint firstItem="LO8-SD-FNp" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="wO0-1I-0K5"/>
                             <constraint firstItem="LO8-SD-FNp" firstAttribute="top" secondItem="hfe-DH-WDR" secondAttribute="top" id="x3e-U0-1PQ"/>
                         </constraints>
@@ -1112,7 +1120,9 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <segue reference="ynr-Ld-Yg9"/>
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
+        <segue reference="F9Q-xX-x8B"/>
         <segue reference="DDD-cs-UHp"/>
         <segue reference="jpc-O9-TBa"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

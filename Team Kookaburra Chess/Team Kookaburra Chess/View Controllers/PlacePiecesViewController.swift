@@ -67,6 +67,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var chosenPieces = [[ChessPiece]]()
     
     override func viewDidLoad(){
+        print("place pieces viewdidload")
         super.viewDidLoad()
         
         setLabels()
