@@ -82,23 +82,28 @@ class ChessVC: UIViewController {
         super.init(coder: aDecoder)
     }
     
+//    override func loadView() {
+//        print("ChessVC loadView called")
+//        checkIfPlacePiecesNeeded()
+//    }
+    
     override func viewDidLoad() {
         print("ChessVC viewdidload called")
-        print ("isLocalMatch a viewDidLoad: \(isLocalMatch)")
-        var isNewMatch: Bool = checkIsNewMatch()
-        print("isnewMatch: \(isNewMatch)")
-        if !isLocalMatch {//}&& checkIsNewMatch() {
-            print("attempted segue to online place pieces")
-//            let onlinePlacePieces = PlacePiecesViewController()
-//            onlinePlacePieces.addStarterKing()
-//            self.present(onlinePlacePieces, animated: true, completion: nil)
-            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
-            //Makes online players place pieces before can make moves
-        }
+//        print ("isLocalMatch a viewDidLoad: \(isLocalMatch)")
+//        var isNewMatch: Bool = checkIsNewMatch()
+//        print("isnewMatch: \(isNewMatch)")
+//        if !isLocalMatch {//}&& checkIsNewMatch() {
+//            print("attempted segue to online place pieces")
+////            let onlinePlacePieces = PlacePiecesViewController()
+////            onlinePlacePieces.addStarterKing()
+////            self.present(onlinePlacePieces, animated: true, completion: nil)
+//            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+//            //Makes online players place pieces before can make moves
+//        }
         super.viewDidLoad()
         view.backgroundColor = UIColor(white: 0.1, alpha: 1)
         UIApplication.shared.statusBarStyle = .lightContent
-        
+
         chessBoard.delegate = self
         drawBoard()
         setupViews()
@@ -107,14 +112,27 @@ class ChessVC: UIViewController {
         //print("Black Formation: \(blackFormation)")
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "OnlinePlacePiecesSegue") {
-            print("prepare for OnlinePlacePiecesSegue called")
-            let vc = segue.destination as! PlacePiecesViewController
-            //vc.playerColor = playerColor
-            vc.boardCells = boardCells
+    func checkIfPlacePiecesNeeded(){
+        print ("isLocalMatch: \(isLocalMatch)")
+        var isNewMatch: Bool = checkIsNewMatch()
+        print("isnewMatch: \(isNewMatch)")
+        if !isLocalMatch {//}&& checkIsNewMatch() {
+            print("attempted segue to online place pieces")
+            //            let onlinePlacePieces = PlacePiecesViewController()
+            //            onlinePlacePieces.addStarterKing()
+            //            self.present(onlinePlacePieces, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+            //Makes online players place pieces before can make moves
         }
     }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == "OnlinePlacePiecesSegue") {
+//            print("prepare for OnlinePlacePiecesSegue called")
+//            let vc = segue.destination as! PlacePiecesViewController
+//            //vc.playerColor = playerColor
+//            vc.boardCells = boardCells
+//        }
+//    }
     
     func drawBoard() {
         print("chessVC drawBoard called")

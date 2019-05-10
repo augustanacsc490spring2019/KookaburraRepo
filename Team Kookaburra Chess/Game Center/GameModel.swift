@@ -44,7 +44,7 @@ struct GameModel: Codable{
     }
     
     var currentOpponent: Player {
-        return isWhiteTurn ? .white : .black
+        return isWhiteTurn ? .black : .white
     }
     
     var messageToDisplay: String {
@@ -55,14 +55,33 @@ struct GameModel: Codable{
 //        return currentMill != nil
 //    }
     
+    var whiteHasSetPieces: Bool = false
+    var blackHasSetPieces: Bool = false
+    var piecesAreSet: Bool = false
     
     private(set) var isWhiteTurn: Bool //pay attention to how this is used in Nine Knights
     
     init(isWhiteTurn: Bool = true) {
+        //self.currentPlayer = randomPlayer()
         self.isWhiteTurn = isWhiteTurn
         //boardCells = [BoardCell]()
     }
     
+    mutating func checkPiecesAreSet(){
+        piecesAreSet = !(whiteHasSetPieces && blackHasSetPieces)
+        if (piecesAreSet){
+            isWhiteTurn = true
+        }
+    }
+    
+    func randomPlayer() -> Player{
+        let number = Int.random(in: 0...1)
+        if number == 0 {
+            return .white
+        } else {
+            return .black
+        }
+    }
     
    
 //    mutating func advance() {

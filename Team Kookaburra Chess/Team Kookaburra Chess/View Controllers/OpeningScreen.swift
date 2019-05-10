@@ -25,7 +25,12 @@ class OpeningScreen: UIViewController {
    // var currentAlert = UIAlertController()
     var bannerTimer = Timer() //for closing the banners that pop up
     var imageView = UIImageView()
-    var model: GameModel!
+    var model: GameModel
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.model = GameModel()
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad(){
         model = GameModel()
@@ -280,9 +285,12 @@ class OpeningScreen: UIViewController {
             } else {
                 self.model = GameModel()
             }
-        
+            if self.model.piecesAreSet{
             print("online chess vc segue attempted")
             self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "PlacePiecesSegue", sender: self)
+            }
             
             
             //convert UIView to SKView
@@ -304,6 +312,9 @@ class OpeningScreen: UIViewController {
             let vc = segue.destination as! ChessVC
             vc.model = self.model
             vc.isLocalMatch = false
+        } else if (segue.identifier == "PlacePiecesSegue") {
+            print("prepare for placePiecesSegue called")
+            let vc = segue.destination as! PlacePiecesViewController
         }
     }
     

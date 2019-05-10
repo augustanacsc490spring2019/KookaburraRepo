@@ -85,6 +85,7 @@ class ChessPiece {
     var playerColor: UIColor
     
     init(row: Int, column: Int, color: UIColor, type: PieceType, player: UIColor) {
+        print("ChessPiece init called")
         self.row = row
         self.col = column
         self.bIndex = BoardIndex(row: row, column: col)
@@ -111,6 +112,7 @@ class ChessPiece {
     
     
     func setupSymbol() {
+        print("ChessPiece setupSymbol called")
         if color == .black{
         switch type {
         case .pawn:

@@ -696,7 +696,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <!--Local Match-->
         <scene sceneID="CEU-SZ-Rlj">
             <objects>
-                <viewController storyboardIdentifier="LocalMatch" id="zVE-eY-227" userLabel="Local Match" customClass="ChessVC" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zVE-eY-227" userLabel="Local Match" customClass="ChessVC" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7cP-tb-csL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
