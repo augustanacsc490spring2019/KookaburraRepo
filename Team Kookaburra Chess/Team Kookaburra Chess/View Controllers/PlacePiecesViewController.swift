@@ -44,6 +44,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var playerPoints: Int = 0
     var chessBoard = ChessBoard(playerColor: .white)
     var boardCells = [[BoardCell]]()
+    //var boardCells = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
     var pieceBeingMoved: ChessPiece? = nil
     var possibleMoves = [BoardIndex]()
     var playerTurn = UIColor.white
@@ -68,7 +69,6 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     override func viewDidLoad(){
         print("place pieces viewDidLoad called")
-        print("place pieces viewdidload")
         super.viewDidLoad()
         
         setLabels()
@@ -153,6 +153,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func drawBoard(){
+        print("place pieces drawBoard called")
         let numRows:Int = 8
         let numCols:Int = 8
         let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
@@ -189,6 +190,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
                 // wire up the cell
                 cell.delegate = self
+                print("place pieces- drawBoard at row: \(row), col: \(col), board: \(chessBoard.board)")
                 chessBoard.board[row][col] = piece
                 self.boardCells[row][col] = cell
                 

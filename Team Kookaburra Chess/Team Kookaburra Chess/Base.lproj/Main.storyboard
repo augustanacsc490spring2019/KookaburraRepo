@@ -700,7 +700,20 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
                     <view key="view" contentMode="scaleToFill" id="7cP-tb-csL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClM-gN-XmD">
+                                <rect key="frame" x="257" y="449" width="46" height="30"/>
+                                <state key="normal" title="OnlinePlacePieces"/>
+                                <connections>
+                                    <segue destination="eT3-ZL-FIO" kind="show" identifier="OnlinePlacePiecesSegue" id="NOC-uT-4Sy"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ClM-gN-XmD" firstAttribute="centerX" secondItem="7cP-tb-csL" secondAttribute="centerX" id="2iJ-RX-7a7"/>
+                            <constraint firstItem="ClM-gN-XmD" firstAttribute="centerY" secondItem="7cP-tb-csL" secondAttribute="centerY" id="eUp-3z-a56"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="3CZ-JU-lMg"/>
                     </view>
                 </viewController>
@@ -1124,7 +1137,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
         <segue reference="F9Q-xX-x8B"/>
-        <segue reference="DDD-cs-UHp"/>
+        <segue reference="NOC-uT-4Sy"/>
         <segue reference="jpc-O9-TBa"/>
     </inferredMetricsTieBreakers>
 </document>

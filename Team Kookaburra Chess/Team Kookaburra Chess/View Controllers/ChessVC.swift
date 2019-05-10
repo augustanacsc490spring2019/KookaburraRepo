@@ -89,10 +89,10 @@ class ChessVC: UIViewController {
         print("isnewMatch: \(isNewMatch)")
         if !isLocalMatch {//}&& checkIsNewMatch() {
             print("attempted segue to online place pieces")
-            let onlinePlacePieces = PlacePiecesViewController()
-            onlinePlacePieces.addStarterKing()
-            self.present(onlinePlacePieces, animated: true, completion: nil)
-             //self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+//            let onlinePlacePieces = PlacePiecesViewController()
+//            onlinePlacePieces.addStarterKing()
+//            self.present(onlinePlacePieces, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
             //Makes online players place pieces before can make moves
         }
         super.viewDidLoad()
@@ -106,21 +106,22 @@ class ChessVC: UIViewController {
         //print("White Formation: \(whiteFormation)")
         //print("Black Formation: \(blackFormation)")
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "OnlinePlacePiecesSegue") {
-            print("PREPARE onlineplacepeicessegue called")
+            print("prepare for OnlinePlacePiecesSegue called")
             let vc = segue.destination as! PlacePiecesViewController
-            vc.playerColor = playerColor
+            //vc.playerColor = playerColor
+            vc.boardCells = boardCells
         }
     }
     
     func drawBoard() {
-        print("drawBoard called")
+        print("chessVC drawBoard called")
         let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
         boardCells = Array(repeating: oneRow, count: 8)
         print("black formation: \(blackFormation)")
-        print("black formation: \(whiteFormation)")
+        print("white formation: \(whiteFormation)")
         chessBoard.takeFormations(black: blackFormation, white: whiteFormation)
         let cellDimension = (view.frame.size.width - 0) / 8
         var xOffset: CGFloat = 0
