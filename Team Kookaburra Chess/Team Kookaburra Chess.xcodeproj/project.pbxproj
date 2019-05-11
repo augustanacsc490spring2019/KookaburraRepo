@@ -29,6 +29,7 @@
 		252A35EC2244150200FE6A09 /* blackPawn.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35EB2244150200FE6A09 /* blackPawn.png */; };
 		252A35F022442A9200FE6A09 /* blackBishop.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35EF22442A9200FE6A09 /* blackBishop.png */; };
 		252A35F22244323600FE6A09 /* blackKnight.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35F12244323500FE6A09 /* blackKnight.png */; };
+		252FB3152284B4AE0051A134 /* vikingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 252FB3142284B4AE0051A134 /* vikingBackground.png */; };
 		25415E31224A981000B7E13E /* blackBombard.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E30224A981000B7E13E /* blackBombard.png */; };
 		25415E33224A981500B7E13E /* blackDragonRider.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E32224A981500B7E13E /* blackDragonRider.png */; };
 		25415E35224A981C00B7E13E /* blackGriffin.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E34224A981C00B7E13E /* blackGriffin.png */; };
@@ -201,6 +202,7 @@
 		252A35EB2244150200FE6A09 /* blackPawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPawn.png; sourceTree = "<group>"; };
 		252A35EF22442A9200FE6A09 /* blackBishop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBishop.png; sourceTree = "<group>"; };
 		252A35F12244323500FE6A09 /* blackKnight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackKnight.png; sourceTree = "<group>"; };
+		252FB3142284B4AE0051A134 /* vikingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vikingBackground.png; sourceTree = "<group>"; };
 		25415E30224A981000B7E13E /* blackBombard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBombard.png; sourceTree = "<group>"; };
 		25415E32224A981500B7E13E /* blackDragonRider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackDragonRider.png; sourceTree = "<group>"; };
 		25415E34224A981C00B7E13E /* blackGriffin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGriffin.png; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				25B249EE2284A1AB0021841B /* AlchemistTitle.png */,
+				252FB3142284B4AE0051A134 /* vikingBackground.png */,
 				259FEDA5224949DE006BE3E8 /* blackBallista.png */,
 				25059FC122666ABC00DA1CDB /* cathedral.png */,
 				25FFCD5C2256D3F400C81196 /* alchemistIcon.png */,
@@ -785,6 +788,7 @@
 				25FFCD602256D3FD00C81196 /* loadingIcon.png in Resources */,
 				25B5F5EB22501AC700DF89FE /* whiteSuperKing.png in Resources */,
 				259FEDA022493C1E006BE3E8 /* blackIceDragon.png in Resources */,
+				252FB3152284B4AE0051A134 /* vikingBackground.png in Resources */,
 				25B5F5D722501AC700DF89FE /* whiteBallista.png in Resources */,
 				25B5F5F422501AC700DF89FE /* whitePikeman.png in Resources */,
 				254C14832247E6BF004359CE /* blackGoblin.png in Resources */,
