@@ -536,6 +536,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             piece.type = .batteringRam
         case "Bishop":
             piece.type = .bishop
+        case "Boar":
+            piece.type = .boar
         case "Bombard":
             piece.type = .bombard
         case "Camel":
@@ -705,6 +707,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             string = "Like a pawn, but moves and attacks forwards."
         case .footSoldier:
             string = "Like a pawn, but moves two spaces at a time and attacks horizontally instead of diagonally."
+        case .boar:
+            string = "Moves like a queen, but can only travel 2 spaces."
         default:
             string = ""
     }

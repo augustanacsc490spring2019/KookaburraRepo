@@ -40,6 +40,7 @@ enum PieceType {
     case leftElf
     case rightElf
     case camel
+    case boar
     //tier 2
     case scout
     case ogre
@@ -243,6 +244,9 @@ class ChessPiece {
         case .manticore:
             symbol = "blackManticore.png"
             summonCost = 90
+        case .boar:
+            symbol = "blackBoar.png"
+            summonCost = 70
             }
         } else if color == .white{
             switch type {
@@ -374,6 +378,9 @@ class ChessPiece {
             case .manticore:
                 symbol = "whiteManticore.png"
                 summonCost = 90
+            case .boar:
+                symbol = "whiteBoar.png"
+                summonCost = 70
             }
         } else {
             symbol = "blankPiece.png"
@@ -479,7 +486,9 @@ class ChessPiece {
             //difference is move validation
             return checkManticore(dest:dest)
         case .manticore:
-            return checkManticore(dest:dest)
+            return checkManticore(dest: dest)
+        case .boar:
+            return checkBoar(dest: dest)
         }
     }
     
@@ -969,6 +978,16 @@ class ChessPiece {
             }
             return false
         }
+    
+    func checkBoar(dest: BoardIndex) -> Bool{
+        let validMoves =  [(self.row + 2, self.col + 2), (self.row + 1, self.col), (self.row + 2, self.col), (self.row + 1, self.col + 1), (self.row + 2, self.col + 2), (self.row, self.col + 1), (self.row, self.col + 2), (self.row, self.col - 1), (self.row, self.col - 2), (self.row + 1, self.col - 1), (self.row + 2, self.col - 2), (self.row, self.col - 1), (self.row, self.col - 2), (self.row - 1, self.col - 1), (self.row - 2, self.col - 2), (self.row - 1, self.col + 1), (self.row + 2, self.col + 2), (self.row - 2, self.col), (self.row - 1, self.col), (self.row - 2, self.col - 2), (self.row + 2, self.col - 2), (self.row - 2, self.col + 2)]
+        for (validRow, validCol) in validMoves {
+            if dest.row == validRow && dest.column == validCol {
+                return true
+            }
+        }
+        return false
+    }
     
     func printInfo() -> String {
         var pColor = "Clear"

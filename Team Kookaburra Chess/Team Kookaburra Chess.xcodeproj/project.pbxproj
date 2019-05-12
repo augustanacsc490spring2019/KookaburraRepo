@@ -30,6 +30,8 @@
 		252A35F022442A9200FE6A09 /* blackBishop.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35EF22442A9200FE6A09 /* blackBishop.png */; };
 		252A35F22244323600FE6A09 /* blackKnight.png in Resources */ = {isa = PBXBuildFile; fileRef = 252A35F12244323500FE6A09 /* blackKnight.png */; };
 		252FB3152284B4AE0051A134 /* vikingBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 252FB3142284B4AE0051A134 /* vikingBackground.png */; };
+		252FB3172288C46B0051A134 /* whiteBoar.png in Resources */ = {isa = PBXBuildFile; fileRef = 252FB3162288C46B0051A134 /* whiteBoar.png */; };
+		252FB3192288C47D0051A134 /* blackBoar.png in Resources */ = {isa = PBXBuildFile; fileRef = 252FB3182288C47D0051A134 /* blackBoar.png */; };
 		25415E31224A981000B7E13E /* blackBombard.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E30224A981000B7E13E /* blackBombard.png */; };
 		25415E33224A981500B7E13E /* blackDragonRider.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E32224A981500B7E13E /* blackDragonRider.png */; };
 		25415E35224A981C00B7E13E /* blackGriffin.png in Resources */ = {isa = PBXBuildFile; fileRef = 25415E34224A981C00B7E13E /* blackGriffin.png */; };
@@ -203,6 +205,8 @@
 		252A35EF22442A9200FE6A09 /* blackBishop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBishop.png; sourceTree = "<group>"; };
 		252A35F12244323500FE6A09 /* blackKnight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackKnight.png; sourceTree = "<group>"; };
 		252FB3142284B4AE0051A134 /* vikingBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vikingBackground.png; sourceTree = "<group>"; };
+		252FB3162288C46B0051A134 /* whiteBoar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteBoar.png; sourceTree = "<group>"; };
+		252FB3182288C47D0051A134 /* blackBoar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBoar.png; sourceTree = "<group>"; };
 		25415E30224A981000B7E13E /* blackBombard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBombard.png; sourceTree = "<group>"; };
 		25415E32224A981500B7E13E /* blackDragonRider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackDragonRider.png; sourceTree = "<group>"; };
 		25415E34224A981C00B7E13E /* blackGriffin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGriffin.png; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 			children = (
 				25B249EE2284A1AB0021841B /* AlchemistTitle.png */,
 				252FB3142284B4AE0051A134 /* vikingBackground.png */,
+				252FB3162288C46B0051A134 /* whiteBoar.png */,
+				252FB3182288C47D0051A134 /* blackBoar.png */,
 				259FEDA5224949DE006BE3E8 /* blackBallista.png */,
 				25059FC122666ABC00DA1CDB /* cathedral.png */,
 				25FFCD5C2256D3F400C81196 /* alchemistIcon.png */,
@@ -719,6 +725,7 @@
 				258FEEE3225290E0007ED10C /* demotionSymbol.png in Resources */,
 				25B5F5CE22501AC700DF89FE /* whiteGriffin.png in Resources */,
 				25DEFD492248970A0024A78A /* blackPikeman.png in Resources */,
+				252FB3172288C46B0051A134 /* whiteBoar.png in Resources */,
 				25B31CF7224E8A61005BAAA8 /* blackFootsoldier.png in Resources */,
 				258FEEE122527B0A007ED10C /* goldDemotionBanner.png in Resources */,
 				258FEED922527B0A007ED10C /* silverPromotionBanner.png in Resources */,
@@ -755,6 +762,7 @@
 				25B5F5D022501AC700DF89FE /* whitePawn.png in Resources */,
 				258FEEDA22527B0A007ED10C /* rankGold.png in Resources */,
 				645068A5224D46E7006709A9 /* testRook.png in Resources */,
+				252FB3192288C47D0051A134 /* blackBoar.png in Resources */,
 				254C147B2247E6AA004359CE /* blackDwarf.png in Resources */,
 				258FEEDD22527B0A007ED10C /* rankDiamond.png in Resources */,
 				25B5F5E822501AC700DF89FE /* whiteCentaur.png in Resources */,

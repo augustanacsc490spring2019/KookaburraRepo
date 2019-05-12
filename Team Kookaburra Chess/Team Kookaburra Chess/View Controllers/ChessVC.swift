@@ -547,6 +547,8 @@ extension ChessVC: ChessBoardDelegate {
                 return "Your Goblin"
             case .footSoldier:
                 return "Your Footsoldier"
+            case .boar:
+                return "Your Boar"
             @unknown default:
                 return "Did you hack this game?"
             }
@@ -638,6 +640,8 @@ extension ChessVC: ChessBoardDelegate {
                 return "Enemy Goblin"
             case .footSoldier:
                 return "Enemy Footsoldier"
+            case .boar:
+                return "Enemy Boar"
             @unknown default:
                 return "Did you hack this game?"
             }

@@ -352,6 +352,8 @@ class ChessBoard {
             return piece.isMovementAppropriate(toIndex: move)
         case .footSoldier:
             return piece.isMovementAppropriate(toIndex: move)
+        case .boar:
+            return piece.isMovementAppropriate(toIndex: move)
         }
     }
     
@@ -591,6 +593,8 @@ class ChessBoard {
             return isMoveValid(forGoblin: piece, toIndex: dest)
         case .footSoldier:
             return isMoveValid(forFootSoldier: piece, toIndex: dest)
+        case .boar:
+            return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
         }
         return true
     }
