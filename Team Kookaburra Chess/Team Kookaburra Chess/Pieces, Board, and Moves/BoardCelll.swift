@@ -144,6 +144,10 @@ class BoardCell: UIView {
         backgroundColor = UIColor.red
     }
     
+    func setAsBlocked() {
+        backgroundColor = hexStringToUIColor(hex: "BABABA")
+    }
+    
     //Thanks, StackOverflow user Ethan Strider
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

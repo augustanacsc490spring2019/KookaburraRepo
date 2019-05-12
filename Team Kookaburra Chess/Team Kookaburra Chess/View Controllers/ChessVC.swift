@@ -19,6 +19,7 @@ class ChessVC: UIViewController {
     var boardCells = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
     var pieceBeingMoved: ChessPiece? = nil
     var possibleMoves = [BoardIndex]()
+    var possibleAttacks = [BoardIndex]()
     var playerTurn = UIColor.white
     var whiteFormation = [[BoardCell]]()
     var blackFormation = [[BoardCell]]()
@@ -291,6 +292,8 @@ extension ChessVC: BoardCellDelegate {
                     removeHighlights()
                     possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
                     highlightPossibleMoves()
+                    possibleAttacks = chessBoard.getPossibleAttacks(forPiece: cell.piece, moves: possibleMoves)
+                    highlightPossibleAttacks()
                 } else if cell.piece.color != playerTurn{
                     // remove the old selected cell coloring and set new piece
                     boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
@@ -302,6 +305,8 @@ extension ChessVC: BoardCellDelegate {
                     removeHighlights()
                     possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
                     highlightEnemyMoves()
+                    possibleAttacks = chessBoard.getPossibleAttacks(forPiece: cell.piece, moves: possibleMoves)
+                    highlightPossibleAttacks()
                 }
             }
 //            if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color == playerTurn {
@@ -372,9 +377,18 @@ extension ChessVC: BoardCellDelegate {
         }
     }
     
+    func highlightPossibleAttacks(){
+        for move in possibleAttacks{
+            boardCells[move.row][move.column].setAsBlocked()
+        }
+    }
+    
     func removeHighlights() {
         for move in possibleMoves {
             //print(move.row)
+            boardCells[move.row][move.column].removeHighlighting()
+        }
+        for move in possibleAttacks{
             boardCells[move.row][move.column].removeHighlighting()
         }
     }

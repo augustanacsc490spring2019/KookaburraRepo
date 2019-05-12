@@ -223,6 +223,138 @@ class ChessBoard {
         return possibleMoves
     }
     
+    func getPossibleAttacks(forPiece: ChessPiece, moves: [BoardIndex]) -> [BoardIndex]{
+        var possibleAttacks = [BoardIndex]()
+        for row in 0...7 {
+            for col in 0...7 {
+                let dest = BoardIndex(row: row, column: col)
+                if (moves.firstIndex(of: dest) == nil){
+                    if isAttack(piece: forPiece, move: dest) == true{
+                        possibleAttacks.append(dest)
+                    }
+                }
+            }
+        }
+        return possibleAttacks
+    }
+    
+    
+    //checks if a move is an attack. For pieces that move the same way as they attack, this is straightforward
+    func isAttack(piece: ChessPiece, move: BoardIndex) -> Bool{
+        switch piece.type{
+        case .dummy:
+            return false
+        case .unicorn:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .superKing:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .griffin:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .king:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .queen:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .mage:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .centaur:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .dragonRider:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .bombard:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .manticore:
+            let king = ChessPiece(row: piece.row, column: piece.col, color: piece.color, type: .king, player: piece.color)
+            return king.isMovementAppropriate(toIndex: move)
+        case .ghostQueen:
+            return false
+        case .rook:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .knight:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .bishop:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .basilisk:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .fireDragon:
+            //attacks like a rook
+            let rook = ChessPiece(row: piece.row, column: piece.col, color: piece.color, type: .rook, player: piece.color)
+            return rook.isMovementAppropriate(toIndex: move)
+        case .iceDragon:
+            //attacks like a bishop
+            let bishop = ChessPiece(row: piece.row, column: piece.col, color: piece.color, type: .bishop, player: piece.color)
+            return bishop.isMovementAppropriate(toIndex: move)
+        case .minotaur:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .monopod:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .ship:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .ballista:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .batteringRam:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .trebuchet:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .leftElf:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .rightElf:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .camel:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .scout:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .ogre:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .orcWarrior:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .elephant:
+            //attacks like an ogre
+            let ogre = ChessPiece(row: piece.row, column: piece.col, color: piece.color, type: .ogre, player: piece.color)
+            return ogre.isMovementAppropriate(toIndex: move)
+        case .manAtArms:
+            //attacks like an orc warrior
+            let orc = ChessPiece(row: piece.row, column: piece.col, color: piece.color, type: .orcWarrior, player: piece.color)
+            return orc.isMovementAppropriate(toIndex: move)
+        case .swordsman:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .pikeman:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .archer:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .royalGuard:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .demon:
+            if piece.isMovementAppropriate(toIndex: move){
+                if move.row != piece.row{
+                    return true
+                }
+            }
+            return false
+        case .pawn:
+            if piece.isMovementAppropriate(toIndex: move){
+                if move.column != piece.col{
+                   return true
+                }
+            }
+            return false
+        case .monk:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .dwarf:
+            if piece.isMovementAppropriate(toIndex: move){
+                if move.column == piece.col{
+                    return true
+                }
+            }
+            return false
+        case .gargoyle:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .goblin:
+            return piece.isMovementAppropriate(toIndex: move)
+        case .footSoldier:
+            return piece.isMovementAppropriate(toIndex: move)
+        }
+    }
+    
     /// Makes the given move and checks for gameOver/tie and reports back through delegates
     func move(chessPiece: ChessPiece, fromIndex source: BoardIndex, toIndex dest: BoardIndex) {
         let dict = ["start": source, "end": dest]
