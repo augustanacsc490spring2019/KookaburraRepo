@@ -299,14 +299,14 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 }
             } else if highlightedCell.row == 1{
                 if chosenPiece.type == .dummy{
-                    //self.clearFrontRow()
+                    self.clearFrontRow()
                     self.tipLabel.text = "Fill the second row to be able place in the front row"
                 }
             }
             chosenPiece.row = highlightedCell.row
             chosenPiece.col = highlightedCell.column
             highlightedCell.configureCell(forPiece: chosenPiece)
-            var changedBoardCell = self.boardCells[highlightedCell.row][highlightedCell.column];
+            //var changedBoardCell = self.boardCells[highlightedCell.row][highlightedCell.column];
             //NSLog("boardcell changed: \(changedBoardCell.piece.type)");
             //add summon points
             //print("points before: \(playerPoints)")
@@ -317,6 +317,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //NSLog("chosen pieces: \(chosenPieces)")
             //}
             //}
+            didSelect(cell: highlightedCell, atRow: highlightedCell.row, andColumn: highlightedCell.column)
         }
         
     }
@@ -339,49 +340,66 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return true
     }
     
+//    func clearFrontRow(){
+//        let numRows:Int = 8
+//        let numCols:Int = 8
+//        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
+//        self.boardCells = Array(repeating: oneRow, count: numRows)
+//        let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
+//        var xOffset: CGFloat = 0
+//        var yOffset: CGFloat = 0
+//        let start_row = 0
+//        let end_row = 0
+//        for row in start_row...end_row {
+//
+//            yOffset = (CGFloat(row - start_row) * cellDimension) + 200
+//
+//            for col in 0...7 {
+//
+//                xOffset = (CGFloat(col) * cellDimension) + 0
+//
+//                // create a piece
+//                var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
+//
+//                // create a cell at this location with this piece, and set color
+//                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
+//
+//                // NSLog("Board cells at row, col: \(boardCells[row][col])")
+//
+//                cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
+//                if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
+//                    cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
+//                } else {
+//                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
+//                }
+//
+//                cell.removeHighlighting()
+//
+//                // wire up the cell
+//                cell.delegate = self
+//                chessBoard.board[row][col] = piece
+//                self.boardCells[row][col] = cell
+//
+//
+//                view.addSubview(cell)
+//            }
+//        }
+//    }
+    
     func clearFrontRow(){
-        let numRows:Int = 8
-        let numCols:Int = 8
-        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
-        self.boardCells = Array(repeating: oneRow, count: numRows)
-        let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
-        var xOffset: CGFloat = 0
-        var yOffset: CGFloat = 0
-        let start_row = 0
-        let end_row = 0
-        for row in start_row...end_row {
-            
-            yOffset = (CGFloat(row - start_row) * cellDimension) + 200
-            
-            for col in 0...7 {
-                
-                xOffset = (CGFloat(col) * cellDimension) + 0
-                
-                // create a piece
-                var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
-                
-                // create a cell at this location with this piece, and set color
-                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
-                
-                // NSLog("Board cells at row, col: \(boardCells[row][col])")
-                
-                cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
-                if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
-                    cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
-                } else {
-                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
-                }
-                
-                cell.removeHighlighting()
-                
-                // wire up the cell
-                cell.delegate = self
-                chessBoard.board[row][col] = piece
-                self.boardCells[row][col] = cell
-                
-                
-                view.addSubview(cell)
+        var piece = ChessPiece(row: 0, column: 0, color: .black, type: .dummy, player: .black)
+        var cell = BoardCell(row: 0, column: 0, piece: piece, color: .black)
+        let row = 2//front row
+        for col in 0...7{
+            piece = chessBoard.board[row][col]
+            cell = self.boardCells[row][col]
+            if piece.type != .dummy{
+                piece.type = .dummy
+                cell.piece = piece
             }
+            chessBoard.board[row][col] = piece
+            self.boardCells[row][col] = cell
+            view.addSubview(cell)
         }
     }
     
