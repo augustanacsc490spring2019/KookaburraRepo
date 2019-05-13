@@ -274,7 +274,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 }
             } else if highlightedCell.row == 1{
                 if chosenPiece.type == .dummy{
-                    self.clearFrontRow()
+                    //self.clearFrontRow()
                     self.tipLabel.text = "Fill the second row to be able place in the front row"
                 }
             }

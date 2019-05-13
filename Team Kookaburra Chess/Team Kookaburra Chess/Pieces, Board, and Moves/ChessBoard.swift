@@ -229,8 +229,10 @@ class ChessBoard {
             for col in 0...7 {
                 let dest = BoardIndex(row: row, column: col)
                 if (moves.firstIndex(of: dest) == nil){
+                    if !(row == forPiece.row && col == forPiece.col){
                     if isAttack(piece: forPiece, move: dest) == true{
                         possibleAttacks.append(dest)
+                    }
                     }
                 }
             }

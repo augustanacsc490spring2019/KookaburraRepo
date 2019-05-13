@@ -254,6 +254,8 @@ extension ChessVC: BoardCellDelegate {
         //print("Selected cell at: \(row), \(col)")
         //chessBoard.board[row][col].showPieceInfo()
         // Check if making a move (if had selected piece before)
+        clearRedCells()
+        removeHighlights()
         currentPiece = cell.piece
         if let movingPiece = pieceBeingMoved, movingPiece.color == playerTurn {
             let source = BoardIndex(row: movingPiece.row, column: movingPiece.col)
@@ -336,18 +338,24 @@ extension ChessVC: BoardCellDelegate {
                 cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
                 pieceBeingMoved = cell.piece
                 removeHighlights()
-                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
-                highlightPossibleMoves()
             } else if cell.piece.color != playerTurn && cell.piece.type != .dummy{
                 clearRedCells()
                 //selected opponent Piece
                 cell.backgroundColor = .red
                 pieceBeingMoved = cell.piece
                 removeHighlights()
-                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
-                highlightEnemyMoves()
             }
         }
+        possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
+        if cell.piece.color == playerTurn{
+            highlightPossibleMoves()
+            cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
+        } else {
+            highlightEnemyMoves()
+            cell.backgroundColor = .red
+        }
+        possibleAttacks = chessBoard.getPossibleAttacks(forPiece: cell.piece, moves: possibleMoves)
+        highlightPossibleAttacks()
         checkLabel.text = displayInfo(piece: currentPiece)
         updateLabel()
         //print("The old cell now holds: \(cell.piece.symbol)")
@@ -378,18 +386,17 @@ extension ChessVC: BoardCellDelegate {
     }
     
     func highlightPossibleAttacks(){
+        print("possible attacks being highlighted")
         for move in possibleAttacks{
             boardCells[move.row][move.column].setAsBlocked()
         }
     }
     
     func removeHighlights() {
-        for move in possibleMoves {
-            //print(move.row)
-            boardCells[move.row][move.column].removeHighlighting()
-        }
-        for move in possibleAttacks{
-            boardCells[move.row][move.column].removeHighlighting()
+        for row in 0...7 {
+            for column in 0...7{
+            boardCells[row][column].removeHighlighting()
+            }
         }
     }
     
@@ -442,11 +449,12 @@ extension ChessVC: ChessBoardDelegate {
     // MARK: Alerts
     
     func showGameOver(message: String) {
-        let ac = UIAlertController(title: "Game Over", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { action in
+        //TODO: change this function for online matches
+        let ac = UIAlertController(title: "Game Over!", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Restart", style: .default, handler: { action in
             self.newGame()
         })
-        let noAction = UIAlertAction(title: "No", style: .default, handler: { action in
+        let noAction = UIAlertAction(title: "View Board", style: .default, handler: { action in
             
             print("Too bad. That's all we can do right now. Haven't added another scene yet")
             //self.chessBoard.startNewGame()
