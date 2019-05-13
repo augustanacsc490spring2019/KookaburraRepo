@@ -114,19 +114,21 @@ class ChessVC: UIViewController {
         //print("Black Formation: \(blackFormation)")
     }
 
-    func checkIfPlacePiecesNeeded(){
-        print ("isLocalMatch: \(isLocalMatch)")
-        var isNewMatch: Bool = checkIsNewMatch()
-        print("isnewMatch: \(isNewMatch)")
-        if !isLocalMatch {//}&& checkIsNewMatch() {
-            print("attempted segue to online place pieces")
-            //            let onlinePlacePieces = PlacePiecesViewController()
-            //            onlinePlacePieces.addStarterKing()
-            //            self.present(onlinePlacePieces, animated: true, completion: nil)
-            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
-            //Makes online players place pieces before can make moves
-        }
-    }
+    //probably don't need anymore
+//    func checkIfPlacePiecesNeeded(){
+//        print ("isLocalMatch: \(isLocalMatch)")
+//        var isNewMatch: Bool = checkIsNewMatch()
+//        print("isnewMatch: \(isNewMatch)")
+//        if !isLocalMatch {//}&& checkIsNewMatch() {
+//            print("attempted segue to online place pieces")
+//            //            let onlinePlacePieces = PlacePiecesViewController()
+//            //            onlinePlacePieces.addStarterKing()
+//            //            self.present(onlinePlacePieces, animated: true, completion: nil)
+//            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+//            //Makes online players place pieces before can make moves
+//        }
+//    }
+    
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if (segue.identifier == "OnlinePlacePiecesSegue") {
 //            print("prepare for OnlinePlacePiecesSegue called")
@@ -140,8 +142,8 @@ class ChessVC: UIViewController {
         print("chessVC drawBoard called")
         let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
         boardCells = Array(repeating: oneRow, count: 8)
-        print("black formation: \(blackFormation)")
-        print("white formation: \(whiteFormation)")
+        //print("black formation: \(blackFormation)")
+        //print("white formation: \(whiteFormation)")
         chessBoard.takeFormations(black: blackFormation, white: whiteFormation)
         let cellDimension = (view.frame.size.width - 0) / 8
         var xOffset: CGFloat = 0
@@ -682,26 +684,27 @@ extension ChessVC: ChessBoardDelegate {
         present(ac, animated: true, completion: nil)
     }
     
-    func checkIsNewMatch() -> Bool{
-        var piecesPlacedTop: Bool = false
-        var piecesPlacedBottom: Bool = false
-        for row in 0...3{
-            for col in 0 ... 7 {
-                let cell = boardCells[row][col]
-                if cell.piece.type != .dummy {
-                    piecesPlacedTop = true
-                }
-            }
-        }
-        for row in 4...7{
-            for col in 0 ... 7 {
-                let cell = boardCells[row][col]
-                if cell.piece.type != .dummy {
-                    piecesPlacedBottom = true
-                }
-            }
-        }
-        let bothSetsPlaced: Bool = piecesPlacedTop && piecesPlacedBottom
-        return !bothSetsPlaced
-    }
+    //probably don't need anymore
+//    func checkIsNewMatch() -> Bool{
+//        var piecesPlacedTop: Bool = false
+//        var piecesPlacedBottom: Bool = false
+//        for row in 0...3{
+//            for col in 0 ... 7 {
+//                let cell = boardCells[row][col]
+//                if cell.piece.type != .dummy {
+//                    piecesPlacedTop = true
+//                }
+//            }
+//        }
+//        for row in 4...7{
+//            for col in 0 ... 7 {
+//                let cell = boardCells[row][col]
+//                if cell.piece.type != .dummy {
+//                    piecesPlacedBottom = true
+//                }
+//            }
+//        }
+//        let bothSetsPlaced: Bool = piecesPlacedTop && piecesPlacedBottom
+//        return !bothSetsPlaced
+//    }
 }

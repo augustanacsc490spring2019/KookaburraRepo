@@ -133,6 +133,12 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
+    func goToMain(){
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "OpeningScreen") as UIViewController
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     func setLabels(){
         quantLabel.text = "/450"
         pointsRemaining.text = "Points spent: \(playerPoints)"
@@ -479,7 +485,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //if not, ask them if they're sure they want to ready up
             let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
             let yes = UIAlertAction(title: "Ready!", style: .default, handler: { action in
-                self.performSegue(withIdentifier: "OnlineMatchSegue", sender: self)
+                self.processGameUpdate() //Do I still need this or just an endTurn?
+                self.goToMain()
             })
             let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
@@ -488,6 +495,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             present(ac, animated: true, completion: nil)
             return
         }
+        model.convertBoardCells(boardCells: boardCells)
         if playerColor == .white{
             
         }
@@ -733,10 +741,36 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             string = "Moves like a queen, but can only travel 2 spaces."
         default:
             string = ""
+        }
+        return string
     }
-    return string
+    
+    func processGameUpdate() {
+        if model.winner != nil {
+            GameCenterHelper.helper.win { error in
+                
+                if let e = error {
+                    print("Error winning match: \(e.localizedDescription)")
+                    return
+                }
+                
+                self.goToMain()
+            }
+        } else {
+            GameCenterHelper.helper.endTurn(model) { error in
+                
+                if let e = error {
+                    print("Error ending turn: \(e.localizedDescription)")
+                    return
+                }
+                
+                self.goToMain()
+            }
+        }
+    }
 }
-}
+
+
 
 extension PlacePiecesViewController: BoardCellDelegate {
     

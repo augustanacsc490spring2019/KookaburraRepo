@@ -106,6 +106,7 @@ struct GameModel: Codable{
     }
     
     func convertBoardCells(boardCells: [[BoardCell]]) -> [[String]]{
+        print("convertBoardCells called")
         return [[String]]()
     }
     

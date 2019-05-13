@@ -1440,9 +1440,9 @@ class ChessBoard {
     }
     
     func takeFormations(black: [[BoardCell]], white: [[BoardCell]]){
-        print("take formations called")
-        print("black formation: \(black)")
-        print("white fomrmation: \(white)")
+        print("ChessBoard take formations called")
+        //print("black formation: \(black)")
+        //print("white fomrmation: \(white)")
         //go through the black formation
         startNewGame()
         //print("Board: \(board)")
