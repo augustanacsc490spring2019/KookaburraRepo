@@ -290,10 +290,15 @@ class OpeningScreen: UIViewController {
             GameCenterHelper.helper.currentMatch = match
             print("piecesAreSet: \(self.model.piecesAreSet)")
             //if self.model.piecesAreSet{
-            print("online chess vc segue attempted")
+            print("online segue attempted")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 //TODO: if else statement depending on game model- if pieces are set to determine which segue
-                self.performSegue(withIdentifier: "PlacePiecesSegue", sender: self)
+                if (self.model.piecesAreSet){
+                    self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+                } else {
+                    self.self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+                }
+                
             }
             
 //            } else {
@@ -320,9 +325,12 @@ class OpeningScreen: UIViewController {
             let vc = segue.destination as! ChessVC
             vc.model = self.model
             vc.isLocalMatch = false
-        } else if (segue.identifier == "PlacePiecesSegue") {
-            print("prepare for placePiecesSegue called")
+        } else if (segue.identifier == "OnlinePlacePiecesSegue") {
+            print("prepare for OnlinePlacePiecesSegue called")
             let vc = segue.destination as! PlacePiecesViewController
+            vc.model = self.model
+            vc.isLocalMatch = false
+            print("model being passed in to OnlinePlacePiecesSegue. currentPlayer = \(model.currentPlayer) and isWhiteTurn = \(model.isWhiteTurn)")
         }
     }
     

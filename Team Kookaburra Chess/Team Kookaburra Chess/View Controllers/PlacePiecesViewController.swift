@@ -41,6 +41,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     var playerColor: UIColor = .white
+    //var player: GameModel.Player = GameModel.Player("white")
     var playerPoints: Int = 0
     var chessBoard = ChessBoard(playerColor: .white)
     var boardCells = [[BoardCell]]()
@@ -51,7 +52,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var pickerData: [String] = [String]()
     var highlightedCell: BoardCell = BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: .white), color: .white)
     var p2BoardCells = [[BoardCell]]()
-    var localMatch = true
+    var isLocalMatch = true
+    var model: GameModel = GameModel()
     
     @IBOutlet weak var placeButton: UIButton!
     @IBOutlet weak var quantLabel: UILabel!
@@ -70,7 +72,19 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     override func viewDidLoad(){
         print("place pieces viewDidLoad called")
         super.viewDidLoad()
-        
+        //print("isLocaMatch: \(isLocalMatch)")
+        if (!isLocalMatch){
+            print("setting playerColor at viewDidLoad from GameModel")
+            if (model.currentPlayer == GameModel.Player.white){
+                playerTurn = UIColor.white
+                playerColor = UIColor.white
+                print("playerColor and playerTurn set to white at viewDidLoad")
+            } else {
+                playerTurn = UIColor.black
+                playerColor = UIColor.black
+                print("playerColor and PlayerTurn set to black at viewDidLoad")
+            }
+        }
         setLabels()
         drawBoard()
         addStarterKing()
@@ -153,7 +167,12 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func drawBoard(){
-        print("place pieces drawBoard called")
+        print("place pieces drawBoard called.")
+        if (playerColor == UIColor.white) {
+            print("playerColor = white at drawBoard")
+        } else {
+            print("playerColor = black at drawBoard")
+        }
         let numRows:Int = 8
         let numCols:Int = 8
         let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
@@ -190,7 +209,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
                 // wire up the cell
                 cell.delegate = self
-                print("place pieces- drawBoard at row: \(row), col: \(col)")
+                //print("place pieces- drawBoard at row: \(row), col: \(col)")
                 chessBoard.board[row][col] = piece
                 self.boardCells[row][col] = cell
                 
@@ -242,7 +261,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             ac.addAction(ok)
             present(ac, animated: true, completion: nil)
         } else{
-            NSLog("check if the piece is illegally placed")
+            //NSLog("check if the piece is illegally placed")
             //check if the piece is illegally placed
             if ((chosenPiece.type == .dragonRider)){
 
@@ -432,20 +451,20 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func readyButtonPressed(_ sender: Any) {
         //check if the player has at least one king
         if numKings(color: playerColor) > 0{
-        if localMatch == true{
-            if playerColor == .white{ //
-                p2BoardCells = boardCells
-                playerColor = .black
-                clearPieces()
-                setLabels()
-                piecePictureSetup()
-                addStarterKing()
+            if isLocalMatch == true{
+                if playerColor == .white{ //
+                    p2BoardCells = boardCells
+                    playerColor = .black
+                    clearPieces()
+                    setLabels()
+                    piecePictureSetup()
+                    addStarterKing()
+                } else {
+                    localMatchReady()
+                }
             } else {
-                localMatchReady()
+                onlineMatchReady()
             }
-        } else {
-            //do multiplayer stuff
-        }
         } else {
             tipLabel.text = "Place a king, then you can play!"
             let ac = UIAlertController(title: "Rule", message: "You need to place at least one king before you can play", preferredStyle: .alert)
@@ -468,6 +487,9 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             ac.addAction(no)
             present(ac, animated: true, completion: nil)
             return
+        }
+        if playerColor == .white{
+            
         }
     }
     
@@ -519,7 +541,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func getPiece(string: String) -> ChessPiece {
-        NSLog("getting piece")
+        //NSLog("getting piece")
         var piece = ChessPiece(row: -1, column: -1, color: playerColor, type: .dummy, player: playerColor)
         switch string{
         case "Empty":
@@ -617,7 +639,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func getInfo(piece: ChessPiece) -> String {
-        NSLog("getting info")
+        //NSLog("getting info")
         var string = ""
         
         switch piece.type{

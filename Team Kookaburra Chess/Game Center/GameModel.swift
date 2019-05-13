@@ -37,6 +37,7 @@ struct GameModel: Codable{
     //var boardCells: [BoardCell]
     var pieceNamesArray = [[String]]()
     //var pieceNamesArray = [[String]](repeating: [String](repeating: 0, count: 8), count: 8) //8 by 8 array of Strings
+    
     var winner: Player?
     
     var currentPlayer: Player {
@@ -60,13 +61,18 @@ struct GameModel: Codable{
     var whiteHasSetPieces: Bool = false
     var blackHasSetPieces: Bool = false
     var piecesAreSet: Bool = false
+    //var neitherHasSetPieces = Bool() / not sure if need this. See initializer and update turn
     
-    private(set) var isWhiteTurn: Bool //pay attention to how this is used in Nine Knights
+    var isWhiteTurn = Bool() //pay attention to how this is used in Nine Knights
     
-    init(isWhiteTurn: Bool = true) {
+    init() {
         //self.currentPlayer = randomPlayer()
-        self.isWhiteTurn = isWhiteTurn
+        //neitherHasSetPieces = true
+        self.isWhiteTurn = randomPlayer() //this pattern of having this set from the parameter was in Nine Knights. Not sure why or if I should use it for other fields.
+        print("GameModel init called. isWhiteTurn = \(self.isWhiteTurn). currentPlayer = \(self.currentPlayer)")
+        
         //boardCells = [BoardCell]()
+        
     }
     
     mutating func checkPiecesAreSet(){
@@ -76,13 +82,31 @@ struct GameModel: Codable{
         }
     }
     
-    func randomPlayer() -> Player{
+    func randomPlayer() -> Bool {
+        print("randomPlayer called")
         let number = Int.random(in: 0...1)
         if number == 0 {
-            return .white
+            return isWhiteTurn
         } else {
-            return .black
+            return !isWhiteTurn
         }
+    }
+    
+    mutating func updateTurn() {
+        //neitherHasSetPieces = true
+        if(!piecesAreSet){
+            if(whiteHasSetPieces){
+                isWhiteTurn = false
+            } else {
+                isWhiteTurn = true
+            }
+        }
+        //probably need something to check if first move and make white's turn
+        self.isWhiteTurn = !isWhiteTurn
+    }
+    
+    func convertBoardCells(boardCells: [[BoardCell]]) -> [[String]]{
+        
     }
     
    

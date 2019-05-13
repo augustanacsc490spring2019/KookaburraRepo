@@ -43,20 +43,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lhs-az-VDT" userLabel="Level Up Progress">
-                                <rect key="frame" x="201" y="94" width="193" height="1.5"/>
+                                <rect key="frame" x="201" y="93" width="193" height="1.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="193" id="TML-8I-9y5"/>
                                 </constraints>
                             </progressView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UAh-pg-cud" userLabel="Level down progress">
-                                <rect key="frame" x="8" y="94" width="193" height="1.5"/>
+                                <rect key="frame" x="8" y="93" width="193" height="1.5"/>
                                 <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="193" id="XfK-NI-1Y5"/>
                                 </constraints>
                             </progressView>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DR-cL-FoF">
-                                <rect key="frame" x="0.0" y="305.5" width="414" height="45"/>
+                                <rect key="frame" x="0.0" y="304.5" width="414" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="N7r-px-FlJ"/>
                                 </constraints>
@@ -122,7 +122,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1VV-nz-4qt" userLabel="demotion image">
-                                <rect key="frame" x="12" y="42" width="33" height="50"/>
+                                <rect key="frame" x="12" y="42" width="33" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="49" id="HfF-b6-UBL"/>
                                     <constraint firstAttribute="height" constant="50" id="Kms-LF-IQ0"/>
@@ -140,7 +140,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LO8-SD-FNp" userLabel="promotion image">
-                                <rect key="frame" x="361" y="43.5" width="33" height="50"/>
+                                <rect key="frame" x="361" y="43.5" width="33" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="33" id="qj4-qf-TeI"/>
                                 </constraints>
@@ -158,7 +158,7 @@
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zVE-eY-227" kind="show" identifier="OnlineChessVCSegue" id="F9Q-xX-x8B"/>
+                                    <segue destination="eT3-ZL-FIO" kind="show" identifier="OnlinePlacePiecesSegue" id="PKa-wr-jw9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -168,6 +168,7 @@
                             <constraint firstItem="zXS-XN-ZVo" firstAttribute="top" secondItem="hfe-DH-WDR" secondAttribute="bottom" constant="3" id="1ir-5i-2Qe"/>
                             <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="1yg-SX-Qu2"/>
                             <constraint firstItem="wVv-WH-LuU" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="3am-nU-2Mr"/>
+                            <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="4Cx-Ph-Y8b"/>
                             <constraint firstItem="hfe-DH-WDR" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="4vl-4V-8jj"/>
                             <constraint firstItem="RBA-Qs-yjW" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="7Ir-Wd-mCn"/>
                             <constraint firstItem="1VV-nz-4qt" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="topMargin" constant="-2" id="8Vd-pj-QTh"/>
@@ -175,6 +176,7 @@
                             <constraint firstItem="LO8-SD-FNp" firstAttribute="centerY" secondItem="hfe-DH-WDR" secondAttribute="centerY" id="CYk-SU-qqw"/>
                             <constraint firstItem="hfe-DH-WDR" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-380" id="DA4-Kk-gKE"/>
                             <constraint firstItem="APm-Lx-Pis" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="FoF-ZU-LHK"/>
+                            <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="K72-tS-WV8"/>
                             <constraint firstItem="zXS-XN-ZVo" firstAttribute="trailing" secondItem="Lhs-az-VDT" secondAttribute="trailing" id="NbG-27-zTb"/>
                             <constraint firstItem="vba-gz-8aH" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="Nrv-AH-C97"/>
                             <constraint firstItem="RBA-Qs-yjW" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-60" id="P5I-22-Aav"/>
@@ -189,6 +191,7 @@
                             <constraint firstItem="zXS-XN-ZVo" firstAttribute="trailing" secondItem="LO8-SD-FNp" secondAttribute="trailing" id="kqk-Sz-dUa"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="top" secondItem="hfe-DH-WDR" secondAttribute="top" constant="0.5" id="op0-NY-WXn"/>
                             <constraint firstItem="UAh-pg-cud" firstAttribute="top" secondItem="1VV-nz-4qt" secondAttribute="bottom" constant="2" id="r4b-mJ-GTS"/>
+                            <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="sLB-hh-xPn"/>
                             <constraint firstItem="UAh-pg-cud" firstAttribute="top" secondItem="Lhs-az-VDT" secondAttribute="bottom" constant="-1.5" id="tT6-OW-xeL"/>
                             <constraint firstItem="0DR-cL-FoF" firstAttribute="top" secondItem="zXS-XN-ZVo" secondAttribute="bottom" constant="44" id="tZK-90-ybI"/>
                             <constraint firstItem="0DR-cL-FoF" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="tsF-0m-ewT"/>
@@ -1136,8 +1139,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <segue reference="ynr-Ld-Yg9"/>
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
-        <segue reference="F9Q-xX-x8B"/>
-        <segue reference="DDD-cs-UHp"/>
+        <segue reference="PKa-wr-jw9"/>
         <segue reference="jpc-O9-TBa"/>
     </inferredMetricsTieBreakers>
 </document>
