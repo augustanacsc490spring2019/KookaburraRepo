@@ -105,9 +105,20 @@ struct GameModel: Codable{
         self.isWhiteTurn = !isWhiteTurn
     }
     
-    func convertBoardCells(boardCells: [[BoardCell]]) -> [[String]]{
-        print("convertBoardCells called")
-        return [[String]]()
+    func updatePieceNamesArray(chessPieceArray: [[ChessPiece]]) -> [[String]]{
+        print("updatePieceNamesArray called")
+        var pieceNamesArray = [[String]]()
+        for row in 0...7{
+            for col in 0...7{
+                //print("row: \(row), col: \(col)")
+                let currentPiece = chessPieceArray[row][col]
+                //print("read currentPiece")
+                currentPiece.setupSymbol()
+                let pieceName = currentPiece.symbol
+                pieceNamesArray.append([pieceName])
+            }
+        }
+        return pieceNamesArray
     }
     
    

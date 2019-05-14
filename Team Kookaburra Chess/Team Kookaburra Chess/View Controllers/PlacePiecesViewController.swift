@@ -123,14 +123,38 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let vc = segue.destination as! ChessVC
             vc.playerColor = playerColor
             vc.isLocalMatch = true
-            if playerColor == .white{
-                vc.whiteFormation = boardCells
-                vc.blackFormation = p2BoardCells
-            } else {//playerColor == .black
-                vc.blackFormation = boardCells
-                vc.whiteFormation = p2BoardCells
+//            if playerColor == .white{
+//                vc.whiteFormation = boardCells
+//                vc.blackFormation = p2BoardCells
+//            } else {//playerColor == .black
+//                vc.blackFormation = boardCells
+//                vc.whiteFormation = p2BoardCells
+//            }
+            vc.chessBoard.board = combineFormations()
+        }
+    }
+    
+    func combineFormations() -> [[ChessPiece]]{
+        var whiteFormation = [[BoardCell]]()
+        var blackFormation = [[BoardCell]]()
+        if playerColor == .white{
+            whiteFormation = boardCells
+            if model.blackHasSetPieces{
+                blackFormation = p2BoardCells
+            } else {
+                blackFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+            }
+        } else {//playerColor == .black
+            blackFormation = boardCells
+            if model.whiteHasSetPieces{
+                whiteFormation = p2BoardCells
+            } else {
+                whiteFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
             }
         }
+        let fullBoard = ChessBoard(playerColor: UIColor.white)
+        fullBoard.board = fullBoard.takeFormations(black: blackFormation, white: whiteFormation)
+        return fullBoard.board
     }
     
     func goToMain(){
@@ -458,6 +482,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //check if the player has at least one king
         if numKings(color: playerColor) > 0{
             if isLocalMatch == true{
+                print("local match ready button pressed")
                 if playerColor == .white{ //
                     p2BoardCells = boardCells
                     playerColor = .black
@@ -481,6 +506,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func onlineMatchReady(){
+        print("onlineMatchReady called")
         if playerPoints < 440{
             //if not, ask them if they're sure they want to ready up
             let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
@@ -494,10 +520,6 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             ac.addAction(no)
             present(ac, animated: true, completion: nil)
             return
-        }
-        model.convertBoardCells(boardCells: boardCells)
-        if playerColor == .white{
-            
         }
     }
     
@@ -746,6 +768,11 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func processGameUpdate() {
+        print("place pieces processGameUpdate called")
+        let updatedBoard = combineFormations()
+        let updatedPieceNamesArray = model.updatePieceNamesArray(chessPieceArray: updatedBoard)
+        model.pieceNamesArray = updatedPieceNamesArray
+        model.updateTurn()
         if model.winner != nil {
             GameCenterHelper.helper.win { error in
                 

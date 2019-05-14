@@ -292,13 +292,11 @@ class OpeningScreen: UIViewController {
             //if self.model.piecesAreSet{
             print("online segue attempted")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                //TODO: if else statement depending on game model- if pieces are set to determine which segue
                 if (self.model.piecesAreSet){
                     self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
                 } else {
                     self.self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
                 }
-                
             }
             
 //            } else {
