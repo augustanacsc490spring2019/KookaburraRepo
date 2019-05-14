@@ -989,16 +989,6 @@ class ChessPiece {
         return false
     }
     
-//    func checkThunderChariot(dest: BoardIndex) -> Bool{
-//        let validMoves =  [(self.row - 1, self.col + 1), (self.row - 2, self.col), ]
-//        for (validRow, validCol) in validMoves {
-//            if dest.row == validRow && dest.column == validCol {
-//                return true
-//            }
-//        }
-//        return false
-//    }
-    
     func printInfo() -> String {
         var pColor = "Clear"
         if color == .white {
