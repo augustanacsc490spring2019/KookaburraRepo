@@ -101,6 +101,7 @@ struct GameModel: Codable{
                 isWhiteTurn = true
             }
         }
+        checkPiecesAreSet()
         //probably need something to check if first move and make white's turn
         self.isWhiteTurn = !isWhiteTurn
     }

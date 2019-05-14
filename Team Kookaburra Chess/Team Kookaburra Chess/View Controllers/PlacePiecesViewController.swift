@@ -70,7 +70,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var chosenPieces = [[ChessPiece]]()
     
     override func viewDidLoad(){
-        print("place pieces viewDidLoad called")
+        print("place pieces viewDidLoad called. model.blackHasPlacedPieces = \(model.blackHasSetPieces). model.whiteHasPlacedPieces = \(model.whiteHasSetPieces)")
+        
         super.viewDidLoad()
         //print("isLocaMatch: \(isLocalMatch)")
         if (!isLocalMatch){
@@ -183,7 +184,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if playerColor == .white{
             king.row = 2
             king.col = 3
-            print(boardCells)
+            //print(boardCells)
             boardCells[2][3].piece = king
             boardCells[2][3].configureCell(forPiece: king)
         } else if playerColor == .black{
@@ -786,6 +787,11 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         let updatedBoard = combineFormations()
         let updatedPieceNamesArray = model.updatePieceNamesArray(chessPieceArray: updatedBoard)
         model.pieceNamesArray = updatedPieceNamesArray
+        if self.playerColor == UIColor.white{
+            model.whiteHasSetPieces = true
+        } else {
+            model.blackHasSetPieces = true
+        }
         model.updateTurn()
         if model.winner != nil {
             GameCenterHelper.helper.win { error in
