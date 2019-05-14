@@ -1439,7 +1439,7 @@ class ChessBoard {
         delegate?.boardUpdated()
     }
     
-    func takeFormations(black: [[BoardCell]], white: [[BoardCell]]){
+    func takeFormations(black: [[BoardCell]], white: [[BoardCell]]) -> [[ChessPiece]]{
         print("ChessBoard take formations called")
         //print("black formation: \(black)")
         //print("white fomrmation: \(white)")
@@ -1450,8 +1450,8 @@ class ChessBoard {
             for col in 0...7{
                 let currentRow = 2-row
                 let currentCol = 7-col
-                print("takeFormations currentRow: \(row)")
-                print("takeFormations currentCol: \(col)")
+                print("takeFormations currentRow: \(row), currentCol: \(col)")
+                var testPiece: ChessPiece = board[currentRow][currentCol]
                 //print("board during takeFormations: \(board)")
                 board[currentRow][currentCol] = ChessPiece(row: currentRow, column: currentCol, color: .black, type: black[row][col].piece.type, player: .black)
             }
@@ -1460,10 +1460,11 @@ class ChessBoard {
         for row in 0...2{
             for col in 0...7{
                 let currentRow = 5 + row
+                print("currentRow: \(currentRow), col: \(col)")
                 board[currentRow][col] = ChessPiece(row: currentRow, column: col, color: .white, type: white[row][col].piece.type, player: .white)
             }
         }
-        
+        return board
     }
     
 }

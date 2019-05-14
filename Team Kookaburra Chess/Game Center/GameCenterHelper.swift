@@ -100,6 +100,7 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     }
     
     func endTurn(_ model: GameModel, completion: @escaping CompletionBlock) {
+        print("helper.endTurn called")
         guard let match = currentMatch else {
             completion(GameCenterHelperError.matchNotFound)
             return
@@ -117,6 +118,7 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
         } catch {
             completion(error)
         }
+        print("helper.endTurn completed")
     }
     
     func win(completion: @escaping CompletionBlock) {

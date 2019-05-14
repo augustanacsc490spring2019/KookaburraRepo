@@ -76,7 +76,7 @@ struct GameModel: Codable{
     }
     
     mutating func checkPiecesAreSet(){
-        piecesAreSet = !(whiteHasSetPieces && blackHasSetPieces)
+        piecesAreSet = whiteHasSetPieces && blackHasSetPieces
         if (piecesAreSet){
             isWhiteTurn = true
         }
@@ -93,6 +93,7 @@ struct GameModel: Codable{
     }
     
     mutating func updateTurn() {
+        print("mode.updateTurn called. whiteHasSetPieces = \(self.whiteHasSetPieces). blackHasSetPieces = \(self.blackHasSetPieces)")
         //neitherHasSetPieces = true
         if(!piecesAreSet){
             if(whiteHasSetPieces){
@@ -101,13 +102,26 @@ struct GameModel: Codable{
                 isWhiteTurn = true
             }
         }
+        checkPiecesAreSet()
         //probably need something to check if first move and make white's turn
         self.isWhiteTurn = !isWhiteTurn
+        print("end of gameModel.updateturn. isWhiteTurn = \(self.isWhiteTurn)")
     }
     
-    func convertBoardCells(boardCells: [[BoardCell]]) -> [[String]]{
-        print("convertBoardCells called")
-        return [[String]]()
+    func updatePieceNamesArray(chessPieceArray: [[ChessPiece]]) -> [[String]]{
+        print("updatePieceNamesArray called")
+        var pieceNamesArray = [[String]]()
+        for row in 0...7{
+            for col in 0...7{
+                //print("row: \(row), col: \(col)")
+                let currentPiece = chessPieceArray[row][col]
+                //print("read currentPiece")
+                currentPiece.setupSymbol()
+                let pieceName = currentPiece.symbol
+                pieceNamesArray.append([pieceName])
+            }
+        }
+        return pieceNamesArray
     }
     
    

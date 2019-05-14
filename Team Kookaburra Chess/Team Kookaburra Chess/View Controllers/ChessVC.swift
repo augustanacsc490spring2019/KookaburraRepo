@@ -21,8 +21,8 @@ class ChessVC: UIViewController {
     var possibleMoves = [BoardIndex]()
     var possibleAttacks = [BoardIndex]()
     var playerTurn = UIColor.white
-    var whiteFormation = [[BoardCell]]()
-    var blackFormation = [[BoardCell]]()
+//    var whiteFormation = [[BoardCell]]()
+//    var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
     var isLocalMatch: Bool
     var model: GameModel
@@ -144,7 +144,7 @@ class ChessVC: UIViewController {
         boardCells = Array(repeating: oneRow, count: 8)
         //print("black formation: \(blackFormation)")
         //print("white formation: \(whiteFormation)")
-        chessBoard.takeFormations(black: blackFormation, white: whiteFormation)
+        //chessBoard.takeFormations(black: blackFormation, white: whiteFormation)
         let cellDimension = (view.frame.size.width - 0) / 8
         var xOffset: CGFloat = 0
         var yOffset: CGFloat = 100

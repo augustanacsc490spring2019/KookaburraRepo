@@ -70,7 +70,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var chosenPieces = [[ChessPiece]]()
     
     override func viewDidLoad(){
-        print("place pieces viewDidLoad called")
+        print("place pieces viewDidLoad called. model.blackHasPlacedPieces = \(model.blackHasSetPieces). model.whiteHasPlacedPieces = \(model.whiteHasSetPieces)")
+        
         super.viewDidLoad()
         //print("isLocaMatch: \(isLocalMatch)")
         if (!isLocalMatch){
@@ -123,14 +124,38 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let vc = segue.destination as! ChessVC
             vc.playerColor = playerColor
             vc.isLocalMatch = true
-            if playerColor == .white{
-                vc.whiteFormation = boardCells
-                vc.blackFormation = p2BoardCells
-            } else {//playerColor == .black
-                vc.blackFormation = boardCells
-                vc.whiteFormation = p2BoardCells
+//            if playerColor == .white{
+//                vc.whiteFormation = boardCells
+//                vc.blackFormation = p2BoardCells
+//            } else {//playerColor == .black
+//                vc.blackFormation = boardCells
+//                vc.whiteFormation = p2BoardCells
+//            }
+            vc.chessBoard.board = combineFormations()
+        }
+    }
+    
+    func combineFormations() -> [[ChessPiece]]{
+        var whiteFormation = [[BoardCell]]()
+        var blackFormation = [[BoardCell]]()
+        if playerColor == .white{
+            whiteFormation = boardCells
+            if model.blackHasSetPieces{
+                blackFormation = p2BoardCells
+            } else {
+                blackFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+            }
+        } else {//playerColor == .black
+            blackFormation = boardCells
+            if model.whiteHasSetPieces{
+                whiteFormation = p2BoardCells
+            } else {
+                whiteFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
             }
         }
+        let fullBoard = ChessBoard(playerColor: UIColor.white)
+        fullBoard.board = fullBoard.takeFormations(black: blackFormation, white: whiteFormation)
+        return fullBoard.board
     }
     
     func goToMain(){
@@ -159,7 +184,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if playerColor == .white{
             king.row = 2
             king.col = 3
-            print(boardCells)
+            //print(boardCells)
             boardCells[2][3].piece = king
             boardCells[2][3].configureCell(forPiece: king)
         } else if playerColor == .black{
@@ -299,14 +324,14 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 }
             } else if highlightedCell.row == 1{
                 if chosenPiece.type == .dummy{
-                    //self.clearFrontRow()
+                    self.clearFrontRow()
                     self.tipLabel.text = "Fill the second row to be able place in the front row"
                 }
             }
             chosenPiece.row = highlightedCell.row
             chosenPiece.col = highlightedCell.column
             highlightedCell.configureCell(forPiece: chosenPiece)
-            var changedBoardCell = self.boardCells[highlightedCell.row][highlightedCell.column];
+            //var changedBoardCell = self.boardCells[highlightedCell.row][highlightedCell.column];
             //NSLog("boardcell changed: \(changedBoardCell.piece.type)");
             //add summon points
             //print("points before: \(playerPoints)")
@@ -317,6 +342,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //NSLog("chosen pieces: \(chosenPieces)")
             //}
             //}
+            didSelect(cell: highlightedCell, atRow: highlightedCell.row, andColumn: highlightedCell.column)
         }
         
     }
@@ -339,50 +365,63 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return true
     }
     
+//    func clearFrontRow(){
+//        let numRows:Int = 8
+//        let numCols:Int = 8
+//        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
+//        self.boardCells = Array(repeating: oneRow, count: numRows)
+//        let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
+//        var xOffset: CGFloat = 0
+//        var yOffset: CGFloat = 0
+//        let start_row = 0
+//        let end_row = 0
+//        for row in start_row...end_row {
+//
+//            yOffset = (CGFloat(row - start_row) * cellDimension) + 200
+//
+//            for col in 0...7 {
+//
+//                xOffset = (CGFloat(col) * cellDimension) + 0
+//
+//                // create a piece
+//                var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
+//
+//                // create a cell at this location with this piece, and set color
+//                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
+//
+//                // NSLog("Board cells at row, col: \(boardCells[row][col])")
+//
+//                cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
+//                if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
+//                    cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
+//                } else {
+//                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
+//                }
+//
+//                cell.removeHighlighting()
+//
+//                // wire up the cell
+//                cell.delegate = self
+//                chessBoard.board[row][col] = piece
+//                self.boardCells[row][col] = cell
+//
+//
+//                view.addSubview(cell)
+//            }
+//        }
+//    }
+    
     func clearFrontRow(){
-        let numRows:Int = 8
-        let numCols:Int = 8
-        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
-        self.boardCells = Array(repeating: oneRow, count: numRows)
-        let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
-        var xOffset: CGFloat = 0
-        var yOffset: CGFloat = 0
-        let start_row = 0
-        let end_row = 0
-        for row in start_row...end_row {
-            
-            yOffset = (CGFloat(row - start_row) * cellDimension) + 200
-            
-            for col in 0...7 {
-                
-                xOffset = (CGFloat(col) * cellDimension) + 0
-                
-                // create a piece
-                var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
-                
-                // create a cell at this location with this piece, and set color
-                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
-                
-                // NSLog("Board cells at row, col: \(boardCells[row][col])")
-                
-                cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
-                if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
-                    cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
-                } else {
-                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
-                }
-                
-                cell.removeHighlighting()
-                
-                // wire up the cell
-                cell.delegate = self
-                chessBoard.board[row][col] = piece
-                self.boardCells[row][col] = cell
-                
-                
-                view.addSubview(cell)
-            }
+        var chosenPiece = getPiece(string: "Empty")
+        chosenPiece.setupSymbol()
+        let row = 0//front row
+        for col in 0...7{
+            chosenPiece.row = row
+            chosenPiece.col = col
+            boardCells[row][col].configureCell(forPiece: chosenPiece)
         }
+        playerPoints = calculateCost()
+        pointsRemaining.text = "Points spent: \(playerPoints)"
     }
     
     func calculateCost() -> Int{
@@ -458,6 +497,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //check if the player has at least one king
         if numKings(color: playerColor) > 0{
             if isLocalMatch == true{
+                print("local match ready button pressed")
                 if playerColor == .white{ //
                     p2BoardCells = boardCells
                     playerColor = .black
@@ -481,6 +521,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func onlineMatchReady(){
+        print("onlineMatchReady called")
         if playerPoints < 440{
             //if not, ask them if they're sure they want to ready up
             let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
@@ -494,10 +535,6 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             ac.addAction(no)
             present(ac, animated: true, completion: nil)
             return
-        }
-        model.convertBoardCells(boardCells: boardCells)
-        if playerColor == .white{
-            
         }
     }
     
@@ -746,6 +783,16 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func processGameUpdate() {
+        print("place pieces processGameUpdate called")
+        let updatedBoard = combineFormations()
+        let updatedPieceNamesArray = model.updatePieceNamesArray(chessPieceArray: updatedBoard)
+        model.pieceNamesArray = updatedPieceNamesArray
+        if self.playerColor == UIColor.white{
+            model.whiteHasSetPieces = true
+        } else {
+            model.blackHasSetPieces = true
+        }
+        model.updateTurn()
         if model.winner != nil {
             GameCenterHelper.helper.win { error in
                 
