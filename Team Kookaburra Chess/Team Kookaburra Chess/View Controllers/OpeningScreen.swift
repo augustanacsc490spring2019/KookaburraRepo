@@ -292,6 +292,7 @@ class OpeningScreen: UIViewController {
             //if self.model.piecesAreSet{
             print("online segue attempted")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                print("opening screen model.piecesAreSet = \(self.model.piecesAreSet). model.blackHasPlacedPieces = \(self.model.blackHasSetPieces). model.whiteHasPlacedPieces = \(self.model.whiteHasSetPieces)")
                 if (self.model.piecesAreSet){
                     self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
                 } else {
