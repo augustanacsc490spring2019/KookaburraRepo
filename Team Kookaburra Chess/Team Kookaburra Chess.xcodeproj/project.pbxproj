@@ -155,6 +155,7 @@
 		88E34F3D225032E5007ED2F5 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3C225032E5007ED2F5 /* NewGameViewController.swift */; };
 		88E34F3F2250341C007ED2F5 /* YourFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F3E2250341C007ED2F5 /* YourFriendsViewController.swift */; };
 		88E34F41225036A6007ED2F5 /* RandomOpponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E34F40225036A6007ED2F5 /* RandomOpponentViewController.swift */; };
+		88F8E161228A3735001030D0 /* SaveLoadGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F8E160228A3735001030D0 /* SaveLoadGameData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -330,6 +331,7 @@
 		88E34F3C225032E5007ED2F5 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		88E34F3E2250341C007ED2F5 /* YourFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourFriendsViewController.swift; sourceTree = "<group>"; };
 		88E34F40225036A6007ED2F5 /* RandomOpponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomOpponentViewController.swift; sourceTree = "<group>"; };
+		88F8E160228A3735001030D0 /* SaveLoadGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLoadGameData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,6 +554,7 @@
 				647897C9227A8835003A2C2E /* OnlineGameScene.swift */,
 				646A3EA62263E48700378BEB /* GameModel.swift */,
 				251D1F5D22403DAD00AD7CE4 /* GameScene.swift */,
+				88F8E160228A3735001030D0 /* SaveLoadGameData.swift */,
 			);
 			name = "Game Center";
 			path = "../Game Center";
@@ -866,6 +869,7 @@
 				8819824F224E7CAF008E8EFD /* MyStatsViewController.swift in Sources */,
 				88198251224E7D12008E8EFD /* PlayBtOpeningScreenViewController.swift in Sources */,
 				88E34F3B2250304E007ED2F5 /* PlacePiecesViewController.swift in Sources */,
+				88F8E161228A3735001030D0 /* SaveLoadGameData.swift in Sources */,
 				646A3EA72263E48700378BEB /* GameModel.swift in Sources */,
 				889C82642241651D00B77A21 /* OpeningScreen.swift in Sources */,
 				251D1F902240746C00AD7CE4 /* BoardIndex.swift in Sources */,
