@@ -135,7 +135,7 @@ struct GameModel: Codable{
             for col in 0...7{
                 //print("namesArrayToBoard row: \(row), col: \(col)")
                 var currentName: String = namesArray[row][col]
-                currentName = currentName.lowercased()
+            
                 //print("read currentPiece")
 //                currentPiece.setupSymbol()
 //                let pieceName = currentPiece.symbol
@@ -148,11 +148,12 @@ struct GameModel: Codable{
                     pieceColor = UIColor.black
                 }
                 let index = currentName.index(currentName.endIndex, offsetBy: -4)
-                var pieceName = currentName[..<index]
+                var shortenedPieceName = currentName[..<index]
                 //let testPieceType: PieceType = PieceType(rawValue: "blankPiece")!
-                let index2 = pieceName.index(pieceName.startIndex, offsetBy: 5)
-                pieceName = pieceName.suffix(from: index2)
+                let index2 = shortenedPieceName.index(shortenedPieceName.startIndex, offsetBy: 5)
+                shortenedPieceName = shortenedPieceName.suffix(from: index2)
                 
+                var pieceName = String(shortenedPieceName).decapitalizingFirstLetter()
                 if pieceName == "piece" {
                     pieceName = "dummy"
                 }
@@ -258,4 +259,13 @@ extension GameModel {
     }
 }
 
+extension String {
+    func decapitalizingFirstLetter() -> String {
+        return prefix(1).lowercased() + self.dropFirst()
+    }
+    
+    mutating func decapitalizeFirstLetter() {
+        self = self.decapitalizingFirstLetter()
+    }
+}
 
