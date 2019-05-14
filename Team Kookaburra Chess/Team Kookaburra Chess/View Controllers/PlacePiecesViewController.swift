@@ -139,22 +139,22 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         var whiteFormation = [[BoardCell]]()
         var blackFormation = [[BoardCell]]()
         if (!isLocalMatch) {
-        if playerColor == .white{
-            whiteFormation = boardCells
-            if model.blackHasSetPieces{
-                blackFormation = p2BoardCells
-            } else {
-                blackFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+            if playerColor == .white{
+                whiteFormation = boardCells
+                if model.blackHasSetPieces{
+                    blackFormation = p2BoardCells
+                } else {
+                    blackFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+                }
+            } else {//playerColor == .black
+                blackFormation = boardCells
+                if model.whiteHasSetPieces{
+                    whiteFormation = p2BoardCells
+                } else {
+                    whiteFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+                }
             }
-        } else {//playerColor == .black
-            blackFormation = boardCells
-            if model.whiteHasSetPieces{
-                whiteFormation = p2BoardCells
-            } else {
-                whiteFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
-            }
-        }
-        } else {
+        } else { //local match
             print("local match takeFormations called")
             if playerColor == .white{
                 whiteFormation = boardCells
@@ -163,6 +163,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 blackFormation = boardCells
                 whiteFormation = p2BoardCells
             }
+           
         }
         let fullBoard = ChessBoard(playerColor: UIColor.white)
         fullBoard.board = fullBoard.takeFormations(black: blackFormation, white: whiteFormation)
@@ -199,10 +200,11 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             boardCells[2][3].piece = king
             boardCells[2][3].configureCell(forPiece: king)
         } else if playerColor == .black{
+            print("addStarterKing black called")
             king.row = 2
-            king.col = 4
-            boardCells[2][4].piece = king
-            boardCells[2][4].configureCell(forPiece: king)
+            king.col = 3
+            boardCells[2][3].piece = king
+            boardCells[2][3].configureCell(forPiece: king)
         }
         playerPoints = calculateCost()
         pointsRemaining.text = "Points spent: \(playerPoints)"
