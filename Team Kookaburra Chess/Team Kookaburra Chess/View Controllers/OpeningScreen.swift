@@ -296,7 +296,8 @@ class OpeningScreen: UIViewController {
                 if (self.model.piecesAreSet){
                     self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
                 } else {
-                    self.self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+                    print("OnlinePlacePiecesSegue about to be called from loadAndDisplay")
+                    self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
                 }
             }
             
@@ -323,16 +324,38 @@ class OpeningScreen: UIViewController {
             print("prepare for onlineChesVCSegue called")
             let vc = segue.destination as! ChessVC
             //let currentNamesArray: [[String]] = self.model.pieceNamesArray
-            
+            //TODO: pass piecesNamesArray as BoardCells
             vc.model = self.model
             vc.isLocalMatch = false
         } else if (segue.identifier == "OnlinePlacePiecesSegue") {
             print("prepare for OnlinePlacePiecesSegue called")
             let vc = segue.destination as! PlacePiecesViewController
+            //if self.model.pieceNamesArray[0] != nil {
+                print("prepare online segue piecesNameArray numRows = \(self.model.pieceNamesArray.count)")
+                print("prepare online segue piecesNameArray numCols = \(self.model.pieceNamesArray[0].count)")
+            //}
+            let currentBoard = self.model.namesArrayToBoard(namesArray: self.model.pieceNamesArray)
+            print("prepare online segue currentBoard numRows = \(currentBoard.count)")
+            print("prepare online segue currentBoard numCols = \(currentBoard[0].count)")
+            vc.p2BoardCells = chessPieceToBoardCells(chessPieceArray: currentBoard)
             vc.model = self.model
             vc.isLocalMatch = false
-            print("model being passed in to OnlinePlacePiecesSegue. currentPlayer = \(model.currentPlayer) and isWhiteTurn = \(model.isWhiteTurn)")
+            print("model being passed in to OnlinePlacePiecesSegue. currentPlayer = \(model.currentPlayer) and isWhiteTurn = \(model.isWhiteTurn), piecesAreSet: \(model.piecesAreSet)")
         }
+    }
+    
+    func chessPieceToBoardCells(chessPieceArray: [[ChessPiece]]) -> [[BoardCell]]{
+        print("chessPieceToBoardCells called")
+        //let boardCells = [[BoardCell]]()
+        let boardCells = Array(repeating: Array(repeating: BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: UIColor.black, type: .dummy, player: UIColor.black), color: UIColor.black), count: 8), count: 8)
+        for row in 0...7{
+            for col in 0...7{
+                //print("chessPieceToBoardCells row: \(row), col: \(col)")
+                let currentPiece: ChessPiece = chessPieceArray[row][col]
+                let currentBoardCell = BoardCell(row: row, column: col, piece: currentPiece, color: currentPiece.color)
+            }
+        }
+        return boardCells
     }
     
     //original code from tutorial

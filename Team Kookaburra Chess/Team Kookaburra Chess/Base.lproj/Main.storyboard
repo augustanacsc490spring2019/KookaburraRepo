@@ -151,14 +151,23 @@
                                     <constraint firstAttribute="height" constant="165" id="hBa-Zi-Xa6"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrv-Kz-HF6">
-                                <rect key="frame" x="154" y="433" width="106" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrv-Kz-HF6" userLabel="OnlineChessVCButton">
+                                <rect key="frame" x="185" y="433" width="44" height="30"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="OnlineChessVC">
+                                <state key="normal" title="Online">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="eT3-ZL-FIO" kind="show" identifier="OnlinePlacePiecesSegue" id="PKa-wr-jw9"/>
+                                    <segue destination="zVE-eY-227" kind="show" identifier="OnlineChessVCSegue" id="WK4-DJ-AOQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SD7-JH-u3L">
+                                <rect key="frame" x="121" y="433" width="172" height="30"/>
+                                <state key="normal" title="OnlinePlacePiecesButton">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="eT3-ZL-FIO" kind="show" identifier="OnlinePlacePiecesSegue" id="GSW-li-1rn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -172,14 +181,18 @@
                             <constraint firstItem="hfe-DH-WDR" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="4vl-4V-8jj"/>
                             <constraint firstItem="RBA-Qs-yjW" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="7Ir-Wd-mCn"/>
                             <constraint firstItem="1VV-nz-4qt" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="topMargin" constant="-2" id="8Vd-pj-QTh"/>
+                            <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="9Y1-LN-JQb"/>
                             <constraint firstItem="LO8-SD-FNp" firstAttribute="trailing" secondItem="3se-qz-xqx" secondAttribute="trailingMargin" id="BAC-xo-1cv"/>
                             <constraint firstItem="LO8-SD-FNp" firstAttribute="centerY" secondItem="hfe-DH-WDR" secondAttribute="centerY" id="CYk-SU-qqw"/>
+                            <constraint firstItem="SD7-JH-u3L" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="40" id="Cwq-NW-ZKy"/>
                             <constraint firstItem="hfe-DH-WDR" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-380" id="DA4-Kk-gKE"/>
                             <constraint firstItem="APm-Lx-Pis" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="FoF-ZU-LHK"/>
                             <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="K72-tS-WV8"/>
+                            <constraint firstItem="SD7-JH-u3L" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Naq-AU-53H"/>
                             <constraint firstItem="zXS-XN-ZVo" firstAttribute="trailing" secondItem="Lhs-az-VDT" secondAttribute="trailing" id="NbG-27-zTb"/>
                             <constraint firstItem="vba-gz-8aH" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="Nrv-AH-C97"/>
                             <constraint firstItem="RBA-Qs-yjW" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-60" id="P5I-22-Aav"/>
+                            <constraint firstItem="SD7-JH-u3L" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="S7h-Wr-vOD"/>
                             <constraint firstItem="1VV-nz-4qt" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="12" id="U3c-zZ-PHE"/>
                             <constraint firstItem="wVv-WH-LuU" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="120" id="UA1-sz-wJB"/>
                             <constraint firstItem="APm-Lx-Pis" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="60" id="Vrz-fl-Lrq"/>
@@ -192,6 +205,7 @@
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="top" secondItem="hfe-DH-WDR" secondAttribute="top" constant="0.5" id="op0-NY-WXn"/>
                             <constraint firstItem="UAh-pg-cud" firstAttribute="top" secondItem="1VV-nz-4qt" secondAttribute="bottom" constant="2" id="r4b-mJ-GTS"/>
                             <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="sLB-hh-xPn"/>
+                            <constraint firstItem="vrv-Kz-HF6" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="sNe-dC-vrY"/>
                             <constraint firstItem="UAh-pg-cud" firstAttribute="top" secondItem="Lhs-az-VDT" secondAttribute="bottom" constant="-1.5" id="tT6-OW-xeL"/>
                             <constraint firstItem="0DR-cL-FoF" firstAttribute="top" secondItem="zXS-XN-ZVo" secondAttribute="bottom" constant="44" id="tZK-90-ybI"/>
                             <constraint firstItem="0DR-cL-FoF" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="tsF-0m-ewT"/>
@@ -1139,7 +1153,8 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <segue reference="ynr-Ld-Yg9"/>
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
-        <segue reference="PKa-wr-jw9"/>
+        <segue reference="WK4-DJ-AOQ"/>
+        <segue reference="GSW-li-1rn"/>
         <segue reference="jpc-O9-TBa"/>
     </inferredMetricsTieBreakers>
 </document>

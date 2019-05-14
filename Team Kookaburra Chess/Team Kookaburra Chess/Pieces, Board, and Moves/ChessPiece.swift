@@ -9,7 +9,7 @@
 
 import UIKit
 
-enum PieceType {
+enum PieceType: String {
     case dummy
     //tier 5
     case unicorn
@@ -136,7 +136,8 @@ class ChessPiece {
             symbol = "blackQueen.png"
             summonCost = 100
         case .dummy:
-            symbol = "blankPiece.png"
+            //symbol = "blankPiece.png"
+            symbol = "blackDummy.png"
         case .ghostQueen:
             symbol = "blackGhostQueen.png"
             summonCost = 20
@@ -270,7 +271,8 @@ class ChessPiece {
                 symbol = "whiteQueen.png"
                 summonCost = 100
             case .dummy:
-                symbol = "blankPiece.png"
+                //symbol = "blankPiece.png"
+                symbol = "whiteDummy.png"
             case .ghostQueen:
                 symbol = "whiteGhostQueen.png"
                 summonCost = 20
@@ -387,7 +389,12 @@ class ChessPiece {
             symbol = "blankPiece.png"
         }
         //NSLog(symbol)
-        self.symbolImage = UIImage(named:symbol)!
+        if (symbol != "blackDummy.png" && symbol != "whiteDummy.png") {
+            //print(symbol)
+            self.symbolImage = UIImage(named:symbol)!
+        } else {
+            self.symbolImage = UIImage(named: "blankPiece.png")!
+        }
     }
     
     /** Checks to see if the direction the piece is moving is the way this piece type is allowed to move. Doesn't take into account the state of the board */

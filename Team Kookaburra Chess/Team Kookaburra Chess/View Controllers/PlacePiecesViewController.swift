@@ -44,14 +44,15 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //var player: GameModel.Player = GameModel.Player("white")
     var playerPoints: Int = 0
     var chessBoard = ChessBoard(playerColor: .white)
-    var boardCells = [[BoardCell]]()
-    //var boardCells = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+   // var boardCells = [[BoardCell]]()
+    var boardCells = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
     var pieceBeingMoved: ChessPiece? = nil
     var possibleMoves = [BoardIndex]()
     var playerTurn = UIColor.white
     var pickerData: [String] = [String]()
     var highlightedCell: BoardCell = BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: .white), color: .white)
-    var p2BoardCells = [[BoardCell]]()
+    //var p2BoardCells = [[BoardCell]]()
+    var p2BoardCells = Array(repeating: Array(repeating: BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: UIColor.black, type: .dummy, player: UIColor.black), color: UIColor.black), count: 8), count: 8)
     var isLocalMatch = true
     var model: GameModel = GameModel()
     
@@ -136,8 +137,16 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func combineFormations() -> [[ChessPiece]]{
-        var whiteFormation = [[BoardCell]]()
-        var blackFormation = [[BoardCell]]()
+//        var whiteFormation = [[BoardCell]]()
+//        var blackFormation = [[BoardCell]]()
+        var whiteFormation = Array(repeating: Array(repeating: BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: UIColor.black, type: .dummy, player: UIColor.black), color: UIColor.black), count: 8), count: 8)
+        var blackFormation = Array(repeating: Array(repeating: BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: UIColor.black, type: .dummy, player: UIColor.black), color: UIColor.black), count: 8), count: 8)
+        print("combineFormations early white numRows = \(whiteFormation.count)")
+        print("combineFormations early white = \(whiteFormation[0].count)")
+        print("combineFormations early boardCells numRows = \(boardCells.count)")
+        print("combineFormations early boardCells = \(boardCells[0].count)")
+        print("combineFormations early p2BoardCells numRows = \(p2BoardCells.count)")
+        print("combineFormations early p2BoardCells = \(p2BoardCells[0].count)")
         if (!isLocalMatch) {
             if playerColor == .white{
                 whiteFormation = boardCells
@@ -166,6 +175,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
            
         }
         let fullBoard = ChessBoard(playerColor: UIColor.white)
+        print("combineFormations white numRows = \(whiteFormation.count)")
+        print("combineFormations white = \(whiteFormation[0].count)")
         fullBoard.board = fullBoard.takeFormations(black: blackFormation, white: whiteFormation)
         return fullBoard.board
     }
@@ -798,6 +809,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func processGameUpdate() {
         print("place pieces processGameUpdate called")
         let updatedBoard = combineFormations()
+        print("updatedBoard: numRows = \(updatedBoard.count) , numCols = \(updatedBoard[0].count)")
         let updatedPieceNamesArray = model.updatePieceNamesArray(chessPieceArray: updatedBoard)
         model.pieceNamesArray = updatedPieceNamesArray
         if self.playerColor == UIColor.white{

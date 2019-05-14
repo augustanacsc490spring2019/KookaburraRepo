@@ -35,9 +35,8 @@ struct GameModel: Codable{
     
     //var lastMove: Move?
     //var boardCells: [BoardCell]
-    var pieceNamesArray = [[String]]()
-    //var pieceNamesArray = [[String]](repeating: [String](repeating: 0, count: 8), count: 8) //8 by 8 array of Strings
-    
+    //var pieceNamesArray = [[String]]()
+    var pieceNamesArray = Array(repeating: Array(repeating: "blankPiece.png", count: 8), count: 8)
     var winner: Player?
     
     var currentPlayer: Player {
@@ -49,7 +48,7 @@ struct GameModel: Codable{
     }
     
     var messageToDisplay: String {
-        return "generic message for now, possibly about who's turn it is"
+        return "It's your turn to play Alchemist Chess!"
     }
     
 //    var isCapturingPiece: Bool {
@@ -112,48 +111,59 @@ struct GameModel: Codable{
     
     func updatePieceNamesArray(chessPieceArray: [[ChessPiece]]) -> [[String]]{
         print("updatePieceNamesArray called")
-        var pieceNamesArray = [[String]]()
+        var pieceNamesArray = Array(repeating: Array(repeating: "blankPiece.png", count: 8), count: 8)
+        
         for row in 0...7{
             for col in 0...7{
-                //print("row: \(row), col: \(col)")
+                //print("updatePieceNamesArray row: \(row), col: \(col)")
                 let currentPiece = chessPieceArray[row][col]
                 //print("read currentPiece")
                 currentPiece.setupSymbol()
                 let pieceName = currentPiece.symbol
-                pieceNamesArray.append([pieceName])
+                //pieceNamesArray[row].append(pieceName)
+                pieceNamesArray[row][col] = pieceName
             }
         }
         return pieceNamesArray
     }
     
-//    func namesArrayToBoard(namesArray: [[String]]) -> [[ChessPiece]]{
-//        print("mode.namesArraytoBoard called")
-//        var chessPieceArray = [[ChessPiece]]()
-//        for row in 0...7{
-//            for col in 0...7{
-//                //print("row: \(row), col: \(col)")
-//                let currentName = namesArray[row][col]
-//                //print("read currentPiece")
-////                currentPiece.setupSymbol()
-////                let pieceName = currentPiece.symbol
-//                let nameColor = currentName.prefix(5)
-//
-//                var pieceColor: UIColor
-//                if nameColor == "white"{
-//                    pieceColor = UIColor.white
-//                } else {
-//                    pieceColor = UIColor.black
-//                }
-//                let index = currentName.index(currentName.endIndex, offsetBy: -3)
-//                let pieceName = currentName[..<index]
-//                print("namesArrayToBoard. row = \(row), col = \(col), nameColor = \(nameColor), pieceName = \(pieceName)")
-//                let pieceType: PieceType = PieceType(rawValue: pieceName)
-//                let currentPiece = ChessPiece(row: row, column: col, color: pieceColor, type: pieceType, player: pieceColor)
-//                chessPieceArray.append([currentPiece])
-//            }
-//        }
-//        return chessPieceArray
-//    }
+    func namesArrayToBoard(namesArray: [[String]]) -> [[ChessPiece]]{
+        print("model.namesArraytoBoard called")
+        //var chessPieceArray = Array(repeating: [ChessPiece](), count: 8)
+        var chessPieceArray = Array(repeating: Array(repeating: ChessPiece(row: 0, column: 0, color: UIColor.black, type: .dummy, player: UIColor.black), count: 8), count: 8)
+        for row in 0...7{
+            for col in 0...7{
+                //print("namesArrayToBoard row: \(row), col: \(col)")
+                var currentName: String = namesArray[row][col]
+                currentName = currentName.lowercased()
+                //print("read currentPiece")
+//                currentPiece.setupSymbol()
+//                let pieceName = currentPiece.symbol
+                let nameColor = currentName.prefix(5)
+
+                var pieceColor: UIColor
+                if nameColor == "white"{
+                    pieceColor = UIColor.white
+                } else {
+                    pieceColor = UIColor.black
+                }
+                let index = currentName.index(currentName.endIndex, offsetBy: -4)
+                var pieceName = currentName[..<index]
+                //let testPieceType: PieceType = PieceType(rawValue: "blankPiece")!
+                let index2 = pieceName.index(pieceName.startIndex, offsetBy: 5)
+                pieceName = pieceName.suffix(from: index2)
+                
+                if pieceName == "piece" {
+                    pieceName = "dummy"
+                }
+                print("namesArrayToBoard. row = \(row), col = \(col), nameColor = \(nameColor), pieceName = \(pieceName)")
+                let pieceType: PieceType = PieceType(rawValue: String(pieceName))!
+                let currentPiece = ChessPiece(row: row, column: col, color: pieceColor, type: pieceType, player: pieceColor)
+                chessPieceArray[row].append(currentPiece)
+            }
+        }
+        return chessPieceArray
+    }
     
    
 //    mutating func advance() {

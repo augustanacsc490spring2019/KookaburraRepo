@@ -19,7 +19,8 @@ protocol ChessBoardDelegate {
 
 class ChessBoard {
     
-    var board = [[ChessPiece]]()
+    //var board = [[ChessPiece]]()
+    var board = Array(repeating: Array(repeating: ChessPiece(row: 0, column: 0, color: UIColor.black, type: .dummy, player: UIColor.black), count: 8), count: 8)
     var delegate: ChessBoardDelegate?
     var playerColor: UIColor!
     var history = History()
@@ -1442,10 +1443,14 @@ class ChessBoard {
     func takeFormations(black: [[BoardCell]], white: [[BoardCell]]) -> [[ChessPiece]]{
         
         print("ChessBoard take formations called")
+        print("TakeFormations white numRows = \(white.count)")
+        print("TakeFormations white = \(white[0].count)")
         //print("black formation: \(black)")
         //print("white fomrmation: \(white)")
         //go through the black formation
         startNewGame()
+        print("takeformations numRows = \(self.board.count)")
+        print("takeformations numCols = \(self.board[0].count)")
         //print("Board: \(board)")
         for row in 0...2{
             for col in 0...7{
@@ -1453,7 +1458,7 @@ class ChessBoard {
                 let currentCol = 7-col
                 board[currentRow][currentCol] = ChessPiece(row: currentRow, column: currentCol, color: .black, type: black[row][col].piece.type, player: .black)
                 var testPiece: ChessPiece = board[currentRow][currentCol]
-                print("takeFormations currentRow: \(row), currentCol: \(col), piece: \(testPiece.symbol)")
+                //print("takeFormations currentRow: \(row), currentCol: \(col), piece: \(testPiece.symbol)")
             }
         }
         //go through the white formation
@@ -1462,9 +1467,10 @@ class ChessBoard {
                 let currentRow = 5 + row
                 //let currentRow = row
                 print("before currentRow: \(currentRow), currentCol: \(col)")
+                var testPieceType: PieceType = white[row][col].piece.type
                 board[currentRow][col] = ChessPiece(row: currentRow, column: col, color: .white, type: white[row][col].piece.type, player: .white)
                 var testPiece: ChessPiece = board[currentRow][col]
-                print("currentRow: \(currentRow), col: \(col), piece: \(testPiece.symbol)")
+                //print("currentRow: \(currentRow), col: \(col), piece: \(testPiece.symbol)")
             }
         }
         return board
