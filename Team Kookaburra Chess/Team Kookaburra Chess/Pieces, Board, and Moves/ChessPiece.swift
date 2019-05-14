@@ -61,6 +61,7 @@ enum PieceType {
     case footSoldier
 }
 
+
 class ChessPiece {
     
     var row: Int = 0 {

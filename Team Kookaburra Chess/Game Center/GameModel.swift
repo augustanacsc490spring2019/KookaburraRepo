@@ -126,6 +126,35 @@ struct GameModel: Codable{
         return pieceNamesArray
     }
     
+//    func namesArrayToBoard(namesArray: [[String]]) -> [[ChessPiece]]{
+//        print("mode.namesArraytoBoard called")
+//        var chessPieceArray = [[ChessPiece]]()
+//        for row in 0...7{
+//            for col in 0...7{
+//                //print("row: \(row), col: \(col)")
+//                let currentName = namesArray[row][col]
+//                //print("read currentPiece")
+////                currentPiece.setupSymbol()
+////                let pieceName = currentPiece.symbol
+//                let nameColor = currentName.prefix(5)
+//
+//                var pieceColor: UIColor
+//                if nameColor == "white"{
+//                    pieceColor = UIColor.white
+//                } else {
+//                    pieceColor = UIColor.black
+//                }
+//                let index = currentName.index(currentName.endIndex, offsetBy: -3)
+//                let pieceName = currentName[..<index]
+//                print("namesArrayToBoard. row = \(row), col = \(col), nameColor = \(nameColor), pieceName = \(pieceName)")
+//                let pieceType: PieceType = PieceType(rawValue: pieceName)
+//                let currentPiece = ChessPiece(row: row, column: col, color: pieceColor, type: pieceType, player: pieceColor)
+//                chessPieceArray.append([currentPiece])
+//            }
+//        }
+//        return chessPieceArray
+//    }
+    
    
 //    mutating func advance() {
 //        if tokensPlaced == maxTokenCount && state == .placement {

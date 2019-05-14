@@ -322,6 +322,8 @@ class OpeningScreen: UIViewController {
         if (segue.identifier == "OnlineChessVCSegue") {
             print("prepare for onlineChesVCSegue called")
             let vc = segue.destination as! ChessVC
+            //let currentNamesArray: [[String]] = self.model.pieceNamesArray
+            
             vc.model = self.model
             vc.isLocalMatch = false
         } else if (segue.identifier == "OnlinePlacePiecesSegue") {
