@@ -195,7 +195,7 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     }
     
     //this method conects the number of total wins to the leader board Wins
-    func saveTotalWins(number: Int){
+    func saveTotalWinsToLeaderBoard(number: Int){
         
         if GKLocalPlayer.local.isAuthenticated {
             let my_leaderboard_id = "Wins"
