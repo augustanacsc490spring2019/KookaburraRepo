@@ -195,11 +195,7 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
     }
     
     //this method conects the number of total wins to the leader board Wins
-    func saveTotalWinsToLeaderBoard(completion: @escaping CompletionBlock, number: Int){
-        guard let match = currentMatch else {
-            completion(GameCenterHelperError.matchNotFound)
-            return
-        }
+    func saveTotalWinsToLeaderBoard(number: Int){
         
         if GKLocalPlayer.local.isAuthenticated {
             let my_leaderboard_id = "Wins"
@@ -214,12 +210,7 @@ final class GameCenterHelper: NSObject, GKGameCenterControllerDelegate {
         }
     }
     
-    func totalGamesPlayedLeaderBoard(completion: @escaping CompletionBlock, number: Int){
-        guard let match = currentMatch else {
-            completion(GameCenterHelperError.matchNotFound)
-            return
-        }
-        
+    func totalGamesPlayedLeaderBoard(number: Int){
         if GKLocalPlayer.local.isAuthenticated {
             let my_leaderboard_id = "Most_Games_Played"
             
