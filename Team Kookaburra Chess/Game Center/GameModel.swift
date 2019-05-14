@@ -69,7 +69,7 @@ struct GameModel: Codable{
         //self.currentPlayer = randomPlayer()
         //neitherHasSetPieces = true
         self.isWhiteTurn = randomPlayer() //this pattern of having this set from the parameter was in Nine Knights. Not sure why or if I should use it for other fields.
-        print("GameModel init called. isWhiteTurn = \(self.isWhiteTurn). currentPlayer = \(self.currentPlayer)")
+        //print("GameModel init called. isWhiteTurn = \(self.isWhiteTurn). currentPlayer = \(self.currentPlayer)")
         
         //boardCells = [BoardCell]()
         
@@ -83,7 +83,7 @@ struct GameModel: Codable{
     }
     
     func randomPlayer() -> Bool {
-        print("randomPlayer called")
+        //print("randomPlayer called")
         let number = Int.random(in: 0...1)
         if number == 0 {
             return isWhiteTurn
@@ -104,7 +104,9 @@ struct GameModel: Codable{
         }
         checkPiecesAreSet()
         //probably need something to check if first move and make white's turn
-        self.isWhiteTurn = !isWhiteTurn
+        if (piecesAreSet){
+            self.isWhiteTurn = !isWhiteTurn
+        }
         print("end of gameModel.updateturn. isWhiteTurn = \(self.isWhiteTurn)")
     }
     

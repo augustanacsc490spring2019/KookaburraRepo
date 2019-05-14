@@ -164,6 +164,7 @@ class ChessVC: UIViewController {
                 xOffset = (CGFloat(col) * cellDimension) + 0
                 
                 let piece = chessBoard.board[actualRow][actualCol]
+                print("drawBoard row: \(row), col: \(col), piece: \(piece.symbol)")
                 let cell = BoardCell(row: actualRow, column: actualCol, piece: piece, color: .white)
                 cell.delegate = self
                 boardCells[actualRow][actualCol] = cell

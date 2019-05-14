@@ -138,6 +138,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func combineFormations() -> [[ChessPiece]]{
         var whiteFormation = [[BoardCell]]()
         var blackFormation = [[BoardCell]]()
+        if (!isLocalMatch) {
         if playerColor == .white{
             whiteFormation = boardCells
             if model.blackHasSetPieces{
@@ -151,6 +152,16 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 whiteFormation = p2BoardCells
             } else {
                 whiteFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+            }
+        }
+        } else {
+            print("local match takeFormations called")
+            if playerColor == .white{
+                whiteFormation = boardCells
+                blackFormation = p2BoardCells
+            } else {
+                blackFormation = boardCells
+                whiteFormation = p2BoardCells
             }
         }
         let fullBoard = ChessBoard(playerColor: UIColor.white)
