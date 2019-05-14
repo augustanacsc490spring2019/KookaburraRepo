@@ -387,20 +387,16 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
 //    }
     
     func clearFrontRow(){
-        var piece = ChessPiece(row: 0, column: 0, color: .black, type: .dummy, player: .black)
-        var cell = BoardCell(row: 0, column: 0, piece: piece, color: .black)
-        let row = 2//front row
+        var chosenPiece = getPiece(string: "Empty")
+        chosenPiece.setupSymbol()
+        let row = 0//front row
         for col in 0...7{
-            piece = chessBoard.board[row][col]
-            cell = self.boardCells[row][col]
-            if piece.type != .dummy{
-                piece.type = .dummy
-                cell.piece = piece
-            }
-            chessBoard.board[row][col] = piece
-            self.boardCells[row][col] = cell
-            view.addSubview(cell)
+            chosenPiece.row = row
+            chosenPiece.col = col
+            boardCells[row][col].configureCell(forPiece: chosenPiece)
         }
+        playerPoints = calculateCost()
+        pointsRemaining.text = "Points spent: \(playerPoints)"
     }
     
     func calculateCost() -> Int{
