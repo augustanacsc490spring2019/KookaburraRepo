@@ -356,6 +356,8 @@ class ChessBoard {
             return piece.isMovementAppropriate(toIndex: move)
         case .boar:
             return piece.isMovementAppropriate(toIndex: move)
+        case .thunderChariot:
+            return piece.isMovementAppropriate(toIndex: move)
         }
     }
     
@@ -597,8 +599,142 @@ class ChessBoard {
             return isMoveValid(forFootSoldier: piece, toIndex: dest)
         case .boar:
             return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
+        case .thunderChariot:
+            return isMoveValid(forChariot: piece, toIndex: dest)
         }
         return true
+    }
+    
+    func isMoveValid(forChariot piece: ChessPiece, toIndex dest: BoardIndex) -> Bool{
+        if piece.isMovementAppropriate(toIndex: dest) == false{
+            return false
+        }
+        if dest.row > piece.row + 1{//going down
+            return zigZagDown(piece: piece, dest: dest)
+        } else if dest.row < piece.row - 1{//going up
+            return zigZagUp(piece: piece, dest: dest)
+        } else if dest.column > piece.col + 1{//going right
+            return zigZagRight(piece: piece, dest: dest)
+        } else if dest.column < piece.col - 1{//going left
+           return zigZagLeft(piece: piece, dest: dest)
+        } else {//going close
+            return piece.checkOgre(dest: dest)
+        }
+    }
+    
+    
+    /**
+     These zig-zag functions are pretty redundant and ugly, but it's difficult to visualize checking
+     the zig-zag spaces and doing it this way is the easiest way to get my own logic right to get it working.
+     Recursion is also probably slow, but it seems like a logical way to handle this and it will never get called
+     more than 7 times
+    **/
+    func zigZagDown(piece: ChessPiece, dest: BoardIndex) -> Bool{
+        if piece.col == 0{
+            return false
+        }
+        if dest.row > piece.row + 1{//farther than one space away
+            if dest.column != piece.col{
+                let nextSpace = board[dest.row - 1][piece.col]
+                if nextSpace.type != .dummy{//next space is occupied
+                    return false
+                } else {
+                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
+                    return zigZagDown(piece: piece, dest: newDest)
+                }
+            } else {//dest.column == piece.col
+                let nextSpace = board[dest.row - 1][piece.col - 1]
+                if nextSpace.type != .dummy{//next space is occupied
+                    return false
+                } else {
+                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
+                    return zigZagDown(piece: piece, dest: newDest)
+                }
+            }
+        } else {//close
+            return true
+        }
+    }
+    
+    func zigZagUp(piece: ChessPiece, dest: BoardIndex) -> Bool{
+        if piece.col == 7{
+            return false
+        }
+        if dest.row < piece.row - 1{//farther than one space away
+            if dest.column != piece.col{
+                let nextSpace = board[dest.row + 1][piece.col]
+                if nextSpace.type != .dummy{//next space is occupied
+                    return false
+                } else {
+                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
+                    return zigZagDown(piece: piece, dest: newDest)
+                }
+            } else {//dest.column == piece.col
+                let nextSpace = board[dest.row + 1][piece.col + 1]
+                if nextSpace.type != .dummy{//next space is occupied
+                    return false
+                } else {
+                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
+                    return zigZagDown(piece: piece, dest: newDest)
+                }
+            }
+        } else {//close
+            return true
+        }
+    }
+    
+    func zigZagRight(piece: ChessPiece, dest: BoardIndex) -> Bool{
+        if piece.row == 7{
+            return false
+        }
+        if dest.column > piece.col + 1{//farther than one space away
+            if dest.row != piece.row{
+                let nextSpace = board[piece.row][dest.column - 1]
+                if nextSpace.type != .dummy{//next space is occupied
+                    return false
+                } else {
+                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
+                    return zigZagRight(piece: piece, dest: newDest)
+                }
+            } else {//dest.column == piece.col
+                let nextSpace = board[piece.row + 1][dest.column - 1]
+                if nextSpace.type != .dummy{//next space is occupied
+                    return false
+                } else {
+                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
+                    return zigZagRight(piece: piece, dest: newDest)
+                }
+            }
+        } else {//close
+            return true
+        }
+    }
+    
+    func zigZagLeft(piece: ChessPiece, dest: BoardIndex) -> Bool{
+        if piece.row == 0{
+            return false
+        }
+        if dest.column < piece.col - 1{//farther than one space away
+            if dest.row != piece.row{
+                let nextSpace = board[piece.row][dest.column + 1]
+                if nextSpace.type != .dummy{//next space is occupied
+                    return false
+                } else {
+                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
+                    return zigZagRight(piece: piece, dest: newDest)
+                }
+            } else {//dest.column == piece.col
+                let nextSpace = board[piece.row - 1][dest.column + 1]
+                if nextSpace.type != .dummy{//next space is occupied
+                    return false
+                } else {
+                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
+                    return zigZagRight(piece: piece, dest: newDest)
+                }
+            }
+        } else {//close
+            return true
+        }
     }
     
     func isMoveValid(forGoblin goblin: ChessPiece, toIndex dest: BoardIndex) -> Bool{

@@ -686,6 +686,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             piece.type = .superKing
         case "Swordsman":
             piece.type = .swordsman
+        case "Thunder Chariot":
+            piece.type = .thunderChariot
         case "Trebuchet":
             piece.type = .trebuchet
         case "Unicorn":
@@ -789,6 +791,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             string = "Like a pawn, but moves two spaces at a time and attacks horizontally instead of diagonally."
         case .boar:
             string = "Moves like a queen, but can only travel 2 spaces."
+        case .thunderChariot:
+            string = "Moves like a rook, but zig-zags around the board. It always zig-zags right, then left no matter which direction it moves."
         default:
             string = ""
         }

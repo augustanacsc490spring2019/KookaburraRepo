@@ -23,7 +23,7 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var getMoreGoldButton: UIButton!
     var gold: Int = 0
     var pickerString = ""
-    let pickerData =  ["Archer", "Ballista", "Basilisk", "Battering Ram", "Bishop", "Boar", "Bombard", "Camel", "Centaur", "Demon", "Dragon Rider", "Dwarf", "Elephant", "Fire Dragon", "Footsoldier", "Gargoyle", "Ghost Queen", "Goblin", "Griffin", "Ice Dragon", "Knight", "Left Handed Elf Warrior", "Mage", "Man at Arms", "Manticore", "Minotaur", "Monk", "Monopod", "Ogre", "Orc Warrior", "Pawn", "Pikeman", "Queen", "Right Handed Elf Warrior", "Rook", "Royal Guard", "Scout", "Ship", "Superking", "Swordsman", "Trebuchet", "Unicorn"]
+    let pickerData =  ["Archer", "Ballista", "Basilisk", "Battering Ram", "Bishop", "Boar", "Bombard", "Camel", "Centaur", "Demon", "Dragon Rider", "Dwarf", "Elephant", "Fire Dragon", "Footsoldier", "Gargoyle", "Ghost Queen", "Goblin", "Griffin", "Ice Dragon", "Knight", "Left Handed Elf Warrior", "Mage", "Man at Arms", "Manticore", "Minotaur", "Monk", "Monopod", "Ogre", "Orc Warrior", "Pawn", "Pikeman", "Queen", "Right Handed Elf Warrior", "Rook", "Royal Guard", "Scout", "Ship", "Superking", "Swordsman", "Thunder Chariot", "Trebuchet", "Unicorn"]
     var owned: [String] = [String]()
     
     override func viewDidLoad(){
@@ -105,7 +105,7 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             return 100
         } else if piece.type == .ogre || piece.type == .orcWarrior || piece.type == .elephant || piece.type == .manAtArms || piece.type == .swordsman || piece.type == .pikeman || piece.type == .archer || piece.type == .royalGuard || piece.type == .scout || piece.type == .demon{
             return 150
-        } else if piece.type == .rook || piece.type == .bishop || piece.type == .knight || piece.type == .basilisk || piece.type == .minotaur || piece.type == .fireDragon || piece.type == .iceDragon || piece.type == .monopod || piece.type == .batteringRam || piece.type == .ballista || piece.type == .trebuchet || piece.type == .ghostQueen || piece.type == .leftElf || piece.type == .rightElf || piece.type == .camel || piece.type == .ship || piece.type == .boar{
+        } else if piece.type == .rook || piece.type == .bishop || piece.type == .knight || piece.type == .basilisk || piece.type == .minotaur || piece.type == .fireDragon || piece.type == .iceDragon || piece.type == .monopod || piece.type == .batteringRam || piece.type == .ballista || piece.type == .trebuchet || piece.type == .ghostQueen || piece.type == .leftElf || piece.type == .rightElf || piece.type == .camel || piece.type == .ship || piece.type == .boar || piece.type == .thunderChariot{
             return 250
         } else if piece.type == .queen || piece.type == .centaur || piece.type == .mage || piece.type == .manticore{
             return 400
@@ -229,6 +229,8 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             piece.type = .superKing
         case "Swordsman":
             piece.type = .swordsman
+        case "Thunder Chariot":
+            piece.type = .thunderChariot
         case "Trebuchet":
             piece.type = .trebuchet
         case "Unicorn":
@@ -333,6 +335,8 @@ class StoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             string = "Like a pawn, but moves two spaces at a time and attacks horizontally instead of diagonally."
         case .boar:
             string = "Moves like a queen, but can only travel 2 spaces."
+        case .thunderChariot:
+            string = "Moves like a rook, but zig-zags around the board. It always zig-zags right, then left no matter which direction it moves."
         default:
             string = ""
         }

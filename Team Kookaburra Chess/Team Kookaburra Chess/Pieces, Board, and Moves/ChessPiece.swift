@@ -41,6 +41,7 @@ enum PieceType {
     case rightElf
     case camel
     case boar
+    case thunderChariot
     //tier 2
     case scout
     case ogre
@@ -247,6 +248,9 @@ class ChessPiece {
         case .boar:
             symbol = "blackBoar.png"
             summonCost = 70
+        case .thunderChariot:
+            symbol = "blackThunderChariot.png"
+            summonCost = 60
             }
         } else if color == .white{
             switch type {
@@ -381,6 +385,9 @@ class ChessPiece {
             case .boar:
                 symbol = "whiteBoar.png"
                 summonCost = 70
+            case .thunderChariot:
+                symbol = "whiteThunderChariot.png"
+                summonCost = 60
             }
         } else {
             symbol = "blankPiece.png"
@@ -489,6 +496,8 @@ class ChessPiece {
             return checkManticore(dest: dest)
         case .boar:
             return checkBoar(dest: dest)
+        case .thunderChariot:
+            return checkChariot(dest: dest)
         }
     }
     
@@ -580,6 +589,44 @@ class ChessPiece {
             return true
         }
         return false
+    }
+    
+    func checkChariot(dest: BoardIndex) -> Bool {
+        if dest.row > self.row + 1{//going down
+            let validMoves = [(self.row + 1, self.col - 1), (self.row + 2, self.col), (self.row + 3, self.col - 1), (self.row + 4, self.col), (self.row + 5, self.col - 1), (self.row + 6, self.col), (self.row + 7, self.col - 1)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
+            }
+            return false
+        } else if dest.row < self.row - 1{//going up
+            let validMoves = [(self.row - 1, self.col + 1), (self.row - 2, self.col), (self.row - 3, self.col + 1), (self.row - 4, self.col), (self.row - 5, self.col + 1), (self.row - 6, self.col), (self.row - 7, self.col + 1)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
+            }
+            return false
+        } else if dest.column > self.col + 1{//going right
+            let validMoves = [(self.row + 1, self.col + 1), (self.row, self.col + 2), (self.row + 1, self.col + 3), (self.row, self.col + 4), (self.row + 1, self.col + 5), (self.row, self.col + 6), (self.row + 1, self.col + 7)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
+            }
+            return false
+        } else if dest.column < self.col - 1{//going left
+            let validMoves = [(self.row - 1, self.col - 1), (self.row, self.col - 2), (self.row - 1, self.col - 3), (self.row, self.col - 4), (self.row - 1, self.col - 5), (self.row, self.col - 6), (self.row - 1, self.col - 7)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
+            }
+            return false
+        } else {//going close
+            return checkOgre(dest: dest)
+        }
     }
     
     //This function is public, unlike the others, to check for legal knight-type movements for hybrid pieces like the unicorn, centaur, and mage
