@@ -202,9 +202,9 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         } else if playerColor == .black{
             print("addStarterKing black called")
             king.row = 2
-            king.col = 3
-            boardCells[2][3].piece = king
-            boardCells[2][3].configureCell(forPiece: king)
+            king.col = 4
+            boardCells[2][4].piece = king
+            boardCells[2][4].configureCell(forPiece: king)
         }
         playerPoints = calculateCost()
         pointsRemaining.text = "Points spent: \(playerPoints)"

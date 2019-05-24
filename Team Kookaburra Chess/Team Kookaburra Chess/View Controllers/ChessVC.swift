@@ -139,7 +139,7 @@ class ChessVC: UIViewController {
 //    }
     
     func drawBoard() {
-        print("chessVC drawBoard called")
+        //print("chessVC drawBoard called")
         let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
         boardCells = Array(repeating: oneRow, count: 8)
         //print("black formation: \(blackFormation)")
@@ -164,7 +164,7 @@ class ChessVC: UIViewController {
                 xOffset = (CGFloat(col) * cellDimension) + 0
                 
                 let piece = chessBoard.board[actualRow][actualCol]
-                print("drawBoard row: \(row), col: \(col), piece: \(piece.symbol)")
+                //print("drawBoard row: \(row), col: \(col), piece: \(piece.symbol)")
                 let cell = BoardCell(row: actualRow, column: actualCol, piece: piece, color: .white)
                 cell.delegate = self
                 boardCells[actualRow][actualCol] = cell
@@ -389,7 +389,7 @@ extension ChessVC: BoardCellDelegate {
     }
     
     func highlightPossibleAttacks(){
-        print("possible attacks being highlighted")
+        //print("possible attacks being highlighted")
         for move in possibleAttacks{
             boardCells[move.row][move.column].setAsBlocked()
         }
@@ -469,7 +469,7 @@ extension ChessVC: ChessBoardDelegate {
     }
     
     func displayInfo(piece: ChessPiece) -> String{
-        print("Displaying info on check label from piece: \(piece)")
+        //print("Displaying info on check label from piece: \(piece)")
         if piece.color == playerTurn{
             switch piece.type{
             case .dummy:

@@ -684,30 +684,24 @@ class ChessBoard {
     }
     
     func zigZagRight(piece: ChessPiece, dest: BoardIndex) -> Bool{
+        print("Actually checking to the right")
         if piece.row == 7{
             return false
         }
-        if dest.column > piece.col + 1{//farther than one space away
-            if dest.row != piece.row{
-                let nextSpace = board[piece.row][dest.column - 1]
-                if nextSpace.type != .dummy{//next space is occupied
-                    return false
-                } else {
-                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
-                    return zigZagRight(piece: piece, dest: newDest)
-                }
-            } else {//dest.column == piece.col
-                let nextSpace = board[piece.row + 1][dest.column - 1]
-                if nextSpace.type != .dummy{//next space is occupied
-                    return false
-                } else {
-                    let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
-                    return zigZagRight(piece: piece, dest: newDest)
-                }
-            }
-        } else {//close
-            return true
+        let testPiece = board[dest.row][dest.column]
+        if testPiece.type != .dummy{
+            return false
         }
+        if dest.column > piece.col + 1{//farther than one space away
+            if dest.row == piece.row{
+                let newDest = BoardIndex(row: piece.row + 1, column: dest.column - 1)
+                return zigZagRight(piece: piece, dest: newDest)
+            } else {
+                let newDest = BoardIndex(row: piece.row, column: dest.column - 1)
+                return zigZagRight(piece: piece, dest: newDest)
+            }
+        }
+        return true
     }
     
     func zigZagLeft(piece: ChessPiece, dest: BoardIndex) -> Bool{
