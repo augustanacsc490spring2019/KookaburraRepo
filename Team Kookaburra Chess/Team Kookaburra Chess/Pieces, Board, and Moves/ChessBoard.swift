@@ -640,7 +640,7 @@ class ChessBoard {
                     return false
                 } else {
                     let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
-                    return zigZagUp(piece: piece, dest: newDest)
+                    return zigZagDown(piece: piece, dest: newDest)
                 }
             } else {//dest.column == piece.col
                 let nextSpace = board[dest.row - 1][piece.col - 1]
@@ -648,7 +648,7 @@ class ChessBoard {
                     return false
                 } else {
                     let newDest = BoardIndex(row: nextSpace.row, column: nextSpace.col)
-                    return zigZagUp(piece: piece, dest: newDest)
+                    return zigZagDown(piece: piece, dest: newDest)
                 }
             }
         } else {//close
