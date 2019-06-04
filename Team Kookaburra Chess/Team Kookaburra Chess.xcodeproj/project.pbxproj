@@ -392,7 +392,7 @@
 				643430AC2253C51300E0CB24 /* Team Kookaburra Chess.entitlements */,
 				251D1F6922403DAE00AD7CE4 /* Info.plist */,
 				88357796227A8D28002AB7C1 /* Pieces, Board, and Moves */,
-				88357794227A8B71002AB7C1 /* Dfault Files */,
+				88357794227A8B71002AB7C1 /* Default Files */,
 				88357793227A8B12002AB7C1 /* Game Center */,
 				251D202B22431F2C00AD7CE4 /* Images */,
 				88E34F37225029EE007ED2F5 /* View Controllers */,
@@ -566,14 +566,14 @@
 			path = "../Game Center";
 			sourceTree = "<group>";
 		};
-		88357794227A8B71002AB7C1 /* Dfault Files */ = {
+		88357794227A8B71002AB7C1 /* Default Files */ = {
 			isa = PBXGroup;
 			children = (
 				251D1F5B22403DAD00AD7CE4 /* Actions.sks */,
 				251D1F5922403DAD00AD7CE4 /* GameScene.sks */,
 				251D1F9D22407A7700AD7CE4 /* AppDelegate.swift */,
 			);
-			path = "Dfault Files";
+			path = "Default Files";
 			sourceTree = "<group>";
 		};
 		88357796227A8D28002AB7C1 /* Pieces, Board, and Moves */ = {

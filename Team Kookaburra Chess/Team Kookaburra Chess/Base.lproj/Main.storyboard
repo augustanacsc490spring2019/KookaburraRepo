@@ -212,7 +212,7 @@
                         <segue destination="zEu-Gh-aaY" kind="showDetail" identifier="MyStatsSegue" id="ikF-3A-UMu"/>
                         <segue destination="wYb-JX-wYm" kind="showDetail" identifier="PlayBtOpeningScreenSegue" id="DEn-oN-FRL"/>
                         <segue destination="59Q-8H-ows" kind="showDetail" identifier="QuickTestSegue" id="5Ru-Ct-ZdM"/>
-                        <segue destination="eT3-ZL-FIO" kind="showDetail" identifier="PlacePiecesSegue" id="DDD-cs-UHp"/>
+                        <segue destination="eT3-ZL-FIO" kind="show" identifier="PlacePiecesSegue" id="DDD-cs-UHp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -572,7 +572,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXo-Tb-L47" userLabel="Reset Button">
                                 <rect key="frame" x="305" y="792" width="89" height="30"/>
-                                <state key="normal" title="Reset Pieces"/>
+                                <state key="normal" title="Options"/>
                                 <connections>
                                     <action selector="resetButtonPressed:" destination="eT3-ZL-FIO" eventType="touchUpInside" id="jXI-nl-i3s"/>
                                 </connections>
@@ -1139,7 +1139,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <segue reference="ynr-Ld-Yg9"/>
         <segue reference="DEn-oN-FRL"/>
         <segue reference="iGZ-HH-LUv"/>
-        <segue reference="PKa-wr-jw9"/>
+        <segue reference="DDD-cs-UHp"/>
         <segue reference="jpc-O9-TBa"/>
     </inferredMetricsTieBreakers>
 </document>

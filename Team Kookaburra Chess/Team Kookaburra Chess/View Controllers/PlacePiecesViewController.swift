@@ -491,17 +491,24 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return numKings
     }
     
+    //TODO: rename this function and the button to options
     @IBAction func resetButtonPressed(_ sender: Any) {
         //put up an "are you sure?" popup
-        let ac = UIAlertController(title: "Reset", message: "Are you sure you want to remove every piece?", preferredStyle: .alert)
+        let ac = UIAlertController(title: "More Options", message: "", preferredStyle: .actionSheet)
         //if yes, clear all the pieces
-        let yes = UIAlertAction(title: "Yes", style: .default, handler: { action in
+        let reset = UIAlertAction(title: "Reset", style: .default, handler: { action in
             self.clearPieces()
         })
-        let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let save = UIAlertAction(title: "Save Formation", style: .default, handler: {action in self.saveFormation()})
+        let load = UIAlertAction(title: "Load Formation", style: .default, handler: {action in self.loadFormation()})
+        let random = UIAlertAction(title: "Random Formation", style: .default, handler: {action in self.randFormation()})
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        ac.addAction(yes)
-        ac.addAction(no)
+        ac.addAction(reset)
+        ac.addAction(random)
+        ac.addAction(save)
+        ac.addAction(load)
+        ac.addAction(cancel)
         present(ac, animated: true, completion: nil)
         //if no, do nothing
     }
@@ -531,6 +538,18 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             ac.addAction(ok)
             present(ac, animated: true, completion: nil)
         }
+    }
+    
+    func saveFormation(){
+        
+    }
+    
+    func loadFormation(){
+        
+    }
+    
+    func randFormation(){
+        
     }
     
     func onlineMatchReady(){
