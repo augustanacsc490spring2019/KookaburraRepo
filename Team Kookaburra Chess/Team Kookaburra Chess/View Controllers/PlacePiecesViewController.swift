@@ -548,10 +548,38 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
     }
     
-    func randFormation(){
+    func randFormation() -> [[BoardCell]]{
+        var formation = boardCells
+        var numKings = checkKings(formation: formation)
+        var randIndex = 0
+        //place some pieces in the first 2 rows
+        for row in 0...1{
+            for col in 0...7{
+                randIndex = Int.random(in: 1...(pickerData.count - 1))
+                let string = pickerData[randIndex]
+                let piece = getPiece(string: string)
+                formation[row][col].row = row
+                formation[row][col].column = col
+                formation[row][col].piece.type = piece.type
+            }
+        }
+        //check if there was a king in there
+        while numKings < 1{//if not, recurse
+            formation = randFormation()
+            numKings = checkKings(formation: formation)
+        }
+        //if we've got points to spare, add pieces in the third row
         
+        //make sure it's good again
+        boardCells = formation
+        return formation
     }
     
+    func checkKings(formation: [[BoardCell]]) -> Int{
+        var kings = 0
+        
+        return kings
+    }
     func onlineMatchReady(){
         print("onlineMatchReady called")
         if playerPoints < 440{
