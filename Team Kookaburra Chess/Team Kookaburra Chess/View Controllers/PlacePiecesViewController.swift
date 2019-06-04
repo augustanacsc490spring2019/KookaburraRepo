@@ -501,7 +501,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         })
         let save = UIAlertAction(title: "Save Formation", style: .default, handler: {action in self.saveFormation()})
         let load = UIAlertAction(title: "Load Formation", style: .default, handler: {action in self.loadFormation()})
-        let random = UIAlertAction(title: "Random Formation", style: .default, handler: {action in self.randFormation()})
+        let random = UIAlertAction(title: "Random Formation", style: .default, handler: {action in self.randFormation(numIterations: 0)})
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         ac.addAction(reset)
@@ -548,7 +548,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
     }
     
-    func randFormation() -> [[BoardCell]]{
+    func randFormation(numIterations: Int) -> [[BoardCell]]{
+        print("Interations: \(numIterations)")
         var formation = boardCells
         var numKings = checkKings(formation: formation)
         var randIndex = 0
@@ -558,14 +559,19 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 randIndex = Int.random(in: 1...(pickerData.count - 1))
                 let string = pickerData[randIndex]
                 let piece = getPiece(string: string)
+                piece.row = row
+                piece.col = col
+                piece.color = playerColor
+                piece.setupSymbol()
                 formation[row][col].row = row
                 formation[row][col].column = col
                 formation[row][col].piece.type = piece.type
+                formation[row][col].configureCell(forPiece: piece)
             }
         }
         //check if there was a king in there
         while numKings < 1{//if not, recurse
-            formation = randFormation()
+            formation = randFormation(numIterations: numIterations + 1)
             numKings = checkKings(formation: formation)
         }
         //if we've got points to spare, add pieces in the third row
@@ -576,10 +582,16 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func checkKings(formation: [[BoardCell]]) -> Int{
-        var kings = 0
-        
-        return kings
+        for row in 0...1{
+            for col in 0...7{
+                if formation[row][col].piece.type == .king || formation[row][col].piece.type == .superKing{
+                    return 1
+                }
+            }
+        }
+        return 0
     }
+    
     func onlineMatchReady(){
         print("onlineMatchReady called")
         if playerPoints < 440{
