@@ -554,11 +554,16 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         var numKings = checkKings(formation: formation)
         var randIndex = 0
         //place some pieces in the first 2 rows
-        for row in 0...1{
+        for row in 1...2{
             for col in 0...7{
                 randIndex = Int.random(in: 1...(pickerData.count - 1))
                 let string = pickerData[randIndex]
-                let piece = getPiece(string: string)
+                var piece = getPiece(string: string)
+//                if row == 1{
+//                    if piece.type == .dragonRider{
+//                        piece = notDragonRider()
+//                    }
+//                }
                 piece.row = row
                 piece.col = col
                 piece.color = playerColor
@@ -569,20 +574,39 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 formation[row][col].configureCell(forPiece: piece)
             }
         }
-        //check if there was a king in there
-        while numKings < 1{//if not, recurse
+        playerPoints = calculateCost()
+        pointsRemaining.text = "Points spent: \(playerPoints)"
+        //check if the formation is legal
+        numKings = checkKings(formation: formation)
+        if numKings < 1 || playerPoints > 450{//if not, recurse
             formation = randFormation(numIterations: numIterations + 1)
-            numKings = checkKings(formation: formation)
         }
         //if we've got points to spare, add pieces in the third row
-        
-        //make sure it's good again
+//        if playerPoints < 440{
+//            while playerPoints < 440{
+//                let col = Int.random(in: 0...7)
+//                randIndex = Int.random(in: 0...(pickerData.count - 1))
+//                let string = pickerData[randIndex]
+//                var piece = getPiece(string: string)
+////                if piece.type == .dragonRider{
+////                    piece = notDragonRider()
+////                }
+//                piece.row = 0
+//                piece.col = col
+//                piece.color = playerColor
+//                piece.setupSymbol()
+//                formation[0][col].row = 0
+//                formation[0][col].column = col
+//                formation[0][col].piece.type = piece.type
+//                formation[0][col].configureCell(forPiece: piece)
+//            }
+//        }
         boardCells = formation
         return formation
     }
     
     func checkKings(formation: [[BoardCell]]) -> Int{
-        for row in 0...1{
+        for row in 0...2{
             for col in 0...7{
                 if formation[row][col].piece.type == .king || formation[row][col].piece.type == .superKing{
                     return 1
@@ -590,6 +614,17 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             }
         }
         return 0
+    }
+    
+    //recurses until a piece that isn't a dragon rider is found
+    func notDragonRider() -> ChessPiece{
+        let randIndex = Int.random(in: 0...(pickerData.count - 1))
+        let string = pickerData[randIndex]
+        var piece = getPiece(string: string)
+        if piece.type == .dragonRider{
+            piece = notDragonRider()
+        }
+        return piece
     }
     
     func onlineMatchReady(){
