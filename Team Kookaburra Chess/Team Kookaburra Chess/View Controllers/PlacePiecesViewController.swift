@@ -494,7 +494,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //TODO: rename this function and the button to options
     @IBAction func resetButtonPressed(_ sender: Any) {
         //put up an "are you sure?" popup
-        let ac = UIAlertController(title: "More Options", message: "", preferredStyle: .actionSheet)
+        let ac = UIAlertController(title: "More Options", message: nil, preferredStyle: .actionSheet)
         //if yes, clear all the pieces
         let reset = UIAlertAction(title: "Reset", style: .default, handler: { action in
             self.clearPieces()
@@ -541,11 +541,29 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func saveFormation(){
-        
+        let ac = UIAlertController(title: "Save Formation", message: nil, preferredStyle: .actionSheet)
+        let slot1 = UIAlertAction(title: "Slot 1", style: .default, handler: {action in self.saveSlot(slot: 1)})
+        let slot2 = UIAlertAction(title: "Slot 2", style: .default, handler: {action in self.saveSlot(slot: 2)})
+        let slot3 = UIAlertAction(title: "Slot 3", style: .default, handler: {action in self.saveSlot(slot: 3)})
+        let back = UIAlertAction(title: "Back", style: .cancel, handler: {action in self.resetButtonPressed(self)})
+        ac.addAction(slot1)
+        ac.addAction(slot2)
+        ac.addAction(slot3)
+        ac.addAction(back)
+        present(ac, animated: true, completion: nil)
     }
     
     func loadFormation(){
-        
+        let ac = UIAlertController(title: "Load Formation", message: nil, preferredStyle: .actionSheet)
+        let slot1 = UIAlertAction(title: "Slot 1", style: .default, handler: {action in self.loadSlot(slot: 1)})
+        let slot2 = UIAlertAction(title: "Slot 2", style: .default, handler: {action in self.loadSlot(slot: 2)})
+        let slot3 = UIAlertAction(title: "Slot 3", style: .default, handler: {action in self.loadSlot(slot: 3)})
+        let back = UIAlertAction(title: "Back", style: .cancel, handler: {action in self.resetButtonPressed(self)})
+        ac.addAction(slot1)
+        ac.addAction(slot2)
+        ac.addAction(slot3)
+        ac.addAction(back)
+        present(ac, animated: true, completion: nil)
     }
     
     func randFormation(numIterations: Int) -> [[BoardCell]]{
@@ -625,6 +643,50 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             piece = notDragonRider()
         }
         return piece
+    }
+    
+    func saveSlot(slot: Int){
+        let formation = boardCells
+        let keyStore = NSUbiquitousKeyValueStore.init()
+        if slot < 2{
+            keyStore.set(formation, forKey: "slot1")
+        } else if slot == 2{
+            keyStore.set(formation, forKey: "slot2")
+        } else { //if slot == 3
+            keyStore.set(formation, forKey: "slot3")
+        }
+    }
+    
+    func loadSlot(slot: Int){
+        let keyStore = NSUbiquitousKeyValueStore.init()
+        var formation = [[BoardCell]]()
+        if slot < 2{
+            if keyStore.array(forKey: "slot1") != nil{
+                formation = keyStore.array(forKey: "slot1") as! [[BoardCell]]
+            } else {
+                tipLabel.text = "No formation is saved to Slot 1"
+                return
+            }
+        } else if slot == 2{
+            if keyStore.array(forKey: "slot1") != nil{
+                formation = keyStore.array(forKey: "slot2") as! [[BoardCell]]
+            } else {
+                tipLabel.text = "No formation is saved to Slot 2"
+                return
+            }
+        } else { //if slot == 3
+            if keyStore.array(forKey: "slot1") != nil{
+                formation = keyStore.array(forKey: "slot3") as! [[BoardCell]]
+            } else {
+                tipLabel.text = "No formation is saved to Slot 3"
+                return
+            }
+        }
+        for row in 0...2{
+            for col in 0...7{
+                boardCells[row][col].configureCell(forPiece: boardCells[row][col].piece)
+            }
+        }
     }
     
     func onlineMatchReady(){
