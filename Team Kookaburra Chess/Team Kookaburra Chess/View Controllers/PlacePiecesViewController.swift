@@ -663,6 +663,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if slot < 2{
             if keyStore.array(forKey: "slot1") != nil{
                 formation = keyStore.array(forKey: "slot1") as! [[BoardCell]]
+                tipLabel.text = "Formation 2 loaded"
             } else {
                 tipLabel.text = "No formation is saved to Slot 1"
                 return
@@ -670,6 +671,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         } else if slot == 2{
             if keyStore.array(forKey: "slot1") != nil{
                 formation = keyStore.array(forKey: "slot2") as! [[BoardCell]]
+                tipLabel.text = "Formation 2 loaded"
             } else {
                 tipLabel.text = "No formation is saved to Slot 2"
                 return
@@ -677,6 +679,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         } else { //if slot == 3
             if keyStore.array(forKey: "slot1") != nil{
                 formation = keyStore.array(forKey: "slot3") as! [[BoardCell]]
+                tipLabel.text = "Formation 3 loaded"
             } else {
                 tipLabel.text = "No formation is saved to Slot 3"
                 return

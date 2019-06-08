@@ -210,7 +210,6 @@
                         <outlet property="rankImage" destination="hfe-DH-WDR" id="Jf9-Me-yKb"/>
                         <segue destination="fhK-sB-HUu" kind="showDetail" identifier="MyFriendsBtSegue" id="x71-Kx-mDm"/>
                         <segue destination="zEu-Gh-aaY" kind="showDetail" identifier="MyStatsSegue" id="ikF-3A-UMu"/>
-                        <segue destination="wYb-JX-wYm" kind="showDetail" identifier="PlayBtOpeningScreenSegue" id="DEn-oN-FRL"/>
                         <segue destination="59Q-8H-ows" kind="showDetail" identifier="QuickTestSegue" id="5Ru-Ct-ZdM"/>
                         <segue destination="eT3-ZL-FIO" kind="show" identifier="PlacePiecesSegue" id="DDD-cs-UHp"/>
                     </connections>
@@ -470,65 +469,6 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
             </objects>
             <point key="canvasLocation" x="1171.0144927536232" y="-692.41071428571422"/>
         </scene>
-        <!--RandomOpponentViewController-->
-        <scene sceneID="9MA-xi-WyR">
-            <objects>
-                <viewController storyboardIdentifier="RandomOpponentViewController" title="RandomOpponentViewController" id="Vfk-sV-Lat" customClass="RandomOpponentViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="k8S-kg-Gsa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcI-GE-xKO">
-                                <rect key="frame" x="153" y="139" width="108" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsI-iZ-rKU">
-                                <rect key="frame" x="175" y="645" width="64" height="54"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="Play">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="playButtonPressed:" destination="Vfk-sV-Lat" eventType="touchUpInside" id="qp6-iQ-7LW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAi-Vh-ouV">
-                                <rect key="frame" x="47" y="74" width="30" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="&lt;">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="Vfk-sV-Lat" eventType="touchUpInside" id="Prj-wR-hHx"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Ivs-hH-Rnd" firstAttribute="trailing" secondItem="cAi-Vh-ouV" secondAttribute="trailing" constant="337" id="Akn-E1-JLj"/>
-                            <constraint firstItem="DcI-GE-xKO" firstAttribute="top" secondItem="Ivs-hH-Rnd" secondAttribute="top" constant="95" id="COy-4Z-zOD"/>
-                            <constraint firstItem="cAi-Vh-ouV" firstAttribute="top" secondItem="Ivs-hH-Rnd" secondAttribute="top" constant="30" id="Eag-Yt-Pjb"/>
-                            <constraint firstItem="Ivs-hH-Rnd" firstAttribute="trailing" secondItem="rsI-iZ-rKU" secondAttribute="trailing" constant="175" id="HN7-np-RHv"/>
-                            <constraint firstItem="Ivs-hH-Rnd" firstAttribute="bottom" secondItem="cAi-Vh-ouV" secondAttribute="bottom" constant="740" id="LXI-pj-AUn"/>
-                            <constraint firstItem="DcI-GE-xKO" firstAttribute="leading" secondItem="Ivs-hH-Rnd" secondAttribute="leading" constant="153" id="Qlc-e3-1I2"/>
-                            <constraint firstItem="Ivs-hH-Rnd" firstAttribute="bottom" secondItem="rsI-iZ-rKU" secondAttribute="bottom" constant="163" id="R2d-xH-24p"/>
-                            <constraint firstItem="cAi-Vh-ouV" firstAttribute="leading" secondItem="Ivs-hH-Rnd" secondAttribute="leading" constant="47" id="Rd8-Jd-mDf"/>
-                            <constraint firstItem="Ivs-hH-Rnd" firstAttribute="trailing" secondItem="DcI-GE-xKO" secondAttribute="trailing" constant="153" id="mSv-h2-UqU"/>
-                            <constraint firstItem="rsI-iZ-rKU" firstAttribute="leading" secondItem="Ivs-hH-Rnd" secondAttribute="leading" constant="175" id="qMs-AM-16b"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Ivs-hH-Rnd"/>
-                    </view>
-                    <connections>
-                        <segue destination="eT3-ZL-FIO" kind="showDetail" identifier="PlayRandomOppSegue" id="9Dg-iH-Dha"/>
-                        <segue destination="5hY-vZ-QbG" kind="showDetail" identifier="BackToTypeGameSegue" id="6bl-pv-SHr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QtV-L6-Keu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2649" y="-127"/>
-        </scene>
         <!--PlacePiecesViewController-->
         <scene sceneID="ChV-R6-9Dt">
             <objects>
@@ -723,173 +663,6 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
                 <placeholder placeholderIdentifier="IBFirstResponder" id="enA-Yg-GJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-772" y="-816"/>
-        </scene>
-        <!--YourFriendsViewController-->
-        <scene sceneID="wMH-Cd-AV6">
-            <objects>
-                <viewController storyboardIdentifier="YourFriendsViewController" title="YourFriendsViewController" id="0zS-4c-C4V" customClass="YourFriendsViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gf3-nY-Use">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0g-AA-UVC">
-                                <rect key="frame" x="127" y="167" width="161" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rkf-qd-MNU">
-                                <rect key="frame" x="62" y="92" width="30" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="&lt;">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="0zS-4c-C4V" eventType="touchUpInside" id="sm7-WH-4fo"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="t0g-AA-UVC" firstAttribute="centerX" secondItem="gf3-nY-Use" secondAttribute="centerX" id="HO8-p5-euJ"/>
-                            <constraint firstItem="Rkf-qd-MNU" firstAttribute="leading" secondItem="xG7-8w-IjQ" secondAttribute="leading" constant="62" id="TMc-V0-CyV"/>
-                            <constraint firstItem="t0g-AA-UVC" firstAttribute="leading" secondItem="xG7-8w-IjQ" secondAttribute="leading" constant="127" id="fwi-pn-HD1"/>
-                            <constraint firstItem="t0g-AA-UVC" firstAttribute="top" secondItem="xG7-8w-IjQ" secondAttribute="top" constant="123" id="uP4-qL-Fek"/>
-                            <constraint firstItem="Rkf-qd-MNU" firstAttribute="top" secondItem="xG7-8w-IjQ" secondAttribute="top" constant="48" id="y5j-Jz-j4c"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="xG7-8w-IjQ"/>
-                    </view>
-                    <connections>
-                        <outlet property="yourFriendsLabel" destination="t0g-AA-UVC" id="dS2-vU-UXa"/>
-                        <segue destination="5hY-vZ-QbG" kind="showDetail" identifier="YourFriendsBackBtSegue" id="iGZ-HH-LUv"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UYa-RC-Y6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2861" y="635"/>
-        </scene>
-        <!--NewGameViewController-->
-        <scene sceneID="zFf-Qb-kQg">
-            <objects>
-                <viewController storyboardIdentifier="NewGameViewController" title="NewGameViewController" id="5hY-vZ-QbG" customClass="NewGameViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YXb-iM-gYS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xny-Tm-VYt">
-                                <rect key="frame" x="110" y="284" width="194" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Randon Opponent ">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="randomOpponentButtonPressed:" destination="5hY-vZ-QbG" eventType="touchUpInside" id="Dca-lh-zsg"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nq9-9t-KLi">
-                                <rect key="frame" x="129" y="427" width="156" height="42"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Chose a Friend">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="choseFriendButtonPressed:" destination="5hY-vZ-QbG" eventType="touchUpInside" id="7b2-qv-7cw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vf-j6-yEI">
-                                <rect key="frame" x="77" y="97" width="30" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="&lt;">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="typeNewGameBackBtPressed:" destination="5hY-vZ-QbG" eventType="touchUpInside" id="NKz-nc-nKA"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="9vf-j6-yEI" firstAttribute="leading" secondItem="odk-gE-rw5" secondAttribute="leading" constant="77" id="9KW-qX-xpm"/>
-                            <constraint firstItem="Xny-Tm-VYt" firstAttribute="top" secondItem="odk-gE-rw5" secondAttribute="top" constant="240" id="GxG-4k-7ao"/>
-                            <constraint firstItem="nq9-9t-KLi" firstAttribute="centerY" secondItem="YXb-iM-gYS" secondAttribute="centerY" id="LBA-oO-oKK"/>
-                            <constraint firstItem="9vf-j6-yEI" firstAttribute="top" secondItem="odk-gE-rw5" secondAttribute="top" constant="53" id="PLy-FE-UGB"/>
-                            <constraint firstItem="odk-gE-rw5" firstAttribute="bottom" secondItem="nq9-9t-KLi" secondAttribute="bottom" constant="393" id="Pev-h1-I6A"/>
-                            <constraint firstItem="Xny-Tm-VYt" firstAttribute="leading" secondItem="odk-gE-rw5" secondAttribute="leading" constant="110" id="XVp-gh-jc6"/>
-                            <constraint firstItem="Xny-Tm-VYt" firstAttribute="centerX" secondItem="nq9-9t-KLi" secondAttribute="centerX" id="ezI-jM-W5J"/>
-                            <constraint firstItem="Xny-Tm-VYt" firstAttribute="centerX" secondItem="YXb-iM-gYS" secondAttribute="centerX" id="zJi-8g-75Q"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="odk-gE-rw5"/>
-                    </view>
-                    <connections>
-                        <segue destination="0zS-4c-C4V" kind="showDetail" identifier="ChoseAFriendSegue" id="miQ-Fg-OAf"/>
-                        <segue destination="Vfk-sV-Lat" kind="showDetail" identifier="RandomOpponentSegue" id="uIC-d4-j2S"/>
-                        <segue destination="wYb-JX-wYm" kind="showDetail" identifier="TypeOfNewGameBackBtSegue" id="Zon-fP-fpa"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eSW-SQ-zyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1786" y="483"/>
-        </scene>
-        <!--PlayBtOpeningScreenViewController-->
-        <scene sceneID="8FD-jp-cdg">
-            <objects>
-                <viewController storyboardIdentifier="PlayBtOpeningScreenViewController" title="PlayBtOpeningScreenViewController" id="wYb-JX-wYm" customClass="PlayBtOpeningScreenViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aa0-5n-XR6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgv-pD-VU0">
-                                <rect key="frame" x="72" y="279" width="270" height="42"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Continue Existing Game?">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="continueExistingGameButtonPressed:" destination="wYb-JX-wYm" eventType="touchUpInside" id="llF-6Q-fEd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pd5-dy-hU7">
-                                <rect key="frame" x="147" y="449" width="120" height="42"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="New Game">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="newGameButtonPressed:" destination="wYb-JX-wYm" eventType="touchUpInside" id="u0o-qO-4t3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUH-gO-QMi">
-                                <rect key="frame" x="80" y="95" width="30" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="&lt;">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="wYb-JX-wYm" eventType="touchUpInside" id="lbp-xn-NFg"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="zUH-gO-QMi" firstAttribute="leading" secondItem="YOc-wc-gpa" secondAttribute="leading" constant="80" id="40Y-qW-O73"/>
-                            <constraint firstItem="fgv-pD-VU0" firstAttribute="centerX" secondItem="Pd5-dy-hU7" secondAttribute="centerX" id="6pP-Tl-eRZ"/>
-                            <constraint firstItem="zUH-gO-QMi" firstAttribute="top" secondItem="YOc-wc-gpa" secondAttribute="top" constant="51" id="ReD-F1-ugv"/>
-                            <constraint firstItem="fgv-pD-VU0" firstAttribute="top" secondItem="aa0-5n-XR6" secondAttribute="top" constant="279" id="fQ5-KG-Hl5"/>
-                            <constraint firstItem="fgv-pD-VU0" firstAttribute="centerX" secondItem="aa0-5n-XR6" secondAttribute="centerX" id="kVM-9N-AVN"/>
-                            <constraint firstItem="YOc-wc-gpa" firstAttribute="bottom" secondItem="Pd5-dy-hU7" secondAttribute="bottom" constant="371" id="pyY-wv-f5q"/>
-                            <constraint firstItem="fgv-pD-VU0" firstAttribute="leading" secondItem="YOc-wc-gpa" secondAttribute="leading" constant="72" id="q4J-9j-iAl"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="YOc-wc-gpa"/>
-                    </view>
-                    <connections>
-                        <segue destination="eT3-ZL-FIO" kind="showDetail" identifier="ContinueExistingGameSegue" id="qvY-Pk-bhk"/>
-                        <segue destination="5hY-vZ-QbG" kind="showDetail" identifier="NewGameSegue" id="063-Rw-GLs"/>
-                        <segue destination="BV1-FR-VrT" kind="showDetail" identifier="BackFromPlaySceneSegue" id="fsH-oz-T1c"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VWr-Lb-DCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-772" y="267"/>
         </scene>
         <!--MyStatsViewController-->
         <scene sceneID="NdR-Mz-m2B">
@@ -1137,9 +910,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ynr-Ld-Yg9"/>
-        <segue reference="DEn-oN-FRL"/>
-        <segue reference="iGZ-HH-LUv"/>
-        <segue reference="DDD-cs-UHp"/>
+        <segue reference="PKa-wr-jw9"/>
         <segue reference="jpc-O9-TBa"/>
     </inferredMetricsTieBreakers>
 </document>
