@@ -22,10 +22,12 @@ class OpeningScreen: UIViewController {
     @IBOutlet weak var banner: UIImageView!
     var goingUp = true //only for testing
     var timer = Timer() //only for testing
-   // var currentAlert = UIAlertController()
+    // var currentAlert = UIAlertController()
     var bannerTimer = Timer() //for closing the banners that pop up
     var imageView = UIImageView()
     var model: GameModel
+    
+    var currentPlayerColor : UIColor =  .white;
     
     required init?(coder aDecoder: NSCoder) {
         self.model = GameModel()
@@ -38,14 +40,14 @@ class OpeningScreen: UIViewController {
         levelDownBar.transform.scaledBy(x: 1, y: 9)
         UserDefaults.standard.setValue(false, forKey:"_UIConstraintBasedLayoutLogUnsatisfiable")
         imageView = UIImageView(frame: CGRect(x: 0, y: view.frame.size.width/2, width: view.frame.size.width, height: view.frame.size.width/2.25))
-       // scheduledTimerWithTimeInterval()//only for testing
-//        UserDefaults.standard.set(0, forKey: "playerGold")
-//        UserDefaults.standard.set(0, forKey: "playerRank")
-//        UserDefaults.standard.set(0, forKey: "rankingPoints")
+        // scheduledTimerWithTimeInterval()//only for testing
+        //        UserDefaults.standard.set(0, forKey: "playerGold")
+        //        UserDefaults.standard.set(0, forKey: "playerRank")
+        //        UserDefaults.standard.set(0, forKey: "rankingPoints")
         let owned = UserDefaults.standard.array(forKey: "ownedPieces")
         if owned?.count ?? 0 <= 0{
-        let pieceArray = ["Archer", "Ballista", "Basilisk", "Battering Ram", "Bishop", "Bombard", "Camel", "Centaur", "Demon", "Dragon Rider", "Dwarf", "Elephant", "Fire Dragon", "Footsoldier", "Gargoyle", "Ghost Queen", "Goblin", "Griffin", "Ice Dragon", "Knight", "Left Handed Elf Warrior", "Mage", "Man at Arms", "Manticore", "Minotaur", "Monk", "Monopod", "Ogre", "Orc Warrior", "Pawn", "Pikeman", "Queen", "Right Handed Elf Warrior", "Rook", "Royal Guard", "Scout", "Ship", "Superking", "Swordsman", "Trebuchet", "Unicorn"]
-        UserDefaults.standard.set(pieceArray, forKey: "ownedPieces")
+            let pieceArray = ["Archer", "Ballista", "Basilisk", "Battering Ram", "Bishop", "Bombard", "Camel", "Centaur", "Demon", "Dragon Rider", "Dwarf", "Elephant", "Fire Dragon", "Footsoldier", "Gargoyle", "Ghost Queen", "Goblin", "Griffin", "Ice Dragon", "Knight", "Left Handed Elf Warrior", "Mage", "Man at Arms", "Manticore", "Minotaur", "Monk", "Monopod", "Ogre", "Orc Warrior", "Pawn", "Pikeman", "Queen", "Right Handed Elf Warrior", "Rook", "Royal Guard", "Scout", "Ship", "Superking", "Swordsman", "Trebuchet", "Unicorn"]
+            UserDefaults.standard.set(pieceArray, forKey: "ownedPieces")
         }
         super.viewDidLoad()
         UserDefaults.standard.synchronize()
@@ -85,9 +87,9 @@ class OpeningScreen: UIViewController {
         } else { //bronze, silver, or gold
             promotionImage.image = UIImage(named: "promotionSymbol.png")
             if rank == 0{
-                 rankImage.image = UIImage(named: "rankBronze.png")
+                rankImage.image = UIImage(named: "rankBronze.png")
             } else if rank == 1{
-                 rankImage.image = UIImage(named: "rankSilver.png")
+                rankImage.image = UIImage(named: "rankSilver.png")
             } else {
                 rankImage.image = UIImage(named: "rankGold.png")
             }
@@ -146,14 +148,14 @@ class OpeningScreen: UIViewController {
     //only called in testing
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: Selector("updateCounting"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: Selector(("updateCounting")), userInfo: nil, repeats: true)
     }
     
     //only called in testing
     @objc func updateCounting(){
         var points = UserDefaults.standard.integer(forKey: "rankingPoints")
         if goingUp{
-          points = points + 1
+            points = points + 1
         } else {
             points = points - 1
         }
@@ -163,7 +165,7 @@ class OpeningScreen: UIViewController {
     }
     
     func closeBannerTimer(){
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: Selector("hideBanner"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: Selector(("hideBanner")), userInfo: nil, repeats: true)
         print("closing time")
     }
     
@@ -198,8 +200,16 @@ class OpeningScreen: UIViewController {
     
     @IBAction func quickTestButtonPressed(_ sender: Any) {
         //self.performSegue(withIdentifier: "QuickTestSegue", sender: self)
+        
+        currentPlayerColor = .white
         performSegue(withIdentifier: "PlacePiecesSegue", sender: nil)
+        
+        currentPlayerColor = .black
+        performSegue(withIdentifier: "PlacePiecesSegue", sender: nil)
+        
+        // performSegue(withIdentifier: "LocalMatchSegue", sender: self)
     }
+    
     
     @IBAction func rankPointsTest(_ sender: Any) {
         NSLog("Points please")
@@ -233,28 +243,28 @@ class OpeningScreen: UIViewController {
     }
     
     //original from Nine Knights
-//    override func didMove(to view: SKView) {
-//        super.didMove(to: view)
-//
-//        feedbackGenerator.prepare()
-//        GameCenterHelper.helper.currentMatch = nil
-//
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(authenticationChanged(_:)),
-//            name: .authenticationChanged,
-//            object: nil
-//        )
-//
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(presentGame(_:)),
-//            name: .presentGame,
-//            object: nil
-//        )
-//
-//        setUpScene(in: view)
-//    }
+    //    override func didMove(to view: SKView) {
+    //        super.didMove(to: view)
+    //
+    //        feedbackGenerator.prepare()
+    //        GameCenterHelper.helper.currentMatch = nil
+    //
+    //        NotificationCenter.default.addObserver(
+    //            self,
+    //            selector: #selector(authenticationChanged(_:)),
+    //            name: .authenticationChanged,
+    //            object: nil
+    //        )
+    //
+    //        NotificationCenter.default.addObserver(
+    //            self,
+    //            selector: #selector(presentGame(_:)),
+    //            name: .presentGame,
+    //            object: nil
+    //        )
+    //
+    //        setUpScene(in: view)
+    //    }
     @objc private func authenticationChanged(_ notification: Notification) {
         //onlineButton.isEnabled = notification.object as? Bool ?? false
     }
@@ -272,7 +282,10 @@ class OpeningScreen: UIViewController {
     // MARK: - Helpers
     
     private func loadAndDisplay(match: GKTurnBasedMatch) {
-        // 2
+        // 2 try loading current game data, or start new game if no data
+        
+        var noMatchData: Bool = false;
+        
         match.loadMatchData { data, error in
             if let data = data {
                 do {
@@ -280,44 +293,72 @@ class OpeningScreen: UIViewController {
                     print("tried jsondecoding")
                     self.model = try JSONDecoder().decode(GameModel.self, from: data)
                 } catch {
-                    print("creating blank gamemodel since deconding failed")
-                    self.model = GameModel()
+                    print("creating blank gamemodel since decoding failed")
+                    noMatchData = true;
                 }
             } else {
                 print("creating blank gamemodel since data is nil")
-                self.model = GameModel()
-            }
-            GameCenterHelper.helper.currentMatch = match
-            print("piecesAreSet: \(self.model.piecesAreSet)")
-            //if self.model.piecesAreSet{
-            print("online segue attempted")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                print("opening screen model.piecesAreSet = \(self.model.piecesAreSet). model.blackHasPlacedPieces = \(self.model.blackHasSetPieces). model.whiteHasPlacedPieces = \(self.model.whiteHasSetPieces)")
-                if (self.model.piecesAreSet){
-                    self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
-                } else {
-                    self.self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
-                }
+                noMatchData = true;
             }
             
-//            } else {
-//                self.performSegue(withIdentifier: "PlacePiecesSegue", sender: self)
-//            }
+            if (noMatchData) {
+                // need to start a new Match
+                self.model = GameModel();
+                // set up pieces for player's initial position
+                
+            }
+            else {
+                // good match data, take your turn
+                
+                
+            }
+            GameCenterHelper.helper.currentMatch = match
+            
+            var piecesPlaced: Bool = true
+            
+            if (piecesPlaced) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+                }
+                
+            }
+            
+            return
+            
+            
+            
+            
+            //
+            //            print("piecesAreSet: \(self.model.piecesAreSet)")
+            //            //if self.model.piecesAreSet{
+            //            print("online segue attempted")
+            //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+            //                print("opening screen model.piecesAreSet = \(self.model.piecesAreSet). model.blackHasPlacedPieces = \(self.model.blackHasSetPieces). model.whiteHasPlacedPieces = \(self.model.whiteHasSetPieces)")
+            //                if (self.model.piecesAreSet){
+            //                    self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+            //                } else {
+            //                    self.self.performSegue(withIdentifier: "PlacePiecesSegue", sender: self)
+            //                }
+            //            }
+            
+            //            } else {
+            //                self.performSegue(withIdentifier: "PlacePiecesSegue", sender: self)
+            //            }
             
             
             //convert UIView to SKView
             //let gameVC = ChessVC(coder: <#NSCoder#>)
-//            print("about to segue into online")
-//            self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
+            //            print("about to segue into online")
+            //            self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
             //self.present(gameVC, animated: true, completion: nil)
             //self.dismiss(animated: true, completion: nil)//maybe use this to dismiss the openingScreen instead of stacking more viewcontrollers
             
             //don't think I actually need to make GameScene like in Nine Knights
-//            let skView = gameVC.view as! SKView
-//            skView.presentScene(GameScene(model: model))
+            //            let skView = gameVC.view as! SKView
+            //            skView.presentScene(GameScene(model: model))
         }
     }
-        
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "OnlineChessVCSegue") {
             print("prepare for onlineChesVCSegue called")
@@ -329,7 +370,11 @@ class OpeningScreen: UIViewController {
             let vc = segue.destination as! PlacePiecesViewController
             vc.model = self.model
             vc.isLocalMatch = false
-            print("model being passed in to OnlinePlacePiecesSegue. currentPlayer = \(model.currentPlayer) and isWhiteTurn = \(model.isWhiteTurn)")
+            // print("model being passed in to OnlinePlacePiecesSegue. currentPlayer = \(model.currentPlayer) and isWhiteTurn = \(model.isWhiteTurn)")
+        }
+        else if segue.identifier == "PlacePiecesSegue" {
+            let vc = segue.destination as! PlacePiecesViewController
+            vc.playerColor = currentPlayerColor
         }
     }
     
@@ -354,20 +399,20 @@ class OpeningScreen: UIViewController {
     //            self.view?.presentScene(GameScene(model: model), transition: self.transition)
     //        }
     //    }
-//    func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
-//        print("Match found")
-//        if match.expectedPlayerCount == 0 {
-//            viewController.dismiss(animated: true, completion: {self.goToGame(match: match)})
-//        }
-//    }
+    //    func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
+    //        print("Match found")
+    //        if match.expectedPlayerCount == 0 {
+    //            viewController.dismiss(animated: true, completion: {self.goToGame(match: match)})
+    //        }
+    //    }
     
-//    func goToGame(match: GKMatch) {
-//        let gameScreenVC = self.storyboard?.instantiateViewController(withIdentifier: "mainGame") as! ViewController
-//        gameScreenVC.providesPresentationContextTransitionStyle = true
-//        gameScreenVC.definesPresentationContext = true
-//        gameScreenVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-//        gameScreenVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//        gameScreenVC.match = match
-//        self.present(gameScreenVC, animated: true, completion: nil)
-
+    //    func goToGame(match: GKMatch) {
+    //        let gameScreenVC = self.storyboard?.instantiateViewController(withIdentifier: "mainGame") as! ViewController
+    //        gameScreenVC.providesPresentationContextTransitionStyle = true
+    //        gameScreenVC.definesPresentationContext = true
+    //        gameScreenVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+    //        gameScreenVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+    //        gameScreenVC.match = match
+    //        self.present(gameScreenVC, animated: true, completion: nil)
+    
 }

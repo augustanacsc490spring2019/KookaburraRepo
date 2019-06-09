@@ -76,7 +76,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //print("isLocaMatch: \(isLocalMatch)")
         if (!isLocalMatch){
             print("setting playerColor at viewDidLoad from GameModel")
-            if (model.currentPlayer == GameModel.Player.white){
+            if (model.isWhiteTurn){
                 playerTurn = UIColor.white
                 playerColor = UIColor.white
                 print("playerColor and playerTurn set to white at viewDidLoad")
@@ -960,9 +960,6 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     func processGameUpdate() {
         print("place pieces processGameUpdate called")
-        let updatedBoard = combineFormations()
-        let updatedPieceNamesArray = model.updatePieceNamesArray(chessPieceArray: updatedBoard)
-        model.pieceNamesArray = updatedPieceNamesArray
         if self.playerColor == UIColor.white{
             model.whiteHasSetPieces = true
         } else {

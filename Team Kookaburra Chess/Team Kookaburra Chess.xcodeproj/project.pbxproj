@@ -13,7 +13,6 @@
 		251D1F5C22403DAD00AD7CE4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F5B22403DAD00AD7CE4 /* Actions.sks */; };
 		251D1F5E22403DAD00AD7CE4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F5D22403DAD00AD7CE4 /* GameScene.swift */; };
 		251D1F6022403DAD00AD7CE4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */; };
-		251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F6122403DAD00AD7CE4 /* Main.storyboard */; };
 		251D1F6522403DAE00AD7CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 251D1F6422403DAE00AD7CE4 /* Assets.xcassets */; };
 		251D1F7322403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F7222403DAE00AD7CE4 /* Team_Kookaburra_ChessTests.swift */; };
 		251D1F7E22403DAE00AD7CE4 /* Team_Kookaburra_ChessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D1F7D22403DAE00AD7CE4 /* Team_Kookaburra_ChessUITests.swift */; };
@@ -126,6 +125,7 @@
 		25BC737B2248226F0083D24E /* blackOgre.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC737A2248226F0083D24E /* blackOgre.png */; };
 		25BC737D224822750083D24E /* blackOrcWarrior.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC737C224822750083D24E /* blackOrcWarrior.png */; };
 		25BC737F224822840083D24E /* blackScout.png in Resources */ = {isa = PBXBuildFile; fileRef = 25BC737E224822840083D24E /* blackScout.png */; };
+		25CD622E22AC82E6003F5B87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25CD622A22AC76CA003F5B87 /* Main.storyboard */; };
 		25DEFD41224896E40024A78A /* blackArcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD40224896E40024A78A /* blackArcher.png */; };
 		25DEFD43224896E80024A78A /* blackDemon.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD42224896E80024A78A /* blackDemon.png */; };
 		25DEFD45224896EF0024A78A /* blackGuard.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DEFD44224896EF0024A78A /* blackGuard.png */; };
@@ -185,7 +185,6 @@
 		251D1F5B22403DAD00AD7CE4 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		251D1F5D22403DAD00AD7CE4 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		251D1F5F22403DAD00AD7CE4 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		251D1F6222403DAD00AD7CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		251D1F6422403DAE00AD7CE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		251D1F6922403DAE00AD7CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		251D1F6E22403DAE00AD7CE4 /* Team Kookaburra ChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Team Kookaburra ChessTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,6 +303,7 @@
 		25BC737A2248226F0083D24E /* blackOgre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackOgre.png; sourceTree = "<group>"; };
 		25BC737C224822750083D24E /* blackOrcWarrior.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackOrcWarrior.png; sourceTree = "<group>"; };
 		25BC737E224822840083D24E /* blackScout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackScout.png; sourceTree = "<group>"; };
+		25CD622B22AC76CA003F5B87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Team Kookaburra Chess/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
 		25DEFD40224896E40024A78A /* blackArcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArcher.png; sourceTree = "<group>"; };
 		25DEFD42224896E80024A78A /* blackDemon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackDemon.png; sourceTree = "<group>"; };
 		25DEFD44224896EF0024A78A /* blackGuard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackGuard.png; sourceTree = "<group>"; };
@@ -396,8 +396,8 @@
 				88357793227A8B12002AB7C1 /* Game Center */,
 				251D202B22431F2C00AD7CE4 /* Images */,
 				88E34F37225029EE007ED2F5 /* View Controllers */,
-				251D1F6122403DAD00AD7CE4 /* Main.storyboard */,
 				25FFCD632256D6F900C81196 /* Launch Screen.storyboard */,
+				25CD622A22AC76CA003F5B87 /* Main.storyboard */,
 				251D1F6422403DAE00AD7CE4 /* Assets.xcassets */,
 			);
 			path = "Team Kookaburra Chess";
@@ -728,6 +728,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25CD622E22AC82E6003F5B87 /* Main.storyboard in Resources */,
 				25B5F5E322501AC700DF89FE /* whiteScout.png in Resources */,
 				259FEDB02249BF6C006BE3E8 /* blackTrebuchet.png in Resources */,
 				259FEDB62249E7D3006BE3E8 /* blackMage.png in Resources */,
@@ -766,7 +767,6 @@
 				254C14852247E76A004359CE /* blackMonk.png in Resources */,
 				25B5F5F322501AC700DF89FE /* whiteOgre.png in Resources */,
 				258FEEE7225290F7007ED10C /* championTrophy.png in Resources */,
-				251D1F6322403DAD00AD7CE4 /* Main.storyboard in Resources */,
 				258FEEDB22527B0A007ED10C /* rankBronze.png in Resources */,
 				25FFCD5D2256D3F400C81196 /* alchemistIconHD.png in Resources */,
 				25B5F5D022501AC700DF89FE /* whitePawn.png in Resources */,
@@ -934,10 +934,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		251D1F6122403DAD00AD7CE4 /* Main.storyboard */ = {
+		25CD622A22AC76CA003F5B87 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				251D1F6222403DAD00AD7CE4 /* Base */,
+				25CD622B22AC76CA003F5B87 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

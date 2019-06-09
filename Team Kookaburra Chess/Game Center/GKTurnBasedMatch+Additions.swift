@@ -40,6 +40,7 @@ extension GKTurnBasedMatch {
     }
     
     //func turnBasedMatchListLauncherDidSelectMatch: [GPGTurneBasedMatch]{
-        //add code to creat match
+    //add code to creat match
     //}
 }
+

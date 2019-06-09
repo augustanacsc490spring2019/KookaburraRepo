@@ -9,7 +9,7 @@
 
 import UIKit
 
-enum PieceType {
+enum PieceType: String,Codable {
     case dummy
     //tier 5
     case unicorn
@@ -62,7 +62,43 @@ enum PieceType {
     case footSoldier
 }
 
+struct ChessPieceBasicInfo : Codable {
+    
+    var red : CGFloat = 42
+    var green: CGFloat = 0
+    var blue: CGFloat = 0
+    var alpha: CGFloat = 0
+    
+    var row: Int
+    var col: Int
+    
+    
+    // var color: UIColor
+    var type: PieceType
+    var advancingByTwo: Bool
+    var firstMove: Bool
+    
+    
+    
+    init(uiColor:UIColor, r:Int, c: Int,t: PieceType, a:Bool, f:Bool) {
+        uiColor.getRed( &red, green: &green, blue: &blue, alpha: &alpha)
+        row = r
+        col = c
+        type = t
+        advancingByTwo = a
+        firstMove = f
+    }
+    
+    var uiColor : UIColor {
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}
+
+
+
 class ChessPiece {
+    
+    /* critical info to encode in Match */
     
     var row: Int = 0 {
         didSet {
@@ -75,15 +111,20 @@ class ChessPiece {
         }
     }
     
-    var bIndex: BoardIndex
-    var symbol: String
-    var symbolImage: UIImage
     var color: UIColor
     var type: PieceType
-    var summonCost: Int
     var advancingByTwo = false // Only for pawn type
     var firstMove = true // Only for king type
     //var pawnFirstMove = true // only for pawn type
+    
+    /*--------------------------------------------*/
+    
+    var bIndex: BoardIndex
+    var symbol: String
+    var symbolImage: UIImage
+    
+    var summonCost: Int
+    
     var playerColor: UIColor
     
     init(row: Int, column: Int, color: UIColor, type: PieceType, player: UIColor) {
@@ -98,6 +139,21 @@ class ChessPiece {
         self.playerColor = player
         self.summonCost = 0
         setupSymbol()
+    }
+    
+    func getBasicInfo() -> ChessPieceBasicInfo {
+        
+        let info = ChessPieceBasicInfo.init(
+            uiColor: self.color,
+            r: self.row,
+            c: self.col,
+            t: self.type,
+            a: self.advancingByTwo,
+            f: self.firstMove
+        )
+        
+        return info
+        
     }
     
     func updateIndex() {
@@ -116,141 +172,141 @@ class ChessPiece {
     func setupSymbol() {
         //print("ChessPiece setupSymbol called")
         if color == .black{
-        switch type {
-        case .pawn:
-            symbol = "blackPawn.png"
-            summonCost = 10
-        case .rook:
-            symbol = "testRook.png"
-            summonCost = 50
-        case .knight:
-            symbol = "blackKnight.png"
-            summonCost = 30
-        case .bishop:
-            symbol = "blackBishop.png"
-            summonCost = 35
-        case .king:
-            symbol = "blackKing.png"
-            summonCost = 40
-        case .queen:
-            symbol = "blackQueen.png"
-            summonCost = 100
-        case .dummy:
-            symbol = "blankPiece.png"
-        case .ghostQueen:
-            symbol = "blackGhostQueen.png"
-            summonCost = 20
-        case .dwarf:
-            symbol = "blackDwarf.png"
-            summonCost = 10
-        case .footSoldier:
-            symbol = "blackFootsoldier.png"
-            summonCost = 12
-        case .monk:
-            symbol = "blackMonk.png"
-            summonCost = 10
-        case .gargoyle:
-            symbol = "blackGargoyle.png"
-            summonCost = 10
-        case .goblin:
-            symbol = "blackGoblin.png"
-            summonCost = 15
-        case .scout:
-            symbol = "blackScout.png"
-            summonCost = 25
-        case .ogre:
-            symbol = "blackOgre.png"
-            summonCost = 18
-        case .orcWarrior:
-            symbol = "blackOrcWarrior.png"
-            summonCost = 20
-        case .elephant:
-            symbol = "blackElephant.png"
-            summonCost = 20
-        case .manAtArms:
-            symbol = "blackManAtArms.png"
-            summonCost = 20
-        case .swordsman:
-            symbol = "blackSwordsman.png"
-            summonCost = 15
-        case .archer:
-            symbol = "blackArcher.png"
-            summonCost = 25
-        case .pikeman:
-            symbol = "blackPikeman.png"
-            summonCost = 25
-        case .royalGuard:
-            symbol = "blackGuard.png"
-            summonCost = 25
-        case .demon:
-            symbol = "blackDemon.png"
-            summonCost = 20
-        case .basilisk:
-            symbol = "blackBasilisk.png"
-            summonCost = 40
-        case .fireDragon:
-            symbol = "blackFireDragon.png"
-            summonCost = 60
-        case .iceDragon:
-            symbol = "blackIceDragon.png"
-            summonCost = 60
-        case .minotaur:
-            symbol = "blackMinotaur.png"
-            summonCost = 75
-        case .monopod:
-            symbol = "blackMonopod.png"
-            summonCost = 75
-        case .ship:
-            symbol = "blackShip.png"
-            summonCost = 70
-        case .batteringRam:
-            symbol = "blackBatteringRam.png"
-            summonCost = 25
-        case .ballista:
-            symbol = "blackBallista.png"
-            summonCost = 30
-        case .trebuchet:
-            symbol = "blackTrebuchet.png"
-            summonCost = 30
-        case .leftElf:
-            symbol = "blackLeftyElf.png"
-            summonCost = 30
-        case .rightElf:
-            symbol = "blackRightyElf.png"
-            summonCost = 30
-        case .mage:
-            symbol = "blackMage.png"
-            summonCost = 80
-        case .centaur:
-            symbol = "blackCentaur.png"
-            summonCost = 80
-        case .camel:
-            symbol = "blackCamel.png"
-            summonCost = 45
-        case .unicorn:
-            symbol = "blackUnicorn.png"
-            summonCost = 150
-        case .superKing:
-            symbol = "blackSuperking.png"
-            summonCost = 120
-        case .griffin:
-            symbol = "blackGriffin.png"
-            summonCost = 130
-        case .dragonRider:
-            symbol = "blackDragonRider.png"
-            summonCost = 150
-        case .bombard:
-            symbol = "blackBombard.png"
-            summonCost = 140
-        case .manticore:
-            symbol = "blackManticore.png"
-            summonCost = 90
-        case .boar:
-            symbol = "blackBoar.png"
-            summonCost = 70
-        case .thunderChariot:
-            symbol = "blackThunderChariot.png"
-            summonCost = 60
+            switch type {
+            case .pawn:
+                symbol = "blackPawn.png"
+                summonCost = 10
+            case .rook:
+                symbol = "testRook.png"
+                summonCost = 50
+            case .knight:
+                symbol = "blackKnight.png"
+                summonCost = 30
+            case .bishop:
+                symbol = "blackBishop.png"
+                summonCost = 35
+            case .king:
+                symbol = "blackKing.png"
+                summonCost = 40
+            case .queen:
+                symbol = "blackQueen.png"
+                summonCost = 100
+            case .dummy:
+                symbol = "blankPiece.png"
+            case .ghostQueen:
+                symbol = "blackGhostQueen.png"
+                summonCost = 20
+            case .dwarf:
+                symbol = "blackDwarf.png"
+                summonCost = 10
+            case .footSoldier:
+                symbol = "blackFootsoldier.png"
+                summonCost = 12
+            case .monk:
+                symbol = "blackMonk.png"
+                summonCost = 10
+            case .gargoyle:
+                symbol = "blackGargoyle.png"
+                summonCost = 10
+            case .goblin:
+                symbol = "blackGoblin.png"
+                summonCost = 15
+            case .scout:
+                symbol = "blackScout.png"
+                summonCost = 25
+            case .ogre:
+                symbol = "blackOgre.png"
+                summonCost = 18
+            case .orcWarrior:
+                symbol = "blackOrcWarrior.png"
+                summonCost = 20
+            case .elephant:
+                symbol = "blackElephant.png"
+                summonCost = 20
+            case .manAtArms:
+                symbol = "blackManAtArms.png"
+                summonCost = 20
+            case .swordsman:
+                symbol = "blackSwordsman.png"
+                summonCost = 15
+            case .archer:
+                symbol = "blackArcher.png"
+                summonCost = 25
+            case .pikeman:
+                symbol = "blackPikeman.png"
+                summonCost = 25
+            case .royalGuard:
+                symbol = "blackGuard.png"
+                summonCost = 25
+            case .demon:
+                symbol = "blackDemon.png"
+                summonCost = 20
+            case .basilisk:
+                symbol = "blackBasilisk.png"
+                summonCost = 40
+            case .fireDragon:
+                symbol = "blackFireDragon.png"
+                summonCost = 60
+            case .iceDragon:
+                symbol = "blackIceDragon.png"
+                summonCost = 60
+            case .minotaur:
+                symbol = "blackMinotaur.png"
+                summonCost = 75
+            case .monopod:
+                symbol = "blackMonopod.png"
+                summonCost = 75
+            case .ship:
+                symbol = "blackShip.png"
+                summonCost = 70
+            case .batteringRam:
+                symbol = "blackBatteringRam.png"
+                summonCost = 25
+            case .ballista:
+                symbol = "blackBallista.png"
+                summonCost = 30
+            case .trebuchet:
+                symbol = "blackTrebuchet.png"
+                summonCost = 30
+            case .leftElf:
+                symbol = "blackLeftyElf.png"
+                summonCost = 30
+            case .rightElf:
+                symbol = "blackRightyElf.png"
+                summonCost = 30
+            case .mage:
+                symbol = "blackMage.png"
+                summonCost = 80
+            case .centaur:
+                symbol = "blackCentaur.png"
+                summonCost = 80
+            case .camel:
+                symbol = "blackCamel.png"
+                summonCost = 45
+            case .unicorn:
+                symbol = "blackUnicorn.png"
+                summonCost = 150
+            case .superKing:
+                symbol = "blackSuperking.png"
+                summonCost = 120
+            case .griffin:
+                symbol = "blackGriffin.png"
+                summonCost = 130
+            case .dragonRider:
+                symbol = "blackDragonRider.png"
+                summonCost = 150
+            case .bombard:
+                symbol = "blackBombard.png"
+                summonCost = 140
+            case .manticore:
+                symbol = "blackManticore.png"
+                summonCost = 90
+            case .boar:
+                symbol = "blackBoar.png"
+                summonCost = 70
+            case .thunderChariot:
+                symbol = "blackThunderChariot.png"
+                summonCost = 60
             }
         } else if color == .white{
             switch type {
@@ -507,29 +563,29 @@ class ChessPiece {
         if self.col == dest.column {
             // can only move 2 forward if first time moving pawn
             if playerColor == .white{
-            if color != playerColor {
-                if row == 1 && dest.row == 3 {
-                    advancingByTwo = true
-                    return true
-                } else if row == 0 && dest.row == 2{
-                    advancingByTwo = true
-                    return true
-                } else if row == 2 && dest.row == 4{
-                    advancingByTwo = true
-                    return true
+                if color != playerColor {
+                    if row == 1 && dest.row == 3 {
+                        advancingByTwo = true
+                        return true
+                    } else if row == 0 && dest.row == 2{
+                        advancingByTwo = true
+                        return true
+                    } else if row == 2 && dest.row == 4{
+                        advancingByTwo = true
+                        return true
+                    }
+                } else {
+                    if row == 6 && dest.row == 4 {
+                        advancingByTwo = true
+                        return true
+                    } else if row == 7 && dest.row == 5{
+                        advancingByTwo = true
+                        return true
+                    } else if row == 5 && dest.row == 3{
+                        advancingByTwo = true
+                        return true
+                    }
                 }
-            } else {
-                if row == 6 && dest.row == 4 {
-                    advancingByTwo = true
-                    return true
-                } else if row == 7 && dest.row == 5{
-                    advancingByTwo = true
-                    return true
-                } else if row == 5 && dest.row == 3{
-                    advancingByTwo = true
-                    return true
-                }
-            }
             } else {
                 if color == playerColor {
                     if row == 1 && dest.row == 3 {
@@ -667,11 +723,11 @@ class ChessPiece {
         if (rowDelta == 0 || rowDelta == 1) && (colDelta == 0 || colDelta == 1) {
             return true
         }
-//        if firstMove {
-//            if rowDelta == 0 && colDelta == 2 {
-//                return true
-//            }
-//        }
+        //        if firstMove {
+        //            if rowDelta == 0 && colDelta == 2 {
+        //                return true
+        //            }
+        //        }
         return false
     }
     
@@ -776,12 +832,12 @@ class ChessPiece {
     
     func checkSwordsman(dest: BoardIndex) -> Bool {
         if color == .black {
-        let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col), (self.row + 1, self.col - 1)]
-        for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
-                return true
+            let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col), (self.row + 1, self.col - 1)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
             }
-        }
         } else {//color == .white{
             let validMoves = [(self.row - 1, self.col + 1), (self.row - 1, self.col), (self.row - 1, self.col - 1)]
             for (validRow, validCol) in validMoves {
@@ -815,12 +871,12 @@ class ChessPiece {
     
     func checkScout(dest: BoardIndex) -> Bool {
         if color == .black{
-        let validMoves = [(self.row + 2, self.col + 1), (self.row + 2, self.col - 1), (self.row - 1, self.col)]
-        for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
-                return true
+            let validMoves = [(self.row + 2, self.col + 1), (self.row + 2, self.col - 1), (self.row - 1, self.col)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
             }
-        }
         } else { //color == .white{
             let validMoves = [(self.row - 2, self.col + 1), (self.row - 2, self.col - 1), (self.row + 1, self.col)]
             for (validRow, validCol) in validMoves {
@@ -838,12 +894,12 @@ class ChessPiece {
     
     func checkMonk(dest: BoardIndex) -> Bool {
         if color == .black{
-        let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col - 1)]
-        for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
-                return true
+            let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col - 1)]
+            for (validRow, validCol) in validMoves {
+                if dest.row == validRow && dest.column == validCol {
+                    return true
+                }
             }
-        }
         }else {//if color == .white{
             let validMoves = [(self.row - 1, self.col + 1), (self.row - 1, self.col - 1)]
             for (validRow, validCol) in validMoves {
@@ -902,129 +958,129 @@ class ChessPiece {
         }
         return false
     }
-        
-        func checkManticore(dest: BoardIndex) -> Bool {
-            return checkMonopod(dest: dest) || checkKing(dest: dest)
-        }
-        
-        func checkBatteringRam(dest: BoardIndex) -> Bool{
-            if color == .black{
-                if checkQueen(dest: dest){
-                    if dest.row > row{
-                        return true
-                    }
-                }
-            } else { //color == .white{
-                if checkQueen(dest: dest){
-                    if dest.row < row{
-                        return true
-                    }
+    
+    func checkManticore(dest: BoardIndex) -> Bool {
+        return checkMonopod(dest: dest) || checkKing(dest: dest)
+    }
+    
+    func checkBatteringRam(dest: BoardIndex) -> Bool{
+        if color == .black{
+            if checkQueen(dest: dest){
+                if dest.row > row{
+                    return true
                 }
             }
-            return false
+        } else { //color == .white{
+            if checkQueen(dest: dest){
+                if dest.row < row{
+                    return true
+                }
+            }
         }
-        
-        func checkBasilisk(dest: BoardIndex) -> Bool{
-            if dest.row == row{
+        return false
+    }
+    
+    func checkBasilisk(dest: BoardIndex) -> Bool{
+        if dest.row == row{
+            return checkRook(dest: dest)
+        } else{
+            return checkKing(dest: dest)
+        }
+    }
+    
+    func checkBallista(dest: BoardIndex) -> Bool {
+        if color == .black{
+            //can move like a rook towards the enemy
+            if dest.row > row{
                 return checkRook(dest: dest)
-            } else{
-                return checkKing(dest: dest)
+                //can move like a bishop away from the enemy
+            } else if dest.row < row{
+                return checkBishop(dest: dest)
+            }
+        } else {// if color == .white
+            if dest.row < row{
+                return checkRook(dest: dest)
+            } else if dest.row > row{
+                return checkBishop(dest: dest)
             }
         }
-        
-        func checkBallista(dest: BoardIndex) -> Bool {
-            if color == .black{
-                //can move like a rook towards the enemy
-                if dest.row > row{
-                    return checkRook(dest: dest)
-                    //can move like a bishop away from the enemy
-                } else if dest.row < row{
-                    return checkBishop(dest: dest)
-                }
-            } else {// if color == .white
-                if dest.row < row{
-                    return checkRook(dest: dest)
-                } else if dest.row > row{
-                    return checkBishop(dest: dest)
-                }
+        return false
+    }
+    
+    func checkTrebuchet(dest: BoardIndex) -> Bool{
+        if color == .black{
+            //can move like a bishop towards the enemy
+            if dest.row > row{
+                return checkBishop(dest: dest)
+                //can move like a rook away from the enemy
+            } else if dest.row < row{
+                return checkRook(dest: dest)
             }
-            return false
-        }
-        
-        func checkTrebuchet(dest: BoardIndex) -> Bool{
-            if color == .black{
-                //can move like a bishop towards the enemy
-                if dest.row > row{
-                    return checkBishop(dest: dest)
-                    //can move like a rook away from the enemy
-                } else if dest.row < row{
-                    return checkRook(dest: dest)
-                }
-            } else {// if color == .white
-                if dest.row < row{
-                    return checkBishop(dest: dest)
-                } else if dest.row > row{
-                    return checkRook(dest: dest)
-                }
+        } else {// if color == .white
+            if dest.row < row{
+                return checkBishop(dest: dest)
+            } else if dest.row > row{
+                return checkRook(dest: dest)
             }
-            return false
         }
-        
-        func checkLeftyElf(dest: BoardIndex) -> Bool{
-            if color == .black{
-                if dest.column > col{//to the right
-                    return checkBishop(dest: dest)
-                } else if dest.column < col{//to the left
-                    return checkKnight(dest: dest)
-                }
-            } else {//if color == .white
-                if dest.column > col{//to the right
-                    return checkKnight(dest: dest)
-                } else if dest.column < col{//to the left
-                    return checkBishop(dest: dest)
-                }
+        return false
+    }
+    
+    func checkLeftyElf(dest: BoardIndex) -> Bool{
+        if color == .black{
+            if dest.column > col{//to the right
+                return checkBishop(dest: dest)
+            } else if dest.column < col{//to the left
+                return checkKnight(dest: dest)
             }
-            return false
-        }
-        
-        func checkRightyElf(dest: BoardIndex) -> Bool{
-            if color == .black{
-                if dest.column > col{//to the right
-                    return checkKnight(dest: dest)
-                } else if dest.column < col{//to the left
-                    return checkBishop(dest: dest)
-                }
-            } else {//if color == .white
-                if dest.column > col{//to the right
-                    return checkBishop(dest: dest)
-                } else if dest.column < col{//to the left
-                    return checkKnight(dest: dest)
-                }
+        } else {//if color == .white
+            if dest.column > col{//to the right
+                return checkKnight(dest: dest)
+            } else if dest.column < col{//to the left
+                return checkBishop(dest: dest)
             }
-            return false
         }
-        
-        func checkShip(dest: BoardIndex) -> Bool{
-            if dest.column == (col + 1) || dest.column == (col - 1){
-                if dest.row != row{
-                    return true
-                }
+        return false
+    }
+    
+    func checkRightyElf(dest: BoardIndex) -> Bool{
+        if color == .black{
+            if dest.column > col{//to the right
+                return checkKnight(dest: dest)
+            } else if dest.column < col{//to the left
+                return checkBishop(dest: dest)
             }
-            return false
-        }
-        
-        func checkGriffin(dest: BoardIndex) -> Bool{
-            if dest.column == (col + 1) || dest.column == (col - 1){
-                if dest.row != row{
-                    return true
-                }
-            } else if dest.row == (row + 1) || dest.row == (row - 1){
-                if dest.column != col{
-                    return true
-                }
+        } else {//if color == .white
+            if dest.column > col{//to the right
+                return checkBishop(dest: dest)
+            } else if dest.column < col{//to the left
+                return checkKnight(dest: dest)
             }
-            return false
         }
+        return false
+    }
+    
+    func checkShip(dest: BoardIndex) -> Bool{
+        if dest.column == (col + 1) || dest.column == (col - 1){
+            if dest.row != row{
+                return true
+            }
+        }
+        return false
+    }
+    
+    func checkGriffin(dest: BoardIndex) -> Bool{
+        if dest.column == (col + 1) || dest.column == (col - 1){
+            if dest.row != row{
+                return true
+            }
+        } else if dest.row == (row + 1) || dest.row == (row - 1){
+            if dest.column != col{
+                return true
+            }
+        }
+        return false
+    }
     
     func checkBoar(dest: BoardIndex) -> Bool{
         let validMoves =  [(self.row + 2, self.col + 2), (self.row + 1, self.col), (self.row + 2, self.col), (self.row + 1, self.col + 1), (self.row + 2, self.col + 2), (self.row, self.col + 1), (self.row, self.col + 2), (self.row, self.col - 1), (self.row, self.col - 2), (self.row + 1, self.col - 1), (self.row + 2, self.col - 2), (self.row, self.col - 1), (self.row, self.col - 2), (self.row - 1, self.col - 1), (self.row - 2, self.col - 2), (self.row - 1, self.col + 1), (self.row + 2, self.col + 2), (self.row - 2, self.col), (self.row - 1, self.col), (self.row - 2, self.col - 2), (self.row + 2, self.col - 2), (self.row - 2, self.col + 2)]

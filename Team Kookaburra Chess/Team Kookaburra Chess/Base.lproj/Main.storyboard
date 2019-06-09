@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -119,6 +118,7 @@
                                 </state>
                                 <connections>
                                     <action selector="quickTestButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="NEL-IR-Bij"/>
+                                    <segue destination="eT3-ZL-FIO" kind="showDetail" identifier="PlacePiecesSegue" id="gjB-tX-g2I"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1VV-nz-4qt" userLabel="demotion image">
@@ -158,7 +158,7 @@
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="eT3-ZL-FIO" kind="show" identifier="OnlinePlacePiecesSegue" id="PKa-wr-jw9"/>
+                                    <segue destination="eT3-ZL-FIO" kind="showDetail" identifier="OnlinePlacePiecesSegue" id="PKa-wr-jw9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -211,7 +211,7 @@
                         <segue destination="fhK-sB-HUu" kind="showDetail" identifier="MyFriendsBtSegue" id="x71-Kx-mDm"/>
                         <segue destination="zEu-Gh-aaY" kind="showDetail" identifier="MyStatsSegue" id="ikF-3A-UMu"/>
                         <segue destination="59Q-8H-ows" kind="showDetail" identifier="QuickTestSegue" id="5Ru-Ct-ZdM"/>
-                        <segue destination="eT3-ZL-FIO" kind="show" identifier="PlacePiecesSegue" id="DDD-cs-UHp"/>
+                        <segue destination="zVE-eY-227" kind="showDetail" identifier="OnlineChessVCSegue" id="N8g-z2-68R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -472,7 +472,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
         <!--PlacePiecesViewController-->
         <scene sceneID="ChV-R6-9Dt">
             <objects>
-                <viewController storyboardIdentifier="PlacePiecesViewController" title="PlacePiecesViewController" id="eT3-ZL-FIO" customClass="PlacePiecesViewController" customModule="Team_Kookaburra_Chess" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlacePiecesViewController" title="PlacePiecesViewController" id="eT3-ZL-FIO" customClass="PlacePiecesViewController" customModule="Team_Kookaburra_Chess" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jh7-p6-UPW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -629,7 +629,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
                         <outlet property="resetButton" destination="dXo-Tb-L47" id="ftc-mo-oCI"/>
                         <outlet property="tipLabel" destination="lBF-bP-iXx" id="a6d-LS-J6v"/>
                         <outlet property="yourColor" destination="Iys-yO-tj8" id="puq-K8-Tb0"/>
-                        <segue destination="zVE-eY-227" kind="showDetail" identifier="LocalMatchSegue" id="Reh-zF-BU3"/>
+                        <segue destination="zVE-eY-227" kind="show" identifier="LocalMatchSegue" id="Reh-zF-BU3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ZC-Vp-5Mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -910,7 +910,8 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ynr-Ld-Yg9"/>
-        <segue reference="PKa-wr-jw9"/>
-        <segue reference="jpc-O9-TBa"/>
+        <segue reference="Reh-zF-BU3"/>
+        <segue reference="gjB-tX-g2I"/>
+        <segue reference="HNR-C8-Mxw"/>
     </inferredMetricsTieBreakers>
 </document>

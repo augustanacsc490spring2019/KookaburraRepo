@@ -31,30 +31,34 @@ import GameKit
 //struct GameModel {
 struct GameModel: Codable{
     //NOTE: We need to make this class Codable for serialization in order to send it's data to Game Center.
-    //currently BoardCell isn't Codable which causes problems. 
+    //currently BoardCell isn't Codable which causes problems.
+    
+    
+    /* ChessVC has boardCells as 2 dimensional array of BoardCell views
+     each BoardCell view contains important data, which can be retrieved with
+     
+     BoardCell.piece.getBasicInfo -> ChessPieceBasicInfo
+     
+     
+     */
     
     //var lastMove: Move?
-    //var boardCells: [BoardCell]
-    var pieceNamesArray = [[String]]()
+    
+    var piecesArray = [ChessPieceBasicInfo]()
     //var pieceNamesArray = [[String]](repeating: [String](repeating: 0, count: 8), count: 8) //8 by 8 array of Strings
     
     var winner: Player?
     
-    var currentPlayer: Player {
-        return isWhiteTurn ? .white : .black
-    }
+    var playerColors = [String?](repeating:nil,count:2)
     
-    var currentOpponent: Player {
-        return isWhiteTurn ? .black : .white
-    }
     
     var messageToDisplay: String {
-        return "generic message for now, possibly about who's turn it is"
+        return "generic message for now, possibly about whose turn it is"
     }
     
-//    var isCapturingPiece: Bool {
-//        return currentMill != nil
-//    }
+    //    var isCapturingPiece: Bool {
+    //        return currentMill != nil
+    //    }
     
     //ignore all of this for now. I thought about going down a rabbit hole where placing pieces didn't get
     //determined based off a blank chessboard but were saved here instead.
@@ -72,6 +76,8 @@ struct GameModel: Codable{
         //print("GameModel init called. isWhiteTurn = \(self.isWhiteTurn). currentPlayer = \(self.currentPlayer)")
         
         //boardCells = [BoardCell]()
+        
+        // chessBoard = ChessBoard(playerColor: UIColor.white)
         
     }
     
@@ -126,42 +132,49 @@ struct GameModel: Codable{
         return pieceNamesArray
     }
     
-   
-//    mutating func advance() {
-//        if tokensPlaced == maxTokenCount && state == .placement {
-//            state = .movement
-//        }
-//
-//        turn += 1
-//        currentMill = nil
-//
-//        if state == .movement {
-//            if tokenCount(for: currentOpponent) == 2 || !canMove(currentOpponent) {
-//                winner = currentPlayer
-//            } else {
-//                isKnightTurn = !isKnightTurn
-//            }
-//        } else {
-//            isKnightTurn = !isKnightTurn
-//        }
-//    }
+    mutating func setPieces(playerColor: UIColor, boardCells: [[BoardCell]] ) {
+        
+        if (playerColor == .white) { whiteHasSetPieces = true }
+        if (playerColor == .black) { blackHasSetPieces = true }
+        
+        //  chessBoard.board = chessBoard.setFormation(playerColor: playerColor, formation: boardCells);
+        
+    }
+    //    mutating func advance() {
+    //        if tokensPlaced == maxTokenCount && state == .placement {
+    //            state = .movement
+    //        }
+    //
+    //        turn += 1
+    //        currentMill = nil
+    //
+    //        if state == .movement {
+    //            if tokenCount(for: currentOpponent) == 2 || !canMove(currentOpponent) {
+    //                winner = currentPlayer
+    //            } else {
+    //                isKnightTurn = !isKnightTurn
+    //            }
+    //        } else {
+    //            isKnightTurn = !isKnightTurn
+    //        }
+    //    }
     
-
     
-//    func canMove(_ player: Player) -> Bool {
-//        let playerTokens = tokens.filter { token in
-//            return token.player == player
-//        }
-//
-//        for token in playerTokens {
-//            let emptyNeighbors = neighbors(at: token.coord).filter({ emptyCoordinates.contains($0) })
-//            if !emptyNeighbors.isEmpty {
-//                return true
-//            }
-//        }
-//
-//        return false
-//    }
+    
+    //    func canMove(_ player: Player) -> Bool {
+    //        let playerTokens = tokens.filter { token in
+    //            return token.player == player
+    //        }
+    //
+    //        for token in playerTokens {
+    //            let emptyNeighbors = neighbors(at: token.coord).filter({ emptyCoordinates.contains($0) })
+    //            if !emptyNeighbors.isEmpty {
+    //                return true
+    //            }
+    //        }
+    //
+    //        return false
+    //    }
 }
 
 // MARK: - Types
@@ -194,9 +207,9 @@ extension GameModel {
         let coord: GridCoordinate
     }
     
-//    struct BoardCell: Codable, Equatable {
-//
-//    }
+    //    struct BoardCell: Codable, Equatable {
+    //
+    //    }
     
     struct Move: Codable, Equatable {
         var placed: GridCoordinate?
