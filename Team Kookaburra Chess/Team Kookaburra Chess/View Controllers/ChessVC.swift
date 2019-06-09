@@ -21,12 +21,11 @@ class ChessVC: UIViewController {
     var possibleMoves = [BoardIndex]()
     var possibleAttacks = [BoardIndex]()
     var playerTurn = UIColor.white
-//    var whiteFormation = [[BoardCell]]()
-//    var blackFormation = [[BoardCell]]()
+    //    var whiteFormation = [[BoardCell]]()
+    //    var blackFormation = [[BoardCell]]()
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
-    var isLocalMatch: Bool
+    var isLocalMatch: Bool = true
     var model: GameModel
-    var pieceNamesArray: [[String]]
     
     let turnLabel: UILabel = {
         let label = UILabel()
@@ -63,49 +62,79 @@ class ChessVC: UIViewController {
     }()
     
     //from Nine Knights GameScene, which is an SKScene
-//    init(model: GameModel) {
-//        self.model = model
-//
-//        super.init()//(size: .zero)
-//
-//       scaleMode = .resizeFill
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        self.pieceNamesArray = [[String]]()
-        self.model = GameModel()
-        self.isLocalMatch = true
-        super.init(coder: aDecoder)
+    init(model: GameModel) {
+        
+        self.model = model
+        
+        super.init(nibName:nil , bundle:nil)
+        
     }
     
-//    override func loadView() {
-//        print("ChessVC loadView called")
-//        checkIfPlacePiecesNeeded()
-//    }
+    required init?(coder aDecoder: NSCoder) {
+        self.model = GameModel()
+        super.init(nibName:nil , bundle:nil)
+        print("  fatalError(\"init(coder:) has not been implemented\")")
+    }
+    
+    //     from anthony
+    //    required init?(coder aDecoder: NSCoder) {
+    //        self.pieceNamesArray = [[String]]()
+    //        self.model = GameModel()
+    //        self.isLocalMatch = true
+    //        super.init(coder: aDecoder)
+    //    }
+    
+    //    override func loadView() {
+    //        print("ChessVC loadView called")
+    //        checkIfPlacePiecesNeeded()
+    //    }
     
     override func viewDidLoad() {
         print("ChessVC viewdidload called")
         //checkIfPlacePiecesNeeded()
-//        print ("isLocalMatch a viewDidLoad: \(isLocalMatch)")
-//        var isNewMatch: Bool = checkIsNewMatch()
-//        print("isnewMatch: \(isNewMatch)")
-//        if !isLocalMatch {//}&& checkIsNewMatch() {
-//            print("attempted segue to online place pieces")
-////            let onlinePlacePieces = PlacePiecesViewController()
-////            onlinePlacePieces.addStarterKing()
-////            self.present(onlinePlacePieces, animated: true, completion: nil)
-//            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
-//            //Makes online players place pieces before can make moves
-//        }
+        //        print ("isLocalMatch a viewDidLoad: \(isLocalMatch)")
+        //        var isNewMatch: Bool = checkIsNewMatch()
+        //        print("isnewMatch: \(isNewMatch)")
+        //        if !isLocalMatch {//}&& checkIsNewMatch() {
+        //            print("attempted segue to online place pieces")
+        ////            let onlinePlacePieces = PlacePiecesViewController()
+        ////            onlinePlacePieces.addStarterKing()
+        ////            self.present(onlinePlacePieces, animated: true, completion: nil)
+        //            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+        //            //Makes online players place pieces before can make moves
+        //        }
+        
+        // if online match, reset board using self.model.piecesArray
+        if (!isLocalMatch) {
+            
+            // fill boardCells with all dummy pieces
+            for r in 0...7 {
+                for c in 0...7 {
+                    boardCells[r][c].piece.type = .dummy
+                    boardCells[r][c].piece.color = .clear
+                    boardCells[r][c].piece.setupSymbol()
+                }
+                
+            }
+            
+            // get pieces from self.model and put on our board
+            for pieceInfo in self.model.piecesArray {
+                
+                boardCells[pieceInfo.row][pieceInfo.col].piece.type = pieceInfo.type
+                boardCells[pieceInfo.row][pieceInfo.col].piece.color = pieceInfo.uiColor
+                boardCells[pieceInfo.row][pieceInfo.col].piece.firstMove = pieceInfo.firstMove
+                boardCells[pieceInfo.row][pieceInfo.col].piece.advancingByTwo = pieceInfo.advancingByTwo
+                
+                boardCells[pieceInfo.row][pieceInfo.col].piece.setupSymbol()
+                
+            }
+            
+        } // not a local match
+        
         super.viewDidLoad()
         view.backgroundColor = UIColor(white: 0.1, alpha: 1)
         UIApplication.shared.statusBarStyle = .lightContent
-
+        
         chessBoard.delegate = self
         drawBoard()
         setupViews()
@@ -113,30 +142,30 @@ class ChessVC: UIViewController {
         //print("White Formation: \(whiteFormation)")
         //print("Black Formation: \(blackFormation)")
     }
-
-    //probably don't need anymore
-//    func checkIfPlacePiecesNeeded(){
-//        print ("isLocalMatch: \(isLocalMatch)")
-//        var isNewMatch: Bool = checkIsNewMatch()
-//        print("isnewMatch: \(isNewMatch)")
-//        if !isLocalMatch {//}&& checkIsNewMatch() {
-//            print("attempted segue to online place pieces")
-//            //            let onlinePlacePieces = PlacePiecesViewController()
-//            //            onlinePlacePieces.addStarterKing()
-//            //            self.present(onlinePlacePieces, animated: true, completion: nil)
-//            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
-//            //Makes online players place pieces before can make moves
-//        }
-//    }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "OnlinePlacePiecesSegue") {
-//            print("prepare for OnlinePlacePiecesSegue called")
-//            let vc = segue.destination as! PlacePiecesViewController
-//            //vc.playerColor = playerColor
-//            vc.boardCells = boardCells
-//        }
-//    }
+    //probably don't need anymore
+    //    func checkIfPlacePiecesNeeded(){
+    //        print ("isLocalMatch: \(isLocalMatch)")
+    //        var isNewMatch: Bool = checkIsNewMatch()
+    //        print("isnewMatch: \(isNewMatch)")
+    //        if !isLocalMatch {//}&& checkIsNewMatch() {
+    //            print("attempted segue to online place pieces")
+    //            //            let onlinePlacePieces = PlacePiecesViewController()
+    //            //            onlinePlacePieces.addStarterKing()
+    //            //            self.present(onlinePlacePieces, animated: true, completion: nil)
+    //            self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+    //            //Makes online players place pieces before can make moves
+    //        }
+    //    }
+    
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if (segue.identifier == "OnlinePlacePiecesSegue") {
+    //            print("prepare for OnlinePlacePiecesSegue called")
+    //            let vc = segue.destination as! PlacePiecesViewController
+    //            //vc.playerColor = playerColor
+    //            vc.boardCells = boardCells
+    //        }
+    //    }
     
     func drawBoard() {
         //print("chessVC drawBoard called")
@@ -275,11 +304,11 @@ extension ChessVC: BoardCellDelegate {
                     pieceBeingMoved = nil
                     if playerTurn == .white{
                         if chessBoard.canPlayerTakeTurn(color: .black){
-                            changeTurn()
+                            endTurn()
                         }
                     } else {//if playerTurn == .black
                         if chessBoard.canPlayerTakeTurn(color: .white){
-                            changeTurn()
+                            endTurn()
                         }
                     }
                     
@@ -314,26 +343,26 @@ extension ChessVC: BoardCellDelegate {
                     highlightPossibleAttacks()
                 }
             }
-//            if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color == playerTurn {
-//                // remove the old selected cell coloring and set new piece
-//                boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
-//                pieceBeingMoved = cell.piece
-//                cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
-//
-//                // reset the possible moves
-//                removeHighlights()
-//                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
-//                highlightPossibleMoves()
-//            } else if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color != playerTurn {
-//                // remove the old selected cell coloring and set new piece
-//                boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
-//                pieceBeingMoved = cell.piece
-//                cell.backgroundColor = UIColor.red
-//
-//                // reset the possible moves
-//                removeHighlights()
-//                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
-//            }
+            //            if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color == playerTurn {
+            //                // remove the old selected cell coloring and set new piece
+            //                boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
+            //                pieceBeingMoved = cell.piece
+            //                cell.backgroundColor = cell.hexStringToUIColor(hex:"6DAFFB")
+            //
+            //                // reset the possible moves
+            //                removeHighlights()
+            //                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
+            //                highlightPossibleMoves()
+            //            } else if chessBoard.isAttackingOwnPiece(attackingPiece: movingPiece, atIndex: dest) && cell.piece.color != playerTurn {
+            //                // remove the old selected cell coloring and set new piece
+            //                boardCells[movingPiece.row][movingPiece.col].removeHighlighting()
+            //                pieceBeingMoved = cell.piece
+            //                cell.backgroundColor = UIColor.red
+            //
+            //                // reset the possible moves
+            //                removeHighlights()
+            //                possibleMoves = chessBoard.getPossibleMoves(forPiece: cell.piece)
+            //            }
         } else { // not already moving piece
             if cell.piece.color == playerTurn {
                 clearRedCells()
@@ -365,7 +394,7 @@ extension ChessVC: BoardCellDelegate {
         //print(chessBoard.board[cell.row][cell.column])
     }
     
-    func changeTurn(){
+    func endTurn(){
         playerTurn = playerTurn == .white ? .black : .white
         //                    if chessBoard.isPlayerUnderCheck(playerColor: playerTurn) {
         //                        checkLabel.text = "You are in check"
@@ -373,6 +402,30 @@ extension ChessVC: BoardCellDelegate {
         //                        checkLabel.text = ""
         //                    }
         updateLabel()
+        
+        // copy state of chess board into self.model.piecesArray
+        
+        self.model.piecesArray.removeAll()
+        for r in 0...7 {
+            for c in 0...7 {
+                var pieceBasicInfo = boardCells[r][c].piece.getBasicInfo()
+                self.model.piecesArray.append(pieceBasicInfo)
+            }
+        }
+        
+        GameCenterHelper.helper.endTurn(self.model) { error in
+            defer {
+                print("self.isSendingTurn = false")
+            }
+            
+            if let e = error {
+                print("Error ending turn: \(e.localizedDescription)")
+                return
+            }
+            
+            // self.returnToMenu()
+        }
+        
     }
     
     func highlightPossibleMoves() {
@@ -398,7 +451,7 @@ extension ChessVC: BoardCellDelegate {
     func removeHighlights() {
         for row in 0...7 {
             for column in 0...7{
-            boardCells[row][column].removeHighlighting()
+                boardCells[row][column].removeHighlighting()
             }
         }
     }
@@ -690,26 +743,26 @@ extension ChessVC: ChessBoardDelegate {
     }
     
     //probably don't need anymore
-//    func checkIsNewMatch() -> Bool{
-//        var piecesPlacedTop: Bool = false
-//        var piecesPlacedBottom: Bool = false
-//        for row in 0...3{
-//            for col in 0 ... 7 {
-//                let cell = boardCells[row][col]
-//                if cell.piece.type != .dummy {
-//                    piecesPlacedTop = true
-//                }
-//            }
-//        }
-//        for row in 4...7{
-//            for col in 0 ... 7 {
-//                let cell = boardCells[row][col]
-//                if cell.piece.type != .dummy {
-//                    piecesPlacedBottom = true
-//                }
-//            }
-//        }
-//        let bothSetsPlaced: Bool = piecesPlacedTop && piecesPlacedBottom
-//        return !bothSetsPlaced
-//    }
+    //    func checkIsNewMatch() -> Bool{
+    //        var piecesPlacedTop: Bool = false
+    //        var piecesPlacedBottom: Bool = false
+    //        for row in 0...3{
+    //            for col in 0 ... 7 {
+    //                let cell = boardCells[row][col]
+    //                if cell.piece.type != .dummy {
+    //                    piecesPlacedTop = true
+    //                }
+    //            }
+    //        }
+    //        for row in 4...7{
+    //            for col in 0 ... 7 {
+    //                let cell = boardCells[row][col]
+    //                if cell.piece.type != .dummy {
+    //                    piecesPlacedBottom = true
+    //                }
+    //            }
+    //        }
+    //        let bothSetsPlaced: Bool = piecesPlacedTop && piecesPlacedBottom
+    //        return !bothSetsPlaced
+    //    }
 }
