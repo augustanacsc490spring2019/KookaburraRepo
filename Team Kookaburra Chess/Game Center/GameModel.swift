@@ -28,10 +28,13 @@
 
 import GameKit
 
+enum PlayerColor: String, Codable {
+    case white, black
+}
+
+
 //struct GameModel {
 struct GameModel: Codable{
-    //NOTE: We need to make this class Codable for serialization in order to send it's data to Game Center.
-    //currently BoardCell isn't Codable which causes problems.
     
     
     /* ChessVC has boardCells as 2 dimensional array of BoardCell views
@@ -47,13 +50,14 @@ struct GameModel: Codable{
     var piecesArray = [ChessPieceBasicInfo]()
     //var pieceNamesArray = [[String]](repeating: [String](repeating: 0, count: 8), count: 8) //8 by 8 array of Strings
     
-    var winner: Player?
+    var winner: PlayerColor? = nil
     
-    var playerColors = [String?](repeating:nil,count:2)
+    var playerColors = [PlayerColor](repeating:.white,count:2)
     
+    var playerIDs = [String?]()
     
     var messageToDisplay: String {
-        return "generic message for now, possibly about whose turn it is"
+        return "generic message for now, possibly about who's turn it is"
     }
     
     //    var isCapturingPiece: Bool {
@@ -70,15 +74,61 @@ struct GameModel: Codable{
     var isWhiteTurn = Bool() //pay attention to how this is used in Nine Knights
     
     init() {
+        
+        
+        // assign random colors
+        playerColors[0] = Bool.random() ? .white : .black
+        playerColors[1] = (playerColors[0] == .white) ?  .black : .white
+        
+        
+        
         //self.currentPlayer = randomPlayer()
         //neitherHasSetPieces = true
-        self.isWhiteTurn = randomPlayer() //this pattern of having this set from the parameter was in Nine Knights. Not sure why or if I should use it for other fields.
+        // self.isWhiteTurn = randomPlayer() //this pattern of having this set from the parameter was in Nine Knights. Not sure why or if I should use it for other fields.
         //print("GameModel init called. isWhiteTurn = \(self.isWhiteTurn). currentPlayer = \(self.currentPlayer)")
         
         //boardCells = [BoardCell]()
         
         // chessBoard = ChessBoard(playerColor: UIColor.white)
         
+    }
+    
+    
+    mutating func addPlayer() {
+        if (GKLocalPlayer.local.isAuthenticated) {
+            if (!playerIDs.contains(GKLocalPlayer.local.playerID)){
+                playerIDs.append(GKLocalPlayer.local.playerID);
+            }
+        }
+    }
+    
+    
+    func playerPiecesAreSet() -> Bool {
+        
+        if (!GKLocalPlayer.local.isAuthenticated || !playerIDs.contains(GKLocalPlayer.local.playerID) ) {
+            print("Checking peices are set for unknown player!")
+            return false
+            // TODO: should throw error
+        }
+        
+        let index = playerIDs.firstIndex(of:GKLocalPlayer.local.playerID )
+        let pcolor : PlayerColor = playerColors[index!]
+        
+        if (pcolor == .white) {  return whiteHasSetPieces } else { return blackHasSetPieces }
+        
+    }
+    
+    func localPlayerUIColor() -> UIColor {
+        
+        if (!GKLocalPlayer.local.isAuthenticated || !playerIDs.contains(GKLocalPlayer.local.playerID) ) {
+            print("getting color for unknown player!")
+            return .white
+            // TODO: should throw error
+        }
+        
+        let pcolor : PlayerColor = playerColors[ playerIDs.firstIndex(of:GKLocalPlayer.local.playerID )!]
+        
+        if (pcolor == .white) {  return .white } else { return .black }
     }
     
     mutating func checkPiecesAreSet(){
@@ -132,7 +182,19 @@ struct GameModel: Codable{
         return pieceNamesArray
     }
     
-    mutating func setPieces(playerColor: UIColor, boardCells: [[BoardCell]] ) {
+    mutating func setInitialPieces(playerColor: UIColor, boardCells: [[BoardCell]] ) {
+        
+        // need to flip the position of the black pieces coming from PlacePiecesOnlyViewController
+        for r in 0...7 {
+            for c in 0...7 {
+                var pieceBasicInfo = boardCells[r][c].piece.getBasicInfo()
+                if (playerColor == .black) {
+                    pieceBasicInfo.row = 7 -  pieceBasicInfo.row ;
+                    pieceBasicInfo.col = 7 -  pieceBasicInfo.col ;
+                }
+                piecesArray.append(pieceBasicInfo)
+            }
+        }
         
         if (playerColor == .white) { whiteHasSetPieces = true }
         if (playerColor == .black) { blackHasSetPieces = true }
@@ -175,61 +237,6 @@ struct GameModel: Codable{
     //
     //        return false
     //    }
-}
-
-// MARK: - Types
-
-extension GameModel {
-    enum Player: String, Codable {
-        case white, black
-    }
-    
-    enum State: Int, Codable {
-        case placement
-        case movement
-    }
-    
-    enum GridPosition: Int, Codable {
-        case min, mid, max
-    }
-    
-    enum GridLayer: Int, Codable {
-        case outer, middle, center
-    }
-    
-    struct GridCoordinate: Codable, Equatable {
-        let x, y: GridPosition
-        let layer: GridLayer
-    }
-    
-    struct Token: Codable, Equatable {
-        let player: Player
-        let coord: GridCoordinate
-    }
-    
-    //    struct BoardCell: Codable, Equatable {
-    //
-    //    }
-    
-    struct Move: Codable, Equatable {
-        var placed: GridCoordinate?
-        var removed: GridCoordinate?
-        var start: GridCoordinate?
-        var end: GridCoordinate?
-        
-        init(placed: GridCoordinate?) {
-            self.placed = placed
-        }
-        
-        init(removed: GridCoordinate?) {
-            self.removed = removed
-        }
-        
-        init(start: GridCoordinate?, end: GridCoordinate?) {
-            self.start = start
-            self.end = end
-        }
-    }
 }
 
 

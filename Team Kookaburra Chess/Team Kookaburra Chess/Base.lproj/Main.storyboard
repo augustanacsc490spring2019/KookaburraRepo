@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -73,7 +74,7 @@
                                     <constraint firstAttribute="width" constant="414" id="Pq3-Li-ik3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="Store">
+                                <state key="normal" title="Piece Store">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -910,8 +911,8 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ynr-Ld-Yg9"/>
-        <segue reference="Reh-zF-BU3"/>
-        <segue reference="gjB-tX-g2I"/>
+        <segue reference="N8g-z2-68R"/>
+        <segue reference="PKa-wr-jw9"/>
         <segue reference="HNR-C8-Mxw"/>
     </inferredMetricsTieBreakers>
 </document>

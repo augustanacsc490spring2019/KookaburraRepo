@@ -51,6 +51,16 @@ class ChessVC: UIViewController {
         return button
     }()
     
+    lazy var forfeitButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Forfeit Game", for: [])
+        button.setTitleColor(.white, for: [])
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(forfeitPressed(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var menuButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -213,9 +223,13 @@ class ChessVC: UIViewController {
     }
     
     func setupViews() {
-        
+        if isLocalMatch{
         view.addSubview(restartButton)
         restartButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        } else { //online match
+            view.addSubview(forfeitButton)
+            forfeitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        }
         restartButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         restartButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         view.addSubview(menuButton)
@@ -241,12 +255,33 @@ class ChessVC: UIViewController {
         self.drawBoard()
     }
     
+    func fofeit(){
+        if playerColor == .white{
+            gameOver(withWinner: .black)
+        } else {
+            gameOver(withWinner: .white)
+        }
+        //TODO: send this information to the model
+    }
+    
     // MARK: - Actions
     
     @objc func restartPressed(sender: UIButton) {
         let ac = UIAlertController(title: "Restart", message: "Are you sure you want to restart the game?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default, handler: { action in
             self.newGame()
+        })
+        let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        ac.addAction(yes)
+        ac.addAction(no)
+        present(ac, animated: true, completion: nil)
+    }
+    
+    @objc func forfeitPressed(sender: UIButton) {
+        let ac = UIAlertController(title: "Forfeit", message: "Are you sure you want to forfeit the game?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Forfeit", style: .default, handler: { action in
+            self.fofeit()
         })
         let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         

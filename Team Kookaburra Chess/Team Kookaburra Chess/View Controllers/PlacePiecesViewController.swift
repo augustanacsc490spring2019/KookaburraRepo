@@ -40,7 +40,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //only here to fill protocol
     }
     
-    var playerColor: UIColor = .white
+    var playerColor = UIColor.white
+    
     //var player: GameModel.Player = GameModel.Player("white")
     var playerPoints: Int = 0
     var chessBoard = ChessBoard(playerColor: .white)
@@ -73,19 +74,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         print("place pieces viewDidLoad called. model.blackHasPlacedPieces = \(model.blackHasSetPieces). model.whiteHasPlacedPieces = \(model.whiteHasSetPieces)")
         
         super.viewDidLoad()
-        //print("isLocaMatch: \(isLocalMatch)")
-        if (!isLocalMatch){
-            print("setting playerColor at viewDidLoad from GameModel")
-            if (model.isWhiteTurn){
-                playerTurn = UIColor.white
-                playerColor = UIColor.white
-                print("playerColor and playerTurn set to white at viewDidLoad")
-            } else {
-                playerTurn = UIColor.black
-                playerColor = UIColor.black
-                print("playerColor and PlayerTurn set to black at viewDidLoad")
-            }
-        }
+        // TODO: reset from self.model if !isLocalMatch
+        
         setLabels()
         drawBoard()
         addStarterKing()
@@ -122,19 +112,31 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "LocalMatchSegue") {
             let vc = segue.destination as! ChessVC
+            vc.model = model
             vc.playerColor = playerColor
             vc.isLocalMatch = true
-//            if playerColor == .white{
-//                vc.whiteFormation = boardCells
-//                vc.blackFormation = p2BoardCells
-//            } else {//playerColor == .black
-//                vc.blackFormation = boardCells
-//                vc.whiteFormation = p2BoardCells
-//            }
+            //            if playerColor == .white{
+            //                vc.whiteFormation = boardCells
+            //                vc.blackFormation = p2BoardCells
+            //            } else {//playerColor == .black
+            //                vc.blackFormation = boardCells
+            //                vc.whiteFormation = p2BoardCells
+            //            }
             vc.chessBoard.board = combineFormations()
+        }
+        if (segue.identifier == "OnlineMatchSegue") {
+            let vc = segue.destination as! ChessVC
+            vc.model = model
+            vc.isLocalMatch = false
+        }
+        if (segue.identifier == "returnToMenuSegue") {
+            
+            let vc = segue.destination as! OpeningScreen
+            
         }
     }
     
+    /* needed for local match */
     func combineFormations() -> [[ChessPiece]]{
         var whiteFormation = [[BoardCell]]()
         var blackFormation = [[BoardCell]]()
@@ -163,12 +165,14 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 blackFormation = boardCells
                 whiteFormation = p2BoardCells
             }
-           
+            
         }
         let fullBoard = ChessBoard(playerColor: UIColor.white)
         fullBoard.board = fullBoard.takeFormations(black: blackFormation, white: whiteFormation)
         return fullBoard.board
     }
+    
+    /* needed for online */
     
     func goToMain(){
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -308,18 +312,18 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //NSLog("check if the piece is illegally placed")
             //check if the piece is illegally placed
             if ((chosenPiece.type == .dragonRider)){
-
+                
                 if  highlightedCell.row != 2{
-                        //NSLog("Dragonriders can only be in the back row")
-                        tipLabel.text = "Dragonriders can only be in the back row."
+                    //NSLog("Dragonriders can only be in the back row")
+                    tipLabel.text = "Dragonriders can only be in the back row."
                     let ac = UIAlertController(title: "Rule", message: "Dragon Riders can only be placed in the back row", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
                     ac.addAction(ok)
                     present(ac, animated: true, completion: nil)
                     return
                 } //else if highlightedCell.row == 2 && !secondRowFull(){
-                            //change the tip label
-                            //show a notification, "piece can't be placed because of rule"
+                //change the tip label
+                //show a notification, "piece can't be placed because of rule"
                 //}
             }
             if highlightedCell.row == 0{
@@ -378,51 +382,51 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return true
     }
     
-//    func clearFrontRow(){
-//        let numRows:Int = 8
-//        let numCols:Int = 8
-//        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
-//        self.boardCells = Array(repeating: oneRow, count: numRows)
-//        let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
-//        var xOffset: CGFloat = 0
-//        var yOffset: CGFloat = 0
-//        let start_row = 0
-//        let end_row = 0
-//        for row in start_row...end_row {
-//
-//            yOffset = (CGFloat(row - start_row) * cellDimension) + 200
-//
-//            for col in 0...7 {
-//
-//                xOffset = (CGFloat(col) * cellDimension) + 0
-//
-//                // create a piece
-//                var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
-//
-//                // create a cell at this location with this piece, and set color
-//                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
-//
-//                // NSLog("Board cells at row, col: \(boardCells[row][col])")
-//
-//                cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
-//                if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
-//                    cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
-//                } else {
-//                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
-//                }
-//
-//                cell.removeHighlighting()
-//
-//                // wire up the cell
-//                cell.delegate = self
-//                chessBoard.board[row][col] = piece
-//                self.boardCells[row][col] = cell
-//
-//
-//                view.addSubview(cell)
-//            }
-//        }
-//    }
+    //    func clearFrontRow(){
+    //        let numRows:Int = 8
+    //        let numCols:Int = 8
+    //        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
+    //        self.boardCells = Array(repeating: oneRow, count: numRows)
+    //        let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
+    //        var xOffset: CGFloat = 0
+    //        var yOffset: CGFloat = 0
+    //        let start_row = 0
+    //        let end_row = 0
+    //        for row in start_row...end_row {
+    //
+    //            yOffset = (CGFloat(row - start_row) * cellDimension) + 200
+    //
+    //            for col in 0...7 {
+    //
+    //                xOffset = (CGFloat(col) * cellDimension) + 0
+    //
+    //                // create a piece
+    //                var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
+    //
+    //                // create a cell at this location with this piece, and set color
+    //                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
+    //
+    //                // NSLog("Board cells at row, col: \(boardCells[row][col])")
+    //
+    //                cell.frame = CGRect(x: xOffset, y: yOffset, width: cellDimension, height: cellDimension)
+    //                if (row % 2 == 0 && col % 2 == 0) || (row % 2 != 0 && col % 2 != 0) {
+    //                    cell.color = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
+    //                } else {
+    //                    cell.color = #colorLiteral(red: 0.5787474513, green: 0.3215198815, blue: 0, alpha: 1)
+    //                }
+    //
+    //                cell.removeHighlighting()
+    //
+    //                // wire up the cell
+    //                cell.delegate = self
+    //                chessBoard.board[row][col] = piece
+    //                self.boardCells[row][col] = cell
+    //
+    //
+    //                view.addSubview(cell)
+    //            }
+    //        }
+    //    }
     
     func clearFrontRow(){
         var chosenPiece = getPiece(string: "Empty")
@@ -692,15 +696,34 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
-    func onlineMatchReady(){
-        print("onlineMatchReady called")
+    func checkNumKings() -> Bool {
+        if numKings(color: playerColor) == 0 {
+            tipLabel.text = "Place a king, then you can play!"
+            let ac = UIAlertController(title: "Rule", message: "You need to place at least one king before you can play", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            ac.addAction(ok)
+            present(ac, animated: true, completion: nil)
+            return false
+        }
+        
+        return true
+        
+    }
+    
+    
+    
+    
+    
+    func checkPlayerPoints(){
+        //check if the player has used up enough points (at least 440)
         if playerPoints < 440{
             //if not, ask them if they're sure they want to ready up
             let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
-            let yes = UIAlertAction(title: "Ready!", style: .default, handler: { action in
-                self.processGameUpdate() //Do I still need this or just an endTurn?
-                self.goToMain()
-            })
+            let yes = UIAlertAction(title: "Ready!", style: .default, handler:
+            { action in
+                self.placePieces();
+            }
+            )
             let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
             ac.addAction(yes)
@@ -708,25 +731,102 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             present(ac, animated: true, completion: nil)
             return
         }
+        
+        self.placePieces();
+        
+    }
+    
+    func placePieces() {
+        
+        model.setInitialPieces(playerColor: playerColor,boardCells: boardCells)
+        // model.setInitialPieces will flip the position of the black pieces coming from PlacePiecesOnlyViewController
+        
+        if isLocalMatch {
+            print("local match ready button pressed")
+            if playerColor == .white {
+                p2BoardCells = boardCells
+                playerColor = .black
+                clearPieces()
+                setLabels()
+                piecePictureSetup()
+                addStarterKing()
+            } else {
+                localMatchReady()
+            }
+        } else {
+            onlineMatchReady()
+        }
+        
+        
+    }
+    
+    func onlineMatchReady(){
+        
+        print("onlineMatchReady called")
+        
+        if (playerColor == .white && self.model.piecesAreSet) {
+            self.performSegue(withIdentifier: "OnlineMatchSegue", sender: self)//start the game with the current piece placement
+        }
+        GameCenterHelper.helper.endTurn(self.model) { error in
+            defer {
+                print("self.isSendingTurn = false")
+            }
+            
+            if let e = error {
+                print("Error ending turn: \(e.localizedDescription)")
+                return
+            }
+            
+            self.performSegue(withIdentifier: "returnToMenuSegue", sender: self)
+        }
+        
+        
+        
+        
+        
+        
+        // tell GameCenterHelper ? that you're ready to play
+        
+        // GameCenterHelper will probably tell you when other player is ready...
+        
     }
     
     func localMatchReady(){
-            //check if the player has used up enough points (at least 440)
-            if playerPoints < 440{
-                //if not, ask them if they're sure they want to ready up
-                let ac = UIAlertController(title: "Points remaining", message: "You still have points to spend, ready anyway?", preferredStyle: .alert)
-                let yes = UIAlertAction(title: "Ready!", style: .default, handler: { action in
-                    self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)
-                })
-                let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                
-                ac.addAction(yes)
-                ac.addAction(no)
-                present(ac, animated: true, completion: nil)
-                return
-            }
-            self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)//start the game with the current piece placement
+        print("localMatchReady called")
+        self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)//start the game with the current piece placement
     }
+    
+    
+    //
+    //    func returnPieces() {
+    //
+    //        // return boardcells to calling view controller, or GameModel.boardcells to these pieces
+    //
+    //        model.setPieces(playerColor: playerColor,boardCells: boardCells);
+    ////        self.dismiss(animated: true, completion: {() in
+    ////                self.navigationController?.popViewController( animated: true)
+    ////            }
+    ////        )
+    //
+    //
+    //
+    ////        if (local) {
+    ////            // set playercolor to white
+    ////            self.performSegue(withIdentifier: "PlacePiecesOnlyViewController", sender: self)
+    ////            //set playcolor to black
+    ////            self.performSegue(withIdentifier: "PlacePiecesOnlyViewController", sender: self)
+    ////            self.performSegue(withIdentifier: "LocalMatchSegue", sender: self)//start the game with the current piece placement
+    ////
+    ////        }
+    //
+    //
+    //
+    ////
+    ////        // if online
+    ////        self.processGameUpdate() //Do I still need this or just an endTurn?
+    ////        self.goToMain()
+    //
+    //    }
     
     //updates the screen when the uipicker changes
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -960,6 +1060,17 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     func processGameUpdate() {
         print("place pieces processGameUpdate called")
+        let updatedBoard = combineFormations()
+        let updatedPieceNamesArray = model.updatePieceNamesArray(chessPieceArray: updatedBoard)
+        
+        model.piecesArray.removeAll()
+        for r in 0...7 {
+            for c in 0...7 {
+                var pieceBasicInfo = boardCells[r][c].piece.getBasicInfo()
+                model.piecesArray.append(pieceBasicInfo)
+            }
+        }
+        
         if self.playerColor == UIColor.white{
             model.whiteHasSetPieces = true
         } else {
