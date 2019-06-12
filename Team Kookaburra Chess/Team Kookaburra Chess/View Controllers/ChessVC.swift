@@ -253,6 +253,7 @@ class ChessVC: UIViewController {
     
     func newGame(){
         self.drawBoard()
+        self.getFormationFromModel()
     }
     
     func fofeit(){
@@ -262,6 +263,29 @@ class ChessVC: UIViewController {
             gameOver(withWinner: .white)
         }
         //TODO: send this information to the model
+    }
+    
+    func getFormationFromModel(){
+        //clear the board in case we're restarting a game, not necessary at the start of games
+        //TODO: add isRestart parameter so this isn't called at the beginning of a game
+        for row in 0...7{
+            for col in 0...7{
+                let cell = boardCells[row][col]
+                cell.piece.type = .dummy
+                cell.piece.setupSymbol()
+                chessBoard.board[row][col].type = .dummy
+                 chessBoard.board[row][col].setupSymbol()
+            }
+        }
+        for pieceInfo in model.piecesArray{
+            let piece = ChessPiece(row: pieceInfo.row, column: pieceInfo.col, color: pieceInfo.uiColor, type: pieceInfo.type, player: pieceInfo.uiColor)
+            piece.setupSymbol()
+            if piece.type != .dummy{
+                print("There should really be a piece here somewhere")
+            }
+            boardCells[pieceInfo.row][pieceInfo.col].piece = piece
+            chessBoard.board[pieceInfo.row][pieceInfo.col] = piece
+        }
     }
     
     // MARK: - Actions
