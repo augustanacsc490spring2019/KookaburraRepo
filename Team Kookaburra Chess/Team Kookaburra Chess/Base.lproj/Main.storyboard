@@ -556,7 +556,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="31A-Gg-hwr" userLabel="Points remaining">
-                                <rect key="frame" x="47" y="62" width="211" height="21"/>
+                                <rect key="frame" x="131" y="62" width="127" height="21"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Label">
                                         <attributes>
@@ -581,6 +581,17 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbs-dO-s39" userLabel="Home Button">
+                                <rect key="frame" x="21" y="44" width="30" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="showDetail" identifier="ReturnToMenuSegue" id="SnD-E2-A2t"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -619,6 +630,7 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
                         <viewLayoutGuide key="safeArea" id="OzQ-u3-TEz"/>
                     </view>
                     <connections>
+                        <outlet property="homeButton" destination="pbs-dO-s39" id="Daq-pa-JjF"/>
                         <outlet property="pieceCost" destination="wO2-KU-V4q" id="azL-4s-ulW"/>
                         <outlet property="pieceInfo" destination="usz-f9-BNt" id="9En-fI-Y8Z"/>
                         <outlet property="piecePicker" destination="0ep-3c-SWM" id="ARG-h3-b7m"/>
@@ -911,8 +923,8 @@ Special thanks to Mikael Mukhsikaroyan, Thomas Houpt, and Kathryn Brantley, as w
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ynr-Ld-Yg9"/>
-        <segue reference="N8g-z2-68R"/>
+        <segue reference="Reh-zF-BU3"/>
         <segue reference="PKa-wr-jw9"/>
-        <segue reference="HNR-C8-Mxw"/>
+        <segue reference="SnD-E2-A2t"/>
     </inferredMetricsTieBreakers>
 </document>

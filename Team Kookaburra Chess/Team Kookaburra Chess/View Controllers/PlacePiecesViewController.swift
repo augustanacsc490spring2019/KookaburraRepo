@@ -67,6 +67,8 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var piecePicker: UIPickerView!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var readyButton: UIButton!
+    @IBOutlet weak var homeButton: UIButton!
+    
     var pickerString: String = ""
     var chosenPieces = [[ChessPiece]]()
     
@@ -129,7 +131,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             vc.model = model
             vc.isLocalMatch = false
         }
-        if (segue.identifier == "returnToMenuSegue") {
+        if (segue.identifier == "ReturnToMenuSegue") {
             
             let vc = segue.destination as! OpeningScreen
             
