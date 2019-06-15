@@ -676,6 +676,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if slot < 2{
             let string0 = UserDefaults.standard.array(forKey: "slot1Row0")
             if string0 != nil{
+                clearPieces()
                 tipLabel.text = "Formation 1 loaded"
                 print("\(string0)")
             } else {
@@ -691,6 +692,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let string0 = UserDefaults.standard.array(forKey: "slot2Row0")
             if string0 != nil{
                 tipLabel.text = "Formation 2 loaded"
+                clearPieces()
             } else {
                 tipLabel.text = "No formation is saved to Slot 2"
                 return
@@ -704,6 +706,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let string0 = UserDefaults.standard.array(forKey: "slot3Row0")
             if string0 != nil{
                 tipLabel.text = "Formation 3 loaded"
+                clearPieces()
             } else {
                 tipLabel.text = "No formation is saved to Slot 3"
                 return
