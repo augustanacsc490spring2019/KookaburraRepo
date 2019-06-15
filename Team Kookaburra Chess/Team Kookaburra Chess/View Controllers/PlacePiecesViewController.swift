@@ -104,7 +104,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         pieceInfo.contentMode = .scaleToFill
         pieceInfo.numberOfLines = 0
         //assign cost to the top label
-        pieceCost.text = "Cost: \(piece.summonCost) points"
+        pieceCost.text = "\(piece.summonCost) points to summon"
     }
     
     override func didReceiveMemoryWarning() {
@@ -652,50 +652,81 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     func saveSlot(slot: Int){
-        let formation = boardCells
-        let keyStore = NSUbiquitousKeyValueStore.init()
+        let row0 = boardCellRowToStringArray(row: 0)
+        let row1 = boardCellRowToStringArray(row: 1)
+        let row2 = boardCellRowToStringArray(row: 2)
         if slot < 2{
-            keyStore.set(formation, forKey: "slot1")
+            UserDefaults.standard.set(row0, forKey: "slot1Row0")
+            UserDefaults.standard.set(row1, forKey: "slot1Row1")
+            UserDefaults.standard.set(row2, forKey: "slot1Row2")
         } else if slot == 2{
-            keyStore.set(formation, forKey: "slot2")
+            UserDefaults.standard.set(row0, forKey: "slot2Row0")
+            UserDefaults.standard.set(row1, forKey: "slot2Row1")
+            UserDefaults.standard.set(row2, forKey: "slot2Row2")
         } else { //if slot == 3
-            keyStore.set(formation, forKey: "slot3")
+            UserDefaults.standard.set(row0, forKey: "slot3Row0")
+            UserDefaults.standard.set(row1, forKey: "slot3Row1")
+            UserDefaults.standard.set(row2, forKey: "slot3Row2")
         }
     }
     
+    
     func loadSlot(slot: Int){
-        let keyStore = NSUbiquitousKeyValueStore.init()
-        var formation = [[BoardCell]]()
         if slot < 2{
-            if keyStore.array(forKey: "slot1") != nil{
-                formation = keyStore.array(forKey: "slot1") as! [[BoardCell]]
-                tipLabel.text = "Formation 2 loaded"
+            let string0 = UserDefaults.standard.array(forKey: "slot1Row0")
+            if string0 != nil{
+                tipLabel.text = "Formation 1 loaded"
+                print("\(string0)")
             } else {
                 tipLabel.text = "No formation is saved to Slot 1"
                 return
             }
+            stringArrayToBoardCellRow(row: 0, array: string0 as! [String])
+            let string1 = UserDefaults.standard.array(forKey: "slot1Row1")
+            stringArrayToBoardCellRow(row: 1, array: string1 as! [String])
+            let string2 = UserDefaults.standard.array(forKey: "slot1Row2")
+            stringArrayToBoardCellRow(row: 2, array: string2 as! [String])
         } else if slot == 2{
-            if keyStore.array(forKey: "slot1") != nil{
-                formation = keyStore.array(forKey: "slot2") as! [[BoardCell]]
+            let string0 = UserDefaults.standard.array(forKey: "slot2Row0")
+            if string0 != nil{
                 tipLabel.text = "Formation 2 loaded"
             } else {
                 tipLabel.text = "No formation is saved to Slot 2"
                 return
             }
+            stringArrayToBoardCellRow(row: 0, array: string0 as! [String])
+            let string1 = UserDefaults.standard.array(forKey: "slot2Row1")
+            stringArrayToBoardCellRow(row: 1, array: string1 as! [String])
+            let string2 = UserDefaults.standard.array(forKey: "slot2Row2")
+            stringArrayToBoardCellRow(row: 2, array: string2 as! [String])
         } else { //if slot == 3
-            if keyStore.array(forKey: "slot1") != nil{
-                formation = keyStore.array(forKey: "slot3") as! [[BoardCell]]
+            let string0 = UserDefaults.standard.array(forKey: "slot3Row0")
+            if string0 != nil{
                 tipLabel.text = "Formation 3 loaded"
             } else {
                 tipLabel.text = "No formation is saved to Slot 3"
                 return
             }
+            stringArrayToBoardCellRow(row: 0, array: string0 as! [String])
+            let string1 = UserDefaults.standard.array(forKey: "slot3Row1")
+            stringArrayToBoardCellRow(row: 1, array: string1 as! [String])
+            let string2 = UserDefaults.standard.array(forKey: "slot3Row2")
+            stringArrayToBoardCellRow(row: 2, array: string2 as! [String])
         }
         for row in 0...2{
             for col in 0...7{
-                boardCells[row][col].configureCell(forPiece: boardCells[row][col].piece)
+                if boardCells[row][col].piece.type != .dummy{
+                    print("Fucking work!")
+                    boardCells[row][col].piece.setupSymbol()
+                    let piece = ChessPiece(row: row, column: col, color: playerColor, type: boardCells[row][col].piece.type, player: playerColor)
+                    piece.setupSymbol()
+                    boardCells[row][col].piece = piece
+                    boardCells[row][col].configureCell(forPiece: piece)
+                }
             }
         }
+        playerPoints = calculateCost()
+        pointsRemaining.text = "Points spent: \(playerPoints)"
     }
     
     func checkNumKings() -> Bool {
@@ -845,9 +876,9 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         pieceInfo.contentMode = .scaleToFill
         pieceInfo.numberOfLines = 0
         //assign cost to the top label
-        pieceCost.text = "Cost: \(piece.summonCost) points"
+        pieceCost.text = "\(piece.summonCost) points to summon"
         if piece.type == .king{
-            pieceCost.text = "Cost: 40 for the 1st, 60 after"
+            pieceCost.text = "40 points for the 1st, 60 after"
         }
     }
     
@@ -1099,6 +1130,116 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
                 self.goToMain()
             }
+        }
+    }
+    
+    func boardCellRowToStringArray(row: Int) -> [String]{
+        var newArray = [String]()
+        for col in 0...7{
+            newArray.append(typeToString(piece: boardCells[row][col].piece))
+        }
+        return newArray
+    }
+    
+    func stringArrayToBoardCellRow(row: Int, array: [String]){
+        for col in 0...7{
+            boardCells[row][col].piece = getPiece(string: array[col])
+            print("Type at \(row), \(col): \(boardCells[row][col].piece.type)")
+        }
+    }
+    
+    func typeToString(piece: ChessPiece) -> String{
+        switch piece.type{
+        case .archer:
+            return "Archer"
+        case .dummy:
+            return "Empty"
+        case .unicorn:
+            return "Unicorn"
+        case .superKing:
+            return "Superking"
+        case .griffin:
+            return "Griffin"
+        case .king:
+            return "King"
+        case .queen:
+            return "Queen"
+        case .mage:
+            return "Mage"
+        case .centaur:
+            return "Centaur"
+        case .dragonRider:
+            return "Dragon Rider"
+        case .bombard:
+            return "Bombard"
+        case .manticore:
+            return "Manticore"
+        case .ghostQueen:
+            return "Ghost Queen"
+        case .rook:
+            return "Rook"
+        case .knight:
+            return "Knight"
+        case .bishop:
+            return "Bishop"
+        case .basilisk:
+            return "Basilisk"
+        case .fireDragon:
+            return "Fire Dragon"
+        case .iceDragon:
+            return "Ice Dragon"
+        case .minotaur:
+            return "Minotaur"
+        case .monopod:
+            return "Monopod"
+        case .ship:
+            return "Ship"
+        case .ballista:
+            return "Ballista"
+        case .batteringRam:
+            return "Battering Ram"
+        case .trebuchet:
+            return "Trebuchet"
+        case .leftElf:
+            return "Left Handed Elf Warrior"
+        case .rightElf:
+            return "Right Handed Elf Warrior"
+        case .camel:
+            return "Camel"
+        case .boar:
+            return "Boar"
+        case .thunderChariot:
+            return "Thunder Chariot"
+        case .scout:
+            return "Scout"
+        case .ogre:
+            return "Ogre"
+        case .orcWarrior:
+            return "Orc Warrior"
+        case .elephant:
+            return "Elephant"
+        case .manAtArms:
+            return "Man at Arms"
+        case .swordsman:
+            return "Swordsman"
+        case .pikeman:
+            return "Pikeman"
+        case .royalGuard:
+            return "Royal Guard"
+        case .demon:
+            return "Demon"
+        case .pawn:
+            return "Pawn"
+        case .monk:
+            return "Monk"
+        case .dwarf:
+            return "Dwarf"
+        case .gargoyle:
+            return "Gargoyle"
+        case .goblin:
+            return "Goblin"
+        case .footSoldier:
+            return "Footsoldier"
         }
     }
 }

@@ -26,6 +26,7 @@ class ChessVC: UIViewController {
     var currentPiece = ChessPiece(row: -1, column: -1, color: .clear, type: .dummy, player: .black)
     var isLocalMatch: Bool = true
     var model: GameModel
+    var resetModel: GameModel //we load this in in the beginning and don't change it
     
     let turnLabel: UILabel = {
         let label = UILabel()
@@ -75,6 +76,7 @@ class ChessVC: UIViewController {
     init(model: GameModel) {
         
         self.model = model
+        self.resetModel = model
         
         super.init(nibName:nil , bundle:nil)
         
@@ -82,6 +84,7 @@ class ChessVC: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         self.model = GameModel()
+        self.resetModel = GameModel()
         super.init(nibName:nil , bundle:nil)
         print("  fatalError(\"init(coder:) has not been implemented\")")
     }
@@ -256,6 +259,11 @@ class ChessVC: UIViewController {
         self.getFormationFromModel()
     }
     
+    func restartGame(){
+        self.drawBoard()
+        self.resetFormationFromModel()
+    }
+    
     func fofeit(){
         if playerColor == .white{
             gameOver(withWinner: .black)
@@ -288,12 +296,35 @@ class ChessVC: UIViewController {
         }
     }
     
+    func resetFormationFromModel(){
+        //clear the board in case we're restarting a game, not necessary at the start of games
+        //TODO: add isRestart parameter so this isn't called at the beginning of a game
+        for row in 0...7{
+            for col in 0...7{
+                let cell = boardCells[row][col]
+                cell.piece.type = .dummy
+                cell.piece.setupSymbol()
+                chessBoard.board[row][col].type = .dummy
+                chessBoard.board[row][col].setupSymbol()
+            }
+        }
+        for pieceInfo in resetModel.piecesArray{
+            let piece = ChessPiece(row: pieceInfo.row, column: pieceInfo.col, color: pieceInfo.uiColor, type: pieceInfo.type, player: pieceInfo.uiColor)
+            piece.setupSymbol()
+            if piece.type != .dummy{
+                print("There should really be a piece here somewhere")
+            }
+            boardCells[pieceInfo.row][pieceInfo.col].piece = piece
+            chessBoard.board[pieceInfo.row][pieceInfo.col] = piece
+        }
+    }
+    
     // MARK: - Actions
     
     @objc func restartPressed(sender: UIButton) {
         let ac = UIAlertController(title: "Restart", message: "Are you sure you want to restart the game?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default, handler: { action in
-            self.newGame()
+            self.restartGame()
         })
         let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
