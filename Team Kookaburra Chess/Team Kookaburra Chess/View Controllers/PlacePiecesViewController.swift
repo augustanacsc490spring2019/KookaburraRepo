@@ -672,6 +672,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     
     func loadSlot(slot: Int){
+        //load piece information
         if slot < 2{
             let string0 = UserDefaults.standard.array(forKey: "slot1Row0")
             if string0 != nil{
@@ -713,12 +714,18 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let string2 = UserDefaults.standard.array(forKey: "slot3Row2")
             stringArrayToBoardCellRow(row: 2, array: string2 as! [String])
         }
+        displayLoadedFormation()
+    }
+    
+    func displayLoadedFormation(){
         for row in 0...2{
             for col in 0...7{
                 if boardCells[row][col].piece.type != .dummy{
                     print("Fucking work!")
                     boardCells[row][col].piece.setupSymbol()
-                    let piece = ChessPiece(row: row, column: col, color: playerColor, type: boardCells[row][col].piece.type, player: playerColor)
+                    var piece = ChessPiece(row: 0, column: 0, color: playerColor, type: boardCells[row][col].piece.type, player: playerColor)
+                    piece.row = row
+                    piece.col = col
                     piece.setupSymbol()
                     boardCells[row][col].piece = piece
                     boardCells[row][col].configureCell(forPiece: piece)
