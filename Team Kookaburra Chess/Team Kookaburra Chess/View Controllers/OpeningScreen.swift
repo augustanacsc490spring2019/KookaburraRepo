@@ -304,24 +304,37 @@ class OpeningScreen: UIViewController {
             if (noMatchData) {
                 // need to start a new Match
                 self.model = GameModel();
-                // set up pieces for player's initial position
                 
-            }
-            else {
-                // good match data, take your turn
                 
                 
             }
+            // make sure we are added to the game (no harm if already added)
+            self.model.addPlayer();
+            
+            
+            
             GameCenterHelper.helper.currentMatch = match
             
-            var piecesPlaced: Bool = true
+            if ( self.model.localPlayerUIColor() == .white) {
+                print("Local Player is White")
+            } else {
+                
+                print("Local Player is BLACK")
+                
+            }
             
-            if (piecesPlaced) {
+            // set up pieces for player's initial position, or go to board for your turn
+            if (self.model.piecesAreSet) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.performSegue(withIdentifier: "OnlineChessVCSegue", sender: self)
                 }
                 
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.performSegue(withIdentifier: "OnlinePlacePiecesSegue", sender: self)
+                }
             }
+            
             
             return
             

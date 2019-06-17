@@ -45,22 +45,18 @@ class ChessVC: UIViewController {
     lazy var restartButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Restart Game", for: [])
+        if self.isLocalMatch{
+            button.setTitle("Restart Game", for: [])
+        } else {
+            button.setTitle("Forfeit Game", for: [])
+        }
         button.setTitleColor(.white, for: [])
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.addTarget(self, action: #selector(restartPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
-    lazy var forfeitButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Forfeit Game", for: [])
-        button.setTitleColor(.white, for: [])
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        button.addTarget(self, action: #selector(forfeitPressed(sender:)), for: .touchUpInside)
-        return button
-    }()
+    
     
     lazy var menuButton: UIButton = {
         let button = UIButton(type: .system)
@@ -117,30 +113,17 @@ class ChessVC: UIViewController {
         //            //Makes online players place pieces before can make moves
         //        }
         
-        // if online match, reset board using self.model.piecesArray
+        // if online match, reset board using self.model
         if (!isLocalMatch) {
             
-            // fill boardCells with all dummy pieces
-            for r in 0...7 {
-                for c in 0...7 {
-                    boardCells[r][c].piece.type = .dummy
-                    boardCells[r][c].piece.color = .clear
-                    boardCells[r][c].piece.setupSymbol()
-                }
-                
-            }
+            // copy pieces from self.model.piecesArray
+            self.setFormationFromGameCenterModel()
             
-            // get pieces from self.model and put on our board
-            for pieceInfo in self.model.piecesArray {
-                
-                boardCells[pieceInfo.row][pieceInfo.col].piece.type = pieceInfo.type
-                boardCells[pieceInfo.row][pieceInfo.col].piece.color = pieceInfo.uiColor
-                boardCells[pieceInfo.row][pieceInfo.col].piece.firstMove = pieceInfo.firstMove
-                boardCells[pieceInfo.row][pieceInfo.col].piece.advancingByTwo = pieceInfo.advancingByTwo
-                
-                boardCells[pieceInfo.row][pieceInfo.col].piece.setupSymbol()
-                
-            }
+            // set local player color and turn
+            // TODO: could reference self.model directly and get rid of self.playColor and self.playerTurn
+            // but that would mean putting localMatch into a local model
+            self.playerColor = self.model.localPlayerUIColor()
+            self.playerTurn = self.model.isWhiteTurn ? .white : .black
             
         } // not a local match
         
@@ -226,13 +209,9 @@ class ChessVC: UIViewController {
     }
     
     func setupViews() {
-        if isLocalMatch{
         view.addSubview(restartButton)
         restartButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-        } else { //online match
-            view.addSubview(forfeitButton)
-            forfeitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-        }
+        
         restartButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         restartButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
         view.addSubview(menuButton)
@@ -282,7 +261,7 @@ class ChessVC: UIViewController {
                 cell.piece.type = .dummy
                 cell.piece.setupSymbol()
                 chessBoard.board[row][col].type = .dummy
-                 chessBoard.board[row][col].setupSymbol()
+                chessBoard.board[row][col].setupSymbol()
             }
         }
         for pieceInfo in model.piecesArray{
@@ -297,31 +276,80 @@ class ChessVC: UIViewController {
     }
     
     func resetFormationFromModel(){
+        
         //clear the board in case we're restarting a game, not necessary at the start of games
         //TODO: add isRestart parameter so this isn't called at the beginning of a game
+        
+        setFormationFromModel(aModel:self.resetModel)
+        
+    }
+    
+    func setFormationFromGameCenterModel() {
+        
+        setFormationFromModel(aModel:self.model)
+        
+        
+    }
+    
+    func setFormationFromModel(aModel: GameModel){
+        // set the pieces on the board using the gamemodel passed to us from gamecenter
         for row in 0...7{
-            for col in 0...7{
-                let cell = boardCells[row][col]
-                cell.piece.type = .dummy
-                cell.piece.setupSymbol()
+            for col in 0...7 {
+                
+                boardCells[row][col].piece.type =  .dummy
+                boardCells[row][col].piece.setupSymbol()
+                boardCells[row][col].row = row
+                boardCells[row][col].column = col
+                
                 chessBoard.board[row][col].type = .dummy
                 chessBoard.board[row][col].setupSymbol()
             }
         }
-        for pieceInfo in resetModel.piecesArray{
-            let piece = ChessPiece(row: pieceInfo.row, column: pieceInfo.col, color: pieceInfo.uiColor, type: pieceInfo.type, player: pieceInfo.uiColor)
-            piece.setupSymbol()
+        for pieceInfo in aModel.piecesArray{
+            
+            
+            let piece = ChessPiece(pieceInfo: pieceInfo)
             if piece.type != .dummy{
                 print("There should really be a piece here somewhere")
             }
+            boardCells[pieceInfo.row][pieceInfo.col].row = pieceInfo.row
+            boardCells[pieceInfo.row][pieceInfo.col].column = pieceInfo.col
+            
             boardCells[pieceInfo.row][pieceInfo.col].piece = piece
             chessBoard.board[pieceInfo.row][pieceInfo.col] = piece
         }
+        
     }
+    
+    func setGameCenterModelFromFormation() {
+        
+        setModelFromFormation(aModel: &self.model);
+        
+    }
+    
+    func setModelFromFormation( aModel: inout GameModel) {
+        
+        aModel.piecesArray.removeAll()
+        for r in 0...7 {
+            for c in 0...7 {
+                let pieceBasicInfo = boardCells[r][c].piece.getBasicInfo()
+                aModel.piecesArray.append(pieceBasicInfo)
+            }
+        }
+    }
+    
     
     // MARK: - Actions
     
     @objc func restartPressed(sender: UIButton) {
+        if isLocalMatch{
+            presentRestart()
+        } else {
+            presentForfeit()
+        }
+    }
+    
+    func presentRestart(){
         let ac = UIAlertController(title: "Restart", message: "Are you sure you want to restart the game?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .default, handler: { action in
             self.restartGame()
@@ -333,7 +361,7 @@ class ChessVC: UIViewController {
         present(ac, animated: true, completion: nil)
     }
     
-    @objc func forfeitPressed(sender: UIButton) {
+    func presentForfeit() {
         let ac = UIAlertController(title: "Forfeit", message: "Are you sure you want to forfeit the game?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Forfeit", style: .default, handler: { action in
             self.fofeit()
@@ -386,20 +414,44 @@ extension ChessVC: BoardCellDelegate {
             for move in possibleMoves {
                 if move.row == row && move.column == col {
                     
-                    //print(chessBoard.board[cell.row][cell.column].symbol)
-                    chessBoard.move(chessPiece: movingPiece, fromIndex: source, toIndex: dest)
-                    //print(chessBoard.board[cell.row][cell.column].symbol)
-                    //drawBoard()
-                    
-                    pieceBeingMoved = nil
-                    if playerTurn == .white{
-                        if chessBoard.canPlayerTakeTurn(color: .black){
-                            endTurn()
+                    if (!isLocalMatch) {
+                        
+                        
+                        // TODO:  call match.canTakeTurnForCurrentMatch instead?
+                        
+                        let localPlayerTurn = (self.model.isWhiteTurn == (playerColor == .white))
+                        
+                        if (localPlayerTurn && chessBoard.canPlayerTakeTurn(color: self.model.localPlayerUIColor())) {
+                            
+                            chessBoard.move(chessPiece: movingPiece, fromIndex: source, toIndex: dest)
+                            
+                            pieceBeingMoved = nil
+                            
+                            endGameCenterTurn()
+                            
+                            
                         }
-                    } else {//if playerTurn == .black
-                        if chessBoard.canPlayerTakeTurn(color: .white){
-                            endTurn()
+                        
+                    }
+                        
+                        
+                    else { // is a local match
+                        
+                        
+                        chessBoard.move(chessPiece: movingPiece, fromIndex: source, toIndex: dest)
+                        
+                        pieceBeingMoved = nil
+                        
+                        if playerTurn == .white{
+                            if chessBoard.canPlayerTakeTurn(color: .black) {
+                                endLocalTurn()
+                            }
+                        } else {//if playerTurn == .black
+                            if chessBoard.canPlayerTakeTurn(color: .white){
+                                endLocalTurn()
+                            }
                         }
+                        
                     }
                     
                     //print("The old cell now holds: \(cell.piece.symbol)")
@@ -484,38 +536,51 @@ extension ChessVC: BoardCellDelegate {
         //print(chessBoard.board[cell.row][cell.column])
     }
     
-    func endTurn(){
+    func endLocalTurn() {
         playerTurn = playerTurn == .white ? .black : .white
-        //                    if chessBoard.isPlayerUnderCheck(playerColor: playerTurn) {
-        //                        checkLabel.text = "You are in check"
-        //                    } else {
-        //                        checkLabel.text = ""
-        //                    }
+        
+        //        if chessBoard.isPlayerUnderCheck(playerColor: playerTurn) {
+        //            checkLabel.text = "You are in check"
+        //        } else {
+        //            checkLabel.text = ""
+        //        }
+        
+        updateLabel()
+    }
+    
+    func endGameCenterTurn(){
+        
+        self.model.updateTurn()
+        
+        //        if chessBoard.isPlayerUnderCheck(playerColor: playerTurn) {
+        //            checkLabel.text = "You are in check"
+        //        } else {
+        //            checkLabel.text = ""
+        //        }
         updateLabel()
         
-        // copy state of chess board into self.model.piecesArray
+        // copy state of chess board into gamecenter model self.model.piecesArray
+        // switch the current player by inverting self.model.isWhiteTurn
         
-        self.model.piecesArray.removeAll()
-        for r in 0...7 {
-            for c in 0...7 {
-                var pieceBasicInfo = boardCells[r][c].piece.getBasicInfo()
-                self.model.piecesArray.append(pieceBasicInfo)
+        if (!isLocalMatch) {
+            
+            setGameCenterModelFromFormation();
+            
+            self.model.isWhiteTurn = !self.model.isWhiteTurn;
+            
+            GameCenterHelper.helper.endTurn(self.model) { error in
+                defer {
+                    print("self.isSendingTurn = false")
+                }
+                
+                if let e = error {
+                    print("Error ending turn: \(e.localizedDescription)")
+                    return
+                }
+                
+                // self.returnToMenu()
             }
         }
-        
-        GameCenterHelper.helper.endTurn(self.model) { error in
-            defer {
-                print("self.isSendingTurn = false")
-            }
-            
-            if let e = error {
-                print("Error ending turn: \(e.localizedDescription)")
-                return
-            }
-            
-            // self.returnToMenu()
-        }
-        
     }
     
     func highlightPossibleMoves() {

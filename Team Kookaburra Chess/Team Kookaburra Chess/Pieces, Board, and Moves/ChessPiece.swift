@@ -141,6 +141,14 @@ class ChessPiece {
         setupSymbol()
     }
     
+    convenience init(pieceInfo: ChessPieceBasicInfo) {
+        
+        self.init(row: pieceInfo.row, column: pieceInfo.col, color: pieceInfo.uiColor, type: pieceInfo.type, player: pieceInfo.uiColor)
+        self.firstMove = pieceInfo.firstMove
+        self.advancingByTwo = pieceInfo.advancingByTwo
+        
+    }
+    
     func getBasicInfo() -> ChessPieceBasicInfo {
         
         let info = ChessPieceBasicInfo.init(
