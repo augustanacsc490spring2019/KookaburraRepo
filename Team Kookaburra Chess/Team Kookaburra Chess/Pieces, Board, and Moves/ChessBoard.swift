@@ -162,7 +162,7 @@ class ChessBoard {
     
     func isAttackingOwnPiece(attackingPiece: ChessPiece, atIndex dest: BoardIndex) -> Bool {
         
-        let destPiece = board[dest.row][dest.column]
+        let destPiece = board[dest.row][dest.col]
         guard  !(destPiece.type == .dummy) else {
             // attacking an empty cell
             return false
@@ -334,7 +334,7 @@ class ChessBoard {
             return false
         case .pawn:
             if piece.isMovementAppropriate(toIndex: move){
-                if move.column != piece.col{
+                if move.col != piece.col{
                    return true
                 }
             }
@@ -343,7 +343,7 @@ class ChessBoard {
             return piece.isMovementAppropriate(toIndex: move)
         case .dwarf:
             if piece.isMovementAppropriate(toIndex: move){
-                if move.column == piece.col{
+                if move.col == piece.col{
                     return true
                 }
             }
@@ -370,30 +370,30 @@ class ChessBoard {
             chessPiece.firstMove = false
             if isMoveTwoCellsOver(forKing: chessPiece, move: dest) {
                 //print("KING MOVED 2 Pieces OVER")
-                board[dest.row][dest.column] = chessPiece
+                board[dest.row][dest.col] = chessPiece
                 chessPiece.row = dest.row
-                chessPiece.col = dest.column
-                board[source.row][source.column] = ChessPiece(row: source.row, column: source.column, color: .clear, type: .dummy, player: playerColor)
-                let rook = board[dest.row][dest.column+1]
-                board[dest.row][dest.column+1] = ChessPiece(row: dest.row, column: dest.column+1, color: .clear, type: .dummy, player: playerColor)
+                chessPiece.col = dest.col
+                board[source.row][source.col] = ChessPiece(row: source.row, column: source.col, color: .clear, type: .dummy, player: playerColor)
+                let rook = board[dest.row][dest.col+1]
+                board[dest.row][dest.col+1] = ChessPiece(row: dest.row, column: dest.col+1, color: .clear, type: .dummy, player: playerColor)
                 rook.row = dest.row
-                rook.col = dest.column - 1
-                board[dest.row][dest.column-1] = rook
+                rook.col = dest.col - 1
+                board[dest.row][dest.col-1] = rook
                 
             } else {
-                board[dest.row][dest.column] = chessPiece
-                board[source.row][source.column] = ChessPiece(row: source.row, column: source.column, color: .clear, type: .dummy, player: playerColor)
+                board[dest.row][dest.col] = chessPiece
+                board[source.row][source.col] = ChessPiece(row: source.row, column: source.col, color: .clear, type: .dummy, player: playerColor)
                 chessPiece.row = dest.row
-                chessPiece.col = dest.column
+                chessPiece.col = dest.col
             }
         } else {
             // add piece to new location
-            board[dest.row][dest.column] = chessPiece
+            board[dest.row][dest.col] = chessPiece
             // add a dummy piece at old location
-            board[source.row][source.column] = ChessPiece(row: source.row, column: source.column, color: .clear, type: .dummy, player: playerColor)
+            board[source.row][source.col] = ChessPiece(row: source.row, column: source.col, color: .clear, type: .dummy, player: playerColor)
             // update piece's location variables
             chessPiece.row = dest.row
-            chessPiece.col = dest.column
+            chessPiece.col = dest.col
         }
         
         //check all the tier 1 types to see if they can be promoted. For some reason it wouldn't let me use the || statement, so we have to write it out the long way like this
@@ -455,7 +455,7 @@ class ChessBoard {
             }
         }
         // Moving on itself
-        if piece.col == dest.column && piece.row == dest.row {
+        if piece.col == dest.col && piece.row == dest.row {
             //print("Moving on itself")
             return false
         }
@@ -613,9 +613,9 @@ class ChessBoard {
             return zigZagDown(piece: piece, dest: dest)
         } else if dest.row < piece.row - 1{//going up
             return zigZagUp(piece: piece, dest: dest)
-        } else if dest.column > piece.col + 1{//going right
+        } else if dest.col > piece.col + 1{//going right
             return zigZagRight(piece: piece, dest: dest)
-        } else if dest.column < piece.col - 1{//going left
+        } else if dest.col < piece.col - 1{//going left
            return zigZagLeft(piece: piece, dest: dest)
         } else {//going close
             return piece.checkOgre(dest: dest)
@@ -634,7 +634,7 @@ class ChessBoard {
             return false
         }
         if dest.row > piece.row + 1{//farther than one space away
-            if dest.column != piece.col{
+            if dest.col != piece.col{
                 let nextSpace = board[dest.row - 1][piece.col]
                 if nextSpace.type != .dummy{//next space is occupied
                     return false
@@ -661,7 +661,7 @@ class ChessBoard {
             return false
         }
         if dest.row < piece.row - 1{//farther than one space away
-            if dest.column != piece.col{
+            if dest.col != piece.col{
                 let nextSpace = board[dest.row + 1][piece.col]
                 if nextSpace.type != .dummy{//next space is occupied
                     return false
@@ -687,9 +687,9 @@ class ChessBoard {
         if piece.row == 7{
             return false
         }
-        if dest.column > piece.col + 1{//farther than one space away
+        if dest.col > piece.col + 1{//farther than one space away
             if dest.row != piece.row{
-                let nextSpace = board[piece.row][dest.column - 1]
+                let nextSpace = board[piece.row][dest.col - 1]
                 if nextSpace.type != .dummy{//next space is occupied
                     return false
                 } else {
@@ -697,7 +697,7 @@ class ChessBoard {
                     return zigZagRight(piece: piece, dest: newDest)
                 }
             } else {//dest.column == piece.col
-                let nextSpace = board[piece.row + 1][dest.column - 1]
+                let nextSpace = board[piece.row + 1][dest.col - 1]
                 if nextSpace.type != .dummy{//next space is occupied
                     return false
                 } else {
@@ -714,9 +714,9 @@ class ChessBoard {
         if piece.row == 0{
             return false
         }
-        if dest.column < piece.col - 1{//farther than one space away
+        if dest.col < piece.col - 1{//farther than one space away
             if dest.row != piece.row{
-                let nextSpace = board[piece.row][dest.column + 1]
+                let nextSpace = board[piece.row][dest.col + 1]
                 if nextSpace.type != .dummy{//next space is occupied
                     return false
                 } else {
@@ -724,7 +724,7 @@ class ChessBoard {
                     return zigZagLeft(piece: piece, dest: newDest)
                 }
             } else {//dest.column == piece.col
-                let nextSpace = board[piece.row - 1][dest.column + 1]
+                let nextSpace = board[piece.row - 1][dest.col + 1]
                 if nextSpace.type != .dummy{//next space is occupied
                     return false
                 } else {
@@ -751,7 +751,7 @@ class ChessBoard {
         }
         
         // if it's same column
-        if pawn.col == dest.column {
+        if pawn.col == dest.col {
             if pawn.advancingByTwo {
                 var moveDirection: Int
                 if pawn.color == playerColor {
@@ -760,18 +760,18 @@ class ChessBoard {
                     moveDirection = 1
                 }
                 // make sure there are no pieces in the way or at destination
-                if board[dest.row][dest.column].type == .dummy && board[dest.row - moveDirection][dest.column].type == .dummy {
+                if board[dest.row][dest.col].type == .dummy && board[dest.row - moveDirection][dest.col].type == .dummy {
                     return true
                 }
             } else {
-                if board[dest.row][dest.column].type == .dummy {
+                if board[dest.row][dest.col].type == .dummy {
                     return true
                 }
             }
         } else { // attempting to attack diagonally
             // We will check that the destination cell does not contain a friend piece before getting to this cell
             // So just make sure the cell is not empty
-            if !(board[dest.row][dest.column].type == .dummy) {
+            if !(board[dest.row][dest.col].type == .dummy) {
                 return true
             }
         }
@@ -787,13 +787,13 @@ class ChessBoard {
         }
         //if the move is to a different column (diagonal)
         //the dwarf can move here but not attack
-        if dwarf.col != dest.column{
-            if board[dest.row][dest.column].type == .dummy{
+        if dwarf.col != dest.col{
+            if board[dest.row][dest.col].type == .dummy{
                 return true
             }
         } else { //vertical move, can only be an attack
             //since we check elsewhere to avoid attacking friendly pieces, we only need to check if the space is empty
-            if !(board[dest.row][dest.column].type == .dummy){
+            if !(board[dest.row][dest.col].type == .dummy){
                 return true
             }
         }
@@ -805,12 +805,12 @@ class ChessBoard {
             return false
         }
         //diagonal movement, must be an attack
-        if dest.row != piece.row && dest.column != piece.col{
-            if !(board[dest.row][dest.column].type == .dummy){
+        if dest.row != piece.row && dest.col != piece.col{
+            if !(board[dest.row][dest.col].type == .dummy){
                 return true
             }
         } else { //orthagonal movement, can't be an attack
-            if board[dest.row][dest.column].type == .dummy{
+            if board[dest.row][dest.col].type == .dummy{
                 return true
             }
         }
@@ -822,12 +822,12 @@ class ChessBoard {
             return false
         }
         //diagonal movement, can't be an attack
-        if dest.row != piece.row && dest.column != piece.col{
-            if board[dest.row][dest.column].type == .dummy{
+        if dest.row != piece.row && dest.col != piece.col{
+            if board[dest.row][dest.col].type == .dummy{
                 return true
             }
         } else { //orthagonal movement, must be an attack
-            if !(board[dest.row][dest.column].type == .dummy){
+            if !(board[dest.row][dest.col].type == .dummy){
                 return true
             }
         }
@@ -840,11 +840,11 @@ class ChessBoard {
         }
         //same row, can't be an attack
         if dest.row == piece.row {
-            if board[dest.row][dest.column].type == .dummy{
+            if board[dest.row][dest.col].type == .dummy{
                 return true
             }
         } else { //all other moves, must be an attack
-            if !(board[dest.row][dest.column].type == .dummy){
+            if !(board[dest.row][dest.col].type == .dummy){
                 return true
             }
         }
@@ -856,13 +856,13 @@ class ChessBoard {
             return false
         }
         if piece.color == .black{
-            if dest.column > piece.col{
+            if dest.col > piece.col{
                 return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
             } else {
                 return piece.checkKnight(dest: dest)
             }
         } else { //if piece.color == .white{
-            if dest.column < piece.col{
+            if dest.col < piece.col{
                 return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
             } else {
                 return piece.checkKnight(dest: dest)
@@ -876,13 +876,13 @@ class ChessBoard {
             return false
         }
         if piece.color == .black{
-            if dest.column < piece.col{
+            if dest.col < piece.col{
                 return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
             } else {
                 return piece.checkKnight(dest: dest)
             }
         } else { //if piece.color == .white{
-            if dest.column > piece.col{
+            if dest.col > piece.col{
                 return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
             } else {
                 return piece.checkKnight(dest: dest)
@@ -896,7 +896,7 @@ class ChessBoard {
             return false
         }
         //the piece can't attack
-        if board[dest.row][dest.column].type == .dummy {
+        if board[dest.row][dest.col].type == .dummy {
             return true
         } else{
             return false
@@ -911,7 +911,7 @@ class ChessBoard {
         if piece.checkKing(dest: dest){
             return true
         } else { //can't attack but can move
-            if !(board[dest.row][dest.column].type == .dummy){
+            if !(board[dest.row][dest.col].type == .dummy){
                 return false
             }
         }
@@ -924,7 +924,7 @@ class ChessBoard {
         }
         //close range, can move but not attack
         if piece.checkKing(dest: dest){
-            if board[dest.row][dest.column].type == .dummy{
+            if board[dest.row][dest.col].type == .dummy{
                 return true
             }
         } else { //can attack or move
@@ -940,13 +940,13 @@ class ChessBoard {
         }
         //bishop move, attack
         if piece.checkBishop(dest: dest){
-            if !(board[dest.row][dest.column].type == .dummy){
+            if !(board[dest.row][dest.col].type == .dummy){
                 return true
             }
         }
         //rook move, move
         if piece.checkRook(dest: dest){
-            if board[dest.row][dest.column].type == .dummy{
+            if board[dest.row][dest.col].type == .dummy{
                 return true
             }
         }
@@ -959,13 +959,13 @@ class ChessBoard {
         }
         //bishop move, move
         if piece.checkBishop(dest: dest){
-            if board[dest.row][dest.column].type == .dummy{
+            if board[dest.row][dest.col].type == .dummy{
                 return true
             }
         }
         //rook move, attack
         if piece.checkRook(dest: dest){
-            if !(board[dest.row][dest.column].type == .dummy){
+            if !(board[dest.row][dest.col].type == .dummy){
                 return true
             }
         }
@@ -979,7 +979,7 @@ class ChessBoard {
         if dest.row > piece.row{
             var testRow = dest.row - 1
             while testRow > piece.row{
-                if board[testRow][dest.column].type != .dummy{
+                if board[testRow][dest.col].type != .dummy{
                     return false
                 }
                 testRow = testRow - 1
@@ -988,7 +988,7 @@ class ChessBoard {
         } else {//if dest.row < piece.row{
             var testRow = dest.row + 1
             while testRow < piece.row{
-                if board[testRow][dest.column].type != .dummy{
+                if board[testRow][dest.col].type != .dummy{
                     return false
                 }
                 testRow = testRow + 1
@@ -1012,11 +1012,11 @@ class ChessBoard {
         if piece.isMovementAppropriate(toIndex: dest) == false{
             return false
         }
-        if dest.column == (piece.col + 1) || dest.column == (piece.col - 1){//vertical move
+        if dest.col == (piece.col + 1) || dest.col == (piece.col - 1){//vertical move
             return isMoveValid(forShip: piece, toIndex: dest)
         } else {//horizontal move
-            if dest.column > piece.col{
-                var testCol = dest.column - 1
+            if dest.col > piece.col{
+                var testCol = dest.col - 1
                 while testCol > piece.col{
                     if board[dest.row][testCol].type != .dummy{
                         return false
@@ -1025,7 +1025,7 @@ class ChessBoard {
                 }
                 return true
             } else {//if dest.row < piece.row{
-                var testCol = dest.column + 1
+                var testCol = dest.col + 1
                 while testCol < piece.col{
                     if board[dest.row][testCol].type != .dummy{
                         return false
@@ -1043,14 +1043,14 @@ class ChessBoard {
         }
         //if the move is to a different column (lateral)
         //the footSoldier can move here but not attack
-        if piece.col != dest.column{
+        if piece.col != dest.col{
             //since we check elsewhere to avoid attacking friendly pieces, we only need to check if the space is empty
-            if !(board[dest.row][dest.column].type == .dummy){
+            if !(board[dest.row][dest.col].type == .dummy){
                 return true
             }
             
         } else { //vertical move, can move here but not attack
-            if board[dest.row][dest.column].type == .dummy{
+            if board[dest.row][dest.col].type == .dummy{
                 return isMoveValid(forRookOrBishopOrQueen: piece, toIndex: dest)
             }
         }
@@ -1062,7 +1062,7 @@ class ChessBoard {
             return false
         }
         //can't move unless attacking
-        if board[dest.row][dest.column].type == .dummy{
+        if board[dest.row][dest.col].type == .dummy{
             return false
         }
         return true
@@ -1086,14 +1086,14 @@ class ChessBoard {
             rowDelta = (dest.row - piece.row) / abs(dest.row - piece.row)
         }
         var colDelta = 0
-        if dest.column - piece.col != 0 {
-            colDelta = (dest.column - piece.col) / abs(dest.column - piece.col)
+        if dest.col - piece.col != 0 {
+            colDelta = (dest.col - piece.col) / abs(dest.col - piece.col)
         }
         
         // make sure there are no pieces between itself and the destination cell
         var nextRow = piece.row + rowDelta
         var nextCol = piece.col + colDelta
-        while nextRow != dest.row || nextCol != dest.column{
+        while nextRow != dest.row || nextCol != dest.col{
             //NSLog("Place: \(nextRow), \(nextCol)")
             if !(board[nextRow][nextCol].type == .dummy) {
                 return false
@@ -1110,16 +1110,16 @@ class ChessBoard {
     //because of the unique movements of the dragonRider, it needs its own function
     func isMoveValid(forDragonRider piece: ChessPiece, toIndex dest: BoardIndex) -> Bool {
         NSLog("DragonRider position: \(piece.row), \(piece.col)")
-        NSLog("DragonRider destination: \(dest.row), \(dest.column)")
+        NSLog("DragonRider destination: \(dest.row), \(dest.col)")
         if (dest.row - piece.row) == 6{//6,-3 or 6, 3
-            if (dest.column - piece.col) == -3{//needs to go through 4,-2 and 2,-1
+            if (dest.col - piece.col) == -3{//needs to go through 4,-2 and 2,-1
                 if !(board[piece.row + 4][piece.col - 2].type == .dummy){
                     return false
                 }
                 if !(board[piece.row + 2][piece.col - 1].type == .dummy){
                     return false
                 }
-            } else if (dest.column - piece.col) == 3{//needs to go through 4,2 and 2,1
+            } else if (dest.col - piece.col) == 3{//needs to go through 4,2 and 2,1
                 if !(board[piece.row + 4][piece.col + 2].type == .dummy){
                     return false
                 }
@@ -1128,24 +1128,24 @@ class ChessBoard {
                 }
             }
         } else if (dest.row - piece.row) == 4{
-            if (dest.column - piece.col) == -2{//needs to go through 2,-1
+            if (dest.col - piece.col) == -2{//needs to go through 2,-1
                 if !(board[piece.row + 2][piece.col - 1].type == .dummy){
                     return false
                 }
-            } else if (dest.column - piece.col) == 2{//needs to go through 2,1
+            } else if (dest.col - piece.col) == 2{//needs to go through 2,1
                 if !(board[piece.row + 2][piece.col + 1].type == .dummy){
                     return false
                 }
             }
         } else if (dest.row - piece.row) == 3{
-            if (dest.column - piece.col) == -6{//needs to go through 2,-4 and 1,-2
+            if (dest.col - piece.col) == -6{//needs to go through 2,-4 and 1,-2
                 if !(board[piece.row + 2][piece.col - 4].type == .dummy){
                     return false
                 }
                 if !(board[piece.row + 1][piece.col - 2].type == .dummy){
                     return false
                 }
-            } else if (dest.column - piece.col) == 6{//needs to go through 2,4 and 1,2
+            } else if (dest.col - piece.col) == 6{//needs to go through 2,4 and 1,2
                 if !(board[piece.row + 2][piece.col + 4].type == .dummy){
                     return false
                 }
@@ -1154,34 +1154,34 @@ class ChessBoard {
                 }
             }
         } else if (dest.row - piece.row) == 2{
-            if (dest.column - piece.col) == -4{//needs to go through 1,-2
+            if (dest.col - piece.col) == -4{//needs to go through 1,-2
                 if !(board[piece.row + 1][piece.col - 2].type == .dummy){
                     return false
                 }
-            } else if (dest.column - piece.col) == 4{//needs to go through 1,2
+            } else if (dest.col - piece.col) == 4{//needs to go through 1,2
                 if !(board[piece.row + 1][piece.col + 2].type == .dummy){
                     return false
                 }
             }
         } else if (dest.row - piece.row) == -2{
-            if (dest.column - piece.col) == -4{//needs to go through -1,-2
+            if (dest.col - piece.col) == -4{//needs to go through -1,-2
                 if !(board[piece.row - 1][piece.col - 2].type == .dummy){
                     return false
                 }
-            } else if (dest.column - piece.col) == 4{//needs to go through -1,2
+            } else if (dest.col - piece.col) == 4{//needs to go through -1,2
                 if !(board[piece.row - 1][piece.col + 2].type == .dummy){
                     return false
                 }
             }
         } else if (dest.row - piece.row) == -3{
-            if (dest.column - piece.col) == -6{//needs to go through -2,-4 and -1,-2
+            if (dest.col - piece.col) == -6{//needs to go through -2,-4 and -1,-2
                 if !(board[piece.row - 2][piece.col - 4].type == .dummy){
                     return false
                 }
                 if !(board[piece.row - 1][piece.col - 2].type == .dummy){
                     return false
                 }
-            } else if dest.column == 6{//needs to go through-1,2 and -2,4
+            } else if dest.col == 6{//needs to go through-1,2 and -2,4
                 if !(board[piece.row - 2][piece.col + 4].type == .dummy){
                     return false
                 }
@@ -1190,24 +1190,24 @@ class ChessBoard {
                 }
             }
         } else if (dest.row - piece.row) == -4{
-            if (dest.column - piece.col) == -2{//needs to go through -2,-1
+            if (dest.col - piece.col) == -2{//needs to go through -2,-1
                 if !(board[piece.row - 2][piece.col - 1].type == .dummy){
                     return false
                 }
-            } else if (dest.column - piece.col) == 2{//needs to go through -2, 1
+            } else if (dest.col - piece.col) == 2{//needs to go through -2, 1
                 if !(board[piece.row - 2][piece.col + 1].type == .dummy){
                     return false
                 }
             }
         } else if (dest.row - piece.row) == -6{
-            if (dest.column - piece.col) == -3{//needs to go through -4,-2, and -2,-1
+            if (dest.col - piece.col) == -3{//needs to go through -4,-2, and -2,-1
                 if !(board[piece.row - 4][piece.col - 2].type == .dummy){
                     return false
                 }
                 if !(board[piece.row - 2][piece.col - 1].type == .dummy){
                     return false
                 }
-            } else if (dest.column - piece.col) == 3{//needs to go through -4,2 and -2,1
+            } else if (dest.col - piece.col) == 3{//needs to go through -4,2 and -2,1
                 if !(board[piece.row - 4][piece.col + 2].type == .dummy){
                     return false
                 }
@@ -1234,7 +1234,7 @@ class ChessBoard {
     
     /// called from getPossibleMoves and when move made
     private func isMoveTwoCellsOver(forKing king: ChessPiece, move: BoardIndex) -> Bool {
-        let colDelta = abs(king.col - move.column)
+        let colDelta = abs(king.col - move.col)
         return colDelta == 2
     }
     
@@ -1242,9 +1242,9 @@ class ChessBoard {
     private func isRookNext(toKing king: ChessPiece, forMove move: BoardIndex) -> Bool {
         if king.color == .white {
             //if move.row == 0 && move.column == 6
-            return move.row == 0 && move.column == 6 && board[move.row][move.column + 1].type == .rook
+            return move.row == 0 && move.col == 6 && board[move.row][move.col + 1].type == .rook
         } else if king.color == .black {
-            return move.row == 7 && move.column == 6 && board[move.row][move.column + 1].type == .rook
+            return move.row == 7 && move.col == 6 && board[move.row][move.col + 1].type == .rook
         }
         return false
     }
@@ -1293,7 +1293,7 @@ class ChessBoard {
         
         // compute absolute difference between the kings
         let rowDiff = abs(otherKingIndex.row - king.row)
-        let colDiff = abs(otherKingIndex.column - king.col)
+        let colDiff = abs(otherKingIndex.col - king.col)
         if (rowDiff == 0 || rowDiff == 1) && (colDiff == 0 || colDiff == 1) {
             //print("Another king is right there")
             return true
@@ -1368,8 +1368,8 @@ class ChessBoard {
             for col in 0...7 {
                 
                 // "place" piece at the destination it's actually trying to go
-                let pieceBeingAttacked = board[dest.row][dest.column]
-                board[dest.row][dest.column] = piece
+                let pieceBeingAttacked = board[dest.row][dest.col]
+                board[dest.row][dest.col] = piece
                 board[piece.row][piece.col] = ChessPiece(row: piece.row, column: piece.col, color: .clear, type: .dummy, player: playerColor)
                 //print("Piece being attacked: \(pieceBeingAttacked.printInfo()) by \(piece.printInfo())")
                 
@@ -1377,7 +1377,7 @@ class ChessBoard {
                     if isMoveLegal(forPiece: board[row][col], toIndex: kingIndex, considerOwnPiece: true) {
                         //print("\(board[row][col].symbol) can attack your king!")
                         // undo fake move
-                        board[dest.row][dest.column] = pieceBeingAttacked
+                        board[dest.row][dest.col] = pieceBeingAttacked
                         board[piece.row][piece.col] = piece
                         //print("Move will expose king to check")
                         return true
@@ -1385,7 +1385,7 @@ class ChessBoard {
                 }
                 
                 // undo fake move
-                board[dest.row][dest.column] = pieceBeingAttacked
+                board[dest.row][dest.col] = pieceBeingAttacked
                 board[piece.row][piece.col] = piece
             }
         }
@@ -1468,33 +1468,33 @@ class ChessBoard {
     
     func canMove(move: BoardIndex, takeOutChessPiece piece: ChessPiece) -> Bool {
         //print("Can take out attacking piece")
-        return move.row == piece.row && move.column == piece.col
+        return move.row == piece.row && move.col == piece.col
     }
     
     func canMove(fromIndex source: BoardIndex, toIndex dest: BoardIndex, blockCheckBy piece: ChessPiece, forKing king: ChessPiece) -> Bool {
         
         let opponent: UIColor = king.color == .white ? .black : .white
-        let movingPiece = board[source.row][source.column]
-        board[dest.row][dest.column] = movingPiece
-        board[source.row][source.column] = ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: playerColor)
-        movingPiece.col = dest.column
+        let movingPiece = board[source.row][source.col]
+        board[dest.row][dest.col] = movingPiece
+        board[source.row][source.col] = ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: playerColor)
+        movingPiece.col = dest.col
         movingPiece.row = dest.row
         
         if !isKingUnderUnderCheck(king: king, byOpponent: opponent) {
             // undo fake move
-            board[source.row][source.column] = movingPiece
-            board[dest.row][dest.column] = ChessPiece(row: dest.row, column: dest.column, color: .clear, type: .dummy, player: playerColor)
+            board[source.row][source.col] = movingPiece
+            board[dest.row][dest.col] = ChessPiece(row: dest.row, column: dest.col, color: .clear, type: .dummy, player: playerColor)
             movingPiece.row = source.row
-            movingPiece.col = source.column
+            movingPiece.col = source.col
             //print("Can block check")
             return true
         }
         
         // undo fake move
-        board[source.row][source.column] = movingPiece
-        board[dest.row][dest.column] = ChessPiece(row: dest.row, column: dest.column, color: .clear, type: .dummy, player: playerColor)
+        board[source.row][source.col] = movingPiece
+        board[dest.row][dest.col] = ChessPiece(row: dest.row, column: dest.col, color: .clear, type: .dummy, player: playerColor)
         movingPiece.row = source.row
-        movingPiece.col = source.column
+        movingPiece.col = source.col
         
         return false
     }

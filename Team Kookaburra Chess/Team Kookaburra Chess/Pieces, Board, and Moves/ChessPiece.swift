@@ -568,7 +568,7 @@ class ChessPiece {
     func checkPawn(dest: BoardIndex) -> Bool {
         // is it advancing by 2
         // check if the move is in the same column
-        if self.col == dest.column {
+        if self.col == dest.col {
             // can only move 2 forward if first time moving pawn
             if playerColor == .white{
                 if color != playerColor {
@@ -641,7 +641,7 @@ class ChessPiece {
         // if the movement is only 1 row up/down
         if dest.row == self.row + moveDirection {
             // check for diagonal movement and forward movement
-            if (dest.column == self.col - 1) || (dest.column == self.col) || (dest.column == self.col + 1) {
+            if (dest.col == self.col - 1) || (dest.col == self.col) || (dest.col == self.col + 1) {
                 return true
             }
         }
@@ -649,7 +649,7 @@ class ChessPiece {
     }
     
     func checkRook(dest: BoardIndex) -> Bool {
-        if self.row == dest.row || self.col == dest.column {
+        if self.row == dest.row || self.col == dest.col {
             return true
         }
         return false
@@ -659,7 +659,7 @@ class ChessPiece {
         if dest.row > self.row + 1{//going down
             let validMoves = [(self.row + 1, self.col - 1), (self.row + 2, self.col), (self.row + 3, self.col - 1), (self.row + 4, self.col), (self.row + 5, self.col - 1), (self.row + 6, self.col), (self.row + 7, self.col - 1)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
@@ -667,23 +667,23 @@ class ChessPiece {
         } else if dest.row < self.row - 1{//going up
             let validMoves = [(self.row - 1, self.col + 1), (self.row - 2, self.col), (self.row - 3, self.col + 1), (self.row - 4, self.col), (self.row - 5, self.col + 1), (self.row - 6, self.col), (self.row - 7, self.col + 1)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
             return false
-        } else if dest.column > self.col + 1{//going right
+        } else if dest.col > self.col + 1{//going right
             let validMoves = [(self.row + 1, self.col + 1), (self.row, self.col + 2), (self.row + 1, self.col + 3), (self.row, self.col + 4), (self.row + 1, self.col + 5), (self.row, self.col + 6), (self.row + 1, self.col + 7)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
             return false
-        } else if dest.column < self.col - 1{//going left
+        } else if dest.col < self.col - 1{//going left
             let validMoves = [(self.row - 1, self.col - 1), (self.row, self.col - 2), (self.row - 1, self.col - 3), (self.row, self.col - 4), (self.row - 1, self.col - 5), (self.row, self.col - 6), (self.row - 1, self.col - 7)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
@@ -698,7 +698,7 @@ class ChessPiece {
         let validMoves =  [(self.row - 1, self.col + 2), (self.row - 2, self.col + 1), (self.row - 2, self.col - 1), (self.row - 1, self.col - 2), (self.row + 1, self.col - 2), (self.row + 2, self.col - 1), (self.row + 2, self.col + 1), (self.row + 1, self.col + 2)]
         
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -706,7 +706,7 @@ class ChessPiece {
     }
     
     func checkBishop(dest: BoardIndex) -> Bool {
-        if abs(dest.row - self.row) == abs(dest.column - self.col) {
+        if abs(dest.row - self.row) == abs(dest.col - self.col) {
             return true
         }
         return false
@@ -714,11 +714,11 @@ class ChessPiece {
     
     func checkQueen(dest: BoardIndex) -> Bool {
         // check diagonal move
-        if abs(dest.row - self.row) == abs(dest.column - self.col) {
+        if abs(dest.row - self.row) == abs(dest.col - self.col) {
             return true
         }
         // check rook-like move
-        if self.row == dest.row || self.col == dest.column {
+        if self.row == dest.row || self.col == dest.col {
             return true
         }
         return false
@@ -727,7 +727,7 @@ class ChessPiece {
     func checkKing(dest: BoardIndex) -> Bool {
         // king only moves one space at a time
         let rowDelta = abs(self.row - dest.row)
-        let colDelta = abs(self.col - dest.column)
+        let colDelta = abs(self.col - dest.col)
         if (rowDelta == 0 || rowDelta == 1) && (colDelta == 0 || colDelta == 1) {
             return true
         }
@@ -745,18 +745,18 @@ class ChessPiece {
     
     func checkUnicorn(dest: BoardIndex) -> Bool {
         // check diagonal move
-        if abs(dest.row - self.row) == abs(dest.column - self.col) {
+        if abs(dest.row - self.row) == abs(dest.col - self.col) {
             return true
         }
         // check rook-like move
-        if self.row == dest.row || self.col == dest.column {
+        if self.row == dest.row || self.col == dest.col {
             return true
         }
         //check knight move
         let validMoves =  [(self.row - 1, self.col + 2), (self.row - 2, self.col + 1), (self.row - 2, self.col - 1), (self.row - 1, self.col - 2), (self.row + 1, self.col - 2), (self.row + 2, self.col - 1), (self.row + 2, self.col + 1), (self.row + 1, self.col + 2)]
         
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -765,14 +765,14 @@ class ChessPiece {
     
     func checkCentaur(dest: BoardIndex) -> Bool {
         // check rook-like move
-        if self.row == dest.row || self.col == dest.column {
+        if self.row == dest.row || self.col == dest.col {
             return true
         }
         //check knight move
         let validMoves =  [(self.row - 1, self.col + 2), (self.row - 2, self.col + 1), (self.row - 2, self.col - 1), (self.row - 1, self.col - 2), (self.row + 1, self.col - 2), (self.row + 2, self.col - 1), (self.row + 2, self.col + 1), (self.row + 1, self.col + 2)]
         
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -791,7 +791,7 @@ class ChessPiece {
         let validMoves =  [(self.row - 1, self.col + 3), (self.row - 3, self.col + 1), (self.row - 3, self.col - 1), (self.row - 1, self.col - 3), (self.row + 1, self.col - 3), (self.row + 3, self.col - 1), (self.row + 3, self.col + 1), (self.row + 1, self.col + 3)]
         
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -801,7 +801,7 @@ class ChessPiece {
     func checkMinotaur(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row, self.col + 2), (self.row, self.col + 3), (self.row, self.col - 2 ), (self.row, self.col - 3), (self.row + 2, self.col), (self.row + 3, self.col), (self.row - 2, self.col), (self.row - 3, self.col), (self.row + 2, self.col + 2), (self.row + 2, self.col - 2), (self.row - 2, self.col + 2), (self.row - 2, self.col - 2), (self.row + 3, self.col + 3), (self.row + 3, self.col - 3), (self.row - 3, self.col + 3), (self.row - 3, self.col - 3)]
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -811,7 +811,7 @@ class ChessPiece {
     func checkMonopod(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row, self.col + 2), (self.row + 1, self.col + 2), (self.row + 2, self.col + 2), (self.row + 2, self.col + 1), (self.row + 2, self.col), (self.row + 2, self.col - 1), (self.row + 2, self.col - 2), (self.row + 1, self.col - 2), (self.row, self.col - 2), (self.row - 1, self.col - 2), (self.row - 2, self.col - 2), (self.row - 2, self.col - 1), (self.row - 2, self.col), (self.row - 2, self.col + 1), (self.row - 2, self.col + 2), (self.row - 1, self.col + 2)]
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -821,7 +821,7 @@ class ChessPiece {
     func checkOgre(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row + 1, self.col + 1), (self.row - 1, self.col + 1), (self.row - 1, self.col - 1), (self.row + 1, self.col - 1)]
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -831,7 +831,7 @@ class ChessPiece {
     func checkOrc(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row + 1, self.col), (self.row - 1, self.col), (self.row, self.col - 1), (self.row, self.col + 1)]
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -842,14 +842,14 @@ class ChessPiece {
         if color == .black {
             let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col), (self.row + 1, self.col - 1)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
         } else {//color == .white{
             let validMoves = [(self.row - 1, self.col + 1), (self.row - 1, self.col), (self.row - 1, self.col - 1)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
@@ -860,7 +860,7 @@ class ChessPiece {
     func checkPike(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row + 2, self.col), (self.row - 2, self.col), (self.row, self.col - 2), (self.row, self.col + 2)]
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -870,7 +870,7 @@ class ChessPiece {
     func checkArcher(dest: BoardIndex) -> Bool {
         let validMoves = [(self.row + 2, self.col + 2), (self.row - 2, self.col + 2), (self.row - 2, self.col - 2), (self.row + 2, self.col - 2)]
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -881,14 +881,14 @@ class ChessPiece {
         if color == .black{
             let validMoves = [(self.row + 2, self.col + 1), (self.row + 2, self.col - 1), (self.row - 1, self.col)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
         } else { //color == .white{
             let validMoves = [(self.row - 2, self.col + 1), (self.row - 2, self.col - 1), (self.row + 1, self.col)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
@@ -904,14 +904,14 @@ class ChessPiece {
         if color == .black{
             let validMoves = [(self.row + 1, self.col + 1), (self.row + 1, self.col - 1)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
         }else {//if color == .white{
             let validMoves = [(self.row - 1, self.col + 1), (self.row - 1, self.col - 1)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
@@ -923,14 +923,14 @@ class ChessPiece {
         if color == .black{
             let validMoves = [(self.row + 1, self.col), (self.row + 2, self.col)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
         } else { //color == .white
             let validMoves = [(self.row - 1, self.col), (self.row - 2, self.col)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
@@ -942,14 +942,14 @@ class ChessPiece {
         if color == .black{
             let validMoves = [(self.row + 1, self.col), (self.row + 2, self.col), (self.row, self.col - 1), (self.row, self.col + 1)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
         } else {//color == .white
             let validMoves = [(self.row - 1, self.col), (self.row - 2, self.col), (self.row, self.col - 1), (self.row, self.col + 1)]
             for (validRow, validCol) in validMoves {
-                if dest.row == validRow && dest.column == validCol {
+                if dest.row == validRow && dest.col == validCol {
                     return true
                 }
             }
@@ -960,7 +960,7 @@ class ChessPiece {
     func checkDragonRider(dest: BoardIndex) -> Bool {
         let validMoves =  [(self.row + 6, self.col - 3), (self.row + 6, self.col + 3), (self.row + 4, self.col - 2),(self.row + 4, self.col + 2), (self.row + 3, self.col - 6), (self.row + 3, self.col + 6), (self.row + 2, self.col - 4), (self.row + 2, self.col - 1), (self.row + 2, self.col + 1), (self.row + 2, self.col + 4),(self.row + 1, self.col - 2), (self.row + 1, self.col + 2), (self.row - 6, self.col - 3), (self.row - 6, self.col + 3), (self.row - 4, self.col - 2),(self.row - 4, self.col + 2), (self.row - 3, self.col - 6), (self.row - 3, self.col + 6), (self.row - 2, self.col - 4), (self.row - 2, self.col - 1), (self.row - 2, self.col + 1), (self.row - 2, self.col + 4),(self.row - 1, self.col - 2), (self.row - 1, self.col + 2)]
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }
@@ -1036,15 +1036,15 @@ class ChessPiece {
     
     func checkLeftyElf(dest: BoardIndex) -> Bool{
         if color == .black{
-            if dest.column > col{//to the right
+            if dest.col > col{//to the right
                 return checkBishop(dest: dest)
-            } else if dest.column < col{//to the left
+            } else if dest.col < col{//to the left
                 return checkKnight(dest: dest)
             }
         } else {//if color == .white
-            if dest.column > col{//to the right
+            if dest.col > col{//to the right
                 return checkKnight(dest: dest)
-            } else if dest.column < col{//to the left
+            } else if dest.col < col{//to the left
                 return checkBishop(dest: dest)
             }
         }
@@ -1053,15 +1053,15 @@ class ChessPiece {
     
     func checkRightyElf(dest: BoardIndex) -> Bool{
         if color == .black{
-            if dest.column > col{//to the right
+            if dest.col > col{//to the right
                 return checkKnight(dest: dest)
-            } else if dest.column < col{//to the left
+            } else if dest.col < col{//to the left
                 return checkBishop(dest: dest)
             }
         } else {//if color == .white
-            if dest.column > col{//to the right
+            if dest.col > col{//to the right
                 return checkBishop(dest: dest)
-            } else if dest.column < col{//to the left
+            } else if dest.col < col{//to the left
                 return checkKnight(dest: dest)
             }
         }
@@ -1069,7 +1069,7 @@ class ChessPiece {
     }
     
     func checkShip(dest: BoardIndex) -> Bool{
-        if dest.column == (col + 1) || dest.column == (col - 1){
+        if dest.col == (col + 1) || dest.col == (col - 1){
             if dest.row != row{
                 return true
             }
@@ -1078,12 +1078,12 @@ class ChessPiece {
     }
     
     func checkGriffin(dest: BoardIndex) -> Bool{
-        if dest.column == (col + 1) || dest.column == (col - 1){
+        if dest.col == (col + 1) || dest.col == (col - 1){
             if dest.row != row{
                 return true
             }
         } else if dest.row == (row + 1) || dest.row == (row - 1){
-            if dest.column != col{
+            if dest.col != col{
                 return true
             }
         }
@@ -1093,7 +1093,7 @@ class ChessPiece {
     func checkBoar(dest: BoardIndex) -> Bool{
         let validMoves =  [(self.row + 2, self.col + 2), (self.row + 1, self.col), (self.row + 2, self.col), (self.row + 1, self.col + 1), (self.row + 2, self.col + 2), (self.row, self.col + 1), (self.row, self.col + 2), (self.row, self.col - 1), (self.row, self.col - 2), (self.row + 1, self.col - 1), (self.row + 2, self.col - 2), (self.row, self.col - 1), (self.row, self.col - 2), (self.row - 1, self.col - 1), (self.row - 2, self.col - 2), (self.row - 1, self.col + 1), (self.row + 2, self.col + 2), (self.row - 2, self.col), (self.row - 1, self.col), (self.row - 2, self.col - 2), (self.row + 2, self.col - 2), (self.row - 2, self.col + 2)]
         for (validRow, validCol) in validMoves {
-            if dest.row == validRow && dest.column == validCol {
+            if dest.row == validRow && dest.col == validCol {
                 return true
             }
         }

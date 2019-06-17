@@ -299,7 +299,7 @@ class ChessVC: UIViewController {
                 boardCells[row][col].piece.type =  .dummy
                 boardCells[row][col].piece.setupSymbol()
                 boardCells[row][col].row = row
-                boardCells[row][col].column = col
+                boardCells[row][col].col = col
                 
                 chessBoard.board[row][col].type = .dummy
                 chessBoard.board[row][col].setupSymbol()
@@ -313,7 +313,7 @@ class ChessVC: UIViewController {
                 print("There should really be a piece here somewhere")
             }
             boardCells[pieceInfo.row][pieceInfo.col].row = pieceInfo.row
-            boardCells[pieceInfo.row][pieceInfo.col].column = pieceInfo.col
+            boardCells[pieceInfo.row][pieceInfo.col].col = pieceInfo.col
             
             boardCells[pieceInfo.row][pieceInfo.col].piece = piece
             chessBoard.board[pieceInfo.row][pieceInfo.col] = piece
@@ -412,7 +412,7 @@ extension ChessVC: BoardCellDelegate {
             let dest = BoardIndex(row: row, column: col)
             // check if selected one of possible moves, if so move there
             for move in possibleMoves {
-                if move.row == row && move.column == col {
+                if move.row == row && move.col == col {
                     
                     if (!isLocalMatch) {
                         
@@ -586,20 +586,20 @@ extension ChessVC: BoardCellDelegate {
     func highlightPossibleMoves() {
         for move in possibleMoves {
             //print(move.row)
-            boardCells[move.row][move.column].setAsPossibleLocation()
+            boardCells[move.row][move.col].setAsPossibleLocation()
         }
     }
     
     func highlightEnemyMoves(){
         for move in possibleMoves{
-            boardCells[move.row][move.column].setAsEnemyLocation()
+            boardCells[move.row][move.col].setAsEnemyLocation()
         }
     }
     
     func highlightPossibleAttacks(){
         //print("possible attacks being highlighted")
         for move in possibleAttacks{
-            boardCells[move.row][move.column].setAsBlocked()
+            boardCells[move.row][move.col].setAsBlocked()
         }
     }
     

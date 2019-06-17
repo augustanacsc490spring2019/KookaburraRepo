@@ -12,7 +12,7 @@ protocol BoardCellDelegate {
 class BoardCell: UIView {
     
     var row: Int
-    var column: Int
+    var col: Int
     var piece: ChessPiece
     var color: UIColor
     var delegate: BoardCellDelegate?
@@ -37,7 +37,7 @@ class BoardCell: UIView {
     
     init(row: Int, column: Int, piece: ChessPiece, color: UIColor) {
         self.row = row
-        self.column = column
+        self.col = column
         self.piece = piece
         self.color = color
         
@@ -99,7 +99,7 @@ class BoardCell: UIView {
     
     func configureCell(forPiece piece: ChessPiece) {
         row = piece.row
-        column = piece.col
+        col = piece.col
         self.piece = piece
         //pieceLabel.attributedText = imageFromPath(path: "testRook.png")
         //special thanks to StackOverflow user Tarun Seera
@@ -177,7 +177,7 @@ class BoardCell: UIView {
     
     @objc func selectedCell(sender: UIButton) {
         //print("Selected cell at: \(row), \(column)")
-        delegate?.didSelect(cell: self, atRow: row, andColumn: column)
+        delegate?.didSelect(cell: self, atRow: row, andColumn: col)
     }
     
     required init?(coder aDecoder: NSCoder) {

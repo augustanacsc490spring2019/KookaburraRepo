@@ -39,13 +39,13 @@ enum BDirection {
 class BoardIndex: Equatable {
     
     var row: Int!
-    var column: Int!
+    var col: Int!
     var valueRow: BVertical!
     var valueCol: BHorizontal!
     
     init(row: Int, column: Int) {
         self.row = row
-        self.column = column
+        self.col = column
         updateValue(fromDirection: .top)
     }
     
@@ -74,7 +74,7 @@ class BoardIndex: Equatable {
                 valueRow = .eight
             }
             
-            switch column {
+            switch col {
             case 0:
                 valueCol = .a
             case 1:
@@ -118,7 +118,7 @@ class BoardIndex: Equatable {
                 valueRow = .eight
             }
             
-            switch column {
+            switch col {
             case 0:
                 valueCol = .a
             case 1:
@@ -143,7 +143,7 @@ class BoardIndex: Equatable {
     }
     
     static func ==(lhs: BoardIndex, rhs: BoardIndex) -> Bool {
-        return lhs.row == rhs.row && lhs.column == rhs.column
+        return lhs.row == rhs.row && lhs.col == rhs.col
     }
     
 }

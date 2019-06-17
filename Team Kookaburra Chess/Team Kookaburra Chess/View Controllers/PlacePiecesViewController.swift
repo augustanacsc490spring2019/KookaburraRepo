@@ -348,7 +348,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 }
             }
             chosenPiece.row = highlightedCell.row
-            chosenPiece.col = highlightedCell.column
+            chosenPiece.col = highlightedCell.col
             highlightedCell.configureCell(forPiece: chosenPiece)
             //var changedBoardCell = self.boardCells[highlightedCell.row][highlightedCell.column];
             //NSLog("boardcell changed: \(changedBoardCell.piece.type)");
@@ -361,7 +361,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //NSLog("chosen pieces: \(chosenPieces)")
             //}
             //}
-            didSelect(cell: highlightedCell, atRow: highlightedCell.row, andColumn: highlightedCell.column)
+            didSelect(cell: highlightedCell, atRow: highlightedCell.row, andColumn: highlightedCell.col)
         }
         
     }
@@ -593,7 +593,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 piece.color = playerColor
                 piece.setupSymbol()
                 formation[row][col].row = row
-                formation[row][col].column = col
+                formation[row][col].col = col
                 formation[row][col].piece.type = piece.type
                 formation[row][col].configureCell(forPiece: piece)
             }
