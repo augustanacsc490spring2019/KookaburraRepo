@@ -229,9 +229,23 @@ class ChessVC: UIViewController {
     }
     
     func updateLabel() {
+        if isLocalMatch{
         let color = playerTurn == .white ? "White" : "Black"
         turnLabel.text = "\(color) player's turn"
+        } else {
+            if self.model.localPlayerUIColor() == playerTurn{
+                turnLabel.text = "Your turn"
+            } else {
+                //let oppID = getOppIDfromModel()
+                //turnLabel.text = "\(oppID)'s turn, you can't move any pieces"
+                turnLabel.text = "Opponent's turn, you can't move any pieces"
+            }
+        }
     }
+    
+//    func getOppIDfromModel() -> String {
+//        if self.model.playerIDs[0] == gc.GKLocalPlayer.local
+//    }
     
     func newGame(){
         self.drawBoard()
