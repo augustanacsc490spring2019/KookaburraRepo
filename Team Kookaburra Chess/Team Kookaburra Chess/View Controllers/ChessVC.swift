@@ -674,7 +674,14 @@ extension ChessVC: ChessBoardDelegate {
     // MARK: Alerts
     
     func showGameOver(message: String) {
-        //TODO: change this function for online matches
+        if isLocalMatch{
+            presentLocalGameOver(message: message)
+        } else {
+            presentOnlineGameOver(message: message)
+        }
+    }
+    
+    func presentLocalGameOver(message: String){
         let ac = UIAlertController(title: "Game Over!", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Restart", style: .default, handler: { action in
             self.newGame()
@@ -686,6 +693,13 @@ extension ChessVC: ChessBoardDelegate {
         })
         
         ac.addAction(okAction)
+        ac.addAction(noAction)
+        present(ac, animated: true, completion: nil)
+    }
+    
+    func presentOnlineGameOver(message: String){
+        let ac = UIAlertController(title: "Game Over!", message: message, preferredStyle: .alert)
+        let noAction = UIAlertAction(title: "View Board", style: .default, handler: nil)
         ac.addAction(noAction)
         present(ac, animated: true, completion: nil)
     }
