@@ -51,7 +51,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var possibleMoves = [BoardIndex]()
     var playerTurn = UIColor.white
     var pickerData: [String] = [String]()
-    var highlightedCell: BoardCell = BoardCell(row: 0, column: 0, piece: ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: .white), color: .white)
+    var highlightedCell: BoardCell = BoardCell(row: 0, col: 0, piece: ChessPiece(row: 0, column: 0, color: .clear, type: .dummy, player: .white), color: .white)
     var p2BoardCells = [[BoardCell]]()
     var isLocalMatch = true
     var model: GameModel = GameModel()
@@ -148,14 +148,14 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 if model.blackHasSetPieces{
                     blackFormation = p2BoardCells
                 } else {
-                    blackFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+                    blackFormation = Array(repeating: Array(repeating: BoardCell(row: 5, col: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
                 }
             } else {//playerColor == .black
                 blackFormation = boardCells
                 if model.whiteHasSetPieces{
                     whiteFormation = p2BoardCells
                 } else {
-                    whiteFormation = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+                    whiteFormation = Array(repeating: Array(repeating: BoardCell(row: 5, col: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
                 }
             }
         } else { //local match
@@ -225,7 +225,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
         let numRows:Int = 8
         let numCols:Int = 8
-        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
+        let oneRow = Array(repeating: BoardCell(row: 5, col: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
         self.boardCells = Array(repeating: oneRow, count: numRows)
         let cellDimension = (view.frame.size.width - 0) / CGFloat(numCols)
         var xOffset: CGFloat = 0
@@ -244,7 +244,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
                 
                 // create a cell at this location with this piece, and set color
-                let cell = BoardCell(row: row, column: col, piece: piece, color: .white)
+                let cell = BoardCell(row: row, col: col, piece: piece, color: .white)
                 
                 // NSLog("Board cells at row, col: \(boardCells[row][col])")
                 

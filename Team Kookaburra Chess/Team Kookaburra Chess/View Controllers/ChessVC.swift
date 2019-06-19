@@ -16,7 +16,7 @@ class ChessVC: UIViewController {
     var playerColor: UIColor = .white
     var chessBoard = ChessBoard(playerColor: .white)
     //var boardCells = [[BoardCell]]()
-    var boardCells = Array(repeating: Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
+    var boardCells = Array(repeating: Array(repeating: BoardCell(row: 5, col: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: UIColor.white), color: .clear), count: 8), count: 8)
     var pieceBeingMoved: ChessPiece? = nil
     var possibleMoves = [BoardIndex]()
     var possibleAttacks = [BoardIndex]()
@@ -134,6 +134,7 @@ class ChessVC: UIViewController {
         chessBoard.delegate = self
         drawBoard()
         setupViews()
+        prepareResetPiecesArray()
         chessBoard.checkGameOver(color: playerTurn)
         //print("White Formation: \(whiteFormation)")
         //print("Black Formation: \(blackFormation)")
@@ -165,8 +166,14 @@ class ChessVC: UIViewController {
     
     func drawBoard() {
         //print("chessVC drawBoard called")
-        let oneRow = Array(repeating: BoardCell(row: 5, column: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
+        let oneRow = Array(repeating: BoardCell(row: 5, col: 5, piece: ChessPiece(row: 5, column: 5, color: .clear, type: .dummy, player: playerColor), color: .clear), count: 8)
         boardCells = Array(repeating: oneRow, count: 8)
+//        for row in 0...7{
+//            for col in 0...7{
+//                let boardCell = BoardCell(row: row, col: col, piece: ChessPiece(row: row, column: col, color: .clear, type: .dummy, player: playerColor), color: .clear)
+//                boardCells[row][col] = boardCell
+//            }
+//        }
         //print("black formation: \(blackFormation)")
         //print("white formation: \(whiteFormation)")
         //chessBoard.takeFormations(black: blackFormation, white: whiteFormation)
@@ -190,7 +197,7 @@ class ChessVC: UIViewController {
                 
                 let piece = chessBoard.board[actualRow][actualCol]
                 //print("drawBoard row: \(row), col: \(col), piece: \(piece.symbol)")
-                let cell = BoardCell(row: actualRow, column: actualCol, piece: piece, color: .white)
+                let cell = BoardCell(row: actualRow, col: actualCol, piece: piece, color: .white)
                 cell.delegate = self
                 boardCells[actualRow][actualCol] = cell
                 
@@ -243,6 +250,17 @@ class ChessVC: UIViewController {
         }
     }
     
+    //put info from the board into the pieceInfo array but only for the reset model
+    func prepareResetPiecesArray(){
+            for array in boardCells{
+                for cell in array{
+                    if cell.piece.type != .dummy{
+                        resetModel.piecesArray.append(cell.piece.getBasicInfo())
+                    }
+                }
+            }
+    }
+    
 //    func getOppIDfromModel() -> String {
 //        if self.model.playerIDs[0] == gc.GKLocalPlayer.local
 //    }
@@ -268,7 +286,6 @@ class ChessVC: UIViewController {
     
     func getFormationFromModel(){
         //clear the board in case we're restarting a game, not necessary at the start of games
-        //TODO: add isRestart parameter so this isn't called at the beginning of a game
         for row in 0...7{
             for col in 0...7{
                 let cell = boardCells[row][col]
@@ -292,8 +309,6 @@ class ChessVC: UIViewController {
     func resetFormationFromModel(){
         
         //clear the board in case we're restarting a game, not necessary at the start of games
-        //TODO: add isRestart parameter so this isn't called at the beginning of a game
-        
         setFormationFromModel(aModel:self.resetModel)
         
     }
@@ -311,9 +326,12 @@ class ChessVC: UIViewController {
             for col in 0...7 {
                 
                 boardCells[row][col].piece.type =  .dummy
+                boardCells[row][col].piece.row = row
+                boardCells[row][col].piece.col = col
                 boardCells[row][col].piece.setupSymbol()
                 boardCells[row][col].row = row
                 boardCells[row][col].col = col
+                boardCells[row][col].configureCell(forPiece: boardCells[row][col].piece)
                 
                 chessBoard.board[row][col].type = .dummy
                 chessBoard.board[row][col].setupSymbol()
@@ -323,13 +341,15 @@ class ChessVC: UIViewController {
             
             
             let piece = ChessPiece(pieceInfo: pieceInfo)
+            piece.setupSymbol()
             if piece.type != .dummy{
-                print("There should really be a piece here somewhere")
+                print("There should really be a \(piece.color) piece here somewhere")
             }
             boardCells[pieceInfo.row][pieceInfo.col].row = pieceInfo.row
             boardCells[pieceInfo.row][pieceInfo.col].col = pieceInfo.col
             
             boardCells[pieceInfo.row][pieceInfo.col].piece = piece
+            boardCells[pieceInfo.row][pieceInfo.col].configureCell(forPiece: piece)
             chessBoard.board[pieceInfo.row][pieceInfo.col] = piece
         }
         

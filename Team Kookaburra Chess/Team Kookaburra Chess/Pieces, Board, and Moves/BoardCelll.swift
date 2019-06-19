@@ -35,9 +35,9 @@ class BoardCell: UIView {
     }()
     
     
-    init(row: Int, column: Int, piece: ChessPiece, color: UIColor) {
+    init(row: Int, col: Int, piece: ChessPiece, color: UIColor) {
         self.row = row
-        self.col = column
+        self.col = col
         self.piece = piece
         self.color = color
         
