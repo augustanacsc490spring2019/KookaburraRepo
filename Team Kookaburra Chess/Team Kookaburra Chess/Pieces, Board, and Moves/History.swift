@@ -22,8 +22,8 @@ class History {
             let end = m["end"]
             print("Showing History======================")
             print("MOVE \(i+1)")
-            print("Moved from: \(start?.valueCol.rawValue), \(start?.valueRow.rawValue)")
-            print("To: \(end?.valueCol.rawValue), \(end?.valueRow.rawValue)")
+            print("Moved from: \(String(describing: start?.valueCol.rawValue)), \(String(describing: start?.valueRow.rawValue))")
+            print("To: \(String(describing: end?.valueCol.rawValue)), \(String(describing: end?.valueRow.rawValue))")
         }
     }
     

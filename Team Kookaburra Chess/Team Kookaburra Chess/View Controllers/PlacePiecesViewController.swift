@@ -241,7 +241,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 xOffset = (CGFloat(col) * cellDimension) + 0
                 
                 // create a piece
-                var piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
+                let piece = ChessPiece(row: row, column: col, color: .white, type: .dummy, player: .white)
                 
                 // create a cell at this location with this piece, and set color
                 let cell = BoardCell(row: row, col: col, piece: piece, color: .white)
@@ -293,7 +293,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func placeButtonPressed(_ sender: Any) {
         //check that for chess piece type
-        var chosenPiece = getPiece(string: pickerString)
+        let chosenPiece = getPiece(string: pickerString)
         chosenPiece.setupSymbol()
         //check if the piece is illegally placed
         var cost = chosenPiece.summonCost
@@ -431,7 +431,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //    }
     
     func clearFrontRow(){
-        var chosenPiece = getPiece(string: "Empty")
+        let chosenPiece = getPiece(string: "Empty")
         chosenPiece.setupSymbol()
         let row = 0//front row
         for col in 0...7{
@@ -820,7 +820,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 return
             }
             
-            self.performSegue(withIdentifier: "returnToMenuSegue", sender: self)
+            self.performSegue(withIdentifier: "ReturnToMenuSegue", sender: self)
         }
         
         
@@ -1104,7 +1104,7 @@ class PlacePiecesViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func processGameUpdate() {
         print("place pieces processGameUpdate called")
         let updatedBoard = combineFormations()
-        let updatedPieceNamesArray = model.updatePieceNamesArray(chessPieceArray: updatedBoard)
+        //let updatedPieceNamesArray = model.updatePieceNamesArray(chessPieceArray: updatedBoard)
         
         model.piecesArray.removeAll()
         for r in 0...7 {
