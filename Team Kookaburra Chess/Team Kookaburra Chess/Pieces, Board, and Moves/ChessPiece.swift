@@ -142,11 +142,15 @@ class ChessPiece {
     }
     
     convenience init(pieceInfo: ChessPieceBasicInfo) {
-        
-        self.init(row: pieceInfo.row, column: pieceInfo.col, color: pieceInfo.uiColor, type: pieceInfo.type, player: pieceInfo.uiColor)
+        var color: UIColor
+        if pieceInfo.uiColor == UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 1){
+            color = UIColor.black
+        } else {// if pieceInfo.uiColor == UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1)
+            color = UIColor.white
+        }
+        self.init(row: pieceInfo.row, column: pieceInfo.col, color: color, type: pieceInfo.type, player: color)
         self.firstMove = pieceInfo.firstMove
         self.advancingByTwo = pieceInfo.advancingByTwo
-        
     }
     
     func getBasicInfo() -> ChessPieceBasicInfo {

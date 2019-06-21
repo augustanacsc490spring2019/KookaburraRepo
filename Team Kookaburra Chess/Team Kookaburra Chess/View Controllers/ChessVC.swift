@@ -298,9 +298,9 @@ class ChessVC: UIViewController {
         for pieceInfo in model.piecesArray{
             let piece = ChessPiece(row: pieceInfo.row, column: pieceInfo.col, color: pieceInfo.uiColor, type: pieceInfo.type, player: pieceInfo.uiColor)
             piece.setupSymbol()
-            if piece.type != .dummy{
-                print("There should really be a piece here somewhere")
-            }
+//            if piece.type != .dummy{
+//                print("There should really be a piece here somewhere")
+//            }
             boardCells[pieceInfo.row][pieceInfo.col].piece = piece
             chessBoard.board[pieceInfo.row][pieceInfo.col] = piece
         }
@@ -342,9 +342,11 @@ class ChessVC: UIViewController {
             
             let piece = ChessPiece(pieceInfo: pieceInfo)
             piece.setupSymbol()
-            if piece.type != .dummy{
-                print("There should really be a \(piece.color) piece here somewhere")
-            }
+//            if piece.type != .dummy{
+//                print("There should really be a \(piece.color) piece here somewhere")
+//                print("Is the piece white? \(piece.color == .white)")
+//                print("Is the piece black? \(piece.color == .black)")
+//            }
             boardCells[pieceInfo.row][pieceInfo.col].row = pieceInfo.row
             boardCells[pieceInfo.row][pieceInfo.col].col = pieceInfo.col
             
@@ -704,7 +706,7 @@ extension ChessVC: ChessBoardDelegate {
     func presentLocalGameOver(message: String){
         let ac = UIAlertController(title: "Game Over!", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Restart", style: .default, handler: { action in
-            self.newGame()
+            self.restartGame()
         })
         let noAction = UIAlertAction(title: "View Board", style: .default, handler: { action in
             
